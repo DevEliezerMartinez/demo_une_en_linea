@@ -1,0 +1,252 @@
+---
+// WhyChooseUNE.astro
+interface Props {
+  className?: string;
+}
+
+const { className = "" } = Astro.props;
+---
+
+<section class={`relative overflow-hidden py-16 md:py-24 ${className}`}>
+  <!-- SVG Decorativo - Línea con puntos -->
+  <div class="absolute top-0 left-0 w-[90%] pointer-events-none">
+    <svg
+      width="1624"
+      height="20"
+      viewBox="0 0 1624 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-full h-auto"
+      preserveAspectRatio="xMinYMin meet"
+    >
+      <line
+        x1="-28"
+        y1="10.5"
+        x2="1623"
+        y2="10.5"
+        stroke="#001A71"
+        stroke-width="2"
+        class="md:stroke-[1]"></line>
+      <circle cx="1498" cy="10" r="10" fill="#E22319"></circle>
+      <circle cx="1556" cy="10" r="10" fill="#E22319"></circle>
+      <circle cx="1614" cy="10" r="10" fill="#E22319"></circle>
+    </svg>
+  </div>
+
+  <!-- Network Particles Container -->
+  <div id="tsparticles" class="absolute top-0 right-0 w-full md:w-1/2 h-full">
+  </div>
+
+  <!-- Contenido -->
+  <div class="container mx-auto px-4 relative z-10">
+    <!-- Título -->
+    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 md:mb-12">
+      ¿POR QUÉ ELEGIR UNE EN LÍNEA?
+    </h2>
+
+    <!-- Subtítulo -->
+    <p class="text-base md:text-lg font-semibold mb-12 md:mb-16">
+      Miles de profesionistas confían en UNE
+    </p>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-12">
+      <!-- Stat 1 -->
+      <div class="space-y-3">
+        <h3 class="text-4xl md:text-5xl font-bold text-black">
+          +<span data-counter="20000" data-duration="2500">0</span>
+        </h3>
+        <p class="text-lg md:text-xl font-semibold text-red-600">
+          Estudiantes activos
+        </p>
+        <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+          Más que un número es la cantidad de sueños que UNE impulsa
+        </p>
+      </div>
+
+      <!-- Stat 2 -->
+      <div class="space-y-3">
+        <h3 class="text-4xl md:text-5xl font-bold text-black">
+          +<span data-counter="60000" data-duration="2500">0</span>
+        </h3>
+        <p class="text-lg md:text-xl font-semibold text-red-600">Egresados</p>
+        <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+          En UNE formamos profesionales altamente capacitados
+        </p>
+      </div>
+
+      <!-- Stat 3 - Desktop only muestra años, Mobile muestra docentes -->
+      <div class="space-y-3 hidden md:block">
+        <h3 class="text-4xl md:text-5xl font-bold text-black">
+          <span data-counter="30" data-duration="2000">0</span>
+        </h3>
+        <p class="text-lg md:text-xl font-semibold text-red-600">
+          Años de experiencia
+        </p>
+        <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+          Nuestra trayectoria nos respalda, y 10 años de manera virtual
+        </p>
+      </div>
+
+      <!-- Stat 3 Mobile - Docentes -->
+      <div class="space-y-3 md:hidden">
+        <h3 class="text-4xl font-bold text-black">
+          +<span data-counter="12000" data-duration="2500">0</span>
+        </h3>
+        <p class="text-lg font-semibold text-red-600">Docentes</p>
+        <p class="text-sm text-gray-700 leading-relaxed">
+          Personal docente altamente calificado
+        </p>
+      </div>
+    </div>
+
+    <!-- CTA Text -->
+    <p class="text-base md:text-lg font-bold text-black max-w-3xl">
+      Estudia a tu ritmo, desde donde estés, ahora puedes hacerlo sin dejar tu
+      empleo
+    </p>
+  </div>
+</section>
+
+<script>
+  import { tsParticles } from "@tsparticles/engine";
+  import { loadSlim } from "@tsparticles/slim";
+
+  function animateCounter(
+    element: HTMLElement,
+    target: number,
+    duration: number = 2000
+  ) {
+    const start = 0;
+    const increment = target / (duration / 16);
+    let current = start;
+    const isDecimal = !Number.isInteger(target);
+
+    const timer = setInterval(() => {
+      current += increment;
+
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+
+      const displayValue = Math.floor(current).toLocaleString("es-MX");
+      element.textContent = isDecimal ? current.toFixed(1) : displayValue;
+    }, 16);
+  }
+
+  function initCounters() {
+    const counters = document.querySelectorAll("[data-counter]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const element = entry.target as HTMLElement;
+            const target = parseInt(element.dataset.counter || "0");
+            const duration = parseInt(element.dataset.duration || "2000");
+
+            animateCounter(element, target, duration);
+            observer.unobserve(element);
+          }
+        });
+      },
+      {
+        threshold: 0.3,
+      }
+    );
+
+    counters.forEach((counter) => observer.observe(counter));
+  }
+
+  async function initParticles() {
+    await loadSlim(tsParticles);
+
+    await tsParticles.load({
+      id: "tsparticles",
+      options: {
+        fullScreen: { enable: false },
+        background: {
+          color: "transparent",
+        },
+        fpsLimit: 60,
+        particles: {
+          number: {
+            value: 40,
+            density: {
+              enable: true,
+              width: 800,
+              height: 800,
+            },
+          },
+          color: {
+            value: "#9CA3AF",
+          },
+          shape: {
+            type: "circle",
+          },
+          opacity: {
+            value: 0.5,
+          },
+          size: {
+            value: 3,
+          },
+          links: {
+            enable: true,
+            distance: 150,
+            color: "#CBD5E1",
+            opacity: 0.4,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 1,
+            direction: "none",
+            random: false,
+            straight: false,
+            outModes: {
+              default: "bounce",
+            },
+          },
+        },
+        interactivity: {
+          detectsOn: "canvas",
+          events: {
+            onHover: {
+              enable: true,
+              mode: "grab",
+            },
+            resize: {
+              enable: true,
+            },
+          },
+          modes: {
+            grab: {
+              distance: 200,
+              links: {
+                opacity: 0.7,
+                color: "#001A71",
+              },
+            },
+          },
+        },
+        detectRetina: true,
+      },
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      initCounters();
+      initParticles();
+    });
+  } else {
+    initCounters();
+    initParticles();
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    initCounters();
+    initParticles();
+  });
+</script>

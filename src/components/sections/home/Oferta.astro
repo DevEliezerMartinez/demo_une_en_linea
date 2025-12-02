@@ -1,0 +1,122 @@
+---
+import { Image } from "astro:assets";
+import flagImg from "@/assets/Imagenes/Decorativos/Flag.png";
+import cardImg from "@/assets/Imagenes/Decorativos/CardCarrera.png";
+import sepLogo from "@/assets/Logos/SEP.png";
+import rvoeLogo from "@/assets/Logos/RVOE.png";
+
+const carreras = [
+  { nombre: "Administración", imagen: cardImg },
+  { nombre: "Contaduría", imagen: cardImg },
+  { nombre: "Mercadotecnia", imagen: cardImg },
+  { nombre: "Ing. Industrial", imagen: cardImg },
+  { nombre: "Derecho", imagen: cardImg },
+  { nombre: "Psicología", imagen: cardImg },
+  { nombre: "Educación", imagen: cardImg },
+  { nombre: "Comunicación", imagen: cardImg },
+  { nombre: "Diseño Gráfico", imagen: cardImg },
+  { nombre: "Gastronomía", imagen: cardImg },
+];
+---
+
+<section class="py-6 lg:py-0">
+  <div id="oferta" class="flex flex-col lg:flex-row items-center">
+    <Image
+      src={flagImg}
+      alt="UNE En Línea"
+      class="w-full lg:w-1/2 object-contain"
+    />
+    <section class="flex flex-col px-6 mt-12 md:mt-0 w-full md:px-20">
+      <h3 class="text-3xl uppercase">Oferta Académica</h3>
+      <p class="text-lg font-light">Encuentra el programa perfecto para ti</p>
+      <strong class="text-xl font-bold mt-8">Avalado por:</strong>
+      <div class="flex items-center gap-4">
+        <Image src={sepLogo} alt="UNE En Línea" class="object-contain" />
+        <Image src={rvoeLogo} alt="UNE En Línea" class="object-contain" />
+      </div>
+    </section>
+  </div>
+</section>
+
+<section id="oferta_splide" class="py-12 bg-white">
+  <h3 class="text-3xl uppercase font-semibold mb-8 px-6">
+    Carreras diseñadas para el mundo laboral actual
+  </h3>
+
+  <div class="splide" id="carrerasCarousel">
+    <div class="splide__track">
+      <ul class="splide__list">
+        {
+          carreras.map((carrera) => (
+            <li class="splide__slide">
+              <div class="relative group overflow-hidden rounded-lg shadow-lg">
+                <Image
+                  src={carrera.imagen}
+                  alt={carrera.nombre}
+                  class="w-full h-64 object-cover"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
+                  <h4 class="text-white text-2xl font-bold mb-2">
+                    {carrera.nombre}
+                  </h4>
+                  <a
+                    href="/"
+                    class="text-white text-sm font-medium hover:underline  items-center border-b border-white flex max-w-48"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Conocer más
+                  </a>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  @import "@splidejs/splide/css";
+
+  .splide__slide {
+    padding: 0 0.5rem;
+  }
+</style>
+
+<script>
+  import Splide from "@splidejs/splide";
+  import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const splide = new Splide("#carrerasCarousel", {
+      type: "loop",
+      drag: "free",
+      focus: "center",
+      perPage: 4,
+      perMove: 1,
+      gap: "1rem",
+      autoScroll: {
+        speed: 1,
+        pauseOnHover: true,
+        pauseOnFocus: true,
+      },
+      arrows: false,
+      pagination: false,
+      breakpoints: {
+        1024: {
+          perPage: 3,
+        },
+        768: {
+          perPage: 2,
+        },
+        640: {
+          perPage: 1,
+        },
+      },
+    });
+
+    splide.mount({ AutoScroll });
+  });
+</script>

@@ -1,0 +1,602 @@
+---
+// Importación del componente Image de Astro
+import { Image } from "astro:assets";
+import { Menu, X, ChevronDown, Globe } from "@lucide/astro";
+
+// Rutas de las imágenes (Estas rutas ya son Assets importados)
+import Logo_UNE from "@logos/une-enlinea.png";
+import UNE_Blanco from "@logos/UNE_blanco.webp";
+import Enjoy from "@logos/Enjoy_english_blanco.webp";
+import VTU from "@logos/VTU_blanco.webp";
+
+// Configuración de datos (Ahora podemos definir width/height directamente en la data para Image)
+const topBarLinks = [
+  {
+    href: "https://www.universidad-une.com/",
+    img: UNE_Blanco,
+    alt: "UNE",
+    type: "image",
+    width: 64,
+    height: 64,
+  },
+  {
+    href: "/vivetuuniversidad/",
+    img: VTU,
+    alt: "Vive tu Universidad",
+    type: "image",
+    width: 64,
+    height: 64,
+  },
+  {
+    href: "/enjoyenglish",
+    img: Enjoy,
+    alt: "Enjoy English",
+    type: "image",
+    width: 64,
+    height: 64,
+  },
+  { href: "/plataforma", text: "PLATAFORMA", type: "button" },
+];
+
+const navItems = [
+  {
+    label: "Admisiones",
+    dropdownClass: "admisiones-dropdown",
+    links: [
+      {
+        href: "/acerca/admisiones",
+        title: "Admisiones",
+        desc: "Descubre todo sobre el proceso",
+      },
+      {
+        href: "/contacto/formulario-inscripcion",
+        title: "Formulario de inscripción",
+        desc: "Inicia tu proceso de admisión",
+      },
+      {
+        href: "/acerca/preguntasfrecuentes",
+        title: "Preguntas frecuentes",
+        desc: "Resuelve tus dudas",
+      },
+      {
+        href: "/acerca/apoyos",
+        title: "Apoyos educativos",
+        desc: "Conoce los apoyos a los cuales puedes acceder",
+      },
+    ],
+  },
+  {
+    label: "Oferta académica",
+    dropdownClass: "oferta-dropdown",
+    customContent: true,
+  },
+  {
+    label: "Nosotros",
+    dropdownClass: "nosotros-dropdown",
+    links: [
+      {
+        href: "/acerca/historia",
+        title: "Historia sobre nosotros",
+        desc: "Descubre nuestra trayectoria y misión educativa.",
+      },
+      {
+        href: "/acerca/beneficios",
+        title: "Beneficios permanencia",
+        desc: "Apoyos y servicios que fortalecen tu experiencia.",
+      },
+      {
+        href: "/contacto/solicitarinformacion",
+        title: "Contacto",
+        desc: "Canales directos para resolver tus dudas.",
+      },
+      {
+        href: "https://intranet.universidad-une.com/web/login",
+        title: "Acceso administrativos",
+        desc: "Portal de acceso - Administrativos",
+      },
+      {
+        href: "https://www.universidad-une.com/",
+        title: "UNE",
+        desc: "Conoce UNE todo el universo de UNE",
+      },
+    ],
+  },
+];
+
+const ofertaAcademica = {
+  medioSuperior: [
+    {
+      href: "https://www.une-enlinea.com/bachillerato",
+      title: "Bachillerato Virtual",
+    },
+  ],
+  educacionSuperior: [
+    {
+      href: "/oferta/licenciaturas",
+      title: "Licenciaturas",
+      desc: "Programas de pregrado",
+    },
+    {
+      href: "/oferta/maestria",
+      title: "Maestrías",
+      desc: "Posgrado académico y profesional",
+    },
+  ],
+};
+
+function getGridCols(dropdownClass) {
+  switch (dropdownClass) {
+    case "admisiones-dropdown":
+      return "grid-cols-4";
+    case "nosotros-dropdown":
+      return "grid-cols-5";
+    default:
+      return "grid-cols-4";
+  }
+}
+---
+
+<link rel="preload" as="image" href={Logo_UNE.src} fetchpriority="high" />
+
+<div
+  class="hidden md:flex w-full h-14 bg-azul-une items-center justify-end gap-5 px-4 rounded-b-3xl"
+>
+  {
+    topBarLinks.map((link) =>
+      link.type === "button" ? (
+        <a
+          href={link.href}
+          class="flex items-center gap-2 px-4 py-2 border border-white rounded-full text-white text-sm font-semibold hover:bg-white hover:text-azul-une transition-all duration-300"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span>{link.text}</span>
+          <Globe size={20} stroke-width={1} />
+        </a>
+      ) : (
+        <a href={link.href} target="_blank" rel="noopener noreferrer">
+          <Image
+            src={link.img}
+            alt={link.alt}
+            class="h-15 w-auto"
+            width={link.width}
+            height={link.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+      )
+    )
+  }
+</div>
+
+<header
+  class="bg-white/50 backdrop-blur-[10.2px] shadow-sm sticky top-0 z-50 w-full relative"
+>
+  <div class="max-w-full mx-auto px-4">
+    <div class="flex items-center justify-between h-24">
+      <div class="flex-shrink-0">
+        <a href="/" aria-label="Ir a página de inicio" title="Página principal">
+          <Image
+            src={Logo_UNE}
+            alt="UNE"
+            class="h-20 w-auto md:h-14 lg:h-24 lg:border-0 max-w-full"
+            width={120}
+            height={120}
+            loading="eager"
+            fetchpriority="high"
+          />
+        </a>
+      </div>
+
+      <nav class="hidden md:flex lg:space-x-4 items-center">
+        {
+          navItems.map((item, index) => (
+            <div class="relative group" data-dropdown-index={index}>
+              <button class="flex items-center px-3 py-2 hover:text-red-600 font-bold transition-colors duration-200 dropdown-trigger">
+                {item.label}
+                <ChevronDown
+                  size={16}
+                  class="ml-1 transform group-hover:rotate-180 transition-transform duration-200 chevron-icon"
+                />
+              </button>
+            </div>
+          ))
+        }
+      </nav>
+
+      <div class="md:hidden">
+        <button
+          type="button"
+          class="mobile-menu-button p-2 rounded-md text-blue-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          aria-label="Abrir menú"
+          title="Mostrar opciones del menú"
+        >
+          <Menu size={24} stroke-width={2} />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {
+    navItems.map((item) => (
+      <div
+        class={`dropdown-menu ${item.dropdownClass} absolute w-full top-full bg-white border-t border-gray-200 shadow-lg opacity-0 invisible transform translate-y-2 transition-all duration-300 ease-out z-50 hidden md:block`}
+      >
+        <div class="mx-2 px-4 py-6">
+          {item.customContent ? (
+            <div>
+              <div class="mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+                  <div>
+                    <h2 class="text-base font-bold text-azul-une mb-3 border-b border-gray-200 pb-1">
+                      Medio Superior
+                    </h2>
+                  </div>
+                  <div class="md:col-span-2">
+                    <h2 class="text-base font-bold text-azul-une mb-3 border-b border-gray-200 pb-1">
+                      Educación Superior
+                    </h2>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {ofertaAcademica.medioSuperior.map((link) => (
+                    <a
+                      href={link.href}
+                      rel="noopener noreferrer"
+                      class="group block p-4 rounded-lg hover:bg-blue-50 transition-colors duration-200"
+                    >
+                      <h3 class="font-bold text-gray-900 group-hover:text-azul-une">
+                        {link.title}
+                      </h3>
+                    </a>
+                  ))}
+                  {ofertaAcademica.educacionSuperior.map((link) => (
+                    <a
+                      href={link.href}
+                      rel="noopener noreferrer"
+                      class="group block p-4 rounded-lg hover:bg-blue-50 transition-colors duration-200"
+                    >
+                      <h3 class="font-bold text-gray-900 group-hover:text-azul-une mb-1">
+                        {link.title}
+                      </h3>
+                      <p class="text-sm text-gray-600">{link.desc}</p>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div class={`grid ${getGridCols(item.dropdownClass)} gap-2`}>
+              {item.links?.map((link) => (
+                <a
+                  href={link.href}
+                  rel="noopener noreferrer"
+                  class="group block p-4 rounded-lg hover:bg-blue-50 transition-colors duration-200"
+                >
+                  <h3 class="font-bold text-gray-900 group-hover:text-azul-une mb-1">
+                    {link.title}
+                  </h3>
+                  <p class="text-sm text-gray-600">{link.desc}</p>
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    ))
+  }
+</header>
+
+<div
+  class="md:hidden mobile-menu fixed inset-0 z-50 opacity-0 invisible transition-opacity duration-300 bg-black/50"
+>
+  <div
+    class="mobile-menu-container absolute top-0 left-0 h-full w-80 bg-white shadow-xl transform -translate-x-full transition-transform duration-300 overflow-y-auto"
+  >
+    <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+      <a href="/" aria-label="Ir a página de inicio" title="Página principal">
+        <Image
+          src={Logo_UNE}
+          alt="UNE"
+          class="h-12 w-auto"
+          width={48}
+          height={48}
+          loading="lazy"
+        />
+      </a>
+      <button
+        class="close-menu-button p-2 rounded-md text-blue-900 hover:bg-gray-100"
+      >
+        <X size={24} />
+      </button>
+    </div>
+
+    <div
+      class="bg-azul-une p-4 border-b border-gray-200 flex flex-col items-center space-y-3"
+    >
+      <div class="flex justify-center gap-4 w-full">
+        {
+          topBarLinks.map(
+            (link) =>
+              link.type === "image" && (
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center"
+                >
+                  <Image
+                    src={link.img}
+                    alt={link.alt}
+                    class="h-10 w-auto"
+                    loading="lazy"
+                    decoding="async"
+                    width={40}
+                    height={40}
+                  />
+                </a>
+              )
+          )
+        }
+      </div>
+
+      {
+        topBarLinks.map(
+          (link) =>
+            link.type === "button" && (
+              <a
+                href={link.href}
+                class="flex items-center justify-center gap-2 px-4 py-2 bg-white/10 border-2 border-white rounded-full text-white text-sm font-bold hover:bg-white hover:text-rojo-une transition-all duration-300 w-full"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>{link.text}</span>
+                <Globe size={16} stroke-width={2} />
+              </a>
+            )
+        )
+      }
+    </div>
+
+    <nav class="p-4">
+      {
+        navItems.map((item) => (
+          <div class="mb-2">
+            <button class="menu-section-button w-full flex items-center justify-between p-3 text-left font-semibold text-gray-900 hover:bg-gray-50 rounded-lg">
+              <span>{item.label}</span>
+              <ChevronDown
+                size={16}
+                class="chevron transition-transform duration-200"
+              />
+            </button>
+
+            <div class="hidden ml-4 mt-2">
+              {item.customContent ? (
+                <div class="space-y-2">
+                  <div class="mb-3">
+                    <p class="text-xs font-bold text-azul-une mb-2">
+                      Medio Superior
+                    </p>
+                    {ofertaAcademica.medioSuperior.map((link) => (
+                      <a
+                        href={link.href}
+                        class="block p-2 text-sm text-gray-700 hover:bg-blue-50 rounded"
+                      >
+                        {link.title}
+                      </a>
+                    ))}
+                  </div>
+                  <div class="mb-3">
+                    <p class="text-xs font-bold text-azul-une mb-2">
+                      Educación Superior
+                    </p>
+                    {ofertaAcademica.educacionSuperior.map((link) => (
+                      <a
+                        href={link.href}
+                        class="block p-2 text-sm text-gray-700 hover:bg-blue-50 rounded"
+                      >
+                        {link.title}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div class="space-y-1">
+                  {item.links?.map((link) => (
+                    <a
+                      href={link.href}
+                      class="block p-2 text-sm text-gray-700 hover:bg-blue-50 rounded"
+                    >
+                      {link.title}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </nav>
+  </div>
+</div>
+
+<script is:inline>
+  // Mobile menu functionality
+  const mobileMenuButton = document.querySelector(".mobile-menu-button");
+  const mobileMenu = document.querySelector(".mobile-menu");
+  const menuContainer = document.querySelector(".mobile-menu-container");
+  const closeMenuButton = document.querySelector(".close-menu-button");
+
+  function toggleMenu(open) {
+    if (open) {
+      mobileMenu?.classList.remove("opacity-0", "invisible");
+      mobileMenu?.classList.add("opacity-100", "visible");
+      menuContainer?.classList.remove("-translate-x-full");
+      requestAnimationFrame(() => {
+        document.body.style.overflow = "hidden";
+      });
+    } else {
+      menuContainer?.classList.add("-translate-x-full");
+      setTimeout(() => {
+        mobileMenu?.classList.remove("opacity-100", "visible");
+        mobileMenu?.classList.add("opacity-0", "invisible");
+        document.body.style.overflow = "";
+      }, 300);
+    }
+  }
+
+  mobileMenuButton?.addEventListener("click", () => toggleMenu(true));
+  closeMenuButton?.addEventListener("click", () => toggleMenu(false));
+
+  // Desktop dropdown functionality with click-to-pin
+  const navItems = document.querySelectorAll("nav .group");
+  const dropdowns = document.querySelectorAll(".dropdown-menu");
+  const dropdownMap = [
+    "admisiones-dropdown",
+    "oferta-dropdown",
+    "nosotros-dropdown",
+  ];
+
+  let pinnedDropdown = null;
+  let hoverTimeout = null;
+
+  function showDropdown(dropdown, trigger) {
+    clearTimeout(hoverTimeout);
+
+    dropdowns.forEach((d) => {
+      if (d !== dropdown) {
+        d.classList.remove("opacity-100", "visible", "translate-y-0");
+        d.classList.add("opacity-0", "invisible", "translate-y-2");
+      }
+    });
+
+    dropdown.classList.remove("opacity-0", "invisible", "translate-y-2");
+    dropdown.classList.add("opacity-100", "visible", "translate-y-0");
+
+    const chevron = trigger.querySelector(".chevron-icon");
+    if (chevron) {
+      chevron.style.transform = "rotate(180deg)";
+    }
+  }
+
+  function hideDropdown(dropdown, trigger, force = false) {
+    if (pinnedDropdown === dropdown && !force) {
+      return;
+    }
+
+    hoverTimeout = setTimeout(() => {
+      if (pinnedDropdown === dropdown && !force) {
+        return;
+      }
+
+      dropdown.classList.remove("opacity-100", "visible", "translate-y-0");
+      dropdown.classList.add("opacity-0", "invisible", "translate-y-2");
+
+      const chevron = trigger.querySelector(".chevron-icon");
+      if (chevron) {
+        chevron.style.transform = "rotate(0deg)";
+      }
+    }, 50);
+  }
+
+  function unpinDropdown(dropdown, trigger) {
+    if (pinnedDropdown === dropdown) {
+      pinnedDropdown = null;
+      hideDropdown(dropdown, trigger, true);
+    }
+  }
+
+  navItems.forEach((item, index) => {
+    const dropdown = document.querySelector(`.${dropdownMap[index]}`);
+    const trigger = item.querySelector(".dropdown-trigger");
+
+    if (!dropdown || !trigger) return;
+
+    // Hover events
+    item.addEventListener("mouseenter", () => {
+      showDropdown(dropdown, trigger);
+    });
+
+    item.addEventListener("mouseleave", () => {
+      hideDropdown(dropdown, trigger);
+    });
+
+    dropdown.addEventListener("mouseenter", () => {
+      clearTimeout(hoverTimeout);
+    });
+
+    dropdown.addEventListener("mouseleave", () => {
+      hideDropdown(dropdown, trigger);
+    });
+
+    // Click event para pin/unpin
+    trigger.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (pinnedDropdown === dropdown) {
+        unpinDropdown(dropdown, trigger);
+      } else {
+        if (pinnedDropdown) {
+          const pinnedIndex = Array.from(dropdowns).indexOf(pinnedDropdown);
+          const pinnedTrigger = document.querySelector(
+            `nav .group[data-dropdown-index="${pinnedIndex}"] .dropdown-trigger`
+          );
+          unpinDropdown(pinnedDropdown, pinnedTrigger);
+        }
+
+        pinnedDropdown = dropdown;
+        showDropdown(dropdown, trigger);
+      }
+    });
+  });
+
+  // Cerrar dropdown pinned al hacer click fuera
+  document.addEventListener("click", (e) => {
+    if (pinnedDropdown) {
+      const isInsideDropdown = pinnedDropdown.contains(e.target);
+      const isInsideTrigger = Array.from(navItems).some((item) =>
+        item.contains(e.target)
+      );
+
+      if (!isInsideDropdown && !isInsideTrigger) {
+        const index = Array.from(dropdowns).indexOf(pinnedDropdown);
+        const trigger = document.querySelector(
+          `nav .group[data-dropdown-index="${index}"] .dropdown-trigger`
+        );
+        unpinDropdown(pinnedDropdown, trigger);
+      }
+    }
+  });
+
+  // Mobile submenu functionality
+  document.querySelectorAll(".menu-section-button").forEach((section) => {
+    section.addEventListener("click", () => {
+      const submenu = section.nextElementSibling;
+      const chevron = section.querySelector(".chevron");
+      submenu?.classList.toggle("hidden");
+      chevron?.classList.toggle("rotate-180");
+    });
+  });
+
+  // Close menu on escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      toggleMenu(false);
+
+      if (pinnedDropdown) {
+        const index = Array.from(dropdowns).indexOf(pinnedDropdown);
+        const trigger = document.querySelector(
+          `nav .group[data-dropdown-index="${index}"] .dropdown-trigger`
+        );
+        unpinDropdown(pinnedDropdown, trigger);
+      }
+
+      dropdowns.forEach((dropdown) => {
+        dropdown.classList.remove("opacity-100", "visible", "translate-y-0");
+        dropdown.classList.add("opacity-0", "invisible", "translate-y-2");
+      });
+    }
+  });
+</script>

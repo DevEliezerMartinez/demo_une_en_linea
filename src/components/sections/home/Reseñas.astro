@@ -1,0 +1,284 @@
+---
+import { Image } from 'astro:assets';
+import ResenaImg from '@/assets/Imagenes/Decorativos/Reseña.png';
+
+const testimonios = [
+  {
+    texto: "La experiencia que he tenido ha sido muy accesible, cómoda, y satisfactoria. Ya que se adapta a mis necesidades, y ocupaciones, por lo cual puedo continuar trabajando. Y a la misma vez seguir estudiando. Ya que los horarios son accesibles.",
+    nombre: "Pacheco Cuellar Aaron Smirnoff",
+    programa: "Lic. Administración"
+  },
+  {
+    texto: "Estudiar en línea me ha permitido balancear mi vida personal y profesional de manera efectiva. La flexibilidad y calidad educativa son excepcionales.",
+    nombre: "María González Pérez",
+    programa: "Lic. Contaduría"
+  },
+  {
+    texto: "La plataforma es intuitiva y los profesores están siempre disponibles. He logrado desarrollar nuevas habilidades sin sacrificar mi trabajo.",
+    nombre: "Carlos Ramírez Torres",
+    programa: "Ing. Industrial"
+  }
+];
+---
+
+<section class="py-12 md:py-20 px-4">
+  <div class="max-w-7xl mx-auto">
+    <!-- Encabezado -->
+    <div class="text-center mb-8 md:mb-12">
+      <h2 class="text-2xl md:text-4xl font-bold mb-2" style="color: #1f2937;">
+        Conoce la experiencia en línea de algunos de nuestros alumnos
+      </h2>
+      <p class="text-base md:text-lg font-semibold" style="color: #374151;">
+        Historias reales de personas que transformaron su futuro
+      </p>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+      <!-- Imagen - Se mantiene estática -->
+      <div class="w-full lg:w-1/2">
+        <div class="relative rounded-2xl overflow-hidden shadow-lg">
+          <Image 
+            src={ResenaImg}
+            alt="Estudiante en línea"
+            class="w-full h-auto"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <!-- Carrusel de testimonios -->
+      <div class="w-full lg:w-1/2 relative">
+        <div class="splide testimonios-carousel">
+          <div class="splide__track">
+            <ul class="splide__list">
+              {testimonios.map((testimonio, index) => (
+                <li class="splide__slide" key={index}>
+                  <div class="testimonio-card bg-azul-une">
+                    <!-- Icono de comillas -->
+                    <div class="comillas">
+                      "
+                    </div>
+                    
+                    <!-- Texto del testimonio -->
+                    <div class="testimonio-texto">
+                      <p class="texto-contenido">
+                        {testimonio.texto}
+                      </p>
+                    </div>
+                    
+                    <!-- Autor -->
+                    <div class="testimonio-autor">
+                      <p class="autor-nombre">
+                        {testimonio.nombre}
+                      </p>
+                      <p class="autor-programa">
+                        {testimonio.programa}
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Flechas de navegación -->
+          <div class="splide__arrows">
+            <button class="splide__arrow splide__arrow--prev" aria-label="Anterior">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="24" height="24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+            </button>
+            <button class="splide__arrow splide__arrow--next" aria-label="Siguiente">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="24" height="24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Card del testimonio */
+  .testimonio-card {
+    color: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    position: relative;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  @media (min-width: 768px) {
+    .testimonio-card {
+      padding: 2.5rem;
+      min-height: 350px;
+    }
+  }
+
+  /* Comillas */
+  .comillas {
+    font-size: 4rem;
+    font-family: serif;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+    line-height: 1;
+  }
+
+  @media (min-width: 768px) {
+    .comillas {
+      font-size: 4.5rem;
+    }
+  }
+
+  /* Texto del testimonio */
+  .testimonio-texto {
+    flex-grow: 1;
+  }
+
+  .texto-contenido {
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .texto-contenido {
+      font-size: 1.125rem;
+    }
+  }
+
+  /* Autor */
+  .testimonio-autor {
+    margin-top: 1rem;
+  }
+
+  .autor-nombre {
+    font-weight: bold;
+    font-size: 1.125rem;
+  }
+
+  @media (min-width: 768px) {
+    .autor-nombre {
+      font-size: 1.25rem;
+    }
+  }
+
+  .autor-programa {
+    font-size: 0.875rem;
+    opacity: 0.9;
+  }
+
+  @media (min-width: 768px) {
+    .autor-programa {
+      font-size: 1rem;
+    }
+  }
+
+  /* Estilos de las flechas */
+  .splide__arrow {
+    background-color: white;
+    color: #003d82;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    opacity: 1;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+
+  .splide__arrow:hover {
+    background-color: #003d82;
+    color: white;
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .splide__arrow--prev {
+    left: -1rem;
+  }
+
+  .splide__arrow--next {
+    right: -1rem;
+  }
+
+  @media (min-width: 768px) {
+    .splide__arrow--prev {
+      left: -3.5rem;
+    }
+    
+    .splide__arrow--next {
+      right: -3.5rem;
+    }
+  }
+
+  .splide__arrow:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .splide__arrow svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Asegurar que el slide sea visible */
+  .splide__slide {
+    opacity: 1 !important;
+  }
+
+  .splide__list {
+    display: flex;
+  }
+</style>
+
+<script>
+  import Splide from '@splidejs/splide';
+  import '@splidejs/splide/css';
+
+  function initSplide() {
+    const splideElement = document.querySelector('.testimonios-carousel');
+    
+    if (splideElement && !splideElement.classList.contains('is-initialized')) {
+      const splide = new Splide('.testimonios-carousel', {
+        type: 'loop',
+        perPage: 1,
+        perMove: 1,
+        gap: '1rem',
+        arrows: true,
+        pagination: false,
+        autoplay: true,
+        interval: 5000,
+        pauseOnHover: true,
+        pauseOnFocus: true,
+        speed: 600,
+      });
+
+      splide.mount();
+    }
+  }
+
+  // Para Astro con transiciones
+  document.addEventListener('astro:page-load', initSplide);
+  
+  // Para carga inicial
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSplide);
+  } else {
+    initSplide();
+  }
+</script>

@@ -1,0 +1,490 @@
+---
+// FAQ.astro
+---
+
+<section class="max-w-6xl mx-auto px-4 py-12" id="faqSection">
+  <div class="text-center mb-12">
+    <h2
+      class="text-sm font-semibold text-azul-une uppercase tracking-wide mb-2"
+    >
+      PREGUNTAS FRECUENTES
+    </h2>
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+      ¡Respondemos tus preguntas!
+    </h1>
+    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+      Encuentra respuestas rápidas a las dudas más comunes sobre UNE
+    </p>
+  </div>
+
+  <div class="grid lg:grid-cols-2 gap-12 items-start">
+    <!-- Ilustración FAQ mejorada -->
+    <div class="flex justify-center lg:sticky lg:top-8">
+      <div class="relative">
+        <div
+          class="w-80 h-80 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-full flex items-center justify-center shadow-lg"
+        >
+          <div class="text-center">
+            <div
+              class="text-7xl font-bold bg-gradient-to-r from-blue-400 to-indigo-600 bg-clip-text text-transparent mb-4"
+            >
+              FAQ
+            </div>
+            <p class="text-sm text-gray-500 font-medium">Centro de Ayuda</p>
+
+            <!-- Elementos decorativos animados -->
+            <div
+              class="absolute top-8 left-8 w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center shadow-lg transform rotate-12 animate-pulse"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </div>
+
+            <div
+              class="absolute top-16 right-6 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg animate-bounce"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </div>
+
+            <div
+              class="absolute bottom-10 right-12 w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl shadow-lg animate-pulse"
+            >
+            </div>
+
+            <div
+              class="absolute bottom-16 left-12 w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full shadow-lg"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs y Preguntas -->
+    <div class="space-y-6">
+      <!-- Tabs -->
+      <div class="flex flex-wrap gap-2 mb-6">
+        <button
+          class="tab-button px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300"
+          data-tab="bachillerato"
+          data-active="false"
+          aria-label="Bachillerato"
+          title="Bachillerato"
+        >
+          Bachillerato
+        </button>
+        <button
+          class="tab-button px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300"
+          data-tab="licenciatura"
+          data-active="false"
+          aria-label="Licenciatura"
+          title="Licenciatura"
+        >
+          Licenciatura
+        </button>
+        <button
+          class="tab-button px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 bg-gray-200 text-gray-700 hover:bg-gray-300"
+          data-tab="posgrado"
+          data-active="false"
+          aria-label="Posgrado"
+          title="Posgrado"
+        >
+          Posgrado
+        </button>
+      </div>
+
+      <!-- Contenido de preguntas con loading -->
+      <div id="faq-content" class="space-y-4">
+        <div class="animate-pulse space-y-4">
+          <div class="h-16 bg-gray-200 rounded-lg"></div>
+          <div class="h-16 bg-gray-200 rounded-lg"></div>
+          <div class="h-16 bg-gray-200 rounded-lg"></div>
+        </div>
+      </div>
+
+      <!-- Footer con enlace -->
+      <div
+        class="flex justify-between items-center mt-12 pt-8 border-t border-gray-200"
+      >
+        <div class="text-sm text-gray-500">¿No encuentras tu respuesta?</div>
+        <a
+          href="/acerca/preguntasfrecuentes"
+          class="inline-flex items-center text-azul-une hover:text-azul-une/80 font-medium transition-colors group"
+          aria-label="Ir a Ver todas las preguntas frecuentes"
+          title="Navegar a Ver todas las preguntas frecuentes"
+        >
+          <span>Ver todas las preguntas frecuentes</span>
+          <svg
+            class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Datos organizados por categorías más específicas
+
+    const faqData = {
+      bachillerato: [
+        {
+          question: "¿Qué modalidades de bachillerato ofrecen?",
+          answer:
+            "Contamos con modalidades <span class='text-azul-une font-semibold'>súper flexibles</span>: presencial, semipresencial, sabatina, fines de semana y horarios especiales como jueves-viernes. <span class='text-green-600 font-medium'>Cada modalidad está diseñada para adaptarse a tus necesidades</span>, permitiendo que combines tus estudios con trabajo o actividades familiares.",
+        },
+        {
+          question: "¿Cuánto cuesta el bachillerato en UNE?",
+          answer:
+            "El costo varía según <span class='text-azul-une font-medium'>la modalidad y plantel</span> que elijas. Nuestro modelo de colegiatura incluye plataformas digitales, biblioteca virtual y laboratorios especializados. ¡Tenemos <span class='text-azul-une font-bold bg-azul-une/10 px-2 py-1 rounded'>becas de hasta el 50%</span> disponibles!",
+        },
+        {
+          question: "¿El bachillerato tiene validez oficial?",
+          answer:
+            "¡Absolutamente! Nuestro bachillerato cuenta con <span class='text-green-600 font-bold'>plena validez oficial ante la SEP</span>, incorporaciones con <span class='text-azul-une font-medium'>SICYT</span> y convenios con la <span class='text-azul-une font-medium'>Universidad de Guadalajara</span>. Tu certificado tendrá el respaldo y reconocimiento total.",
+        },
+        {
+          question: "¿Puedo trabajar mientras estudio bachillerato?",
+          answer:
+            "¡Claro que sí! Por eso tenemos modalidades como <span class='text-azul-une font-semibold'>sabatina, fines de semana y horarios especiales</span> diseñadas específicamente para personas que trabajan. <span class='text-green-600 font-medium'>Tu educación se adapta a tu ritmo de vida</span>, no al revés.",
+        },
+      ],
+      licenciatura: [
+        {
+          question: "¿Qué carreras universitarias están disponibles?",
+          answer:
+            "¡Tenemos más de 45 programas académicos! Nuestras áreas incluyen: <span class='bg-azul-une/10 px-2 py-1 rounded text-azul-une font-medium'>Ingeniería, Ciencias de la Salud, Diseño y Arquitectura, Derecho, Educación, Administración, Psicología, Criminología</span> y muchas especialidades más. <span class='text-azul-une font-bold'>Todas con validez oficial completa</span>.",
+        },
+        {
+          question: "¿Cuánto tiempo tardan en encontrar trabajo los egresados?",
+          answer:
+            "Nuestros graduados encuentran trabajo en un <span class='text-green-600 font-bold'>promedio de 2 meses</span> después de titularse. Esto es posible gracias a nuestra <span class='text-azul-une font-semibold'>red de más de 800 convenios empresariales</span> y nuestro enfoque práctico en la formación profesional.",
+        },
+        {
+          question: "¿Qué modalidades tienen las licenciaturas?",
+          answer:
+            "Ofrecemos opciones <span class='text-azul-une font-semibold'>súper flexibles</span>: presencial, semipresencial, sabatina, fines de semana y horarios especiales. <span class='text-green-600 font-medium'>Cada modalidad se adapta perfectamente</span> a tu estilo de vida, trabajo y responsabilidades familiares.",
+        },
+        {
+          question: "¿Las carreras del área de salud tienen laboratorios?",
+          answer:
+            "¡Por supuesto! Contamos con <span class='text-azul-une font-semibold'>laboratorios especializados</span> equipados con tecnología moderna para las carreras de salud. Esto garantiza que tengas una formación práctica sólida y estés preparado para el ejercicio profesional.",
+        },
+      ],
+      posgrado: [
+        {
+          question: "¿Ofrecen programas de posgrado?",
+          answer:
+            "Sí. UNE ofrece una amplia oferta académica de posgrado que incluye <span class='text-azul-une font-semibold'>maestrías, especialidades y diplomados</span> diseñados para profesionales que desean fortalecer sus competencias, actualizar sus conocimientos o especializarse en áreas específicas. Estos programas se imparten en modalidades flexibles y con enfoque práctico, permitiendo a los egresados integrarse de manera más competitiva en el ámbito laboral.",
+        },
+        {
+          question: "¿Los posgrados tienen modalidades flexibles?",
+          answer:
+            "¡Absolutamente! Entendemos que los profesionales tienen horarios ocupados, por eso ofrecemos <span class='text-azul-une font-semibold'>modalidades flexibles</span> incluyendo fines de semana y horarios ejecutivos que se adaptan a tu vida profesional y personal.",
+        },
+        {
+          question: "¿Qué incluyen los programas de educación continua?",
+          answer:
+            "Nuestros programas incluyen <span class='text-azul-une font-medium'>diplomados especializados, especialidades y cursos de actualización</span> en diversas áreas profesionales. Están diseñados para que nunca dejes de crecer y te mantengas actualizado en tu campo de expertise.",
+        },
+        {
+          question: "¿El Centro de Idiomas está disponible para profesionales?",
+          answer:
+            "¡Por supuesto! Nuestro <span class='text-azul-une font-bold'>Centro de Idiomas</span> está disponible para estudiantes, profesionales y público en general. Ofrecemos diversos idiomas con metodologías modernas y horarios flexibles para ampliar tus oportunidades profesionales.",
+        },
+      ],
+    };
+
+    let currentOpenQuestion = null;
+    const DEFAULT_CATEGORY = "proceso-inscripcion";
+
+    function renderQuestions(category) {
+      const container = document.getElementById("faq-content");
+      const questions = faqData[category];
+
+      if (!questions) {
+        container.innerHTML =
+          '<div class="text-center text-gray-500 py-8">Selecciona una categoría para ver las preguntas de tu interés.</div>';
+        return;
+      }
+
+      container.innerHTML = questions
+        .map(
+          (faq, index) => `
+        <div class="faq-item border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+          <button 
+            class="faq-question w-full px-6 py-5 text-left flex justify-between items-center hover:bg-gray-50 transition-all duration-200 group"
+            data-index="${index}"
+            aria-expanded="false"
+          >
+            <span class="font-semibold text-gray-900 pr-4 group-hover:text-azul-une transition-colors">${faq.question}</span>
+            <div class="flex-shrink-0">
+              <svg class="faq-icon w-5 h-5 text-gray-400 transition-all duration-300 group-hover:text-azul-une" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </div>
+          </button>
+          <div class="faq-answer overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0;">
+            <div class="px-6 pb-5">
+              <div class="pt-2 border-t border-gray-100">
+                <p class="text-gray-600 leading-relaxed mt-3">${faq.answer}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `
+        )
+        .join("");
+
+      // Añadir event listeners optimizados
+      const questionButtons = container.querySelectorAll(".faq-question");
+      questionButtons.forEach((button) => {
+        button.addEventListener("click", handleQuestionClick);
+      });
+    }
+
+    function handleQuestionClick(event) {
+      const button = event.currentTarget;
+      const index = button.dataset.index;
+      const answer = button.nextElementSibling;
+      const icon = button.querySelector(".faq-icon");
+      const isExpanded = button.getAttribute("aria-expanded") === "true";
+
+      // Cerrar pregunta anterior si hay una abierta
+      if (currentOpenQuestion && currentOpenQuestion !== button) {
+        closeQuestion(currentOpenQuestion);
+      }
+
+      if (isExpanded) {
+        closeQuestion(button);
+        currentOpenQuestion = null;
+      } else {
+        openQuestion(button, answer, icon);
+        currentOpenQuestion = button;
+      }
+    }
+
+    function openQuestion(button, answer, icon) {
+      button.setAttribute("aria-expanded", "true");
+      button.classList.add("bg-azul-une/10");
+      icon.style.transform = "rotate(180deg)";
+
+      // Calcular altura real del contenido
+      const content = answer.querySelector("div");
+      const height = content.offsetHeight;
+      answer.style.maxHeight = height + "px";
+
+      // Scroll suave hacia la pregunta si está fuera de vista
+      setTimeout(() => {
+        const rect = button.getBoundingClientRect();
+        const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+
+        if (!isVisible) {
+          button.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "nearest",
+          });
+        }
+      }, 150);
+    }
+
+    function closeQuestion(button) {
+      const answer = button.nextElementSibling;
+      const icon = button.querySelector(".faq-icon");
+
+      button.setAttribute("aria-expanded", "false");
+      button.classList.remove("bg-azul-une/10");
+      icon.style.transform = "rotate(0deg)";
+      answer.style.maxHeight = "0";
+    }
+
+    function switchTab(newCategory, clickedButton) {
+      // Actualizar estilos de tabs - asegurar que se reseteen todas las clases
+      document.querySelectorAll(".tab-button").forEach((btn) => {
+        btn.classList.remove(
+          "bg-azul-une",
+          "text-white",
+          "bg-blue-600",
+          "bg-blue-700",
+          "bg-blue-500"
+        );
+        btn.classList.add("bg-gray-200", "text-gray-700");
+        btn.setAttribute("data-active", "false");
+      });
+
+      // Activar el tab seleccionado
+      clickedButton.classList.remove(
+        "bg-gray-200",
+        "text-gray-700",
+        "bg-blue-600",
+        "bg-blue-700",
+        "bg-blue-500"
+      );
+      clickedButton.classList.add("bg-azul-une", "text-white");
+      clickedButton.setAttribute("data-active", "true");
+
+      // Cerrar pregunta abierta al cambiar de tab
+      if (currentOpenQuestion) {
+        closeQuestion(currentOpenQuestion);
+        currentOpenQuestion = null;
+      }
+
+      // Renderizar nuevas preguntas con pequeña animación
+      const container = document.getElementById("faq-content");
+      container.style.opacity = "0.5";
+
+      setTimeout(() => {
+        renderQuestions(newCategory);
+        container.style.opacity = "1";
+      }, 150);
+    }
+
+    function setDefaultActiveTab() {
+      // Asegurar que el tab por defecto esté activo
+      const defaultTab = document.querySelector(
+        `[data-tab="${DEFAULT_CATEGORY}"]`
+      );
+      if (defaultTab) {
+        // Resetear todos los tabs primero
+        document.querySelectorAll(".tab-button").forEach((btn) => {
+          btn.classList.remove("bg-azul-une", "text-white");
+          btn.classList.add("bg-gray-200", "text-gray-700");
+          btn.setAttribute("data-active", "false");
+        });
+
+        // Activar el tab por defecto
+        defaultTab.classList.remove("bg-gray-200", "text-gray-700");
+        defaultTab.classList.add("bg-azul-une", "text-white");
+        defaultTab.setAttribute("data-active", "true");
+      }
+    }
+
+    // Inicializar el componente
+    function initializeFAQ() {
+      // Asegurar que el tab por defecto esté activo
+      setDefaultActiveTab();
+
+      // Cargar primera categoría
+      renderQuestions(DEFAULT_CATEGORY);
+
+      // Event listeners para tabs
+      document.querySelectorAll(".tab-button").forEach((button) => {
+        button.addEventListener("click", function () {
+          const category = this.dataset.tab;
+          switchTab(category, this);
+        });
+      });
+
+      // Cerrar preguntas al hacer clic fuera
+      document.addEventListener("click", function (event) {
+        const faqSection = document.getElementById("faqSection");
+        if (!faqSection.contains(event.target) && currentOpenQuestion) {
+          closeQuestion(currentOpenQuestion);
+          currentOpenQuestion = null;
+        }
+      });
+
+      // Manejar tecla Escape para cerrar preguntas
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && currentOpenQuestion) {
+          closeQuestion(currentOpenQuestion);
+          currentOpenQuestion = null;
+        }
+      });
+    }
+
+    // Inicializar cuando todo esté listo
+    initializeFAQ();
+  });
+</script>
+
+<style>
+  .faq-answer {
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .faq-icon {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .faq-item:hover {
+    transform: translateY(-1px);
+  }
+
+  /* Animaciones para elementos decorativos */
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(12deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(12deg);
+    }
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-bounce {
+    animation: bounce 1s infinite;
+  }
+
+  /* Responsive mejoras */
+  @media (max-width: 768px) {
+    .tab-button {
+      font-size: 0.875rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .faq-question {
+      padding: 1rem;
+    }
+
+    .faq-answer div {
+      padding: 0 1rem 1rem 1rem;
+    }
+  }
+
+  /* Accesibilidad */
+  @media (prefers-reduced-motion: reduce) {
+    .faq-answer,
+    .faq-icon,
+    .faq-item {
+      transition: none !important;
+    }
+
+    .animate-pulse,
+    .animate-bounce {
+      animation: none !important;
+    }
+  }
+</style>

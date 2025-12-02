@@ -1,0 +1,254 @@
+---
+// ContactSection.astro
+export interface Props {
+  backgroundImage?: string;
+  title?: string;
+  subtitle?: string;
+  className?: string;
+}
+
+const { 
+  backgroundImage, 
+  title = "Déjanos tus datos y nos contactaremos contigo",
+  subtitle = "Estamos para ti",
+  className = ""
+} = Astro.props;
+---
+
+<section class={`relative py-16 px-4 min-h-[400px] ${className}`}>
+  <!-- Fondo con imagen o color -->
+  <div class="absolute inset-0">
+    {backgroundImage ? (
+      <div 
+        class="w-full h-full bg-cover bg-center bg-no-repeat"
+        style={`background-image: url('${backgroundImage}');`}
+      >
+        <!-- Overlay para mejorar legibilidad del texto -->
+        <div class="absolute inset-0 bg-black/40"></div>
+      </div>
+    ) : (
+      <div class="w-full h-full bg-red-une"></div>
+    )}
+  </div>
+
+  <!-- Contenido -->
+  <div class="relative z-10 max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Texto -->
+      <div class="text-white">
+        <p class="text-lg font-medium mb-4 opacity-90">
+          {subtitle}
+        </p>
+        <h2 class="text-4xl lg:text-5xl font-bold leading-tight">
+          {title}
+        </h2>
+      </div>
+
+      <!-- Formulario -->
+      <div class="">
+        <form id="contact-form" class="space-y-6 flex flex-col justify-center items-center">
+          <!-- Campo Nombre -->
+          <div class="relative w-full">
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Nombre"
+              required
+              class="w-full bg-transparent border-b-2 border-white/50 text-white placeholder-white/70 py-3 px-0 focus:outline-none focus:border-white transition-colors text-lg"
+            />
+          </div>
+
+          <!-- Campo Apellido (único) -->
+          <div class="relative w-full">
+            <input
+              type="text"
+              id="apellido"
+              name="apellido"
+              placeholder="Apellido"
+              required
+              class="w-full bg-transparent border-b-2 border-white/50 text-white placeholder-white/70 py-3 px-0 focus:outline-none focus:border-white transition-colors text-lg"
+            />
+          </div>
+
+          <!-- Campo Correo -->
+          <div class="relative w-full">
+            <input
+              type="email"
+              id="correo"
+              name="correo"
+              placeholder="Correo Electrónico"
+              required
+              class="w-full bg-transparent border-b-2 border-white/50 text-white placeholder-white/70 py-3 px-0 focus:outline-none focus:border-white transition-colors text-lg"
+            />
+          </div>
+
+          <!-- Campo Teléfono -->
+          <div class="relative w-full">
+            <input
+              type="tel"
+              id="telefono"
+              name="telefono"
+              placeholder="Teléfono"
+              required
+              class="w-full bg-transparent border-b-2 border-white/50 text-white placeholder-white/70 py-3 px-0 focus:outline-none focus:border-white transition-colors text-lg"
+            />
+          </div>
+
+          <!-- Botón Enviar -->
+          <div class="pt-4 w-full">
+            <button
+              type="submit"
+              id="submit-btn"
+              class="w-full bg-azul-une hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded transition-colors duration-200 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label="Enviar formulario" 
+              title="Enviar formulario">
+              Enviar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contact-form');
+    
+    if (form) {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        
+        // Obtener apellido y dividirlo automáticamente
+        const apellidoCompleto = formData.get("apellido") || "";
+        const apellidosArray = apellidoCompleto.trim().split(/\s+/);
+        
+        // Asignar apellido paterno y materno
+        const apellido_p = apellidosArray[0] || "No proporcionado";
+        const apellido_m = apellidosArray.length > 1 ? apellidosArray.slice(1).join(" ") : "No proporcionado";
+        
+        // Crear objeto con las propiedades específicas
+        const data = {
+          nombre: formData.get("nombre") || "",
+          apellido_p: apellido_p,
+          apellido_m: apellido_m,
+          correo: formData.get("correo") || "",
+          telefono: formData.get("telefono") || "",
+          medio: "Página web",
+          modalidad: "Escolarizada",
+          nivel_educativo: "No proporcionado",
+          plantel_interes: "No proporcionado",
+          programa_interes: ""
+        };
+
+        console.log("Datos a enviar:", data);
+
+        // Mostrar loading en botón
+        const submitButton = document.getElementById('submit-btn');
+        const originalText = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.textContent = 'Enviando...';
+
+        try {
+          const apiUrl = "https://intranet.universidad-une.com/api/createleads";
+          
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
+
+          console.log("Status:", response.status);
+          const responseText = await response.text();
+          console.log("Respuesta:", responseText);
+
+          if (response.ok) {
+            console.log("Enviado correctamente");
+            window.location.href = '/contacto/gracias';
+          } else {
+            throw new Error(`Error ${response.status}`);
+          }
+
+        } catch (error) {
+          console.error("Error:", error.message);
+          // En caso de error, también redirigir
+          window.location.href = '/contacto/gracias';
+
+        } finally {
+          // Restaurar botón
+          submitButton.disabled = false;
+          submitButton.textContent = originalText;
+        }
+      });
+    }
+
+    // Efecto de enfoque en los inputs
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement.classList.add('focused');
+      });
+      
+      input.addEventListener('blur', function() {
+        if (!this.value) {
+          this.parentElement.classList.remove('focused');
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  /* Definir el color rojo UNE */
+  :root {
+    --red-une: #E53E3E; /* Ajusta este color según el rojo específico de UNE */
+  }
+
+  .bg-red-une {
+    background-color: var(--red-une);
+  }
+
+  /* Animaciones para los inputs */
+  .relative.focused input {
+    border-color: white;
+  }
+
+  /* Estilo personalizado para el glassmorphism */
+  .backdrop-blur-sm {
+    backdrop-filter: blur(10px);
+  }
+
+  /* Efecto hover mejorado para el botón */
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    h2 {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .bg-white\/10 {
+      margin: 0 1rem;
+      padding: 1.5rem;
+    }
+    
+    h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

@@ -1,0 +1,191 @@
+---
+// Layout principal de la aplicación con valores por defecto
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import "../styles/global.css";
+/* import Clarity from "../components/layout/Clarity.astro";
+ */
+// Configuración por defecto
+const defaultConfig = {
+  projectId: "spfe9hsbw6", // Clarity ID
+  gtmId: "GTM-TVXC38FK", // ID de GTM
+  title: "UNE - Universidad de Especialidades",
+  description:
+    "Universidad UNE - 30 años creyendo en ti. Licenciaturas, posgrados y educación continua en línea y presencial.",
+  lang: "es",
+  charset: "UTF-8",
+  ogImage: "/og-image.jpg",
+};
+
+// Extraer props con valores por defecto
+const {
+  title = defaultConfig.title,
+  description = defaultConfig.description,
+  lang = defaultConfig.lang,
+  charset = defaultConfig.charset,
+  projectId = defaultConfig.projectId,
+  gtmId = defaultConfig.gtmId,
+  noIndex = false,
+  customMeta = [],
+  bodyClass = "",
+  ogImage = defaultConfig.ogImage,
+} = Astro.props;
+
+// Generar título completo
+const fullTitle = title === defaultConfig.title ? title : `${title} | UNE`;
+
+// URL completa de la imagen
+const fullOgImage = `${Astro.url.origin}${ogImage}`;
+---
+
+<html lang={lang}>
+  <head>
+    <!-- Google Tag Manager  -->
+    <script is:inline define:vars={{ gtmId }}>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", gtmId);
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset={charset} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{fullTitle}</title>
+
+    {/* Meta descripción */}
+    {description && <meta name="description" content={description} />}
+
+    {/* Control de indexación */}
+    {
+      noIndex ? (
+        <meta name="robots" content="noindex, nofollow" />
+      ) : (
+        <meta
+          name="robots"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+      )
+    }
+
+    {/* Meta tags personalizados */}
+    {
+      customMeta.map((meta) => (
+        <meta
+          name={meta.name}
+          content={meta.content}
+          property={meta.property}
+        />
+      ))
+    }
+
+    {/* Meta tags SEO básicos */}
+    <meta name="author" content="Universidad de Jalisco - UNE" />
+    <meta name="geo.region" content="MX-JAL" />
+    <meta name="geo.placename" content="Jalisco, México" />
+
+    {/* Favicons esenciales */}
+    <link rel="apple-touch-icon" href="/Favicon/apple-icon-180x180.png" />
+    <link rel="manifest" href="/Favicon/manifest.json" />
+
+    {/* Theme color para móviles */}
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="apple-mobile-web-app-title" content="UNE" />
+
+    {/* BingSEO*/}
+    <meta name="msvalidate.01" content="0A78DF48C82B59DE77B76C48A5B2FBA4" />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+    {/* Preconnect para GTM y Clarity */}
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.clarity.ms" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.clarity.ms" />
+
+    {/* Schema.org para Google */}
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        name: "UNE - Universidad de Especialidades",
+        alternateName: "Centro Universitario - UNE",
+        url: Astro.url.origin,
+        logo: `${Astro.url.origin}/Favicon/apple-icon-180x180.png`,
+        image: fullOgImage || "",
+        description: (description || defaultConfig.description || "").replace(
+          /"/g,
+          "'"
+        ),
+        address: {
+          "@type": "PostalAddress",
+          addressRegion: "Jalisco",
+          addressCountry: "MX",
+        },
+      })}
+    />
+
+    {/* Open Graph optimizado */}
+    <meta property="og:title" content={fullTitle} />
+    <meta
+      property="og:description"
+      content={description || defaultConfig.description}
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:image" content={fullOgImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${fullTitle} - Logo`} />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:site_name" content="Universidad de Jalisco - UNE" />
+
+    {/* Twitter Card optimizado */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta
+      name="twitter:description"
+      content={description || defaultConfig.description}
+    />
+    <meta name="twitter:image" content={fullOgImage} />
+    <meta name="twitter:image:alt" content={`${fullTitle} - Logo`} />
+    <meta name="twitter:site" content="@une_universidad" />
+
+    {/* Canonical URL */}
+    <link rel="canonical" href={Astro.url.href} />
+  </head>
+
+  <body class={bodyClass}>
+    <!--  Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!--  Clarity Analytics -->
+   <!--  <Clarity projectId={projectId} /> -->
+
+    <Header />
+
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <slot name="scripts" />
+  </body>
+</html>

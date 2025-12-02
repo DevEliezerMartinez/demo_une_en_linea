@@ -1,0 +1,73 @@
+---
+// EducationalModel.astro
+interface Props {
+  className?: string;
+}
+
+const { className = '' } = Astro.props;
+
+const steps = [
+  {
+    number: "01",
+    title: "Conéctate a tu plataforma",
+    description: "Desde tu entorno virtual, encuentra todo lo que necesitas para estudiar: videos, documentos y más."
+  },
+  {
+    number: "02",
+    title: "Estudia a tu ritmo",
+    description: "Accede 24/7 a materiales de apoyo diseñados para fortalecer tu aprendizaje."
+  },
+  {
+    number: "03",
+    title: "Practica cada semana",
+    description: "Haz las actividades de la semana para aplicar lo que aprendes."
+  }
+];
+---
+
+<section class={`py-16 md:py-24 ${className}`}>
+  <div class="container mx-auto px-4">
+    <!-- Header -->
+    <div class="mb-12 md:mb-16">
+      <p class="text-sm md:text-base text-gray-600 uppercase tracking-wide mb-2 md:text-center">
+        MODELO EDUCATIVO
+      </p>
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 md:text-center">
+        ¿Cómo funciona estudiar en UNE?
+      </h2>
+      <p class="mt-4 text-sm md:text-base text-gray-700 max-w-2xl md:max-w-full md:text-center">
+        Nuestro modelo educativo está centrado en el estudiante, bajo la filosofía de un aprendizaje basado en actividades y de apoyo continuo.
+      </p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+      {steps.map((step) => (
+        <div class="bg-[#001A71] rounded-2xl p-8 md:p-10 text-white relative overflow-hidden group hover:shadow-2xl transition-shadow duration-300">
+          <!-- Número -->
+          <div class="mb-6">
+            <div class="w-16 h-16 rounded-full border-2 border-white/30 flex items-center justify-center">
+              <span class="text-2xl font-bold">{step.number}</span>
+            </div>
+          </div>
+
+          <!-- Título -->
+          <h3 class="text-xl md:text-2xl font-bold mb-4 leading-tight">
+            {step.title}
+          </h3>
+
+          <!-- Descripción -->
+          <p class="text-sm md:text-base text-white/90 leading-relaxed mb-6">
+            {step.description}
+          </p>
+
+          <!-- Línea decorativa -->
+          <div class="w-full h-1 bg-gradient-to-r from-[#E22319] to-[#E22319]/50 rounded-full"></div>
+
+          <!-- Efecto hover decorativo -->
+          <div class="absolute -bottom-20 -right-20 w-40 h-40 bg-white/5 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

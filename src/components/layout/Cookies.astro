@@ -1,0 +1,623 @@
+---
+// CookieConsent.astro - Componente de gestión de cookies para Microsoft Clarity
+---
+
+<!-- Banner de Cookies -->
+<div
+  id="cookieBanner"
+  class="cookie-banner"
+  role="dialog"
+  aria-labelledby="cookieTitle"
+  aria-live="polite"
+>
+  <div class="cookie-banner-content">
+    <div class="cookie-banner-inner">
+      <div class="cookie-text-section">
+        <h3 id="cookieTitle" class="cookie-title">
+          🍪 Cookies y Privacidad
+        </h3>
+        <p class="cookie-description">
+          Usamos cookies para mejorar tu experiencia.{" "}
+          <a href="/acerca/politicas" class="cookie-link" target="_blank" rel="noopener noreferrer">
+            Ver nuestra política
+          </a>.
+        </p>
+      </div>
+      <div class="cookie-buttons">
+        <button id="rejectAll" type="button" class="btn btn-reject">
+          Rechazar
+        </button>
+        <button id="acceptAll" type="button" class="btn btn-accept">
+          Aceptar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Personalización -->
+<div
+  id="cookieModal"
+  class="cookie-modal"
+  role="dialog"
+  aria-labelledby="modalTitle"
+  aria-hidden="true"
+>
+  <div class="modal-overlay"></div>
+  <div class="modal-content">
+    <!-- Header -->
+    <div class="modal-header">
+      <h3 id="modalTitle" class="modal-title">Configuración de Cookies</h3>
+      <button id="closeModal" type="button" class="modal-close" aria-label="Cerrar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="modal-body">
+      <!-- Cookies Necesarias -->
+      <div class="cookie-category">
+        <div class="category-header">
+          <label class="category-label">
+            <input type="checkbox" checked disabled class="category-checkbox disabled" />
+            <span class="category-name">Cookies Necesarias</span>
+          </label>
+          <span class="category-badge">Siempre activas</span>
+        </div>
+        <p class="category-desc">Esenciales para el funcionamiento básico del sitio.</p>
+      </div>
+
+      <!-- Cookies de Análisis -->
+      <div class="cookie-category">
+        <label class="category-label">
+          <input type="checkbox" id="analyticsConsent" checked class="category-checkbox" />
+          <div>
+            <span class="category-name">Cookies de Análisis</span>
+            <p class="category-desc">Nos ayudan a mejorar mediante Microsoft Clarity.</p>
+          </div>
+        </label>
+      </div>
+
+      <!-- Cookies de Publicidad -->
+      <div class="cookie-category">
+        <label class="category-label">
+          <input type="checkbox" id="adConsent" class="category-checkbox" />
+          <div>
+            <span class="category-name">Cookies de Publicidad</span>
+            <p class="category-desc">Para anuncios relevantes y medir campañas.</p>
+          </div>
+        </label>
+      </div>
+
+      <!-- Link a políticas -->
+      <div class="modal-policy-link">
+        <a href="/acerca/politicas" target="_blank" rel="noopener noreferrer" class="policy-link">
+          Ver Política de Privacidad →
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="modal-footer">
+      <button id="savePreferences" type="button" class="btn btn-save">
+        Guardar preferencias
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Banner de Cookies */
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9998;
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .cookie-banner.show {
+    transform: translateY(0);
+  }
+
+  .cookie-banner-content {
+    background: white;
+    border-top: 2px solid var(--color-rojo-une, #E22319);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .cookie-banner-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .cookie-text-section {
+    flex: 1;
+  }
+
+  .cookie-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-azul-une, #001A71);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .cookie-description {
+    font-size: 0.875rem;
+    color: #4b5563;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .cookie-link {
+    color: var(--color-rojo-une, #E22319);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .cookie-link:hover {
+    text-decoration: underline;
+  }
+
+  .cookie-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  /* Botones */
+  .btn {
+    padding: 0.625rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .btn-reject {
+    background: #f3f4f6;
+    color: #374151;
+  }
+
+  .btn-reject:hover {
+    background: #e5e7eb;
+  }
+
+  .btn-accept {
+    background: var(--color-rojo-une, #E22319);
+    color: white;
+    box-shadow: 0 2px 8px rgba(226, 35, 25, 0.2);
+  }
+
+  .btn-accept:hover {
+    background: #c41e15;
+    box-shadow: 0 4px 12px rgba(226, 35, 25, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .btn-save {
+    background: var(--color-rojo-une, #E22319);
+    color: white;
+    width: 100%;
+  }
+
+  .btn-save:hover {
+    background: #c41e15;
+    transform: translateY(-1px);
+  }
+
+  /* Modal */
+  .cookie-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .cookie-modal.show {
+    display: flex;
+  }
+
+  .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-content {
+    position: relative;
+    background: white;
+    border-radius: 1rem;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.2s ease-out;
+  }
+
+  @keyframes modalSlideIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .modal-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-azul-une, #001A71);
+  }
+
+  .modal-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: #9ca3af;
+    transition: all 0.2s;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-close:hover {
+    color: #374151;
+    background: #f3f4f6;
+  }
+
+  .modal-body {
+    padding: 1.5rem;
+  }
+
+  .cookie-category {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: #f9fafb;
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+  }
+
+  .category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .category-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .category-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-top: 2px;
+    flex-shrink: 0;
+    accent-color: var(--color-rojo-une, #E22319);
+  }
+
+  .category-checkbox.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .category-name {
+    font-weight: 600;
+    color: #111827;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .category-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.625rem;
+    background: var(--color-azul-une, #001A71);
+    color: white;
+    border-radius: 1rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .category-desc {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .modal-policy-link {
+    padding-top: 0.5rem;
+  }
+
+  .policy-link {
+    font-size: 0.875rem;
+    color: var(--color-rojo-une, #E22319);
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .policy-link:hover {
+    text-decoration: underline;
+  }
+
+  .modal-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  /* Responsive */
+  @media (min-width: 640px) {
+    .cookie-banner-inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cookie-buttons {
+      flex: 0 0 auto;
+    }
+
+    .btn {
+      flex: 0 0 auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .cookie-banner-inner {
+      padding: 1rem;
+    }
+
+    .cookie-title {
+      font-size: 1rem;
+    }
+
+    .cookie-description {
+      font-size: 0.8125rem;
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  // Constantes
+  const COOKIE_NAME = 'une_cookie_consent';
+  const COOKIE_EXPIRY_DAYS = 365;
+
+  // Elementos del DOM
+  const cookieBanner = document.getElementById('cookieBanner');
+  const cookieModal = document.getElementById('cookieModal');
+  const acceptAllBtn = document.getElementById('acceptAll');
+  const rejectAllBtn = document.getElementById('rejectAll');
+  const savePreferencesBtn = document.getElementById('savePreferences');
+  const closeModalBtn = document.getElementById('closeModal');
+  const analyticsCheckbox = document.getElementById('analyticsConsent') as HTMLInputElement;
+  const adCheckbox = document.getElementById('adConsent') as HTMLInputElement;
+
+  // Tipos
+  interface ConsentPreferences {
+    analytics_Storage: 'granted' | 'denied';
+    ad_Storage: 'granted' | 'denied';
+    timestamp: number;
+  }
+
+  // Utilidades
+  function setCookie(name: string, value: string, days: number): void {
+    const date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/;SameSite=Lax`;
+  }
+
+  function getCookie(name: string): string | null {
+    const nameEQ = name + '=';
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === ' ') c = c.substring(1);
+      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length);
+    }
+    return null;
+  }
+
+  function showBanner(): void {
+    cookieBanner?.classList.add('show');
+  }
+
+  function hideBanner(): void {
+    cookieBanner?.classList.remove('show');
+  }
+
+  function showModal(): void {
+    cookieModal?.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function hideModal(): void {
+    cookieModal?.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  // Aplicar consentimiento a Clarity usando ConsentV2
+  function applyConsent(preferences: ConsentPreferences): void {
+    if (typeof window.clarity === 'function') {
+      try {
+        window.clarity('consentv2', {
+          ad_Storage: preferences.ad_Storage,
+          analytics_Storage: preferences.analytics_Storage
+        });
+      } catch (error) {
+        console.error('❌ Error al aplicar Clarity ConsentV2:', error);
+      }
+    } else {
+      // Reintentar si Clarity aún no está cargado
+      let retries = 0;
+      const maxRetries = 10;
+      
+      const retryInterval = setInterval(() => {
+        retries++;
+        if (typeof window.clarity === 'function') {
+          window.clarity('consentv2', {
+            ad_Storage: preferences.ad_Storage,
+            analytics_Storage: preferences.analytics_Storage
+          });
+          clearInterval(retryInterval);
+        } else if (retries >= maxRetries) {
+          console.warn('⚠️ Clarity no disponible después de múltiples reintentos');
+          clearInterval(retryInterval);
+        }
+      }, 200);
+    }
+  }
+
+  // Guardar preferencias
+  function saveConsent(preferences: ConsentPreferences): void {
+    setCookie(COOKIE_NAME, JSON.stringify(preferences), COOKIE_EXPIRY_DAYS);
+    applyConsent(preferences);
+    hideBanner();
+    hideModal();
+    
+    window.dispatchEvent(new CustomEvent('cookieConsentUpdated', { detail: preferences }));
+  }
+
+  // Cargar preferencias guardadas
+  function loadSavedConsent(): ConsentPreferences | null {
+    const saved = getCookie(COOKIE_NAME);
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  }
+
+  // Manejadores de eventos
+  function handleAcceptAll(): void {
+    saveConsent({
+      analytics_Storage: 'granted',
+      ad_Storage: 'granted',
+      timestamp: Date.now()
+    });
+  }
+
+  function handleRejectAll(): void {
+    saveConsent({
+      analytics_Storage: 'denied',
+      ad_Storage: 'denied',
+      timestamp: Date.now()
+    });
+  }
+
+  function handleSavePreferences(): void {
+    saveConsent({
+      analytics_Storage: analyticsCheckbox?.checked ? 'granted' : 'denied',
+      ad_Storage: adCheckbox?.checked ? 'granted' : 'denied',
+      timestamp: Date.now()
+    });
+  }
+
+  function handleCloseModal(): void {
+    hideModal();
+  }
+
+  // Inicialización
+  function initCookieConsent(): void {
+    const savedConsent = loadSavedConsent();
+    
+    if (savedConsent) {
+      applyConsent(savedConsent);
+      console.log('📋 Consentimiento previo cargado');
+    } else {
+      // Mostrar banner después de un pequeño delay
+      setTimeout(() => showBanner(), 1000);
+    }
+
+    // Event listeners
+    acceptAllBtn?.addEventListener('click', handleAcceptAll);
+    rejectAllBtn?.addEventListener('click', handleRejectAll);
+    savePreferencesBtn?.addEventListener('click', handleSavePreferences);
+    closeModalBtn?.addEventListener('click', handleCloseModal);
+    
+    // Cerrar modal con overlay o Escape
+    const overlay = cookieModal?.querySelector('.modal-overlay');
+    overlay?.addEventListener('click', handleCloseModal);
+    
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && cookieModal?.classList.contains('show')) {
+        handleCloseModal();
+      }
+    });
+  }
+
+  // Función global para cambiar preferencias desde cualquier parte
+  (window as any).openCookiePreferences = function() {
+    const savedConsent = loadSavedConsent();
+    if (savedConsent) {
+      analyticsCheckbox.checked = savedConsent.analytics_Storage === 'granted';
+      adCheckbox.checked = savedConsent.ad_Storage === 'granted';
+    }
+    showModal();
+  };
+
+  // Inicializar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCookieConsent);
+  } else {
+    initCookieConsent();
+  }
+
+  // Type augmentation para window.clarity
+  declare global {
+    interface Window {
+      clarity: (command: string, ...args: any[]) => void;
+    }
+  }
+</script>

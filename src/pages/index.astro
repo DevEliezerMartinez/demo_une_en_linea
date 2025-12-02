@@ -1,16 +1,67 @@
 ---
+// Página principal optimizada
+import Layout from "@/layouts/Layout.astro";
+import Cookies from "@/components/layout/Cookies.astro";
+import SplashScreen from "@/components/sections/home/SplashScreen.astro";
+import Hero from "@/components/sections/home/Hero.astro";
+import Oferta from "@/components/sections/home/Oferta.astro";
+import ElegirUne from "@/components/sections/home/ElegirUne.astro";
+import ModeloEducativo from "@/components/sections/home/ModeloEducativo.astro";
+import Reseñas from "@/components/sections/home/Reseñas.astro";
+import MidCTA from "@/components/sections/home/MidCTA.astro";
+import Beneficios from "@/components/sections/home/Beneficios.astro";
+import FAQ from "@/components/sections/home/FAQ.astro";
+import ContactSection from "@/components/sections/home/GeneralCTA.astro";
+import ContactSidebar from "@/components/sections/home/ContactSidebar.astro";
 
+const pageTitle = "UNE - 30 Años creyendo en ti";
+const pageDescription = "Universidad UNE - 30 años de excelencia educativa";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title={pageTitle} description={pageDescription}>
+  <SplashScreen alwaysShow={false} />
+  <Cookies />
+
+  <main id="mainContent" class="main-content">
+    <Hero />
+    <Oferta />
+    <ElegirUne />
+    <ModeloEducativo />
+    <Reseñas />
+    <MidCTA />
+    <Beneficios />
+    <FAQ />
+    <ContactSection />
+    <ContactSidebar />
+  </main>
+</Layout>
+
+<script>
+  // Script minimalista - solo manejo de visibilidad
+  function initPageContent() {
+    const mainContent = document.getElementById("mainContent");
+
+    function showContent() {
+      if (mainContent) {
+        mainContent.classList.add("visible");
+      }
+    }
+
+    // Escuchar evento del splash
+    window.addEventListener("preloader:complete", showContent);
+
+    // Fallback de seguridad
+    setTimeout(() => {
+      if (!mainContent?.classList.contains("visible")) {
+        showContent();
+      }
+    }, 4000);
+  }
+
+  // Inicializar cuando el DOM esté listo
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPageContent);
+  } else {
+    initPageContent();
+  }
+</script>
