@@ -1,0 +1,241 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import CallAction from "@/components/sections/shared/CallAction.astro";
+import Hero from "@/assets/Imagenes/Heros/OfertaEducativa.png";
+import HeroMobile from "@/assets/Imagenes/Heros/OfertaEducativa.png";
+import { Image } from "astro:assets";
+import BeneficiosModelosImg from "../assets/Imagenes/Decorativos/BeneficiosModelos.png";
+import { Search } from "@lucide/astro";
+import ComoAprenderImg from '../assets/Imagenes/Decorativos/ComoAprender.png';
+const metodologias = [
+  {
+    numero: "01",
+    titulo: "Metodología de estudio diseñada para tu éxito",
+    descripcion: "Cada materia está estructurada para que avances por módulos semanales, con actividades para consolidar tu aprendizaje."
+  },
+  {
+    numero: "02",
+    titulo: "Aprendizaje basado en asignaturas",
+    descripcion: "Desarrolla habilidades clave mediante contenidos actualizados, recursos digitales y acompañamiento docente durante todo el proceso."
+  },
+  {
+    numero: "03",
+    titulo: "Disponibilidad los 365 días del año",
+    descripcion: "Accede en cualquier momento a tu plataforma, materiales, actividades y retroalimentación académica, sin interferir con tus actividades laborales o personales."
+  },
+  {
+    numero: "04",
+    titulo: "Asesoría especializada",
+    descripcion: "Recibe orientación académica constante por parte de docentes y tutores que te acompañan en cada materia para asegurar tu avance y comprensión."
+  }
+];
+
+---
+
+<Layout
+  title="Preguntas Frecuentes UNE - Dudas sobre Carreras y Admisión"
+  description="Respuestas a preguntas frecuentes sobre UNE: carreras, modalidades, costos, requisitos de admisión, becas y servicios estudiantiles."
+>
+  <main class="min-h-screen">
+    <!-- Hero Section -->
+    <section
+      class="relative min-h-[70vh] md:min-h-[75vh] overflow-hidden bg-cover bg-center bg-no-repeat"
+    >
+      <!-- Desktop Background -->
+      <div
+        class="absolute inset-0 hidden md:block bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${Hero.src})` }}
+      >
+        <div class="absolute inset-0 bg-black/20"></div>
+      </div>
+
+      <!-- Mobile Background -->
+      <div
+        class="absolute inset-0 block md:hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${HeroMobile.src})` }}
+      >
+        <div class="absolute inset-0 bg-black/20"></div>
+      </div>
+
+      <!-- Hero Content -->
+      <div
+        class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 h-full min-h-[70vh] md:min-h-[75vh] flex items-center"
+      >
+        <div class="w-full max-w-7xl mx-auto">
+          <div
+            class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12"
+          >
+            <!-- Left side - FAQ Title -->
+            <div
+              class="flex items-center gap-4 md:gap-6 text-white order-1 md:order-1"
+            >
+              <div
+                class="w-16 h-16 md:w-20 md:h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
+              >
+                <Search class="w-8 h-8 md:w-10 md:h-10 text-white" />
+              </div>
+              <h1
+                class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-wide drop-shadow-lg"
+              >
+                MODELO EDUCATIVO
+              </h1>
+            </div>
+
+            <!-- Right side - Welcome message -->
+            <div
+              class="bg-white rounded-2xl p-6 md:p-8 w-full max-w-md shadow-2xl order-2 md:order-2 backdrop-blur-sm"
+            >
+              <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">
+                Modelo educativo
+              </h2>
+              <p class="text-gray-600 text-sm md:text-base leading-relaxed">
+                Nuestro modelo está centrado en el estudiante y pensado para
+                ofrecer una experiencia flexible, accesible y de calidad.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <!-- Section Title -->
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-azul-une mb-4">
+            Todo lo que necesitas saber, en<br />
+            un solo lugar.
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12 md:py-20 px-4">
+      <div class="max-w-7xl mx-auto">
+        <!-- Contenedor principal -->
+        <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+          <!-- Imagen -->
+          <div class="w-full lg:w-1/2">
+            <div class="relative">
+              <Image
+                src={BeneficiosModelosImg}
+                alt="Modelo educativo en línea UNE"
+                class="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <!-- Contenido de texto -->
+          <div class="w-full lg:w-1/2">
+            <!-- Título -->
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8">
+              <span class="text-rojo-une">DESCUBRE</span>
+              <span class="text-black"> LOS BENEFICIOS DE NUESTRO MODELO</span>
+            </h2>
+
+            <!-- Descripción -->
+            <p class="text-base md:text-lg text-gray-700 leading-relaxed">
+              Como expertos de la educación en línea, nos encargamos de
+              establecer una metodología estratégica que nos permita brindarle a
+              nuestros estudiantes una experiencia de aprendizaje única y
+              comprometida a su crecimiento y desarrollo continuo. Empleando la
+              tecnología y las herramientas digitales como un fuerte aliado que
+              nos permite romper la barrera de la distancia que hace UNE en
+              línea la mejor opción para cursar una carrera universitaria.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+<section class="py-12 md:py-20 px-4">
+  <div class="max-w-7xl mx-auto">
+    <!-- Contenedor principal con fondo azul y bordes redondeados -->
+    <div class="bg-azul-une rounded-3xl overflow-hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-2">
+        <!-- Columna izquierda: Título e Imagen -->
+        <div class="p-8 md:p-12 flex flex-col justify-center">
+          <!-- Título -->
+          <h2 class="text-white text-2xl md:text-3xl lg:text-4xl font-bold mb-8 lg:mb-12">
+            ¿CÓMO APRENDERÁS EN UNE EN LÍNEA?
+          </h2>
+
+          <!-- Imagen -->
+          <div class="rounded-2xl overflow-hidden shadow-xl max-w-md lg:max-w-none">
+            <Image 
+              src={ComoAprenderImg}
+              alt="Estudiante aprendiendo en línea"
+              class="w-full h-auto object-cover aspect-video lg:aspect-[4/3]"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <!-- Columna derecha: Lista de metodologías -->
+        <div class="flex flex-col">
+          {metodologias.map((item, index) => (
+            <div 
+              class={`p-6 md:p-8 ${index !== metodologias.length - 1 ? 'border-b border-white/20' : ''}`}
+              key={index}
+            >
+              <!-- Número y Título -->
+              <div class="mb-3 flex">
+               
+                <h3 class="text-white text-lg md:text-xl font-semibold mt-1">
+                  {item.numero} -  {item.titulo}
+                </h3>
+              </div>
+
+              <!-- Descripción -->
+              <p class="text-white/90 text-sm md:text-base leading-relaxed">
+                {item.descripcion}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+ <section class="py-12 md:py-20 px-4">
+      <div class="max-w-7xl mx-auto">
+        <!-- Contenedor principal -->
+        <div class="flex flex-col lg:flex-row-reverse items-center gap-8 lg:gap-16">
+          <!-- Imagen -->
+          <div class="w-full lg:w-1/2">
+            <div class="relative">
+              <Image
+                src={ComoAprenderImg}
+                alt="Modelo educativo en línea UNE"
+                class="w-full h-auto rounded-2xl"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <!-- Contenido de texto -->
+          <div class="w-full lg:w-1/2">
+            <!-- Título -->
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8">
+             Conoce todo sobre nuestra plataforma
+            </h2>
+
+            <!-- Descripción -->
+            <p class="text-base md:text-lg text-gray-700 leading-relaxed">
+              Nuestra plataforma virtual está construida sobre un sistema académico robusto, ampliamente utilizado por instituciones educativas a nivel internacional. Ofrece un entorno intuitivo, seguro y flexible, donde podrás acceder a tus asignaturas, actividades, evaluaciones, recursos y retroalimentación docente en cualquier momento.
+
+
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CallAction />
+  </main>
+</Layout>
