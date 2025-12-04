@@ -1,0 +1,258 @@
+---
+// PorqueElegirnos.astro
+import { CircleArrowRight } from "@lucide/astro";
+---
+
+<section
+  class="bg-white py-16 px-6 lg:px-12 stats-section"
+  id="estadisticas-section"
+>
+  <div class="px-8 mx-auto">
+    <!-- Header -->
+    <div class="mb-12">
+      <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+        ¿Por qué elegirnos?
+      </h2>
+      <p class="text-gray-600 text-lg max-w-2xl">
+        Fortalece tu perfil profesional con nuestras especialidades de alta
+        calidad académica. En solo 3 cuatrimestres, desarrolla competencias
+        específicas y actualizadas que te posicionarán como experto en tu área.
+        Programas prácticos y flexibles diseñados para impulsar tu crecimiento
+        profesional inmediato.
+      </p>
+    </div>
+    <!-- Stats Grid - Desktop: 3x2 grid, Mobile: vertical list -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Años de experiencia -->
+      <div
+        class="relative p-8 border-b border-l border-gray-200 hover:shadow-lg transition-shadow"
+      >
+        <div
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 w-1 h-16 bg-azul-une rounded-full"
+        >
+        </div>
+        <div class="ml-6">
+          <div
+            class="text-5xl font-bold text-gray-900 mb-2 counter-number"
+            data-target="30"
+          >
+            0
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">
+            Años de experiencia
+          </h3>
+          <a
+            href="/acerca/historia"
+            class="flex items-center text-gray-600 hover:text-azul-une hover:border-b hover:border-azul-une transition-colors text-sm inline-flex pb-1"
+            aria-label="Ir a Conoce nuestra historia"
+            title="Conoce nuestra historia"
+          >
+            Conoce nuestra historia
+            <CircleArrowRight class="ml-2 w-4 h-4" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Empleabilidad -->
+      <div
+        class="relative p-8 border-b border-l border-gray-200 hover:shadow-lg transition-shadow"
+      >
+        <div
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 w-1 h-16 bg-azul-une rounded-full"
+        >
+        </div>
+        <div class="ml-6">
+          <div class="text-5xl font-bold text-gray-900 mb-2">
+            <span class="counter-number" data-target="95">0</span>%
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">
+            de empleabilidad
+          </h3>
+          <a
+            href="/orgulloune/general"
+            class="flex items-center text-gray-600 hover:text-azul-une hover:border-b hover:border-azul-une transition-colors text-sm inline-flex pb-1"
+            aria-label="Ir a Ver egresados destacados"
+            title="Navegar a Ver egresados destacados"
+          >
+            Ver egresados destacados
+            <CircleArrowRight class="ml-2 w-4 h-4" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Planteles -->
+      <div
+        class="relative p-8 border-b md:border-r border-l border-gray-200 hover:shadow-lg transition-shadow"
+      >
+        <div
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 w-1 h-16 bg-azul-une rounded-full"
+        >
+        </div>
+        <div class="ml-6">
+          <div
+            class="text-5xl font-bold text-gray-900 mb-2 counter-number"
+            data-target="18"
+          >
+            0
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Planteles</h3>
+          <a
+            href="/planteles/"
+            class="flex items-center text-gray-600 hover:text-azul-une hover:border-b hover:border-azul-une transition-colors text-sm inline-flex pb-1"
+            aria-label="Ir a Conoce los planteles"
+            title="Conoce los planteles"
+          >
+            Conoce los planteles
+            <CircleArrowRight class="ml-2 w-4 h-4" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Carreras -->
+      <div
+        class="relative p-8 border-b border-l border-gray-200 hover:shadow-lg transition-shadow"
+      >
+        <div
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 w-1 h-16 bg-azul-une rounded-full"
+        >
+        </div>
+        <div class="ml-6">
+          <div
+            class="text-5xl font-bold text-gray-900 mb-2 counter-number"
+            data-target="45"
+          >
+            0
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Carreras</h3>
+          <a
+            href="/acerca/oferta-academica"
+            class="flex items-center text-gray-600 hover:text-azul-une hover:border-b hover:border-azul-une transition-colors text-sm inline-flex pb-1"
+            aria-label="Ir a Descubrir oferta"
+            title="Descubrir oferta"
+          >
+            Descubrir oferta
+            <CircleArrowRight class="ml-2 w-4 h-4" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Modalidades -->
+      <div
+        class="relative p-8 border-b border-l border-gray-200 hover:shadow-lg transition-shadow"
+      >
+        <div
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 w-1 h-16 bg-azul-une rounded-full"
+        >
+        </div>
+        <div class="ml-6">
+          <div
+            class="text-5xl font-bold text-gray-900 mb-2 counter-number"
+            data-target="5"
+          >
+            0
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Modalidades</h3>
+          <!-- Sin enlace según el original -->
+        </div>
+      </div>
+
+      <!-- Talleres -->
+      <div
+        class="relative p-8 border-b border-l border-gray-200 hover:shadow-lg transition-shadow"
+      >
+        <div
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 w-1 h-16 bg-azul-une rounded-full"
+        >
+        </div>
+        <div class="ml-6">
+          <div
+            class="text-5xl font-bold text-gray-900 mb-2 counter-number"
+            data-target="12"
+          >
+            0
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Talleres</h3>
+          <a
+            href="/vivetuuniversidad/"
+            class="flex items-center text-gray-600 hover:text-azul-une hover:border-b hover:border-azul-une transition-colors text-sm inline-flex pb-1"
+            aria-label="Ir a Explora los talleres"
+            title="Explora los talleres"
+          >
+            Explora los talleres
+            <CircleArrowRight class="ml-2 w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  function initCounters() {
+    // Función para animar contadores con requestAnimationFrame
+    function animateCounter(element, target, duration = 2000) {
+      const start = 0;
+      const startTime = performance.now();
+
+      function updateCounter(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Usar easing para una animación más suave
+        const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(start + (target - start) * easeOutCubic);
+
+        element.textContent = current;
+
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          element.textContent = target;
+        }
+      }
+
+      requestAnimationFrame(updateCounter);
+    }
+
+    // Intersection Observer con configuración optimizada
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: "0px 0px -100px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (
+          entry.isIntersecting &&
+          !entry.target.hasAttribute("data-animated")
+        ) {
+          // Marcar como animado para evitar repeticiones
+          entry.target.setAttribute("data-animated", "true");
+
+          const counters = entry.target.querySelectorAll(".counter-number");
+
+          counters.forEach((counter, index) => {
+            const target = parseInt(counter.getAttribute("data-target"));
+            setTimeout(() => {
+              animateCounter(counter, target, 2500);
+            }, index * 300);
+          });
+        }
+      });
+    }, observerOptions);
+
+    // Buscar específicamente la sección de estadísticas
+    const statsSection = document.querySelector("#estadisticas-section");
+    if (statsSection) {
+      observer.observe(statsSection);
+    }
+  }
+
+  // Ejecutar cuando el DOM esté listo
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCounters);
+  } else {
+    // Dar un pequeño tiempo para que se renderice completamente
+    setTimeout(initCounters, 100);
+  }
+</script>

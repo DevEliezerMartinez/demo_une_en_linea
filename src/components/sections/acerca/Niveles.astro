@@ -1,0 +1,282 @@
+---
+// Imports de todas las imágenes necesarias
+import EstudiantesBachillerato from "@/assets/Imagenes/CardOferta/Bachillerato.webp";
+import EstudiantesLicenciaturas from "@/assets/Imagenes/CardOferta/Licenciaturas.webp";
+import EstudiantesMaestrias from "@/assets/Imagenes/CardOferta/Maestrias.webp";
+---
+
+<section class="bg-white py-8 md:py-16 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <!-- Navegación de tabs -->
+    <div
+      class="flex flex-wrap gap-2 md:gap-4 justify-center md:justify-start mb-8"
+    >
+      <button
+        class="tab-button px-4 py-2 rounded-full bg-blue-600 text-white font-medium"
+        data-tab="bachillerato"
+        aria-label="Bachillerato"
+      >
+        Bachillerato
+      </button>
+      <button
+        class="tab-button px-4 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+        data-tab="licenciatura"
+        aria-label="Licenciatura"
+      >
+        Licenciatura
+      </button>
+      <button
+        class="tab-button px-4 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+        data-tab="maestria"
+        aria-label="Maestría"
+      >
+        Maestría
+      </button>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+      <!-- Columna izquierda: Imagen y título -->
+      <div class="order-1">
+        <!-- Título visible solo en mobile -->
+        <h2
+          id="mobile-title"
+          class="text-3xl font-bold text-gray-900 mb-6 lg:hidden text-center"
+        >
+          Bachillerato
+        </h2>
+
+        <!-- Imagen -->
+        <div class="relative overflow-hidden rounded-2xl shadow-lg">
+          <img
+            id="content-image"
+            src={EstudiantesBachillerato.src}
+            alt="Estudiantes de bachillerato UNE"
+            class="w-full h-auto object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <!-- Columna derecha: Información -->
+      <div class="order-2">
+        <!-- Título visible solo en desktop -->
+        <h2
+          id="desktop-title"
+          class="text-4xl font-bold text-gray-900 mb-4 hidden lg:block"
+        >
+          Bachillerato
+        </h2>
+
+        <!-- Subtítulo modalidad virtual -->
+        <p class="text-blue-600 font-medium mb-6 text-center lg:text-left">
+          Modalidad Virtual
+        </p>
+
+        <!-- Descripción -->
+        <p
+          id="description"
+          class="text-gray-600 mb-8 text-center lg:text-left leading-relaxed"
+        >
+          Formación integral de nivel medio superior con enfoque humanista y
+          orientación universitaria
+        </p>
+
+        <!-- Lista de beneficios -->
+        <div id="benefits-list" class="space-y-4 mb-8">
+          <!-- Se llenará dinámicamente -->
+        </div>
+
+        <!-- Botón CTA desktop -->
+        <div class="hidden lg:block">
+          <button
+            id="desktop-cta-button"
+            class="bg-red-500 hover:bg-red-600 text-white font-medium px-6 py-3 rounded-lg transition-colors"
+            aria-label="Conoce todos los detalles"
+          >
+            Conoce todos los detalles
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón CTA mobile -->
+    <div class="lg:hidden mt-8 text-center">
+      <button
+        id="mobile-cta-button"
+        class="bg-red-500 hover:bg-red-600 text-white font-medium px-8 py-3 rounded-lg transition-colors w-full max-w-xs"
+        aria-label="Conoce todos los detalles"
+      >
+        Conoce todos los detalles
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Datos de contenido para cada sección (modalidad virtual)
+  const contentData = {
+    bachillerato: {
+      title: "Bachillerato",
+      image: "/src/assets/Imagenes/CardOferta/Bachillerato.webp",
+      route: "/oferta/colegio-une/bachillerato-sej",
+      description:
+        "Bachillerato completamente virtual con tecnología educativa digital y certificación oficial UDG",
+      benefits: [
+        "Certificación oficial UDG",
+        "Plataforma educativa avanzada",
+        "Flexibilidad total de horarios",
+        "Tutorías virtuales personalizadas",
+        "Recursos digitales interactivos",
+        "Preparación para la era digital",
+      ],
+    },
+    licenciatura: {
+      title: "Licenciatura",
+      image: "/src/assets/Imagenes/CardOferta/Licenciaturas.webp",
+      route: "/oferta/licenciaturas",
+      description:
+        "Licenciatura completamente virtual con la misma calidad académica y flexibilidad total",
+      benefits: [
+        "Título profesional con validez oficial",
+        "Campus virtual con herramientas digitales",
+        "Flexibilidad geográfica y temporal",
+        "Acompañamiento académico personalizado",
+        "Simuladores profesionales",
+        "Biblioteca digital especializada",
+      ],
+    },
+    maestria: {
+      title: "Maestría",
+      image: "/src/assets/Imagenes/CardOferta/Maestrias.webp",
+      route: "/oferta/maestria",
+      description:
+        "Maestría completamente virtual con estándares internacionales y flexibilidad completa",
+      benefits: [
+        "Grado de maestría con validez oficial",
+        "Plataforma de posgrado avanzada",
+        "Seminarios virtuales especializados",
+        "Asesoría de tesis personalizada",
+        "Acceso a bases de datos científicas",
+        "Movilidad académica virtual",
+      ],
+    },
+  };
+
+  // Estado actual
+  let activeTab = "bachillerato";
+
+  // Función para crear el ícono de check
+  function createCheckIcon() {
+    return `
+      <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+        <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+        </svg>
+      </div>
+    `;
+  }
+
+  // Función para actualizar el contenido
+  function updateContent() {
+    const currentData = contentData[activeTab];
+
+    // Actualizar títulos
+    document.getElementById("mobile-title").textContent = currentData.title;
+    document.getElementById("desktop-title").textContent = currentData.title;
+
+    // Actualizar imagen
+    const img = document.getElementById("content-image");
+    img.src = currentData.image;
+    img.alt = `Estudiantes de ${activeTab} UNE`;
+
+    // Actualizar descripción
+    document.getElementById("description").textContent =
+      currentData.description;
+
+    // Actualizar beneficios
+    const benefitsList = document.getElementById("benefits-list");
+    benefitsList.innerHTML = "";
+    currentData.benefits.forEach((benefit) => {
+      const div = document.createElement("div");
+      div.className = "flex items-center gap-3";
+      div.innerHTML = `
+        ${createCheckIcon()}
+        <span class="text-gray-700">${benefit}</span>
+      `;
+      benefitsList.appendChild(div);
+    });
+
+    // Actualizar botones CTA con la ruta correcta
+    const updateButton = (button) => {
+      button.onclick = () => {
+        window.location.href = currentData.route;
+      };
+    };
+
+    updateButton(document.getElementById("desktop-cta-button"));
+    updateButton(document.getElementById("mobile-cta-button"));
+  }
+
+  // Función para cambiar tab
+  function changeTab(newTab) {
+    activeTab = newTab;
+
+    // Actualizar estilos de botones
+    document.querySelectorAll(".tab-button").forEach((btn) => {
+      if (btn.dataset.tab === newTab) {
+        btn.className =
+          "tab-button px-4 py-2 rounded-full bg-blue-600 text-white font-medium";
+      } else {
+        btn.className =
+          "tab-button px-4 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors";
+      }
+    });
+
+    updateContent();
+  }
+
+  // Inicializar
+  document.addEventListener("DOMContentLoaded", function () {
+    // Event listeners para tabs
+    document.querySelectorAll(".tab-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        changeTab(button.dataset.tab);
+      });
+    });
+
+    // Inicializar contenido
+    updateContent();
+  });
+</script>
+
+<script
+  define:vars={{
+    imageRoutes: {
+      bachillerato: EstudiantesBachillerato.src,
+      licenciatura: EstudiantesLicenciaturas.src,
+      maestria: EstudiantesMaestrias.src,
+    },
+  }}
+>
+  window.astroImageRoutes = imageRoutes;
+
+  // Actualizar las rutas de las imágenes después de que el DOM esté listo
+  document.addEventListener("DOMContentLoaded", function () {
+    const contentData = {
+      bachillerato: { image: imageRoutes.bachillerato },
+      licenciatura: { image: imageRoutes.licenciatura },
+      maestria: { image: imageRoutes.maestria },
+    };
+  });
+</script>
+
+<style>
+  .tab-button {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .tab-button:hover {
+    transform: translateY(-1px);
+  }
+</style>

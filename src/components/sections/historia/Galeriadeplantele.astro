@@ -1,0 +1,246 @@
+---
+// Importar imágenes
+import Centro from "@/assets/Imagenes/Planteles/Centro.webp";
+import CentroMedico from "@/assets/Imagenes/Planteles/CentroMedico.webp";
+import Chapultepec from "@/assets/Imagenes/Planteles/Chapultepec.webp";
+import Milenio from "@/assets/Imagenes/Planteles/Milenio.webp";
+import PlazaSol from "@/assets/Imagenes/Planteles/PlazaSol.webp";
+import Caracol from "@/assets/Imagenes/Planteles/Caracol.webp";
+import Tepatitlan from "@/assets/Imagenes/Planteles/Tepatitlan.webp";
+import Tesistan from "@/assets/Imagenes/Planteles/Tesistan.webp";
+import Tlajomulco from "@/assets/Imagenes/Planteles/Tlajomulco.webp";
+import Tlaquepaque from "@/assets/Imagenes/Planteles/Tlaquepaque.webp";
+import Tonala from "@/assets/Imagenes/Planteles/Tonala.webp";
+import Zapopan from "@/assets/Imagenes/Planteles/Zapopan.webp";
+
+// Lista de planteles con URLs corregidas basadas en los archivos existentes
+const planteles = [
+  { nombre: "Centro", imagen: Centro, url: "centro" },
+  { nombre: "Centro Médico", imagen: CentroMedico, url: "centro-medico" },
+  { nombre: "Chapultepec", imagen: Chapultepec, url: "chapultepec" },
+  { nombre: "Milenio", imagen: Milenio, url: "milenio" },
+  { nombre: "Plaza del Sol", imagen: PlazaSol, url: "plaza-del-sol" },
+  { nombre: "Caracol", imagen: Caracol, url: "caracol" },
+  { nombre: "Tepatitlán", imagen: Tepatitlan, url: "tepatitlan" },
+  { nombre: "Tesistán", imagen: Tesistan, url: "tesistan" },
+  { nombre: "Tlajomulco", imagen: Tlajomulco, url: "tlajomulco" },
+  { nombre: "Tlaquepaque", imagen: Tlaquepaque, url: "tlaquepaque" },
+  { nombre: "Tonalá", imagen: Tonala, url: "tonala" },
+];
+
+// Dividir en grupos: primera fila 4, segunda fila 3, luego bloques de 4
+const fila1 = planteles.slice(0, 4);
+const fila2 = planteles.slice(4, 7);
+const filasExtra = [];
+for (let i = 7; i < planteles.length; i += 4) {
+  filasExtra.push(planteles.slice(i, i + 4));
+}
+---
+
+<section class="py-12 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Encabezado -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Nuestros Planteles
+      </h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Cada uno lleno de historias, momentos y experiencias, todo concentrado
+        para tu aprendizaje.
+      </p>
+    </div>
+
+    <div class="space-y-6">
+      <!-- Primera fila -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          fila1.map((plantel, index) => (
+            <a
+              href={`/planteles/${plantel.url}`}
+              class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+            >
+              <div class="aspect-w-4 aspect-h-3 overflow-hidden">
+                <img
+                  src={plantel.imagen.src}
+                  alt={`Plantel ${plantel.nombre}`}
+                  class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300 lazy-image"
+                  loading={index < 2 ? "eager" : "lazy"}
+                  data-viewport-trigger
+                />
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="absolute bottom-4 left-4 right-4">
+                  <h3 class="text-white font-semibold text-lg mb-1">
+                    {plantel.nombre}
+                  </h3>
+                  <p class="text-white/90 text-sm">Ver más detalles</p>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- Segunda fila centrada -->
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:max-w-5xl lg:mx-auto"
+      >
+        {
+          fila2.map((plantel, index) => (
+            <a
+              href={`/planteles/${plantel.url}`}
+              class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+            >
+              <div class="aspect-w-4 aspect-h-3 overflow-hidden">
+                <img
+                  src={plantel.imagen.src}
+                  alt={`Plantel ${plantel.nombre}`}
+                  class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300 lazy-image"
+                  loading="lazy"
+                  data-viewport-trigger
+                />
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="absolute bottom-4 left-4 right-4">
+                  <h3 class="text-white font-semibold text-lg mb-1">
+                    {plantel.nombre}
+                  </h3>
+                  <p class="text-white/90 text-sm">Ver más detalles</p>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- Filas extra -->
+      {
+        filasExtra.map((fila, filaIndex) => (
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {fila.map((plantel, index) => (
+              <a
+                href={`/planteles/${plantel.url}`}
+                class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+              >
+                <div class="aspect-w-4 aspect-h-3 overflow-hidden">
+                  <img
+                    src={plantel.imagen.src}
+                    alt={`Plantel ${plantel.nombre}`}
+                    class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300 lazy-image"
+                    loading="lazy"
+                    data-viewport-trigger
+                  />
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div class="absolute bottom-4 left-4 right-4">
+                    <h3 class="text-white font-semibold text-lg mb-1">
+                      {plantel.nombre}
+                    </h3>
+                    <p class="text-white/90 text-sm">Ver más detalles</p>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Botón -->
+    <div class="text-center mt-12">
+      <a
+        href="/planteles/"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
+        aria-label="Ir a Ver todos los planteles"
+        title="Navegar a Ver todos los planteles"
+      >
+        Ver todos los planteles
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .aspect-w-4 {
+    position: relative;
+    padding-bottom: 75%;
+  }
+  .aspect-w-4 > * {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Optimización para lazy loading */
+  .lazy-image {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  .lazy-image[data-loading] {
+    opacity: 0.7;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+
+  @keyframes loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+</style>
+
+<script>
+  // Intersection Observer para lazy loading optimizado
+  document.addEventListener("DOMContentLoaded", function () {
+    const images = document.querySelectorAll("img[data-viewport-trigger]");
+
+    if ("IntersectionObserver" in window) {
+      const imageObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+
+              // Añadir clase de loading
+              img.setAttribute("data-loading", "true");
+
+              // Precargar la imagen
+              const tempImg = new Image();
+              tempImg.onload = () => {
+                img.removeAttribute("data-loading");
+                img.classList.add("loaded");
+              };
+              tempImg.onerror = () => {
+                img.removeAttribute("data-loading");
+                console.warn("Error loading image:", img.src);
+              };
+              tempImg.src = img.src;
+
+              observer.unobserve(img);
+            }
+          });
+        },
+        {
+          // Cargar imágenes cuando estén a 100px del viewport
+          rootMargin: "100px 0px",
+          threshold: 0.1,
+        }
+      );
+
+      images.forEach((img) => {
+        imageObserver.observe(img);
+      });
+    } else {
+      // Fallback para navegadores sin IntersectionObserver
+      images.forEach((img) => {
+        img.classList.add("loaded");
+      });
+    }
+  });
+</script>
