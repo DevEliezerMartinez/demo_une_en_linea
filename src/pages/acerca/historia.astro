@@ -1,0 +1,504 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Logo from "@assets/Logos/UNE_30.webp";
+import videoSrc from "src/assets/Videos/Justicia.webp";
+import Chapu from "@assets/Imagenes/CardsPlanteles/Chapultepec.webp";
+import Justicia from "@assets/Imagenes/valores/Justicia.webp";
+import Templanza from "@assets/Imagenes/valores/Templanza.webp";
+import Prudencia from "@assets/Imagenes/valores/Prudencia.webp";
+import Galeriadeplantele from "@/components/sections/historia/Galeriadeplantele.astro";
+import Timeline from "@/components/sections/acerca/Timeline.astro";
+---
+
+<Layout
+  title="Historia de UNE - 30 Años de Excelencia Educativa"
+  description="Conoce la historia de Universidad UNE. 30 años formando profesionales exitosos en Jalisco con educación integral e innovación académica."
+>
+  <main class="bg-white">
+    <!-- HERO SECTION -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div
+        class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center min-h-screen py-12"
+      >
+        <div class="space-y-6">
+          <img src={Logo.src} alt="Logo UNE" />
+
+          <div class="space-y-4">
+            <p class="text-gray-700 text-lg leading-relaxed">
+              En la <span class="font-semibold text-blue-800"
+                >Universidad UNE</span
+              >, llevamos <span class="font-semibold"
+                >30 años creyendo en ti</span
+              >
+              y en tu capacidad de crecer. Con programas flexibles, tu futuro comienza
+              aquí.
+            </p>
+          </div>
+
+          <div class="pt-4">
+            <a
+              href="/acerca/oferta-academica/"
+              class="bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-8 text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              aria-label="Ir a ENCUENTRA TU CARRERA IDEAL"
+              title="ENCUENTRA TU CARRERA IDEAL"
+            >
+              ENCUENTRA TU CARRERA IDEAL
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESTO DEL CONTENIDO (sin cambios) -->
+    <section class="py-16 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="relative">
+            <div class="relative z-10">
+              <img
+                src={Chapu.src}
+                alt="Edificio UNE - Campus Chapultepec"
+                class="w-3/4 h-auto rounded-lg shadow-2xl"
+              />
+            </div>
+          </div>
+
+          <div class="space-y-8">
+            <h2 class="text-3xl lg:text-4xl font-bold mb-6">¿Quiénes somos?</h2>
+
+            <p class="text-lg lg:text-xl leading-relaxed mb-8">
+              Somos una institución educativa líder en Jalisco con más de 30
+              años de experiencia en la formación integral de estudiantes.
+              Ofrecemos una amplia gama de programas formativos que van desde
+              educación básica hasta superior, incluyendo especialidades en el
+              área de la salud y una red de 18 planteles estratégicamente
+              ubicados en diversas zonas de Jalisco.
+            </p>
+
+            <div class="grid sm:grid-cols-2 gap-6">
+              <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0">
+                  <div
+                    class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-5 h-5 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                </div>
+                <p class="font-medium">Educación humanista y de calidad</p>
+              </div>
+
+              <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0">
+                  <div
+                    class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-5 h-5 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                </div>
+                <p class="font-medium">
+                  Vinculación con sector productivo y social
+                </p>
+              </div>
+
+              <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0">
+                  <div
+                    class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-5 h-5 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                </div>
+                <p class="font-medium">Formación integral y competente</p>
+              </div>
+
+              <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0">
+                  <div
+                    class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-5 h-5 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                </div>
+                <p class="font-medium">Innovación educativa del siglo XXI</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-gray-50 py-16 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-8">
+            Estándar de excelencia
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mb-12">
+          <div class="text-center">
+            <div
+              class="text-5xl lg:text-6xl font-bold text-black mb-2 counter"
+              data-target="20000"
+            >
+              +0
+            </div>
+            <h3 class="text-xl font-semibold text-red-500 mb-4">
+              Estudiantes activos
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              Más que un número es la cantidad de sueños que UNE impulsa
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="text-5xl lg:text-6xl font-bold text-black mb-2 counter"
+              data-target="60000"
+            >
+              +0
+            </div>
+            <h3 class="text-xl font-semibold text-red-500 mb-4">Egresados</h3>
+            <p class="text-gray-600 leading-relaxed">
+              En UNE formamos profesionales altamente capacitados
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="text-5xl lg:text-6xl font-bold text-black mb-2 counter"
+              data-target="1500"
+            >
+              +0
+            </div>
+            <h3 class="text-xl font-semibold text-red-500 mb-4">Docentes</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Personal docente altamente calificado
+            </p>
+          </div>
+        </div>
+
+        <div class="text-center mb-12">
+          <p class="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            Más de 30 años de excelencia educativa en Jalisco, transformando
+            vidas a través de la educación integral con valores humanistas y
+            compromiso social.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div class="bg-rojo-une rounded-2xl p-8 text-white shadow-lg">
+            <h3 class="text-3xl font-bold text-center mb-6">VISIÓN</h3>
+            <p class="text-lg font-light leading-relaxed text-center">
+              Ser la mejor Universidad en Guadalajara, formando integralmente a
+              hombres y mujeres, que lleven a México "Por un camino hacia la
+              excelencia".
+            </p>
+          </div>
+
+          <div class="bg-azul-une rounded-2xl p-8 text-white shadow-lg">
+            <h3 class="text-3xl font-bold text-center mb-6">MISIÓN</h3>
+            <p class="text-lg leading-relaxed text-center">
+              Formar de manera íntegra verdaderos profesionales que le den
+              grandeza y prestigio a México, y dignidad a la familia
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-gray-50 py-16 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+            Valores Institucionales UNE
+          </h2>
+          <p class="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            Los valores que nos definen están representados en nuestra identidad
+            visual y guían cada acción en Universidad UNE. Estos pilares
+            fundamentales forman el corazón de nuestra institución y se reflejan
+            en la formación integral que ofrecemos.
+          </p>
+        </div>
+
+        <div class="space-y-16">
+          <div class="bg-white rounded-3xl shadow-lg overflow-hidden">
+            <div class="grid lg:grid-cols-2 items-center">
+              <div class="p-8 lg:p-12 order-2 lg:order-1">
+                <h3 class="text-3xl lg:text-4xl font-bold text-azul-une mb-6">
+                  La prudencia
+                </h3>
+                <p class="text-gray-600 text-lg leading-relaxed">
+                  En UNE, la prudencia guía tanto nuestros procesos educativos
+                  como nuestras decisiones institucionales, formando
+                  profesionales capaces de actuar con criterio y responsabilidad
+                  en cualquier contexto.
+                </p>
+              </div>
+              <div class="order-1 lg:order-2">
+                <img
+                  src={Prudencia.src}
+                  alt="Ilustración representando el valor de la prudencia"
+                  class="w-full h-80 object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-3xl shadow-lg overflow-hidden">
+            <div class="grid lg:grid-cols-2 items-center">
+              <div class="order-1">
+                <img
+                  src={Justicia.src}
+                  alt="Ilustración representando el valor de la justicia y fortaleza"
+                  class="w-full h-80 object-cover"
+                />
+              </div>
+              <div class="p-8 lg:p-12 order-2">
+                <h3 class="text-3xl lg:text-4xl font-bold text-azul-une mb-6">
+                  La justicia/fortaleza
+                </h3>
+                <p class="text-gray-600 text-lg leading-relaxed">
+                  Creemos en la importancia de formar individuos justos que
+                  defiendan los derechos y oportunidades para todos, con la
+                  fortaleza necesaria para enfrentar los desafíos del mundo
+                  profesional.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-3xl shadow-lg overflow-hidden">
+            <div class="grid lg:grid-cols-2 items-center">
+              <div class="p-8 lg:p-12 order-2 lg:order-1">
+                <h3 class="text-3xl lg:text-4xl font-bold text-azul-une mb-6">
+                  La templanza
+                </h3>
+                <p class="text-gray-600 text-lg leading-relaxed">
+                  La templanza nos permite mantener la armonía entre el
+                  crecimiento académico, personal y social, preparando a
+                  nuestros estudiantes para una vida plena y exitosa.
+                </p>
+              </div>
+              <div class="order-1 lg:order-2">
+                <img
+                  src={Templanza.src}
+                  alt="Ilustración representando el valor de la templanza"
+                  class="w-full h-80 object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Timeline />
+    <Galeriadeplantele />
+  </main>
+</Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const video = document.getElementById("uneVideo");
+    const playPauseBtn = document.getElementById("playPauseBtn");
+    const muteBtn = document.getElementById("muteBtn");
+    const playIcon = document.getElementById("playIcon");
+    const pauseIcon = document.getElementById("pauseIcon");
+    const muteIcon = document.getElementById("muteIcon");
+    const unmuteIcon = document.getElementById("unmuteIcon");
+    const loadingOverlay = document.getElementById("loadingOverlay");
+
+    let isVideoReady = false;
+
+    // Función para actualizar iconos
+    function updatePlayIcon() {
+      if (video.paused) {
+        playIcon.classList.remove("hidden");
+        pauseIcon.classList.add("hidden");
+      } else {
+        playIcon.classList.add("hidden");
+        pauseIcon.classList.remove("hidden");
+      }
+    }
+
+    function updateMuteIcon() {
+      if (video.muted) {
+        muteIcon.classList.remove("hidden");
+        unmuteIcon.classList.add("hidden");
+      } else {
+        muteIcon.classList.add("hidden");
+        unmuteIcon.classList.remove("hidden");
+      }
+    }
+
+    // Intentar reproducir automáticamente
+    async function attemptAutoplay() {
+      try {
+        video.muted = true; // Asegurar que esté silenciado
+        await video.play();
+        console.log("Video reproduciéndose automáticamente");
+        updatePlayIcon();
+      } catch (error) {
+        console.log("Autoplay bloqueado:", error);
+        // El video se quedará pausado, el usuario puede darle play manualmente
+      }
+    }
+
+    // Event Listeners
+    playPauseBtn.addEventListener("click", () => {
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+      updatePlayIcon();
+    });
+
+    muteBtn.addEventListener("click", () => {
+      video.muted = !video.muted;
+      updateMuteIcon();
+    });
+
+    // Event listeners del video
+    video.addEventListener("loadstart", () => {
+      loadingOverlay.classList.remove("hidden");
+    });
+
+    video.addEventListener("canplay", () => {
+      loadingOverlay.classList.add("hidden");
+      isVideoReady = true;
+      attemptAutoplay();
+    });
+
+    video.addEventListener("play", updatePlayIcon);
+    video.addEventListener("pause", updatePlayIcon);
+    video.addEventListener("volumechange", updateMuteIcon);
+
+    // Manejar errores
+    video.addEventListener("error", (e) => {
+      console.error("Error al cargar el video:", e);
+      loadingOverlay.classList.add("hidden");
+    });
+
+    // Inicializar estados
+    updatePlayIcon();
+    updateMuteIcon();
+
+    // Si el navegador soporta autoplay, intentar después de un breve delay
+    setTimeout(() => {
+      if (isVideoReady) {
+        attemptAutoplay();
+      }
+    }, 500);
+
+    // Manejar visibilidad de la página
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden && !video.paused) {
+        video.pause();
+      }
+    });
+
+    // Animación de contadores (del código original)
+    const counters = document.querySelectorAll(".counter");
+    const animateCounters = () => {
+      counters.forEach((counter) => {
+        const target = parseInt(counter.getAttribute("data-target"));
+        const count = parseInt(
+          counter.innerText.replace("+", "").replace(",", "")
+        );
+        const increment = target / 100;
+
+        if (count < target) {
+          counter.innerText =
+            "+" + Math.ceil(count + increment).toLocaleString();
+          setTimeout(animateCounters, 20);
+        } else {
+          counter.innerText = "+" + target.toLocaleString();
+        }
+      });
+    };
+
+    // Observer para animar contadores cuando sean visibles
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          counterObserver.disconnect();
+        }
+      });
+    });
+
+    counters.forEach((counter) => counterObserver.observe(counter));
+  });
+</script>
+
+<style>
+  /* Estilos adicionales para el video */
+  #uneVideo {
+    transition: opacity 0.3s ease;
+  }
+
+  #loadingOverlay {
+    background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
+  }
+
+  /* Hover effects para los controles */
+  #playPauseBtn:hover,
+  #muteBtn:hover {
+    transform: scale(1.1);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .absolute.bottom-4.right-4 {
+      bottom: 1rem;
+      right: 1rem;
+    }
+
+    .absolute.bottom-4.right-4 button {
+      padding: 0.5rem;
+    }
+
+    .absolute.bottom-4.right-4 svg {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+</style>
