@@ -1,0 +1,459 @@
+---
+import {
+  ofertaEducativa,
+  buscarOfertas,
+  getProgramasPorArea,
+} from "@helpers/estructura_educativa";
+import { getImageUrl } from "@/helpers/imageManager.js";
+
+// ============================================
+// FUNCIONES HELPER PARA PROCESAMIENTO
+// ============================================
+
+function getColorBadge(incorporacionId) {
+  if (incorporacionId === "udg") return "bg-red-500";
+  return "bg-blue-500"; // Color por defecto
+}
+
+function agruparOfertasPorPrograma() {
+  const programasMap = new Map();
+
+  // Obtener solo ofertas de licenciaturas
+  const ofertasLicenciaturas = buscarOfertas({ nivel: "licenciatura" });
+
+  ofertasLicenciaturas.forEach((oferta) => {
+    const programaId = oferta.programa_id;
+
+    if (!programasMap.has(programaId)) {
+      programasMap.set(programaId, {
+        programa: oferta.programa,
+        ofertas: [],
+      });
+    }
+
+    programasMap.get(programaId).ofertas.push(oferta);
+  });
+
+  return programasMap;
+}
+
+function procesarCarreras() {
+  const programasAgrupados = agruparOfertasPorPrograma();
+  const carreras = [];
+
+  programasAgrupados.forEach((data, programaId) => {
+    const { programa, ofertas } = data;
+
+    // Extraer información única de las ofertas
+    const campusUnicos = [...new Set(ofertas.map((o) => o.campus.nombre))];
+    const modalidadesUnicas = [
+      ...new Set(ofertas.map((o) => o.modalidad.nombre)),
+    ];
+    const incorporacionesUnicas = [
+      ...new Set(ofertas.map((o) => o.incorporacion.id)),
+    ];
+    const incorporacionesNombres = [
+      ...new Set(ofertas.map((o) => o.incorporacion.nombre)),
+    ];
+
+    // Determinar si tiene incorporación UDG
+    const tieneUDG = incorporacionesUnicas.includes("udg");
+    const primeraIncorporacion = incorporacionesUnicas[0];
+
+    // Obtener imagen
+    const imagenNombre = programa.imagen || programa.nombre;
+    const imagenUrl = getImageUrl(imagenNombre, "licenciaturas");
+    const imagenUrlFinal =
+      typeof imagenUrl === "string"
+        ? imagenUrl
+        : "/src/assets/Imagenes/CardsLicenciaturas/Arquitectura.webp";
+
+    // Construir objeto de carrera
+    carreras.push({
+      id: programaId,
+      nombre: `Lic. en ${programa.nombre}`,
+      nombreCorto: programa.nombre,
+      descripcion: programa.descripcion,
+      area: ofertaEducativa.areas[programa.area]?.nombre || programa.area,
+      areaId: programa.area,
+      imagen: imagenNombre,
+      imagenUrl: imagenUrlFinal,
+      incorporacion: incorporacionesNombres.join(", "),
+      incorporacionIds: incorporacionesUnicas,
+      modalidad: modalidadesUnicas.join(", "),
+      colorBadge: getColorBadge(primeraIncorporacion),
+      slug: programa.url?.split("/").pop() || programa.id,
+      url: programa.url,
+      planteles: campusUnicos,
+      plantelesDisponibles: campusUnicos.length,
+      ofertas: ofertas, // Mantener ofertas completas para detalle
+      tieneUDG: tieneUDG,
+    });
+  });
+
+  return carreras;
+}
+
+// ============================================
+// PROCESAMIENTO DE DATOS
+// ============================================
+
+const carreras = procesarCarreras();
+
+// Obtener áreas únicas desde la estructura
+const areasUnicas = Object.values(ofertaEducativa.areas).map(
+  (area) => area.nombre
+);
+const areas = ["Todas", ...areasUnicas];
+
+// ============================================
+// DEBUG (opcional - comentar en producción)
+// ============================================
+// console.log('Total carreras:', carreras.length);
+// console.log('Áreas:', areas);
+// console.log('Primera carrera:', carreras[0]);
+---
+
+<div class="max-w-11/12 mx-auto px-4 py-8">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">ÁREAS DE CONOCIMIENTO</h1>
+    <p class="text-gray-600">Encuentra tu área de especialización</p>
+  </div>
+
+  <!-- Buscador con autocomplete -->
+  <div class="relative mb-6">
+    <input
+      type="text"
+      id="search-input"
+      placeholder="Buscar licenciatura"
+      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      autocomplete="off"
+    />
+    <div
+      id="autocomplete-dropdown"
+      class="absolute z-10 w-full bg-white border border-gray-300 rounded-b-lg hidden max-h-60 overflow-y-auto"
+    >
+      <!-- Sugerencias de autocomplete se insertan aquí -->
+    </div>
+  </div>
+
+  <!-- Tabs de áreas -->
+  <div class="flex flex-wrap gap-2 mb-6 overflow-x-auto">
+    {
+      areas.map((area, index) => (
+        <button
+          class={`tab-button px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+            index === 0
+              ? "bg-blue-600 text-white"
+              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+          }`}
+          data-area={area}
+        >
+          {area}
+        </button>
+      ))
+    }
+  </div>
+
+  <!-- Grid de cards -->
+  <div class="relative">
+    <div
+      id="cards-container"
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-8 px-4 gap-6 max-h-96 md:max-h-[500px] lg:max-h-[900px] overflow-y-auto"
+    >
+      {
+        carreras.map((carrera) => {
+          return (
+            <div
+              class="career-card bg-white rounded-lg shadow-lg overflow-hidden transition-transform hover:scale-105"
+              data-area={carrera.area}
+              data-name={carrera.nombre.toLowerCase()}
+            >
+              <div class="relative">
+                <div class="h-56 flex items-center justify-center">
+                  <img
+                    src={carrera.imagenUrl}
+                    alt={carrera.imagen}
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                {carrera.tieneUDG && (
+                  <div
+                    class={`absolute top-4 right-4 ${carrera.colorBadge} text-white px-2 py-1 rounded text-xs font-semibold`}
+                  >
+                    UDG
+                  </div>
+                )}
+              </div>
+              <div class="p-6">
+                <h3 class="mb-2 text-lg font-bold">{carrera.nombre}</h3>
+                <p class="text-gray-600 text-sm mb-4">{carrera.descripcion}</p>
+
+                <div class="space-y-2 mb-4">
+                  <div class="flex items-center gap-2 flex-wrap">
+                    {carrera.incorporacion && (
+                      <span class="text-white text-bold px-2 py-1 text-xs bg-azul-une rounded-2xl">
+                        {carrera.incorporacion}
+                      </span>
+                    )}
+
+                    <span class="text-white text-bold px-2 py-1 text-xs bg-azul-une rounded-2xl">
+                      {carrera.modalidad}
+                    </span>
+                    <span class="text-white text-bold px-2 py-1 text-xs bg-azul-une rounded-2xl">
+                      {carrera.plantelesDisponibles}{" "}
+                      {carrera.plantelesDisponibles === 1
+                        ? "plantel"
+                        : "planteles"}{" "}
+                      disponible{carrera.plantelesDisponibles === 1 ? "" : "s"}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <a
+                    href={
+                      carrera.url || `/oferta/licenciaturas/${carrera.slug}`
+                    }
+                    class="w-full border border-red-500 text-white bg-red-500 py-2 px-4 rounded font-medium hover:bg-red-50 transition-colors block text-center"
+                  >
+                    Más información
+                  </a>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+
+    <!-- Botón "Mostrar más" para mobile -->
+    <div class="md:hidden mt-6 text-center">
+      <button
+        id="show-more-btn"
+        class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+        aria-label="Mostrar más"
+        title="Mostrar más"
+      >
+        Mostrar más
+      </button>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ carreras }}>
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("search-input");
+    const autocompleteDropdown = document.getElementById(
+      "autocomplete-dropdown"
+    );
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const careerCards = document.querySelectorAll(".career-card");
+    const showMoreBtn = document.getElementById("show-more-btn");
+
+    let currentArea = "Todas";
+    let visibleCards = 3; // Límite inicial para mobile
+
+    // Datos de carreras para autocomplete
+    const careerNames = carreras.map((carrera) => carrera.nombre);
+
+    // ============================================
+    // FUNCIÓN PARA MOSTRAR CARDS
+    // ============================================
+    function showCards() {
+      const isMobile = window.innerWidth < 768;
+      let visibleCount = 0;
+
+      careerCards.forEach((card) => {
+        const cardArea = card.getAttribute("data-area");
+        const shouldShow = currentArea === "Todas" || cardArea === currentArea;
+
+        if (shouldShow) {
+          if (isMobile && visibleCount >= visibleCards) {
+            card.classList.add("hidden");
+          } else {
+            card.classList.remove("hidden");
+            visibleCount++;
+          }
+        } else {
+          card.classList.add("hidden");
+        }
+      });
+
+      // Mostrar/ocultar botón "Mostrar más"
+      const totalCards = Array.from(careerCards).filter((card) => {
+        const cardArea = card.getAttribute("data-area");
+        return currentArea === "Todas" || cardArea === currentArea;
+      }).length;
+
+      if (isMobile && totalCards > visibleCards) {
+        showMoreBtn.classList.remove("hidden");
+      } else {
+        showMoreBtn.classList.add("hidden");
+      }
+    }
+
+    // ============================================
+    // AUTOCOMPLETE
+    // ============================================
+    searchInput.addEventListener("input", function (e) {
+      const query = e.target.value.toLowerCase();
+
+      if (query.length === 0) {
+        autocompleteDropdown.classList.add("hidden");
+        // Restaurar todas las cards del área actual
+        showCards();
+        return;
+      }
+
+      const matches = careerNames.filter((name) =>
+        name.toLowerCase().includes(query)
+      );
+
+      if (matches.length > 0) {
+        autocompleteDropdown.innerHTML = matches
+          .map(
+            (name) =>
+              `<div class="autocomplete-item px-4 py-2 hover:bg-gray-100 cursor-pointer">${name}</div>`
+          )
+          .join("");
+        autocompleteDropdown.classList.remove("hidden");
+      } else {
+        autocompleteDropdown.classList.add("hidden");
+      }
+    });
+
+    // Selección de autocomplete
+    autocompleteDropdown.addEventListener("click", function (e) {
+      if (e.target.classList.contains("autocomplete-item")) {
+        searchInput.value = e.target.textContent;
+        autocompleteDropdown.classList.add("hidden");
+
+        // Filtrar por nombre seleccionado
+        const selectedName = e.target.textContent.toLowerCase();
+        careerCards.forEach((card) => {
+          const cardName = card.getAttribute("data-name");
+          if (cardName === selectedName) {
+            card.classList.remove("hidden");
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+
+        // Ocultar botón "Mostrar más" cuando hay búsqueda activa
+        showMoreBtn.classList.add("hidden");
+      }
+    });
+
+    // Cerrar autocomplete al hacer click fuera
+    document.addEventListener("click", function (e) {
+      if (
+        !searchInput.contains(e.target) &&
+        !autocompleteDropdown.contains(e.target)
+      ) {
+        autocompleteDropdown.classList.add("hidden");
+      }
+    });
+
+    // ============================================
+    // TABS DE ÁREAS
+    // ============================================
+    tabButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        // Remover clase activa de todos los botones
+        tabButtons.forEach((btn) => {
+          btn.classList.remove("bg-blue-600", "text-white");
+          btn.classList.add("bg-gray-200", "text-gray-700");
+        });
+
+        // Activar botón seleccionado
+        this.classList.remove("bg-gray-200", "text-gray-700");
+        this.classList.add("bg-blue-600", "text-white");
+
+        // Actualizar área actual
+        currentArea = this.getAttribute("data-area");
+        visibleCards = 3; // Resetear contador
+
+        // Limpiar búsqueda
+        searchInput.value = "";
+
+        // Mostrar cards correspondientes
+        showCards();
+      });
+    });
+
+    // ============================================
+    // BOTÓN "MOSTRAR MÁS"
+    // ============================================
+    showMoreBtn.addEventListener("click", function () {
+      visibleCards += 3;
+      showCards();
+    });
+
+    // ============================================
+    // RESPONSIVE
+    // ============================================
+    window.addEventListener("resize", function () {
+      showCards();
+    });
+
+    // ============================================
+    // MODAL DE PLANTELES (placeholder)
+    // ============================================
+    document.querySelectorAll(".ver-planteles-btn").forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const carreraId = this.getAttribute("data-carrera-id");
+        const carreraNombre = this.getAttribute("data-carrera-nombre");
+        const ofertas = JSON.parse(this.getAttribute("data-ofertas"));
+
+        console.log("Mostrar planteles para:", carreraNombre);
+        console.log("Ofertas disponibles:", ofertas);
+
+        // TODO: Implementar modal con la información de ofertas
+        // ofertas contiene: campus, modalidad, incorporacion para cada oferta
+      });
+    });
+
+    // ============================================
+    // INICIALIZAR
+    // ============================================
+    showCards();
+  });
+</script>
+
+<style>
+  /* Estilos para el scroll del contenedor */
+  #cards-container::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  #cards-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  #cards-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+
+  #cards-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  /* Animación para las cards */
+  .career-card {
+    animation: fadeIn 0.3s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

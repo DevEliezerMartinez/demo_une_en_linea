@@ -40,20 +40,7 @@ const fullOgImage = `${Astro.url.origin}${ogImage}`;
 
 <html lang={lang}>
   <head>
-    <!-- Google Tag Manager  -->
-    <script is:inline define:vars={{ gtmId }}>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", gtmId);
-    </script>
-    <!-- End Google Tag Manager -->
+   
 
     <meta charset={charset} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -91,8 +78,7 @@ const fullOgImage = `${Astro.url.origin}${ogImage}`;
     <meta name="geo.placename" content="Jalisco, México" />
 
     {/* Favicons esenciales */}
-    <link rel="apple-touch-icon" href="/Favicon/apple-icon-180x180.png" />
-    <link rel="manifest" href="/Favicon/manifest.json" />
+
 
     {/* Theme color para móviles */}
     <meta name="theme-color" content="#ffffff" />
@@ -106,10 +92,10 @@ const fullOgImage = `${Astro.url.origin}${ogImage}`;
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
     {/* Preconnect para GTM y Clarity */}
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <!--   <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="preconnect" href="https://www.clarity.ms" />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-    <link rel="dns-prefetch" href="https://www.clarity.ms" />
+    <link rel="dns-prefetch" href="https://www.clarity.ms" /> -->
 
     {/* Schema.org para Google */}
     <script
@@ -120,7 +106,7 @@ const fullOgImage = `${Astro.url.origin}${ogImage}`;
         name: "UNE - Universidad de Especialidades",
         alternateName: "Centro Universitario - UNE",
         url: Astro.url.origin,
-        logo: `${Astro.url.origin}/Favicon/apple-icon-180x180.png`,
+        logo: `${Astro.url.origin}/apple-icon-180x180.png`,
         image: fullOgImage || "",
         description: (description || defaultConfig.description || "").replace(
           /"/g,
@@ -166,14 +152,7 @@ const fullOgImage = `${Astro.url.origin}${ogImage}`;
 
   <body class={bodyClass}>
     <!--  Google Tag Manager (noscript) -->
-    <noscript>
-      <iframe
-        src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
-        height="0"
-        width="0"
-        style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
+   
 
     <!--  Clarity Analytics -->
    <!--  <Clarity projectId={projectId} /> -->
