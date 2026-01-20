@@ -1,0 +1,108 @@
+---
+// Definición de las propiedades (Props) con TypeScript
+interface Props {
+  durationLabel?: string; // Por defecto: "Duración"
+  duration: string;
+  modeLabel?: string; // Por defecto: "Modalidad"
+  mode: string;
+  benefitsLabel?: string; // Por defecto: "Beneficios"
+  benefits: string[];
+  outcomesTitle?: string;
+  outcomes: string[];
+}
+
+const {
+  durationLabel = "Duración",
+  duration,
+  modeLabel = "Modalidad",
+  mode,
+  benefitsLabel = "Beneficios",
+  benefits,
+  outcomesTitle = "Al finalizar esta podras:",
+  outcomes,
+} = Astro.props;
+---
+
+<section class="w-full max-w-6xl mx-auto p-6 bg-white">
+  <div class="grid grid-cols-1 md:grid-cols-10 gap-8">
+    {/* Columna Izquierda: Información General */}
+    <div
+      class="md:col-span-4 flex flex-col md:pr-10 md:border-r border-gray-300"
+    >
+      {/* Bloque Duración */}
+      <div class="mb-6">
+        <h3 class="text-red-600 font-bold text-2xl mb-1">{durationLabel}</h3>
+        <p class="text-gray-800 text-lg">{duration}</p>
+      </div>
+
+      {/* Bloque Modalidad */}
+      <div class="mb-6">
+        <h3 class="text-red-600 font-bold text-2xl mb-1">{modeLabel}</h3>
+        <p class="text-gray-800 text-lg">{mode}</p>
+      </div>
+
+      {/* Bloque Beneficios */}
+      <div>
+        <h3 class="text-red-600 font-bold text-2xl mb-3">{benefitsLabel}</h3>
+        <ul class="space-y-2">
+          {
+            benefits.map((item) => (
+              <li class="flex items-start text-sm text-gray-700 leading-relaxed">
+                <span class="mr-2 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gray-500" />
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    {/* Columna Derecha: Objetivos / Perfil de egreso */}
+    <div class="md:col-span-6 flex flex-col justify-start md:pl-4">
+      {/* Icono (SVG incrustado similar al de la imagen) */}
+      <div class="mb-4 text-blue-900">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="48"
+          height="48"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="stroke-current"
+        >
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="m9 12 2 2 4-4"></path>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+          <path d="M12 17h.01"></path>
+          {
+            /* Nota: He usado un icono genérico de éxito/check. Puedes cambiar este SVG por el icono de montaña exacto si tienes el archivo. */
+          }
+          <path
+            d="M8 21h8a2 2 0 0 0 2-2v-8l-2 1V8a2 2 0 0 0-2-2h-2.5L8 2v17z"
+            opacity="0"></path>
+          {/* Reemplazo visual aproximado de montaña/meta */}
+          <path d="m8 17 4-10 4 10"></path>
+          <path d="M11 11.5h2"></path>
+        </svg>
+      </div>
+
+      <h3 class="text-red-600 font-bold text-xl mb-6">
+        {outcomesTitle}
+      </h3>
+
+      <ul class="space-y-3">
+        {
+          outcomes.map((item) => (
+            <li class="flex items-start text-gray-800 text-base leading-snug">
+              <span class="mr-3 mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-black" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

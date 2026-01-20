@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import ResenaImg from '@/assets/Imagenes/Decorativos/Reseña.png';
+import ResenaImg from '@/assets/Imagenes/Decorativos/Reseña2.png';
 
 const testimonios = [
   {
@@ -25,10 +25,10 @@ const testimonios = [
   <div class="max-w-7xl mx-auto">
     <!-- Encabezado -->
     <div class="text-center mb-8 md:mb-12">
-      <h2 class="text-2xl md:text-4xl font-bold mb-2" style="color: #1f2937;">
+      <h2 class="text-2xl md:text-4xl font-bold mb-2 text-gray-800">
         Conoce la experiencia en línea de algunos de nuestros alumnos
       </h2>
-      <p class="text-base md:text-lg font-semibold" style="color: #374151;">
+      <p class="text-base md:text-lg font-semibold text-gray-700">
         Historias reales de personas que transformaron su futuro
       </p>
     </div>
@@ -50,29 +50,31 @@ const testimonios = [
       <!-- Carrusel de testimonios -->
       <div class="w-full lg:w-1/2 relative">
         <div class="splide testimonios-carousel">
+          
+         
           <div class="splide__track">
-            <ul class="splide__list">
+            <ul class="splide__list flex">
               {testimonios.map((testimonio, index) => (
-                <li class="splide__slide" key={index}>
-                  <div class="testimonio-card bg-azul-une">
+                <li class="splide__slide w-full" key={index}>
+                  <div class="bg-azul-une text-white rounded-2xl p-8 md:p-10 shadow-xl relative min-h-[300px] md:min-h-[350px] flex flex-col justify-between">
                     <!-- Icono de comillas -->
-                    <div class="comillas">
-                      "
+                    <div class="mb-4 opacity-50 w-10">
+                      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5.29289 1.29291L6.70711 2.70712L3 6.41423V7.00001H7V14H1V5.5858L5.29289 1.29291Z" fill="#ffffff"></path> <path d="M15 7.00001H11V6.41423L14.7071 2.70712L13.2929 1.29291L9 5.5858V14H15V7.00001Z" fill="#ffffff"></path> </g></svg>
                     </div>
                     
                     <!-- Texto del testimonio -->
-                    <div class="testimonio-texto">
-                      <p class="texto-contenido">
+                    <div class="grow">
+                      <p class="text-base md:text-lg leading-relaxed mb-6">
                         {testimonio.texto}
                       </p>
                     </div>
                     
                     <!-- Autor -->
-                    <div class="testimonio-autor">
-                      <p class="autor-nombre">
+                    <div class="mt-4">
+                      <p class="font-bold text-lg md:text-xl">
                         {testimonio.nombre}
                       </p>
-                      <p class="autor-programa">
+                      <p class="text-sm md:text-base opacity-90">
                         {testimonio.programa}
                       </p>
                     </div>
@@ -81,170 +83,11 @@ const testimonios = [
               ))}
             </ul>
           </div>
-
-          <!-- Flechas de navegación -->
-          <div class="splide__arrows">
-            <button class="splide__arrow splide__arrow--prev" aria-label="Anterior">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="24" height="24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-              </svg>
-            </button>
-            <button class="splide__arrow splide__arrow--next" aria-label="Siguiente">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="24" height="24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-              </svg>
-            </button>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<style>
-  /* Card del testimonio */
-  .testimonio-card {
-    color: white;
-    border-radius: 1rem;
-    padding: 2rem;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    position: relative;
-    min-height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  @media (min-width: 768px) {
-    .testimonio-card {
-      padding: 2.5rem;
-      min-height: 350px;
-    }
-  }
-
-  /* Comillas */
-  .comillas {
-    font-size: 4rem;
-    font-family: serif;
-    margin-bottom: 1rem;
-    opacity: 0.5;
-    line-height: 1;
-  }
-
-  @media (min-width: 768px) {
-    .comillas {
-      font-size: 4.5rem;
-    }
-  }
-
-  /* Texto del testimonio */
-  .testimonio-texto {
-    flex-grow: 1;
-  }
-
-  .texto-contenido {
-    font-size: 1rem;
-    line-height: 1.75;
-    margin-bottom: 1.5rem;
-  }
-
-  @media (min-width: 768px) {
-    .texto-contenido {
-      font-size: 1.125rem;
-    }
-  }
-
-  /* Autor */
-  .testimonio-autor {
-    margin-top: 1rem;
-  }
-
-  .autor-nombre {
-    font-weight: bold;
-    font-size: 1.125rem;
-  }
-
-  @media (min-width: 768px) {
-    .autor-nombre {
-      font-size: 1.25rem;
-    }
-  }
-
-  .autor-programa {
-    font-size: 0.875rem;
-    opacity: 0.9;
-  }
-
-  @media (min-width: 768px) {
-    .autor-programa {
-      font-size: 1rem;
-    }
-  }
-
-  /* Estilos de las flechas */
-  .splide__arrow {
-    background-color: white;
-    color: #003d82;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    opacity: 1;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-  }
-
-  .splide__arrow:hover {
-    background-color: #003d82;
-    color: white;
-    transform: translateY(-50%) scale(1.05);
-  }
-
-  .splide__arrow--prev {
-    left: -1rem;
-  }
-
-  .splide__arrow--next {
-    right: -1rem;
-  }
-
-  @media (min-width: 768px) {
-    .splide__arrow--prev {
-      left: -3.5rem;
-    }
-    
-    .splide__arrow--next {
-      right: -3.5rem;
-    }
-  }
-
-  .splide__arrow:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  .splide__arrow svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  /* Asegurar que el slide sea visible */
-  .splide__slide {
-    opacity: 1 !important;
-  }
-
-  .splide__list {
-    display: flex;
-  }
-</style>
 
 <script>
   import Splide from '@splidejs/splide';
@@ -253,14 +96,14 @@ const testimonios = [
   function initSplide() {
     const splideElement = document.querySelector('.testimonios-carousel');
     
-    if (splideElement && !splideElement.classList.contains('is-initialized')) {
-      const splide = new Splide('.testimonios-carousel', {
+    if (splideElement instanceof HTMLElement && !splideElement.classList.contains('is-initialized')) {
+      const splide = new Splide(splideElement, {
         type: 'loop',
         perPage: 1,
         perMove: 1,
         gap: '1rem',
-        arrows: true,
-        pagination: false,
+        arrows: false,
+        pagination: true,
         autoplay: true,
         interval: 5000,
         pauseOnHover: true,
@@ -269,6 +112,7 @@ const testimonios = [
       });
 
       splide.mount();
+      splideElement.classList.add('is-initialized');
     }
   }
 

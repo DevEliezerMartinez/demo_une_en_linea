@@ -1,0 +1,89 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  titulo: string;
+  descripcion: string;
+  tituloSeccion: string;
+  aprendizaje: string;
+  imagenSrc: ImageMetadata;
+  imagenAlt: string;
+}
+
+const {
+  titulo,
+  descripcion,
+  tituloSeccion,
+  aprendizaje,
+  imagenSrc,
+  imagenAlt,
+} = Astro.props;
+---
+
+<section class="w-full px-4 py-12 md:py-16" id="objetivo">
+  <div class="max-w-7xl mx-auto">
+    {/* Título Principal */}
+    <h2
+      class="text-3xl md:text-4xl lg:text-5xl font-medium mb-8 md:mb-12 text-gray-900"
+    >
+      {titulo}
+    </h2>
+
+    {/* GRID PRINCIPAL: 1 Columna en móvil, 2 en Desktop */}
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+      {/* Columna Izquierda: Imagen */}
+      <div class="relative w-full h-full">
+        <Image
+          src={imagenSrc}
+          alt={imagenAlt}
+          class="w-full h-full object-cover rounded-3xl shadow-sm min-h-[300px] lg:min-h-[500px]"
+          loading="lazy"
+        />
+      </div>
+
+      {/* Columna Derecha: Contenido + Tarjeta */}
+      <div class="flex flex-col gap-8 md:gap-10">
+        {/* Descripción superior */}
+        <p class="text-gray-800 text-lg md:text-xl leading-relaxed font-light">
+          {descripcion}
+        </p>
+
+        {/* TARJETA AZUL - GRID INTERNO */}
+
+        <div
+          class="bg-azul-une text-white rounded-2xl p-6 md:p-8 shadow-lg flex flex-col gap-6 items-start"
+        >
+          {/* Slot del Icono */}
+          <div class="flex-shrink-0">
+            {
+              /* Icono de ejemplo similar al de la imagen (Cabeza/Aprendizaje) */
+            }
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-10 h-10 md:w-12 md:h-12 text-white"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"
+              ></path>
+            </svg>
+          </div>
+
+          {/* Textos de la tarjeta */}
+          <div class="flex flex-col gap-2">
+            <h3 class="text-xl md:text-2xl font-bold">
+              {tituloSeccion}
+            </h3>
+            <p
+              class="text-white/90 text-sm md:text-base leading-relaxed font-light"
+            >
+              {aprendizaje}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,135 @@
+---
+// Definición de tipos para las props (TypeScript)
+interface Block {
+  id: string | number;
+  title: string;
+  subjects: string[];
+}
+
+interface Props {
+  mainTitle?: string;
+  subtitle?: string;
+  blocks: Block[];
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+const {
+  mainTitle = "Plan de estudios",
+  subtitle = "Historias reales de personas que transformaron su futuro",
+  blocks,
+  ctaText = "Descargar este brochure",
+  ctaLink = "#",
+} = Astro.props;
+---
+
+<section
+  class="w-full max-w-7xl mx-auto px-4 py-12 font-sans text-slate-800"
+  id="plan-estudios"
+>
+  <div class="mb-12">
+    <h2
+      class="text-3xl md:text-4xl font-normal underline decoration-azul-une underline-offset-8 mb-4 text-azul-une"
+    >
+      {mainTitle}
+    </h2>
+    <p class="text-lg font-bold text-slate-900">
+      {subtitle}
+    </p>
+  </div>
+
+  <div class="relative">
+    <div
+      class="hidden md:block absolute top-[22px] left-0 w-full h-[2px] bg-azul-une z-0"
+    >
+    </div>
+
+    <div
+      class="md:hidden absolute top-0 left-[19px] h-full w-[2px] bg-azul-une z-0"
+    >
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-y-12 gap-x-8">
+      {
+        blocks.map((block) => (
+          <div class="relative flex md:block group">
+            <div
+              class="absolute 
+                      /* Posición Mobile */
+                      left-0 top-0 
+                      /* Posición Desktop */
+                      md:static md:mb-6 md:-ml-3
+                      z-10 bg-white"
+            >
+              <svg
+                class="w-10 h-10 text-rojo-une transform md:rotate-0 rotate-90"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13 7L18 12L13 17"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M7 7L12 12L7 17"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M1 7L6 12L1 17"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+
+            <div class="pl-12 md:pl-0 pt-1 md:pt-0">
+              <h3 class="text-3xl font-light text-slate-800 mb-4">
+                {block.title}
+              </h3>
+
+              <ul class="space-y-2">
+                {block.subjects.map((subject) => (
+                  <li class="flex items-start text-sm md:text-base text-slate-700 leading-tight">
+                    <span class="mr-2 mt-1.5 w-1 h-1 bg-slate-800 rounded-full shrink-0 block" />
+                    {subject}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="mt-16 text-right">
+    <a
+      href={ctaLink}
+      class="inline-flex items-center justify-center px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded shadow-lg transition-transform hover:-translate-y-1"
+    >
+      {ctaText}
+      <svg
+        class="ml-2 w-5 h-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+        ></path>
+      </svg>
+    </a>
+  </div>
+</section>

@@ -1,0 +1,103 @@
+---
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  title?: string;
+  faqs: FaqItem[];
+}
+
+const { title = "Estas son las preguntas frecuentes", faqs } = Astro.props;
+---
+
+<section class="w-full max-w-7xl mx-auto px-4 py-12">
+  <h2 class="text-3xl md:text-4xl font-bold text-center text-[#0B1E5B] mb-10">
+    {title}
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+    {
+      faqs.map((faq, index) => (
+        <div class="faq-item group">
+          <button
+            class="faq-button w-full flex justify-between items-center p-5 bg-[#0B1E5B] text-white rounded-lg text-left transition-colors hover:bg-[#152e7a] focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="font-bold text-base md:text-lg pr-4">
+              {faq.question}
+            </span>
+
+            <span class="faq-icon transform transition-transform duration-300 flex-shrink-0">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </span>
+          </button>
+
+          <div class="faq-content max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out bg-white rounded-b-lg border-x border-b border-[#0B1E5B]/10">
+            <div class="p-5 text-slate-700 leading-relaxed">{faq.answer}</div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  // Lógica Vanilla JS para el acordeón
+  function initAccordion() {
+    const buttons = document.querySelectorAll(".faq-button");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const content = button.nextElementSibling as HTMLElement;
+        const icon = button.querySelector(".faq-icon") as HTMLElement;
+        const isExpanded = button.getAttribute("aria-expanded") === "true";
+
+        // Cerrar todos los demás (Opcional: Si quieres que solo uno esté abierto a la vez, descomenta esto)
+        /*
+        document.querySelectorAll('.faq-button').forEach(otherBtn => {
+          if (otherBtn !== button) {
+             otherBtn.setAttribute('aria-expanded', 'false');
+             (otherBtn.nextElementSibling as HTMLElement).style.maxHeight = null;
+             (otherBtn.querySelector('.faq-icon') as HTMLElement).style.transform = 'rotate(0deg)';
+          }
+        });
+        */
+
+        // Alternar el estado actual
+        button.setAttribute("aria-expanded", !isExpanded ? "true" : "false");
+
+        if (!isExpanded) {
+          content.style.maxHeight = content.scrollHeight + "px";
+          icon.style.transform = "rotate(45deg)"; // Convierte el + en x
+        } else {
+          content.style.maxHeight = null; // Cierra
+          icon.style.transform = "rotate(0deg)"; // Regresa a +
+        }
+      });
+    });
+  }
+
+  // Ejecutar al cargar y soportar View Transitions de Astro
+  document.addEventListener("astro:page-load", initAccordion);
+  // Fallback si no usas View Transitions
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAccordion);
+  } else {
+    initAccordion();
+  }
+</script>

@@ -1,0 +1,129 @@
+---
+import { ofertaEducativa, buscarOfertas } from "@/helpers/oferta_educativa";
+import { getImageUrl } from "@/helpers/imageManager.js";
+
+// Filtramos solo maestrías
+const maestrias = buscarOfertas({ nivel: "maestria" }).map((oferta) => {
+  const { programa, incorporacion } = oferta;
+  const imagenNombre = programa.imagen || programa.nombre;
+
+  return {
+    id: programa.id,
+    nombre: `Maestría en ${programa.nombre}`, // Corregido de Lic. a Maestría
+    descripcion: programa.descripcion,
+    imagenUrl: getImageUrl(imagenNombre, "maestrias"),
+    incorporacion: incorporacion.nombre,
+    url: programa.url || `/oferta/maestrias/${programa.id}`,
+    tieneUDG: incorporacion.id === "udg",
+    colorBadge:
+      incorporacion.id === "udg"
+        ? "bg-red-600 ring-2 ring-white"
+        : "bg-blue-700 ring-2 ring-white",
+  };
+});
+---
+
+<div class="max-w-6xl mx-auto px-4 py-16">
+  <header class="mb-12 text-center">
+    <h1
+      class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4 uppercase"
+    >
+      Maestrías y Posgrados
+    </h1>
+    <div class="w-20 h-1.5 bg-red-600 mx-auto mb-6 rounded-full"></div>
+    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+      Especialízate y alcanza el siguiente nivel profesional con nuestros
+      programas de posgrado con validez oficial.
+    </p>
+  </header>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+    {
+      maestrias.map((maestria) => (
+        <article class="group bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-500 flex flex-col border-b-4 hover:border-b-red-600">
+          <div class="relative overflow-hidden aspect-[16/10]">
+            <img
+              src={maestria.imagenUrl}
+              alt={maestria.nombre}
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              loading="lazy"
+            />
+            {maestria.tieneUDG && (
+              <span
+                class={`absolute top-4 right-4 ${maestria.colorBadge} text-white px-3 py-1 rounded-full text-xs font-bold shadow-md`}
+              >
+                UDG
+              </span>
+            )}
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+          </div>
+
+          <div class="p-8 flex flex-col flex-grow">
+            <div class="mb-4">
+              <span class="text-blue-600 text-xs font-bold uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-md">
+                {maestria.incorporacion}
+              </span>
+            </div>
+
+            <h3 class="mb-4 text-2xl font-bold text-gray-900 leading-tight group-hover:text-red-600 transition-colors">
+              {maestria.nombre}
+            </h3>
+
+            <p class="text-gray-600 text-base mb-8 line-clamp-4 flex-grow leading-relaxed">
+              {maestria.descripcion}
+            </p>
+
+            <a
+              href={maestria.url}
+              class="group/btn inline-flex items-center justify-center gap-2 w-full bg-gray-900 text-white py-4 px-6 rounded-2xl font-bold hover:bg-red-600 transition-all duration-300 shadow-lg active:scale-95"
+            >
+              VER PLAN DE ESTUDIOS
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 group-hover/btn:translate-x-1 transition-transform"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </a>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <footer class="mt-16 text-center">
+    <p class="text-gray-500 text-sm">
+      ¿Buscas otro nivel educativo?
+      <a
+        href="/oferta/licenciaturas"
+        class="text-blue-600 font-bold hover:underline ml-1"
+        >Ver licenciaturas</a
+      >
+    </p>
+  </footer>
+</div>
+
+<style>
+  article {
+    animation: fadeInReveal 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeInReveal {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

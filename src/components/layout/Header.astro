@@ -79,25 +79,29 @@ const navItems = [
     dropdownClass: "nosotros-dropdown",
     links: [
       {
+        href: "/acerca/modelo-educativo",
+        title: "Modelo educativo",
+        desc: "Conoce nuestro modelo educativo",
+      },
+      {
         href: "/acerca/historia",
         title: "Historia sobre nosotros",
         desc: "Descubre nuestra trayectoria y misión educativa.",
       },
-
       {
-        href: "/contacto/solicitarinformacion",
-        title: "Contacto",
-        desc: "Canales directos para resolver tus dudas.",
-      },
-      {
-        href: "https://https://virtual.une-enlinea.com/",
-        title: "Acceso administrativos",
-        desc: "Portal de acceso - Administrativos",
+        href: "https://virtual.une-enlinea.com/",
+        title: "Acceso a la plataforma",
+        desc: "Portal de acceso a la plataforma",
       },
       {
         href: "https://www.universidad-une.com/",
         title: "UNE presencial",
         desc: "Conoce UNE todo el universo de UNE",
+      },
+      {
+        href: "/contacto/solicitarinformacion",
+        title: "Contacto",
+        desc: "Canales directos para resolver tus dudas.",
       },
     ],
   },
@@ -107,7 +111,8 @@ const ofertaAcademica = {
   medioSuperior: [
     {
       href: "/oferta-academica/bachillerato",
-      title: "Bachillerato Virtual",
+      title: "Bachillerato en línea",
+      desc: "Estudia a tu ritmo y consigue tu certificado.",
     },
   ],
   educacionSuperior: [
@@ -129,7 +134,7 @@ function getGridCols(dropdownClass) {
     case "admisiones-dropdown":
       return "grid-cols-4";
     case "nosotros-dropdown":
-      return "grid-cols-4";
+      return "grid-cols-5";
     default:
       return "grid-cols-4";
   }
@@ -165,7 +170,7 @@ function getGridCols(dropdownClass) {
             decoding="async"
           />
         </a>
-      )
+      ),
     )
   }
 </div>
@@ -249,6 +254,7 @@ function getGridCols(dropdownClass) {
                       <h3 class="font-bold text-gray-900 group-hover:text-azul-une">
                         {link.title}
                       </h3>
+                      <p class="text-sm text-gray-600">{link.desc}</p>
                     </a>
                   ))}
                   {ofertaAcademica.educacionSuperior.map((link) => (
@@ -336,7 +342,7 @@ function getGridCols(dropdownClass) {
                     height={40}
                   />
                 </a>
-              )
+              ),
           )
         }
       </div>
@@ -354,7 +360,7 @@ function getGridCols(dropdownClass) {
                 <span>{link.text}</span>
                 <Globe size={16} stroke-width={2} />
               </a>
-            )
+            ),
         )
       }
     </div>
@@ -541,7 +547,7 @@ function getGridCols(dropdownClass) {
         if (pinnedDropdown) {
           const pinnedIndex = Array.from(dropdowns).indexOf(pinnedDropdown);
           const pinnedTrigger = document.querySelector(
-            `nav .group[data-dropdown-index="${pinnedIndex}"] .dropdown-trigger`
+            `nav .group[data-dropdown-index="${pinnedIndex}"] .dropdown-trigger`,
           );
           unpinDropdown(pinnedDropdown, pinnedTrigger);
         }
@@ -557,13 +563,13 @@ function getGridCols(dropdownClass) {
     if (pinnedDropdown) {
       const isInsideDropdown = pinnedDropdown.contains(e.target);
       const isInsideTrigger = Array.from(navItems).some((item) =>
-        item.contains(e.target)
+        item.contains(e.target),
       );
 
       if (!isInsideDropdown && !isInsideTrigger) {
         const index = Array.from(dropdowns).indexOf(pinnedDropdown);
         const trigger = document.querySelector(
-          `nav .group[data-dropdown-index="${index}"] .dropdown-trigger`
+          `nav .group[data-dropdown-index="${index}"] .dropdown-trigger`,
         );
         unpinDropdown(pinnedDropdown, trigger);
       }
@@ -588,7 +594,7 @@ function getGridCols(dropdownClass) {
       if (pinnedDropdown) {
         const index = Array.from(dropdowns).indexOf(pinnedDropdown);
         const trigger = document.querySelector(
-          `nav .group[data-dropdown-index="${index}"] .dropdown-trigger`
+          `nav .group[data-dropdown-index="${index}"] .dropdown-trigger`,
         );
         unpinDropdown(pinnedDropdown, trigger);
       }

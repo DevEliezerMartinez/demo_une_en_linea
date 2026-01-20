@@ -3,13 +3,9 @@
 ---
 
 <div class="bg-gray-50 rounded-lg p-3 mb-6">
-  <div class="flex items-center justify-between text-sm mb-2">
-    <span class="text-gray-600" id="progress-text">Solo toma 2 minutos</span>
-    <span class="text-green-600 font-medium">✓ Sin compromiso</span>
-  </div>
-  <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+  <div class="w-full bg-gray-200 rounded-full h-1 overflow-hidden">
     <div
-      class="h-2 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full transition-all duration-500 ease-out"
+      class="h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full transition-all duration-500 ease-out"
       id="form-progress"
       style="width: 0%"
     >
@@ -94,22 +90,8 @@
     </select>
   </div>
 
-  <!-- Área de conocimiento -->
-  <div id="area-container" class="hidden">
-    <label class="text-xs lg:text-sm text-gray-600 mb-2 block"
-      >Área de conocimiento</label
-    >
-    <select
-      name="areaConocimiento"
-      id="area-conocimiento"
-      class="w-full px-2 lg:px-4 py-1.5 lg:py-2.5 border-b focus:border-blue-500 outline-none transition-colors bg-transparent text-gray-500 text-sm lg:text-base"
-    >
-      <option value="">Selecciona una opción</option>
-    </select>
-  </div>
-
   <!-- Programa de interés -->
-  <div id="programa-container" class="hidden">
+  <div id="programa-container">
     <label class="text-xs lg:text-sm text-gray-600 mb-2 block"
       >Programa de interés</label
     >
@@ -122,33 +104,6 @@
     </select>
   </div>
 
-  <!-- Plantel de interés -->
-  <div>
-    <label class="text-xs lg:text-sm text-gray-600 mb-2 block"
-      >Plantel de interés</label
-    >
-    <select
-      name="plantelInteres"
-      id="plantel-interes"
-      class="w-full px-2 lg:px-4 py-1.5 lg:py-2.5 border-b focus:border-blue-500 outline-none transition-colors bg-transparent text-gray-500 text-sm lg:text-base"
-      required
-      disabled
-    >
-      <option value="">Selecciona una opción</option>
-    </select>
-  </div>
-
-  <!-- Modalidad -->
-  <div id="modalidad-container" class="hidden">
-    <label class="text-xs lg:text-sm text-gray-600 mb-2 block">Modalidad</label>
-    <div id="modalidad-options" class="flex flex-wrap gap-2">
-      <!-- Las opciones de modalidad se generarán dinámicamente -->
-    </div>
-  </div>
-
-  <!-- Incorporación (oculto, se selecciona automáticamente) -->
-  <input type="hidden" name="incorporacion" id="incorporacion-hidden" />
-
   <!-- Botón de envío -->
   <div class="pt-2 lg:pt-4">
     <button
@@ -157,7 +112,6 @@
       aria-label="ENVIAR"
       title="ENVIAR"
       id="submit-button"
-      disabled
     >
       <span id="button-text">COMPLETAR REGISTRO</span>
       <div
@@ -169,510 +123,241 @@
   </div>
 </form>
 
-<!-- Modal de error -->
-<div
-  id="error-modal"
-  class="hidden fixed inset-0 flex items-center justify-center z-50 p-4"
->
-  <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
-    <div class="flex items-start mb-4">
-      <div class="flex-shrink-0">
-        <svg
-          class="w-6 h-6 text-red-600"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-          ></path>
-        </svg>
-      </div>
-      <div class="ml-3 flex-1">
-        <h3 class="text-lg font-medium text-gray-900 mb-2">
-          Error al enviar solicitud
-        </h3>
-        <p id="modal-error-message" class="text-sm text-gray-600 mb-4"></p>
-        <div
-          class="text-sm text-gray-600 bg-gray-50 p-3 rounded border border-gray-200"
-        >
-          <p class="font-semibold mb-1">Si el problema persiste:</p>
-          <p>Por favor, envíe su solicitud por correo a:</p>
-          <a
-            href="mailto:informes@universidad-une.com"
-            class="text-blue-600 hover:text-blue-700 font-medium"
-          >
-            informes@universidad-une.com
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="flex gap-3 mt-6">
-      <button
-        id="retry-button"
-        class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md font-medium transition-colors"
-      >
-        Intentar de nuevo
-      </button>
-      <button
-        id="close-modal-button"
-        class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded-md font-medium transition-colors"
-      >
-        Cerrar
-      </button>
-    </div>
-  </div>
-</div>
-
 <script>
-  import { FormValidator } from "src/helpers/ContactFormConfig";
+  import { buscarOfertas } from "@/helpers/oferta_educativa.js";
 
-  document.addEventListener("DOMContentLoaded", function () {
-    // Inicializar el FormValidator existente
-    new FormValidator("#education-form", {
-      apiUrl: "https://intranet.universidad-une.com/api/createleads",
+  const nivelSelect = document.getElementById("nivel-educativo");
+  const programaSelect = document.getElementById("programa-interes");
+
+  // Configuración de mensajes de progreso
+  const messages = {
+    0: {
+      text: "",
+      message: "Completa tus datos personales",
+    },
+    20: {
+      text: "¡Buen comienzo! 👏",
+      message: "Sigue completando tus datos",
+    },
+    40: {
+      text: "¡Vas muy bien! ⭐",
+      message: "Ya casi tienes la mitad",
+    },
+    60: {
+      text: "¡Excelente progreso! 🎯",
+      message: "Solo faltan unos campos más",
+    },
+    80: {
+      text: "¡Casi listo! 🔥",
+      message: "Un último esfuerzo",
+    },
+    100: {
+      text: "¡Perfecto! ✅",
+      message: "Todo listo para enviar",
+    },
+  };
+
+  // Elementos del formulario para seguimiento
+  const formInputs = [
+    document.querySelector('input[name="nombre"]'),
+    document.getElementById("apellidos-input"),
+    document.getElementById("correo-input"),
+    document.querySelector('input[name="telefono"]'),
+    nivelSelect,
+    programaSelect,
+  ];
+
+  const progressBar = document.getElementById("form-progress");
+  const progressMessage = document.getElementById("progress-message");
+
+  const updateProgress = () => {
+    if (!progressBar || !progressMessage) return;
+
+    let filledFields = 0;
+    // Filtramos inputs nulos (por si alguno no se encuentra)
+    const activeInputs = formInputs.filter((i) => i !== null);
+    const totalFields = activeInputs.length || 6;
+
+    activeInputs.forEach((input) => {
+      // @ts-ignore
+      if (input.value && input.value.trim() !== "") {
+        filledFields++;
+      }
     });
 
-    // Sistema de progreso mejorado
-    class FormProgressTracker {
-      constructor() {
-        this.form = document.getElementById("education-form");
-        this.progressBar = document.getElementById("form-progress");
-        this.progressText = document.getElementById("progress-text");
-        this.progressMessage = document.getElementById("progress-message");
-        this.submitButton = document.getElementById("submit-button");
+    const progress = Math.round((filledFields / totalFields) * 100);
 
-        this.messages = {
-          0: {
-            text: "¡Empecemos! 🚀",
-            message: "Completa tus datos personales",
-          },
-          20: {
-            text: "¡Buen comienzo! 👏",
-            message: "Sigue completando tus datos",
-          },
-          40: {
-            text: "¡Vas muy bien! ⭐",
-            message: "Ya casi tienes la mitad",
-          },
-          60: {
-            text: "¡Excelente progreso! 🎯",
-            message: "Solo faltan unos campos más",
-          },
-          80: {
-            text: "¡Casi listo! 🔥",
-            message: "Un último esfuerzo",
-          },
-          100: {
-            text: "¡Perfecto! ✅",
-            message: "Todo listo para enviar",
-          },
-        };
+    // Actualizar barra de progreso
+    progressBar.style.width = `${progress}%`;
 
-        this.init();
-      }
+    // Calcular mensaje basado en el progreso
+    const messageKeys = Object.keys(messages)
+      .map(Number)
+      .sort((a, b) => b - a);
+    const currentKey = messageKeys.find((key) => progress >= key) || 0;
+    const currentMessage = messages[currentKey];
 
-      init() {
-        // Agregar listeners a todos los campos
-        const allInputs = this.form.querySelectorAll("input, select");
-        allInputs.forEach((input) => {
-          input.addEventListener("input", () => this.updateProgress());
-          input.addEventListener("change", () => this.updateProgress());
-        });
+    // Actualizar texto del mensaje
+    const textPart = currentMessage.text
+      ? `<span class="font-semibold text-blue-600 block sm:inline mr-1">${currentMessage.text}</span>`
+      : "";
+    progressMessage.innerHTML = `${textPart}${currentMessage.message}`;
+  };
 
-        // NUEVO: Listener específico para radio buttons de modalidad
-        const modalidadContainer = document.getElementById("modalidad-options");
-        const modalidadObserver = new MutationObserver(() => {
-          // Cuando se agregan nuevos radio buttons, agregar listeners
-          const radioButtons = document.querySelectorAll(
-            'input[name="modalidad"]'
-          );
-          radioButtons.forEach((radio) => {
-            radio.addEventListener("change", () => this.updateProgress());
-          });
-          this.updateProgress();
-        });
-
-        modalidadObserver.observe(modalidadContainer, {
-          childList: true,
-          subtree: true,
-        });
-
-        // Escuchar cambios en campos dinámicos (área de conocimiento, programa, modalidad)
-        const observer = new MutationObserver(() => {
-          this.updateProgress();
-        });
-
-        observer.observe(document.getElementById("area-container"), {
-          attributes: true,
-          attributeFilter: ["class"],
-        });
-        observer.observe(document.getElementById("programa-container"), {
-          attributes: true,
-          attributeFilter: ["class"],
-        });
-        observer.observe(document.getElementById("modalidad-container"), {
-          attributes: true,
-          attributeFilter: ["class"],
-        });
-
-        // Observar cambios en el atributo disabled del plantel
-        observer.observe(document.getElementById("plantel-interes"), {
-          attributes: true,
-          attributeFilter: ["disabled"],
-        });
-
-        // Progreso inicial
-        this.updateProgress();
-      }
-
-      getRequiredFields() {
-        const fields = [];
-
-        // Campos base siempre requeridos
-        const baseFields = [
-          "nombre",
-          "apellidos",
-          "correo",
-          "telefono",
-          "nivelEducativo",
-        ];
-
-        baseFields.forEach((fieldName) => {
-          const field = this.form.querySelector(`[name="${fieldName}"]`);
-          if (field && !field.disabled) {
-            fields.push({ name: fieldName, element: field });
-          }
-        });
-
-        // Plantel solo si está habilitado
-        const plantelField = this.form.querySelector('[name="plantelInteres"]');
-        if (plantelField && !plantelField.disabled) {
-          fields.push({ name: "plantelInteres", element: plantelField });
-        }
-
-        // Área de conocimiento solo si está visible
-        const areaContainer = document.getElementById("area-container");
-        if (!areaContainer.classList.contains("hidden")) {
-          const areaField = this.form.querySelector(
-            '[name="areaConocimiento"]'
-          );
-          if (areaField && !areaField.disabled) {
-            fields.push({ name: "areaConocimiento", element: areaField });
-          }
-        }
-
-        // Programa solo si está visible
-        const programaContainer = document.getElementById("programa-container");
-        if (!programaContainer.classList.contains("hidden")) {
-          const programaField = this.form.querySelector(
-            '[name="programaInteres"]'
-          );
-          if (programaField && !programaField.disabled) {
-            fields.push({ name: "programaInteres", element: programaField });
-          }
-        }
-
-        // Modalidad solo si está visible y tiene opciones
-        const modalidadContainer = document.getElementById(
-          "modalidad-container"
-        );
-        if (!modalidadContainer.classList.contains("hidden")) {
-          const modalidadInputs = document.querySelectorAll(
-            'input[name="modalidad"]'
-          );
-          if (modalidadInputs.length > 0) {
-            fields.push({ name: "modalidad", element: modalidadInputs });
-          }
-        }
-
-        return fields;
-      }
-
-      updateProgress() {
-        const requiredFields = this.getRequiredFields();
-        let completedFields = 0;
-
-        requiredFields.forEach((field) => {
-          if (field.name === "modalidad") {
-            // Verificar si algún radio button está marcado
-            const isModalidadSelected = Array.from(field.element).some(
-              (input) => input.checked
-            );
-            console.log("Modalidad seleccionada:", isModalidadSelected);
-            if (isModalidadSelected) completedFields++;
-          } else {
-            if (field.element.value.trim() !== "") {
-              completedFields++;
-            }
-          }
-        });
-
-        const totalRequired = requiredFields.length;
-        const progress =
-          totalRequired > 0 ? (completedFields / totalRequired) * 100 : 0;
-
-        // DEBUG
-        console.log("Campos requeridos:", totalRequired);
-        console.log("Campos completados:", completedFields);
-        console.log("Progreso:", progress);
-
-        // Detalle de cada campo
-        requiredFields.forEach((field) => {
-          if (field.name === "modalidad") {
-            const selected = Array.from(field.element).find(
-              (input) => input.checked
-            );
-            console.log(
-              `${field.name}:`,
-              selected ? selected.value : "NO SELECCIONADO"
-            );
-          } else {
-            console.log(`${field.name}:`, field.element.value || "VACÍO");
-          }
-        });
-
-        // Actualizar barra de progreso
-        this.progressBar.style.width = `${progress}%`;
-
-        // Cambiar color de la barra según el progreso
-        if (progress < 30) {
-          this.progressBar.className =
-            "h-2 bg-gradient-to-r from-blue-400 to-blue-500 rounded-full transition-all duration-500 ease-out";
-        } else if (progress < 70) {
-          this.progressBar.className =
-            "h-2 bg-gradient-to-r from-purple-400 to-indigo-500 rounded-full transition-all duration-500 ease-out";
-        } else {
-          this.progressBar.className =
-            "h-2 bg-gradient-to-r from-green-400 to-green-600 rounded-full transition-all duration-500 ease-out";
-        }
-
-        // Actualizar mensajes
-        const messageKey = this.getMessageKey(progress);
-        if (this.messages[messageKey]) {
-          this.progressText.textContent = this.messages[messageKey].text;
-          this.progressMessage.textContent = this.messages[messageKey].message;
-
-          if (progress === 100) {
-            this.progressBar.style.animation = "pulse 1s ease-in-out 3";
-          }
-        }
-
-        // Habilitar/deshabilitar botón de envío
-        this.submitButton.disabled = progress < 100;
-
-        // Actualizar texto del botón según el progreso
-        this.updateButtonState(progress);
-
-        // Feedback visual adicional
-        this.addVisualFeedback(progress);
-      }
-
-      getMessageKey(progress) {
-        if (progress === 0) return 0;
-        if (progress < 20) return 0;
-        if (progress < 40) return 20;
-        if (progress < 60) return 40;
-        if (progress < 80) return 60;
-        if (progress < 100) return 80;
-        return 100;
-      }
-
-      addVisualFeedback(progress) {
-        this.progressText.classList.remove(
-          "animate-bounce",
-          "text-green-600",
-          "font-bold"
-        );
-
-        if (progress === 100) {
-          this.progressText.classList.add(
-            "animate-bounce",
-            "text-green-600",
-            "font-bold"
-          );
-          this.showCelebration();
-        }
-      }
-
-      updateButtonState(progress) {
-        const buttonText = document.getElementById("button-text");
-        const buttonShine = document.getElementById("button-shine");
-
-        if (progress === 100) {
-          buttonText.textContent = "¡ENVIAR!";
-          this.submitButton.classList.add(
-            "animate-pulse",
-            "shadow-lg",
-            "shadow-red-500/25",
-            "scale-105",
-            "group"
-          );
-          buttonShine.style.animation = "shine 2s ease-in-out infinite";
-          this.submitButton.addEventListener(
-            "mouseenter",
-            this.buttonHoverEffect
-          );
-          this.submitButton.addEventListener(
-            "mouseleave",
-            this.buttonLeaveEffect
-          );
-        } else {
-          buttonText.textContent = "COMPLETAR REGISTRO";
-          this.submitButton.classList.remove(
-            "animate-pulse",
-            "shadow-lg",
-            "shadow-red-500/25",
-            "scale-105",
-            "group"
-          );
-          buttonShine.style.animation = "none";
-          this.submitButton.removeEventListener(
-            "mouseenter",
-            this.buttonHoverEffect
-          );
-          this.submitButton.removeEventListener(
-            "mouseleave",
-            this.buttonLeaveEffect
-          );
-        }
-      }
-
-      buttonHoverEffect = () => {
-        this.submitButton.style.transform = "scale(1.08) translateY(-2px)";
-        this.submitButton.style.boxShadow =
-          "0 20px 25px -5px rgba(239, 68, 68, 0.4), 0 10px 10px -5px rgba(239, 68, 68, 0.04)";
-      };
-
-      buttonLeaveEffect = () => {
-        this.submitButton.style.transform = "scale(1.05)";
-        this.submitButton.style.boxShadow =
-          "0 10px 15px -3px rgba(239, 68, 68, 0.25), 0 4px 6px -2px rgba(239, 68, 68, 0.05)";
-      };
-
-      showCelebration() {
-        const celebration = document.createElement("div");
-        celebration.innerHTML = "🎉";
-        celebration.style.cssText = `
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 1.5rem;
-      animation: fadeInOut 2s ease-in-out;
-      pointer-events: none;
-    `;
-
-        this.progressText.parentElement.style.position = "relative";
-        this.progressText.parentElement.appendChild(celebration);
-
-        setTimeout(() => {
-          if (celebration.parentElement) {
-            celebration.remove();
-          }
-        }, 2000);
-      }
+  // Agregar listeners para actualizar progreso
+  formInputs.forEach((input) => {
+    if (input) {
+      input.addEventListener("input", updateProgress);
+      input.addEventListener("change", updateProgress);
+      input.addEventListener("blur", updateProgress);
     }
-
-    // Inicializar el tracker de progreso
-    new FormProgressTracker();
   });
+
+  // Inicializar estado
+  updateProgress();
+
+  // ----------------------------------------------------------------
+  // LÓGICA DE AUTOCOMPLETADO DE CORREO
+  // ----------------------------------------------------------------
+  const emailInput = document.getElementById("correo-input");
+  const suggestionsDiv = document.getElementById("email-suggestions");
+  const commonDomains = [
+    "gmail.com",
+    "hotmail.com",
+    "outlook.com",
+    "yahoo.com",
+    "live.com",
+    "icloud.com",
+  ];
+
+  if (emailInput && suggestionsDiv) {
+    emailInput.addEventListener("input", (e) => {
+      // @ts-ignore
+      const value = e.target.value;
+      const atIndex = value.indexOf("@");
+
+      if (atIndex !== -1) {
+        const username = value.substring(0, atIndex);
+        const domainPart = value.substring(atIndex + 1);
+
+        const matchingDomains = commonDomains.filter((domain) =>
+          domain.startsWith(domainPart),
+        );
+
+        if (matchingDomains.length > 0 && username.length > 0) {
+          suggestionsDiv.innerHTML = "";
+          matchingDomains.forEach((domain) => {
+            const div = document.createElement("div");
+            div.className =
+              "px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-gray-700 transition-colors";
+            div.textContent = `${username}@${domain}`;
+
+            // Usamos mousedown para evitar conflicto con blur
+            div.addEventListener("mousedown", (e) => {
+              e.preventDefault();
+              // @ts-ignore
+              emailInput.value = `${username}@${domain}`;
+              suggestionsDiv.classList.add("hidden");
+              // Disparar input para validación y barra de progreso
+              emailInput.dispatchEvent(new Event("input"));
+            });
+
+            suggestionsDiv.appendChild(div);
+          });
+          suggestionsDiv.classList.remove("hidden");
+        } else {
+          suggestionsDiv.classList.add("hidden");
+        }
+      } else {
+        suggestionsDiv.classList.add("hidden");
+      }
+    });
+
+    // Ocultar sugerencias al perder foco
+    emailInput.addEventListener("blur", () => {
+      // Pequeño delay por si el usuario interactúa con scrollbar u otro elemento
+      setTimeout(() => {
+        suggestionsDiv.classList.add("hidden");
+      }, 200);
+    });
+  }
+
+  if (nivelSelect && programaSelect) {
+    // 1. Obtener todas las ofertas activas
+    const ofertas = buscarOfertas();
+    // Extraer niveles únicos
+    const niveles = [...new Set(ofertas.map((o) => o.programa.nivel))];
+
+    // Función helper para formatear texto (capitalizar)
+    const formatLabel = (str) => {
+      if (!str) return "";
+      // Mapeo específico si es necesario, o genérico:
+      const mapa = {
+        licenciatura: "Licenciatura",
+        maestria: "Maestría",
+        doctorado: "Doctorado",
+        especialidad: "Especialidad",
+      };
+      return mapa[str] || str.charAt(0).toUpperCase() + str.slice(1);
+    };
+
+    // Ordenar y popular el select de niveles
+    niveles.sort().forEach((nivel) => {
+      const option = document.createElement("option");
+      option.value = nivel;
+      option.textContent = formatLabel(nivel);
+      nivelSelect.appendChild(option);
+    });
+
+    // 2. Listener para cambios en nivel
+    nivelSelect.addEventListener("change", (e) => {
+      // @ts-ignore
+      const nivelSeleccionado = e.target.value;
+      const programaContainer = document.getElementById("programa-container");
+
+      // Resetear el select de programas
+      programaSelect.innerHTML =
+        '<option value="">Selecciona una opción</option>';
+
+      // Asegurar visibilidad por defecto antes de aplicar lógica
+      if (programaContainer) programaContainer.style.display = "block";
+
+      if (nivelSeleccionado) {
+        // Buscar ofertas filtradas por nivel
+        const ofertasFiltradas = buscarOfertas({ nivel: nivelSeleccionado });
+
+        // Extraer programas únicos (usando Map por id para evitar duplicados)
+        const programasMap = new Map();
+        ofertasFiltradas.forEach((oferta) => {
+          if (!programasMap.has(oferta.programa.id)) {
+            programasMap.set(oferta.programa.id, oferta.programa);
+          }
+        });
+
+        const programas = Array.from(programasMap.values());
+        // Ordenar alfabéticamente
+        programas.sort((a, b) => a.nombre.localeCompare(b.nombre));
+
+        // Popular el select de programas
+        programas.forEach((prog) => {
+          const option = document.createElement("option");
+          option.value = prog.id;
+          option.textContent = prog.nombre;
+          programaSelect.appendChild(option);
+        });
+
+        // Si es Bachillerato, ocultar el campo de programa y seleccionar automáticamente
+        if (nivelSeleccionado === "bachillerato") {
+          if (programaContainer) programaContainer.style.display = "none";
+          // Seleccionar la opción de bachillerato automáticamente
+          // Como ya filtramos por nivel bachillerato, debería estar en las opciones
+          if (programas.some((p) => p.id === "bachillerato")) {
+            programaSelect.value = "bachillerato";
+            // Disparar evento change manualmente por si hay otras validaciones
+            programaSelect.dispatchEvent(new Event("change"));
+          }
+        }
+      }
+    });
+  }
 </script>
-
-<style>
-  /* Estilos para los radio buttons personalizados */
-  input[type="radio"]:checked + span {
-    background-color: #3b82f6;
-    color: white;
-    border-color: #3b82f6;
-  }
-
-  /* Animaciones y efectos mejorados */
-  @keyframes pulse {
-    0%,
-    100% {
-      transform: scaleY(1);
-    }
-    50% {
-      transform: scaleY(1.1);
-    }
-  }
-
-  @keyframes fadeInOut {
-    0% {
-      opacity: 0;
-      transform: translateY(10px) scale(0.8);
-    }
-    50% {
-      opacity: 1;
-      transform: translateY(0) scale(1.2);
-    }
-    100% {
-      opacity: 0;
-      transform: translateY(-10px) scale(0.8);
-    }
-  }
-
-  @keyframes shine {
-    0% {
-      transform: translateX(-100%) skewX(-12deg);
-      opacity: 0;
-    }
-    50% {
-      opacity: 0.6;
-    }
-    100% {
-      transform: translateX(200%) skewX(-12deg);
-      opacity: 0;
-    }
-  }
-
-  /* Efectos hover mejorados */
-  details[open] {
-    background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    iframe {
-      height: 300px;
-    }
-
-    .grid-cols-2 {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  /* Efectos de entrada */
-  @keyframes slideInFromLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slideInFromRight {
-    from {
-      opacity: 0;
-      transform: translateX(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  .animate-slide-left {
-    animation: slideInFromLeft 0.8s ease-out;
-  }
-
-  .animate-slide-right {
-    animation: slideInFromRight 0.8s ease-out;
-  }
-</style>
