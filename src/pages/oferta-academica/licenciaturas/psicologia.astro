@@ -1,0 +1,150 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Image } from "astro:assets"; // Importante para optimizar imágenes en Astro
+import HeroImg from "@/assets/Imagenes/Heros/Bachillerato.jpg"; // Usando tu variable
+import BachilleratoImg from "@/assets/Imagenes/cardOferta/Bachillerato.webp"; // Usando tu variable
+import Proposito_competencias from "@/components/sections/oferta/Propósito-competencias.astro";
+import Detalles_Formacion from "@/components/sections/oferta/Detalles-Formación.astro";
+import Requisitos from "@/components/sections/oferta/Requisitos.astro";
+import Plan_estudios from "@/components/sections/oferta/Plan-estudios.astro";
+import { plan_bachillerato } from "@/helpers/planes_estudio.js";
+import Faq from "@/components/sections/shared/Faq.astro";
+import { obtenerDatos } from "@/helpers/faq.js";
+const infoActual = obtenerDatos("bachillerato");
+import GeneralCTA from "@/components/sections/shared/GeneralCTA.astro";
+import { ArrowRight } from "@lucide/astro";
+
+// Datos extraídos de la imagen
+const listaRequisitos = [
+  "Acta de nacimiento actualizada, no mayor a un año.",
+  "Certificado de bachillerato.",
+  "Comprobante de domicilio.",
+  "CURP.",
+  "8 fotografías tamaño infantil b/n, término mate.",
+  "Carta de validación de estudios de bachillerato, firmada, sellada y en hoja membretada de la institución de procedencia.",
+];
+
+const linkPdf = "/archivos/requisitos-2024.pdf"; // Ruta a tu PDF
+---
+
+<Layout
+  title="Licenciatura en Administración | UNE - Estudia en línea"
+  description="Estudia tu Bachillerato 100% en línea con validez oficial SEP. Horarios flexibles y plataforma 24/7. ¡Inscríbete hoy!"
+>
+  <main class="min-h-screen mx-auto py-12 lg:py-20">
+    {/* Hero section */}
+    <section class="max-w-7xl px-4 mx-auto md:py-12">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-8 order-2 lg:order-1">
+          <div class="space-y-4">
+            <h1
+              class="text-4xl md:text-5xl lg:text-6xl text-gray-800 font-bold leading-tight"
+            >
+              Tu Licenciatura en Administración <span
+                class="text-azul-une block md:inline italic">UNE</span
+              > con Validez Oficial
+            </h1>
+            <p class="text-gray-600 text-lg leading-relaxed max-w-lg">
+              Termina tu prepa 100% en línea sin descuidar tu trabajo o familia.
+              Un modelo flexible diseñado para que logres tu certificado y des
+              el salto a la universidad.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-4 text-sm font-bold text-gray-700">
+            <div
+              class="flex items-center gap-1 bg-gray-100 px-3 py-1 rounded-lg"
+            >
+              <span>📚 Termina en 3 años</span>
+            </div>
+            <div
+              class="flex items-center gap-1 bg-gray-100 px-3 py-1 rounded-lg"
+            >
+              <span>💻 Plataforma 24/7</span>
+            </div>
+            <div
+              class="flex items-center gap-1 bg-green-50 px-3 py-1 rounded-lg text-green-700"
+            >
+              <span>✓ RVOE SEP Oficial</span>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <a
+              href="#"
+              class="group inline-flex items-center bg-[#DC2626] text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-red-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            >
+              QUIERO INSCRIBIRME
+              <ArrowRight
+                class="h-6 w-6 ml-2 group-hover:translate-x-1 transition-transform"
+              />
+            </a>
+            {
+              /* Nota UX: Cambié el CTA a algo más activo/decidido, o podrías usar "VER PLAN DE ESTUDIOS" si es un paso previo */
+            }
+          </div>
+
+          <nav
+            class="pt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#4A55A2] font-medium"
+          >
+            <a href="#objetivo" class="hover:underline">¿Por qué UNE?</a>
+            <a href="#requisitos" class="hover:underline">Requisitos</a>
+            <a href="#plan-estudios" class="hover:underline">Materias</a>
+          </nav>
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <div class="relative overflow-hidden rounded-xl shadow-2xl">
+            <Image
+              src={HeroImg}
+              alt="Estudiante joven usando laptop felizmente"
+              class="w-full h-auto object-cover aspect-[4/3]"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Aquí corregimos el error de "Administrador" y el texto denso */}
+    <Proposito_competencias
+      titulo="Prepárate para el mundo real"
+      descripcion="Olvídate de la memorización vacía. Nuestro enfoque te da herramientas prácticas para desenvolverte con seguridad en la vida laboral, social y digital actual. No solo obtienes un papel, desarrollas tu criterio propio."
+      tituloSeccion="¿Qué vas a lograr?"
+      aprendizaje="Convertirte en un estudiante autónomo capaz de: Aprender a aprender (gestionar tu propio conocimiento), comunicarse efectivamente en entornos digitales, trabajar en equipo a distancia y desarrollar un pensamiento crítico para la solución de problemas reales."
+      imagenSrc={BachilleratoImg}
+      imagenAlt="Estudiantes de bachillerato colaborando"
+    />
+
+    <Detalles_Formacion
+      durationLabel="Duración"
+      duration="3 años (6 semestres)"
+      modeLabel="Modalidad"
+      mode="100% en línea (Asincrónico)"
+      benefitsLabel="¿Por qué elegirnos?"
+      benefits={[
+        "Tú decides tus horarios: plataforma abierta 24/7.",
+        "Acompañamiento real: tutores que resuelven tus dudas.",
+        "Sin gastos de traslado: estudia desde tu casa.",
+        "Certificado SEP válido en cualquier universidad.",
+      ]}
+      outcomes={[
+        "Construye una base sólida para tu carrera universitaria.",
+        "Mejora tu perfil laboral y aspira a ascensos.",
+        "Desarrolla disciplina digital y autogestión.",
+        "Fomenta valores éticos y responsabilidad social.",
+      ]}
+    />
+
+    <Requisitos requirements={listaRequisitos} pdfUrl={linkPdf} />
+
+    <Plan_estudios blocks={plan_bachillerato} />
+
+    <Faq faqs={infoActual} />
+
+    <GeneralCTA
+      title="Tu certificado de prepa está a un clic de distancia"
+      subtitle="Deja de postergar tu futuro. Inscríbete hoy y da el paso que cambiará tu vida profesional."
+      backgroundImage={true}
+    />
+  </main>
+</Layout>
