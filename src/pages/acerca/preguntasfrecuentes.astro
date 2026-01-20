@@ -1,9 +1,44 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Hero from "@/assets/Imagenes/Heros/FAQ.webp";
-import HeroMobile from "@/assets/Imagenes/Heros/FAQ_mobile.webp";
-import Middle from "@/assets/Imagenes/Heros/Sillas.webp";
+import { Image } from "astro:assets";
+import Hero from "@/assets/Imagenes/Heros/Demo2.png";
+import HeroMobile from "@/assets/Imagenes/Heros/mob.png";
+import ContactSection from "@/components/sections/shared/GeneralCTA.astro";
 import { Search } from "@lucide/astro";
+import ContactSidebar from "@/components/sections/home/ContactSidebar.astro";
+
+const faqs = [
+  {
+    question: "¿Cuáles son los requisitos de ingreso?",
+    answer:
+      "Para el ingreso necesitas: certificado de bachillerato, acta de nacimiento, CURP, fotografías tamaño infantil.",
+  },
+  {
+    question: "¿Puedo revalidar materias de otra universidad?",
+    answer:
+      "Sí, puedes revalidar materias de otras universidades. Debes presentar tu kardex oficial y los programas de las materias que deseas revalidar. Nuestro departamento académico evaluará la equivalencia.",
+  },
+  {
+    question: "¿Las carreras están incorporadas a SICYT o UdeG?",
+    answer:
+      "Nuestras carreras están incorporadas al Sistema de Educación Superior de Jalisco (SICYT) y tienen validez oficial. Esto garantiza que tu título será reconocido a nivel nacional.",
+  },
+  {
+    question: "¿Cómo puedo agendar una visita?",
+    answer:
+      "Puedes agendar una visita llamando a nuestro número telefónico, enviando un WhatsApp o rellenando el formulario de contacto. Te asignaremos un horario conveniente para ti.",
+  },
+  {
+    question: "¿Ofrecen becas o apoyos económicos?",
+    answer:
+      "Sí, contamos con diferentes tipos de becas: por mérito académico, necesidad económica, y convenios con empresas. También ofrecemos planes de pago flexibles y descuentos por pronto pago.",
+  },
+  {
+    question: "¿Cuáles son las fechas de inicio de clases?",
+    answer:
+      "Tenemos tres períodos de inicio: enero, mayo y agosto. Las fechas exactas varían cada año, pero generalmente inician la segunda semana de cada mes mencionado.",
+  },
+];
 ---
 
 <Layout
@@ -13,27 +48,30 @@ import { Search } from "@lucide/astro";
   <main class="min-h-screen">
     <!-- Hero Section -->
     <section
-      class="relative min-h-[70vh] md:min-h-[75vh] overflow-hidden bg-cover bg-center bg-no-repeat"
+      class="relative min-h-[70vh] md:h-[700px] md:min-h-0 overflow-hidden bg-center bg-no-repeat"
     >
       <!-- Desktop Background -->
-      <div
-        class="absolute inset-0 hidden md:block bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${Hero.src})` }}
-      >
-        <div class="absolute inset-0 bg-black/20"></div>
-      </div>
+      <Image
+        src={Hero}
+        alt="Fondo de preguntas frecuentes"
+        class="absolute inset-0 w-full h-full object-cover hidden md:block"
+        loading="eager"
+      />
 
       <!-- Mobile Background -->
-      <div
-        class="absolute inset-0 block md:hidden bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${HeroMobile.src})` }}
-      >
-        <div class="absolute inset-0 bg-black/20"></div>
-      </div>
+      <Image
+        src={HeroMobile}
+        alt="Fondo de preguntas frecuentes móvil"
+        class="absolute inset-0 w-full h-full object-cover block md:hidden"
+        loading="eager"
+      />
+
+      <!-- Overlay -->
+      <div class="absolute inset-0 bg-black/20"></div>
 
       <!-- Hero Content -->
       <div
-        class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 h-full min-h-[70vh] md:min-h-[75vh] flex items-center"
+        class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center"
       >
         <div class="w-full max-w-7xl mx-auto">
           <div
@@ -71,430 +109,104 @@ import { Search } from "@lucide/astro";
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </div> -->
 
-    <!-- Main Content -->
-    <section class="py-16 bg-gray-50">
-      <div class="container mx-auto px-4">
-        <!-- Section Title -->
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold text-azul-une mb-4">
-            Todo lo que necesitas saber, en<br />
-            un solo lugar.
-          </h2>
-        </div>
-
-        <!-- FAQ Grid -->
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-4">
-          <!-- FAQ Item 1 -->
-          <div
-            class="faq-item bg-azul-une text-white rounded-lg cursor-pointer hover:bg-blue-800 transition-colors duration-300 group"
-          >
-            <div class="faq-question p-6 flex items-center justify-between">
-              <h3 class="text-lg font-semibold">
-                ¿Cuáles son los requisitos de ingreso?
-              </h3>
-              <div
-                class="faq-icon w-6 h-6 transform group-hover:rotate-45 transition-transform duration-300"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  ><path d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg
-                >
-              </div>
-            </div>
-            <div class="faq-answer bg-blue-800 p-6 hidden">
-              <p class="text-white">
-                Para el ingreso necesitas: certificado de bachillerato, acta de
-                nacimiento, CURP, fotografías tamaño infantil.
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ Item 2 -->
-          <div
-            class="faq-item bg-azul-une text-white rounded-lg cursor-pointer hover:bg-blue-800 transition-colors duration-300 group"
-          >
-            <div class="faq-question p-6 flex items-center justify-between">
-              <h3 class="text-lg font-semibold">
-                ¿Puedo revalidar materias de otra universidad?
-              </h3>
-              <div
-                class="faq-icon w-6 h-6 transform group-hover:rotate-45 transition-transform duration-300"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  ><path d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg
-                >
-              </div>
-            </div>
-            <div class="faq-answer bg-blue-800 p-6 hidden">
-              <p class="text-white">
-                Sí, puedes revalidar materias de otras universidades. Debes
-                presentar tu kardex oficial y los programas de las materias que
-                deseas revalidar. Nuestro departamento académico evaluará la
-                equivalencia.
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ Item 3 -->
-          <div
-            class="faq-item bg-azul-une text-white rounded-lg cursor-pointer hover:bg-blue-800 transition-colors duration-300 group"
-          >
-            <div class="faq-question p-6 flex items-center justify-between">
-              <h3 class="text-lg font-semibold">
-                ¿Las carreras están incorporadas a SICYT o UdeG?
-              </h3>
-              <div
-                class="faq-icon w-6 h-6 transform group-hover:rotate-45 transition-transform duration-300"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  ><path d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg
-                >
-              </div>
-            </div>
-            <div class="faq-answer bg-blue-800 p-6 hidden">
-              <p class="text-white">
-                Nuestras carreras están incorporadas al Sistema de Educación
-                Superior de Jalisco (SICYT) y tienen validez oficial. Esto
-                garantiza que tu título será reconocido a nivel nacional.
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ Item 4 -->
-          <div
-            class="faq-item bg-azul-une text-white rounded-lg cursor-pointer hover:bg-blue-800 transition-colors duration-300 group"
-          >
-            <div class="faq-question p-6 flex items-center justify-between">
-              <h3 class="text-lg font-semibold">
-                ¿Cómo puedo agendar una visita?
-              </h3>
-              <div
-                class="faq-icon w-6 h-6 transform group-hover:rotate-45 transition-transform duration-300"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  ><path d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg
-                >
-              </div>
-            </div>
-            <div class="faq-answer bg-blue-800 p-6 hidden">
-              <p class="text-white">
-                Puedes agendar una visita llamando a nuestro número telefónico,
-                enviando un WhatsApp o rellenando el formulario de contacto. Te
-                asignaremos un horario conveniente para ti.
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ Item 5 -->
-          <div
-            class="faq-item bg-azul-une text-white rounded-lg cursor-pointer hover:bg-blue-800 transition-colors duration-300 group"
-          >
-            <div class="faq-question p-6 flex items-center justify-between">
-              <h3 class="text-lg font-semibold">
-                ¿Ofrecen becas o apoyos económicos?
-              </h3>
-              <div
-                class="faq-icon w-6 h-6 transform group-hover:rotate-45 transition-transform duration-300"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  ><path d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg
-                >
-              </div>
-            </div>
-            <div class="faq-answer bg-blue-800 p-6 hidden">
-              <p class="text-white">
-                Sí, contamos con diferentes tipos de becas: por mérito
-                académico, necesidad económica, y convenios con empresas.
-                También ofrecemos planes de pago flexibles y descuentos por
-                pronto pago.
-              </p>
-            </div>
-          </div>
-
-          <!-- FAQ Item 6 -->
-          <div
-            class="faq-item bg-azul-une text-white rounded-lg cursor-pointer hover:bg-blue-800 transition-colors duration-300 group"
-          >
-            <div class="faq-question p-6 flex items-center justify-between">
-              <h3 class="text-lg font-semibold">
-                ¿Cuáles son las fechas de inicio de clases?
-              </h3>
-              <div
-                class="faq-icon w-6 h-6 transform group-hover:rotate-45 transition-transform duration-300"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  ><path d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg
-                >
-              </div>
-            </div>
-            <div class="faq-answer bg-blue-800 p-6 hidden">
-              <p class="text-white">
-                Tenemos tres períodos de inicio: enero, mayo y agosto. Las
-                fechas exactas varían cada año, pero generalmente inician la
-                segunda semana de cada mes mencionado.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section
-      class="relative py-16 text-white overflow-hidden bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: `url(${Middle.src})` }}
-    >
-      <div class="relative z-10 container mx-auto px-4">
-        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-center">
-          <!-- Left side - Question -->
-          <div>
-            <h2 class="text-4xl font-bold mb-4">
-              ¿Necesitas una respuesta<br />
-              rápida?
+      <!-- Main Content -->
+      <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <!-- Section Title -->
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-azul-une mb-4">
+              Todo lo que necesitas saber, en<br />
+              un solo lugar.
             </h2>
-            <p class="text-xl text-gray-300">
-              Nuestro equipo está siempre para ti
-            </p>
           </div>
 
-          <!-- Right side - Contact Form -->
-          <form id="contact-form-middle" class="space-y-5">
-            <div>
-              <input
-                type="text"
-                name="nombre"
-                placeholder="Nombre(s)"
-                required
-                class="w-full px-4 py-3 bg-transparent border-b-2 border-gray-500 focus:border-white outline-none transition-colors duration-300 placeholder:text-gray-400"
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="apellido"
-                placeholder="Apellido"
-                required
-                class="w-full px-4 py-3 bg-transparent border-b-2 border-gray-500 focus:border-white outline-none transition-colors duration-300 placeholder:text-gray-400"
-              />
-            </div>
-            <div>
-              <input
-                type="email"
-                name="correo"
-                placeholder="Correo electrónico"
-                required
-                class="w-full px-4 py-3 bg-transparent border-b-2 border-gray-500 focus:border-white outline-none transition-colors duration-300 placeholder:text-gray-400"
-              />
-            </div>
-            <div>
-              <input
-                type="tel"
-                name="telefono"
-                placeholder="Celular"
-                required
-                class="w-full px-4 py-3 bg-transparent border-b-2 border-gray-500 focus:border-white outline-none transition-colors duration-300 placeholder:text-gray-400"
-              />
-            </div>
-            <div class="flex justify-center pt-4">
-              <button
-                type="submit"
-                id="submit-btn-middle"
-                class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                aria-label="Registrar interés"
-                title="Registrar interés"
-              >
-                <span class="btn-text">Registrar interés</span>
-                <span class="btn-loading hidden">Enviando...</span>
-              </button>
-            </div>
-          </form>
+          <!-- FAQ Grid -->
+          <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-4">
+            {
+              faqs.map((faq) => (
+                <div class="faq-item group bg-azul-une text-white rounded-lg cursor-pointer transition-all duration-300">
+                  <div class="faq-question p-6 flex items-center justify-between select-none">
+                    <h3 class="text-lg font-semibold pr-4">{faq.question}</h3>
+                    <div class="faq-icon-wrapper flex-shrink-0 w-6 h-6 transition-transform duration-300">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="faq-icon-plus"
+                      >
+                        <path d="M12 5v14M5 12h14" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="faq-answer grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out">
+                    <div class="overflow-hidden">
+                      <div class="p-6 pt-0 bg-azul-une/50">
+                        <p class="text-blue-50 leading-relaxed">{faq.answer}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const form = document.getElementById("contact-form-middle");
+      <ContactSection backgroundImage={true} />
 
-        if (form) {
-          form.addEventListener("submit", async function (e) {
-            e.preventDefault();
+      <ContactSidebar />
 
-            const formData = new FormData(this);
+      <style>
+        .faq-item.active {
+          background-color: "#001A71";
+        }
 
-            // Obtener apellido y dividirlo automáticamente
-            const apellidoCompleto = formData.get("apellido") || "";
-            const apellidosArray = apellidoCompleto.trim().split(/\s+/);
+        .faq-item.active .faq-answer {
+          grid-template-rows: 1fr;
+        }
 
-            // Asignar apellido paterno y materno
-            const apellido_p = apellidosArray[0] || "No proporcionado";
-            const apellido_m =
-              apellidosArray.length > 1
-                ? apellidosArray.slice(1).join(" ")
-                : "No proporcionado";
+        .faq-item.active .faq-icon-wrapper {
+          transform: rotate(45deg);
+        }
+      </style>
 
-            // Crear objeto con las propiedades específicas
-            const data = {
-              nombre: formData.get("nombre") || "",
-              apellido_p: apellido_p,
-              apellido_m: apellido_m,
-              correo: formData.get("correo") || "",
-              telefono: formData.get("telefono") || "",
-              medio: "Página web",
-              modalidad: "Escolarizada",
-              nivel_educativo: "primaria",
-              plantel_interes: "PLAZA DEL SOL",
-              programa_interes: "",
-            };
+      <script>
+        function setupFAQ() {
+          const faqItems = document.querySelectorAll(".faq-item");
 
-            console.log("Datos a enviar:", data);
+          faqItems.forEach((item) => {
+            const question = item.querySelector(".faq-question");
 
-            // Mostrar loading en botón
-            const submitButton = document.getElementById("submit-btn-middle");
-            const btnText = submitButton.querySelector(".btn-text");
-            const btnLoading = submitButton.querySelector(".btn-loading");
+            if (question) {
+              question.addEventListener("click", () => {
+                const isActive = item.classList.contains("active");
 
-            submitButton.disabled = true;
-            btnText.classList.add("hidden");
-            btnLoading.classList.remove("hidden");
+                // Close all other FAQ items
+                faqItems.forEach((otherItem) => {
+                  if (otherItem !== item) {
+                    otherItem.classList.remove("active");
+                  }
+                });
 
-            try {
-              const apiUrl =
-                "https://intranet.universidad-une.com/api/createleads";
-
-              const response = await fetch(apiUrl, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
+                // Toggle current item
+                item.classList.toggle("active");
               });
-
-              console.log("Status:", response.status);
-              const responseText = await response.text();
-              console.log("Respuesta:", responseText);
-
-              if (response.ok) {
-                console.log("Enviado correctamente");
-                window.location.href = "/contacto/gracias";
-              } else {
-                throw new Error(`Error ${response.status}`);
-              }
-            } catch (error) {
-              console.error("Error:", error.message);
-              // En caso de error, también redirigir
-              window.location.href = "/contacto/gracias";
-            } finally {
-              // Restaurar botón
-              submitButton.disabled = false;
-              btnText.classList.remove("hidden");
-              btnLoading.classList.add("hidden");
             }
           });
         }
-      });
-    </script>
-  </main>
-</Layout>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // FAQ functionality
-    const faqItems = document.querySelectorAll(".faq-item");
-
-    faqItems.forEach((item) => {
-      const question = item.querySelector(".faq-question");
-      const answer = item.querySelector(".faq-answer");
-      const iconContainer = item.querySelector(".faq-icon");
-
-      if (question && answer && iconContainer) {
-        question.addEventListener("click", function () {
-          const isOpen = !answer.classList.contains("hidden");
-
-          // Close all other FAQ items
-          faqItems.forEach((otherItem) => {
-            if (otherItem !== item) {
-              const otherAnswer = otherItem.querySelector(".faq-answer");
-              const otherIconContainer = otherItem.querySelector(".faq-icon");
-
-              if (otherAnswer && otherIconContainer) {
-                otherAnswer.classList.add("hidden");
-                // Show Plus icon
-                otherIconContainer.innerHTML =
-                  '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>';
-              }
-            }
-          });
-
-          if (isOpen) {
-            // Close current item - show Plus icon
-            answer.classList.add("hidden");
-            iconContainer.innerHTML =
-              '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>';
-          } else {
-            // Open current item - show Minus icon
-            answer.classList.remove("hidden");
-            iconContainer.innerHTML =
-              '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 12H6"/></svg>';
-          }
-        });
-      }
-    });
-  });
-</script>
+        // Support both standard loads and view transitions
+        document.addEventListener("DOMContentLoaded", setupFAQ);
+        document.addEventListener("astro:after-swap", setupFAQ);
+      </script>
+    </section>
+  </main></Layout
+>

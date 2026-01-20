@@ -1,8 +1,8 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Logo from "@assets/Logos/UNE_30.webp";
-import videoSrc from "src/assets/Videos/Justicia.webp";
-import Chapu from "@assets/Imagenes/CardsPlanteles/Chapultepec.webp";
+// Asumiendo que usarás un video que refleje tecnología/estudiantes con laptops
+import videoSrc from "@assets/Videos/comercial_noviembrev2.webm";
 import Justicia from "@assets/Imagenes/valores/Justicia.webp";
 import Templanza from "@assets/Imagenes/valores/Templanza.webp";
 import Prudencia from "@assets/Imagenes/valores/Prudencia.webp";
@@ -11,151 +11,186 @@ import Timeline from "@/components/sections/acerca/Timeline.astro";
 ---
 
 <Layout
-  title="Historia de UNE - 30 Años de Excelencia Educativa"
-  description="Conoce la historia de Universidad UNE. 30 años formando profesionales exitosos en Jalisco con educación integral e innovación académica."
+  title="Historia Virtual UNE - Pioneros en Educación en Línea"
+  description="Conoce la evolución digital de Universidad UNE. Años perfeccionando nuestra plataforma para ofrecerte educación de calidad, flexible y sin fronteras."
 >
   <main class="bg-white">
-    <!-- HERO SECTION -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div
-        class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center min-h-screen py-12"
-      >
-        <div class="space-y-6">
-          <img src={Logo.src} alt="Logo UNE" />
-
-          <div class="space-y-4">
-            <p class="text-gray-700 text-lg leading-relaxed">
-              En la <span class="font-semibold text-blue-800"
-                >Universidad UNE</span
-              >, llevamos <span class="font-semibold"
-                >30 años creyendo en ti</span
-              >
-              y en tu capacidad de crecer. Con programas flexibles, tu futuro comienza
-              aquí.
-            </p>
+    <div class="relative min-h-[90vh] flex items-center overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <video
+          id="uneVideo"
+          class="w-full h-full object-cover"
+          poster={Justicia.src}
+          playsinline
+          loop
+          muted
+        >
+          <source src={videoSrc} type="video/mp4" />
+        </video>
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent"
+        >
+        </div>
+        <div
+          id="loadingOverlay"
+          class="absolute inset-0 z-20 flex items-center justify-center bg-gray-100 transition-opacity duration-500"
+        >
+          <div
+            class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600"
+          >
           </div>
+        </div>
+      </div>
 
-          <div class="pt-4">
-            <a
-              href="/acerca/oferta-academica/"
-              class="bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-8 text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
-              aria-label="Ir a ENCUENTRA TU CARRERA IDEAL"
-              title="ENCUENTRA TU CARRERA IDEAL"
-            >
-              ENCUENTRA TU CARRERA IDEAL
-            </a>
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center py-12">
+          <div class="space-y-8">
+            <img src={Logo.src} alt="Logo UNE" class="w-48 h-auto" />
+
+            <div class="space-y-6">
+              <h1
+                class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight"
+              >
+                De las aulas a la <br />
+                <span class="text-azul-une">revolución digital</span>
+              </h1>
+              <p
+                class="text-gray-700 text-lg md:text-xl leading-relaxed max-w-lg"
+              >
+                Nuestra historia en línea no comenzó ayer. Llevamos años
+                <span class="font-semibold text-red-600"
+                  >rompiendo barreras geográficas</span
+                >
+                para llevar la excelencia académica hasta tu pantalla. Tecnología
+                con sentido humano.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-4 pt-4">
+              <a
+                href="/acerca/modelo-educativo"
+                class="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl shadow-red-500/30"
+              >
+                DESCUBRE EL MODELO ONLINE
+              </a>
+
+              <div
+                class="flex items-center gap-2 bg-white/50 backdrop-blur-md rounded-full px-4 py-2 border border-gray-200"
+              >
+                <button
+                  id="playPauseBtn"
+                  class="p-2 hover:text-azul-une transition-colors"
+                >
+                  <span id="playIcon" class="hidden">▶</span>
+                  <span id="pauseIcon">❚❚</span>
+                </button>
+                <button
+                  id="muteBtn"
+                  class="p-2 hover:text-azul-une transition-colors"
+                >
+                  <span id="muteIcon">🔇</span>
+                  <span id="unmuteIcon" class="hidden">🔊</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- RESTO DEL CONTENIDO (sin cambios) -->
-    <section class="py-16 px-4">
+    <section class="py-20 px-4">
       <div class="max-w-7xl mx-auto">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div class="relative">
-            <div class="relative z-10">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <div class="relative order-2 lg:order-1">
+            <div
+              class="relative z-10 bg-gray-100 rounded-2xl p-2 shadow-xl rotate-1 hover:rotate-0 transition-transform duration-500"
+            >
               <img
-                src={Chapu.src}
-                alt="Edificio UNE - Campus Chapultepec"
-                class="w-3/4 h-auto rounded-lg shadow-2xl"
+                src={Prudencia.src}
+                alt="Evolución de la plataforma UNE"
+                class="w-full h-auto rounded-xl transition-all duration-500"
               />
+            </div>
+            <div
+              class="absolute -bottom-6 -right-6 w-24 h-24 bg-dots-pattern opacity-50"
+            >
             </div>
           </div>
 
-          <div class="space-y-8">
-            <h2 class="text-3xl lg:text-4xl font-bold mb-6">¿Quiénes somos?</h2>
+          <div class="space-y-8 order-1 lg:order-2">
+            <span
+              class="text-red-600 font-bold tracking-widest text-sm uppercase"
+              >Nuestra Evolución</span
+            >
+            <h2 class="text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
+              Más que una plataforma,<br />una comunidad conectada
+            </h2>
 
-            <p class="text-lg lg:text-xl leading-relaxed mb-8">
-              Somos una institución educativa líder en Jalisco con más de 30
-              años de experiencia en la formación integral de estudiantes.
-              Ofrecemos una amplia gama de programas formativos que van desde
-              educación básica hasta superior, incluyendo especialidades en el
-              área de la salud y una red de 18 planteles estratégicamente
-              ubicados en diversas zonas de Jalisco.
+            <p class="text-lg lg:text-xl leading-relaxed text-gray-600 mb-8">
+              Entendimos antes que nadie que el futuro de la educación requería
+              flexibilidad. Lo que comenzó como una herramienta de apoyo, hoy es
+              un ecosistema digital robusto que permite a miles de personas
+              estudiar sin sacrificar su trabajo o familia.
             </p>
 
-            <div class="grid sm:grid-cols-2 gap-6">
-              <div class="flex items-start space-x-3">
+            <div class="grid sm:grid-cols-2 gap-8">
+              <div class="flex items-start space-x-4">
                 <div class="flex-shrink-0">
                   <div
-                    class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center"
+                    class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-azul-une"
                   >
                     <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
                     >
                       <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"></path>
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      ></path>
                     </svg>
                   </div>
                 </div>
-                <p class="font-medium">Educación humanista y de calidad</p>
+                <div>
+                  <h4 class="font-bold text-gray-900">Tecnología Intuitiva</h4>
+                  <p class="text-sm text-gray-600 mt-1">
+                    Plataformas diseñadas para facilitar el aprendizaje, no para
+                    complicarlo.
+                  </p>
+                </div>
               </div>
 
-              <div class="flex items-start space-x-3">
+              <div class="flex items-start space-x-4">
                 <div class="flex-shrink-0">
                   <div
-                    class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center"
+                    class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-azul-une"
                   >
                     <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
                     >
                       <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"></path>
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                      ></path>
                     </svg>
                   </div>
                 </div>
-                <p class="font-medium">
-                  Vinculación con sector productivo y social
-                </p>
-              </div>
-
-              <div class="flex items-start space-x-3">
-                <div class="flex-shrink-0">
-                  <div
-                    class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"></path>
-                    </svg>
-                  </div>
+                <div>
+                  <h4 class="font-bold text-gray-900">Alcance Global</h4>
+                  <p class="text-sm text-gray-600 mt-1">
+                    Llevando la calidad UNE a cualquier rincón con internet.
+                  </p>
                 </div>
-                <p class="font-medium">Formación integral y competente</p>
-              </div>
-
-              <div class="flex items-start space-x-3">
-                <div class="flex-shrink-0">
-                  <div
-                    class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center"
-                  >
-                    <svg
-                      class="w-5 h-5 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"></path>
-                    </svg>
-                  </div>
-                </div>
-                <p class="font-medium">Innovación educativa del siglo XXI</p>
               </div>
             </div>
           </div>
@@ -163,164 +198,182 @@ import Timeline from "@/components/sections/acerca/Timeline.astro";
       </div>
     </section>
 
-    <section class="bg-gray-50 py-16 px-4">
-      <div class="max-w-7xl mx-auto">
+    <section class="bg-azul-une py-16 px-4 text-white relative overflow-hidden">
+      <div class="absolute inset-0 bg-[url('/pattern-grid.png')] opacity-10">
+      </div>
+      <div class="max-w-7xl mx-auto relative z-10">
         <div class="text-center mb-12">
-          <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-8">
-            Estándar de excelencia
+          <h2 class="text-4xl lg:text-5xl font-bold mb-4">
+            El impacto de nuestra aula virtual
           </h2>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8 mb-12">
-          <div class="text-center">
-            <div
-              class="text-5xl lg:text-6xl font-bold text-black mb-2 counter"
-              data-target="20000"
-            >
-              +0
-            </div>
-            <h3 class="text-xl font-semibold text-red-500 mb-4">
-              Estudiantes activos
-            </h3>
-            <p class="text-gray-600 leading-relaxed">
-              Más que un número es la cantidad de sueños que UNE impulsa
-            </p>
-          </div>
-
-          <div class="text-center">
-            <div
-              class="text-5xl lg:text-6xl font-bold text-black mb-2 counter"
-              data-target="60000"
-            >
-              +0
-            </div>
-            <h3 class="text-xl font-semibold text-red-500 mb-4">Egresados</h3>
-            <p class="text-gray-600 leading-relaxed">
-              En UNE formamos profesionales altamente capacitados
-            </p>
-          </div>
-
-          <div class="text-center">
-            <div
-              class="text-5xl lg:text-6xl font-bold text-black mb-2 counter"
-              data-target="1500"
-            >
-              +0
-            </div>
-            <h3 class="text-xl font-semibold text-red-500 mb-4">Docentes</h3>
-            <p class="text-gray-600 leading-relaxed">
-              Personal docente altamente calificado
-            </p>
-          </div>
-        </div>
-
-        <div class="text-center mb-12">
-          <p class="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Más de 30 años de excelencia educativa en Jalisco, transformando
-            vidas a través de la educación integral con valores humanistas y
-            compromiso social.
+          <p class="text-blue-100 text-lg">
+            Cifras que respaldan la solidez de nuestro modelo online
           </p>
         </div>
 
-        <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          <div class="bg-rojo-une rounded-2xl p-8 text-white shadow-lg">
-            <h3 class="text-3xl font-bold text-center mb-6">VISIÓN</h3>
-            <p class="text-lg font-light leading-relaxed text-center">
-              Ser la mejor Universidad en Guadalajara, formando integralmente a
-              hombres y mujeres, que lleven a México "Por un camino hacia la
-              excelencia".
+        <div
+          class="grid md:grid-cols-3 gap-8 mb-12 divide-y md:divide-y-0 md:divide-x divide-blue-800/50"
+        >
+          <div class="text-center px-4 py-4">
+            <div
+              class="text-5xl lg:text-6xl font-bold text-white mb-2 counter"
+              data-target="15000"
+            >
+              +0
+            </div>
+            <h3 class="text-xl font-semibold text-cyan-400 mb-2">
+              Clases Virtuales Impartidas
+            </h3>
+            <p class="text-blue-200 text-sm">
+              Sesiones diseñadas específicamente para el entorno digital.
             </p>
           </div>
 
-          <div class="bg-azul-une rounded-2xl p-8 text-white shadow-lg">
-            <h3 class="text-3xl font-bold text-center mb-6">MISIÓN</h3>
-            <p class="text-lg leading-relaxed text-center">
-              Formar de manera íntegra verdaderos profesionales que le den
-              grandeza y prestigio a México, y dignidad a la familia
+          <div class="text-center px-4 py-4">
+            <div
+              class="text-5xl lg:text-6xl font-bold text-white mb-2 counter"
+              data-target="5000"
+            >
+              +0
+            </div>
+            <h3 class="text-xl font-semibold text-cyan-400 mb-2">
+              Egresados Online
+            </h3>
+            <p class="text-blue-200 text-sm">
+              Profesionales titulados trabajando en empresas líderes.
+            </p>
+          </div>
+
+          <div class="text-center px-4 py-4">
+            <div
+              class="text-5xl lg:text-6xl font-bold text-white mb-2 counter"
+              data-target="24"
+            >
+              0
+            </div>
+            <h3 class="text-xl font-semibold text-cyan-400 mb-2">
+              Horas de Acceso
+            </h3>
+            <p class="text-blue-200 text-sm">
+              Tu campus está abierto los 7 días de la semana, todo el año.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto mt-16">
+          <div
+            class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20"
+          >
+            <h3 class="text-2xl font-bold mb-4 flex items-center gap-2">
+              <span class="text-3xl">🚀</span> VISIÓN DIGITAL
+            </h3>
+            <p class="text-lg font-light leading-relaxed">
+              Ser el referente en educación en línea en México, eliminando las
+              barreras de tiempo y espacio para que cualquier persona con
+              determinación pueda acceder a una formación de excelencia.
+            </p>
+          </div>
+
+          <div
+            class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20"
+          >
+            <h3 class="text-2xl font-bold mb-4 flex items-center gap-2">
+              <span class="text-3xl">🎯</span> MISIÓN
+            </h3>
+            <p class="text-lg font-light leading-relaxed">
+              Democratizar el conocimiento a través de la tecnología, formando
+              profesionales autogestivos, competentes digitalmente y
+              comprometidos con su entorno.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="bg-gray-50 py-16 px-4">
+    <section class="bg-gray-50 py-20 px-4">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-16">
           <h2 class="text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
-            Valores Institucionales UNE
+            Valores Humanistas en un Mundo Digital
           </h2>
           <p class="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Los valores que nos definen están representados en nuestra identidad
-            visual y guían cada acción en Universidad UNE. Estos pilares
-            fundamentales forman el corazón de nuestra institución y se reflejan
-            en la formación integral que ofrecemos.
+            La tecnología cambia, pero nuestros principios permanecen. Adaptamos
+            nuestros valores fundacionales para guiar al estudiante en el
+            entorno virtual.
           </p>
         </div>
 
-        <div class="space-y-16">
-          <div class="bg-white rounded-3xl shadow-lg overflow-hidden">
+        <div class="space-y-12">
+          <div
+            class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300"
+          >
             <div class="grid lg:grid-cols-2 items-center">
-              <div class="p-8 lg:p-12 order-2 lg:order-1">
-                <h3 class="text-3xl lg:text-4xl font-bold text-azul-une mb-6">
-                  La prudencia
+              <div class="p-10 lg:p-14 order-2 lg:order-1">
+                <h3 class="text-3xl font-bold text-azul-une mb-4">
+                  Prudencia y Ética Digital
                 </h3>
                 <p class="text-gray-600 text-lg leading-relaxed">
-                  En UNE, la prudencia guía tanto nuestros procesos educativos
-                  como nuestras decisiones institucionales, formando
-                  profesionales capaces de actuar con criterio y responsabilidad
-                  en cualquier contexto.
+                  En el vasto mundo de internet, formamos estudiantes con
+                  criterio. La prudencia en UNE significa saber discernir
+                  información veraz, usar la tecnología con responsabilidad y
+                  actuar con ética profesional en entornos remotos.
                 </p>
               </div>
-              <div class="order-1 lg:order-2">
+              <div class="order-1 lg:order-2 overflow-hidden h-80">
                 <img
                   src={Prudencia.src}
-                  alt="Ilustración representando el valor de la prudencia"
-                  class="w-full h-80 object-cover"
+                  alt="Estudiante analizando información en computadora"
+                  class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
                 />
               </div>
             </div>
           </div>
 
-          <div class="bg-white rounded-3xl shadow-lg overflow-hidden">
+          <div
+            class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300"
+          >
             <div class="grid lg:grid-cols-2 items-center">
-              <div class="order-1">
+              <div class="order-1 overflow-hidden h-80">
                 <img
                   src={Justicia.src}
-                  alt="Ilustración representando el valor de la justicia y fortaleza"
-                  class="w-full h-80 object-cover"
+                  alt="Diversidad de estudiantes conectados"
+                  class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
                 />
               </div>
-              <div class="p-8 lg:p-12 order-2">
-                <h3 class="text-3xl lg:text-4xl font-bold text-azul-une mb-6">
-                  La justicia/fortaleza
+              <div class="p-10 lg:p-14 order-2">
+                <h3 class="text-3xl font-bold text-azul-une mb-4">
+                  Justicia y Acceso Universal
                 </h3>
                 <p class="text-gray-600 text-lg leading-relaxed">
-                  Creemos en la importancia de formar individuos justos que
-                  defiendan los derechos y oportunidades para todos, con la
-                  fortaleza necesaria para enfrentar los desafíos del mundo
-                  profesional.
+                  La educación en línea es nuestra herramienta de justicia
+                  social. Creemos que la educación de calidad debe estar al
+                  alcance de todos, sin importar dónde vivan o sus horarios
+                  laborales. La tecnología iguala el terreno.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="bg-white rounded-3xl shadow-lg overflow-hidden">
+          <div
+            class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300"
+          >
             <div class="grid lg:grid-cols-2 items-center">
-              <div class="p-8 lg:p-12 order-2 lg:order-1">
-                <h3 class="text-3xl lg:text-4xl font-bold text-azul-une mb-6">
-                  La templanza
+              <div class="p-10 lg:p-14 order-2 lg:order-1">
+                <h3 class="text-3xl font-bold text-azul-une mb-4">
+                  Templanza y Autogestión
                 </h3>
                 <p class="text-gray-600 text-lg leading-relaxed">
-                  La templanza nos permite mantener la armonía entre el
-                  crecimiento académico, personal y social, preparando a
-                  nuestros estudiantes para una vida plena y exitosa.
+                  Estudiar online requiere equilibrio. La templanza en UNE se
+                  traduce en la capacidad de autogestión: equilibrar estudios,
+                  trabajo y vida personal. Enseñamos a nuestros alumnos a ser
+                  dueños de su tiempo.
                 </p>
               </div>
-              <div class="order-1 lg:order-2">
+              <div class="order-1 lg:order-2 overflow-hidden h-80">
                 <img
                   src={Templanza.src}
-                  alt="Ilustración representando el valor de la templanza"
-                  class="w-full h-80 object-cover"
+                  alt="Persona trabajando en equilibrio"
+                  class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
                 />
               </div>
             </div>
@@ -330,7 +383,6 @@ import Timeline from "@/components/sections/acerca/Timeline.astro";
     </section>
 
     <Timeline />
-    <Galeriadeplantele />
   </main>
 </Layout>
 
@@ -347,7 +399,6 @@ import Timeline from "@/components/sections/acerca/Timeline.astro";
 
     let isVideoReady = false;
 
-    // Función para actualizar iconos
     function updatePlayIcon() {
       if (video.paused) {
         playIcon.classList.remove("hidden");
@@ -368,35 +419,35 @@ import Timeline from "@/components/sections/acerca/Timeline.astro";
       }
     }
 
-    // Intentar reproducir automáticamente
     async function attemptAutoplay() {
       try {
-        video.muted = true; // Asegurar que esté silenciado
+        video.muted = true;
         await video.play();
-        console.log("Video reproduciéndose automáticamente");
+        console.log("Video playing automatically");
         updatePlayIcon();
       } catch (error) {
-        console.log("Autoplay bloqueado:", error);
-        // El video se quedará pausado, el usuario puede darle play manualmente
+        console.log("Autoplay blocked:", error);
       }
     }
 
-    // Event Listeners
-    playPauseBtn.addEventListener("click", () => {
-      if (video.paused) {
-        video.play();
-      } else {
-        video.pause();
-      }
-      updatePlayIcon();
-    });
+    if (playPauseBtn) {
+      playPauseBtn.addEventListener("click", () => {
+        if (video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+        updatePlayIcon();
+      });
+    }
 
-    muteBtn.addEventListener("click", () => {
-      video.muted = !video.muted;
-      updateMuteIcon();
-    });
+    if (muteBtn) {
+      muteBtn.addEventListener("click", () => {
+        video.muted = !video.muted;
+        updateMuteIcon();
+      });
+    }
 
-    // Event listeners del video
     video.addEventListener("loadstart", () => {
       loadingOverlay.classList.remove("hidden");
     });
@@ -411,94 +462,78 @@ import Timeline from "@/components/sections/acerca/Timeline.astro";
     video.addEventListener("pause", updatePlayIcon);
     video.addEventListener("volumechange", updateMuteIcon);
 
-    // Manejar errores
     video.addEventListener("error", (e) => {
-      console.error("Error al cargar el video:", e);
+      console.error("Video error:", e);
       loadingOverlay.classList.add("hidden");
     });
 
-    // Inicializar estados
     updatePlayIcon();
     updateMuteIcon();
 
-    // Si el navegador soporta autoplay, intentar después de un breve delay
     setTimeout(() => {
       if (isVideoReady) {
         attemptAutoplay();
       }
     }, 500);
 
-    // Manejar visibilidad de la página
     document.addEventListener("visibilitychange", () => {
       if (document.hidden && !video.paused) {
         video.pause();
       }
     });
 
-    // Animación de contadores (del código original)
+    // Animación de contadores optimizada
     const counters = document.querySelectorAll(".counter");
     const animateCounters = () => {
       counters.forEach((counter) => {
-        const target = parseInt(counter.getAttribute("data-target"));
+        const targetAttr = counter.getAttribute("data-target");
+        if (!targetAttr) return;
+
+        const target = parseInt(targetAttr);
         const count = parseInt(
-          counter.innerText.replace("+", "").replace(",", "")
+          counter.innerText
+            .replace("+", "")
+            .replace(",", "")
+            .replace(" ", "") || "0",
         );
-        const increment = target / 100;
+
+        // Ajuste de velocidad basado en el tamaño del número
+        const speed = target > 1000 ? 50 : 200;
+        const increment = Math.ceil(target / speed);
 
         if (count < target) {
-          counter.innerText =
-            "+" + Math.ceil(count + increment).toLocaleString();
-          setTimeout(animateCounters, 20);
+          counter.innerText = "+" + (count + increment).toLocaleString();
+          requestAnimationFrame(animateCounters); // Más suave que setTimeout
         } else {
           counter.innerText = "+" + target.toLocaleString();
         }
       });
     };
 
-    // Observer para animar contadores cuando sean visibles
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCounters();
-          counterObserver.disconnect();
-        }
-      });
-    });
+    const counterObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounters();
+            counterObserver.disconnect();
+          }
+        });
+      },
+      { threshold: 0.5 },
+    ); // Disparar cuando el 50% del elemento sea visible
 
     counters.forEach((counter) => counterObserver.observe(counter));
   });
 </script>
 
 <style>
-  /* Estilos adicionales para el video */
+  /* Patrón de puntos decorativo */
+  .bg-dots-pattern {
+    background-image: radial-gradient(#dc2626 1px, transparent 1px);
+    background-size: 10px 10px;
+  }
+
   #uneVideo {
-    transition: opacity 0.3s ease;
-  }
-
-  #loadingOverlay {
-    background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
-  }
-
-  /* Hover effects para los controles */
-  #playPauseBtn:hover,
-  #muteBtn:hover {
-    transform: scale(1.1);
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .absolute.bottom-4.right-4 {
-      bottom: 1rem;
-      right: 1rem;
-    }
-
-    .absolute.bottom-4.right-4 button {
-      padding: 0.5rem;
-    }
-
-    .absolute.bottom-4.right-4 svg {
-      width: 1rem;
-      height: 1rem;
-    }
+    transition: opacity 0.5s ease;
   }
 </style>

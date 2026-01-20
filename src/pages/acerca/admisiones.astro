@@ -1,22 +1,38 @@
 ---
+import { Image } from "astro:assets";
 import LogoUNE from "@/assets/Logos/une-enlinea.png";
 import Layout from "@/layouts/Layout.astro";
-
-import VideoBackground from "@/assets/Videos/Comercial.webm";
-
+import AdmisionHero from "@/assets/Imagenes/Heros/Admision.webp";
+import AdmisionHeroMobile from "@/assets/Imagenes/Heros/Admision_mobile.webp";
 import { FileDown } from "@lucide/astro";
-import CallAction from "@/components/sections/shared/CallAction.astro";
+import ContactSection from "@/components/sections/shared/GeneralCTA.astro";
 ---
 
 <Layout
-  title="Admisiones UNE - Proceso de Inscripción y Requisitos"
-  description="Proceso de admisión en Universidad UNE. Requisitos, fechas, documentos y pasos para inscribirte. 45 carreras disponibles con validez oficial UDG y SEP."
+  title="Admisiones UNE - Proceso de Inscripción en 5 Pasos"
+  description="Tu ingreso a UNE en Línea en 5 pasos. Proceso simplificado de admisión: regístrate, paga, entrega documentos, asiste a inducción y accede a la plataforma."
 >
   <!-- Hero Section -->
-  <section
-    class="admisiones-bg relative min-h-[85vh] md:min-h-[65vh] bg-cover bg-center bg-no-repeat"
-  >
-    {/* Hero Content */}
+  <section class="relative min-h-[8s5vh] md:min-h-[65vh] overflow-hidden">
+    <!-- Background Images with Astro Image -->
+    <div class="absolute inset-0 z-0">
+      <Image
+        src={AdmisionHero}
+        alt="Admisiones Universidad UNE"
+        class="hidden md:block w-full h-full object-cover"
+        loading="eager"
+        quality={90}
+      />
+      <Image
+        src={AdmisionHeroMobile}
+        alt="Admisiones Universidad UNE"
+        class="md:hidden w-full h-full object-cover"
+        loading="eager"
+        quality={90}
+      />
+    </div>
+
+    <!-- Hero Content -->
     <div
       class="relative z-10 container mx-auto px-4 h-full min-h-[85vh] md:min-h-[65vh] flex flex-col justify-center"
     >
@@ -28,194 +44,339 @@ import CallAction from "@/components/sections/shared/CallAction.astro";
           En UNE, tus metas son nuestro impulso.<br />
           ¡Descubre tu mejor versión con nosotros!
         </p>
-        <a
-          href="/contacto/formulario-inscripcion"
-          class="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-300 transform hover:scale-105"
-          aria-label="Ir a INICIAR PROCESO"
-          title="INICIAR PROCESO"
-        >
-          INICIAR PROCESO
-        </a>
+        <div class="flex flex-col items-start gap-4">
+          <a
+            href="/contacto/solicitarinformacion"
+            class="inline-block bg-rojo-une hover:opacity-90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-300 text-center uppercase"
+            aria-label="Solicitar más información sobre admisiones"
+          >
+            SOLICITAR MÁS INFORMACIÓN
+          </a>
+          <a
+            href="/contacto/formulario-inscripcion"
+            class="inline-block hover:opacity-90 border-b border-white text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300 text-center uppercase"
+            aria-label="Ir al formulario de inscripción"
+          >
+            FORMULARIO DE INSCRIPCIÓN
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Process Steps -->
-  <section class="py-16 bg-gray-50">
+  <!-- New 5-Step Process Section -->
+  <section class="py-16 bg-linear-to-b from-gray-50 to-white">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12">
-        ¿Cómo iniciar tu proceso de admisión?
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div class="text-center">
+      <header class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Tu ingreso a UNE en Línea en 5 pasos
+        </h2>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+          Hemos simplificado nuestro proceso para que puedas inscribirte desde
+          donde estés.
+        </p>
+      </header>
+
+      <div class="max-w-5xl mx-auto space-y-12">
+        <!-- Step 1: Regístrate -->
+        <article class="flex flex-col md:flex-row gap-6 items-start">
           <div
-            class="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold"
+            class="shrink-0 w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg"
+            aria-hidden="true"
           >
             1
           </div>
-          <h3 class="text-xl font-bold mb-2">
-            Explora las carreras y oferta académica
-          </h3>
-          <p class="text-gray-600">
-            Conoce nuestras licenciaturas, ingenierías y programas de posgrado
-            disponibles
-          </p>
-        </div>
-        <div class="text-center">
+          <div class="flex-1">
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Regístrate</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Llena el formulario de inscripción en este sitio. Es rápido y
+              sencillo. Al terminar, un asesor se pondrá en contacto contigo
+              para guiarte y validar tu perfil.
+            </p>
+          </div>
+        </article>
+
+        <!-- Step 2: Realiza tu pago -->
+        <article class="flex flex-col md:flex-row gap-6 items-start">
           <div
-            class="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold"
+            class="shrink-0 w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg"
+            aria-hidden="true"
           >
             2
           </div>
-          <h3 class="text-xl font-bold mb-2">
-            Elige carrera y modalidad preferida
-          </h3>
-          <p class="text-gray-600">
-            Selecciona la carrera que más te interese y la modalidad que se
-            adapte a tu estilo de vida
-          </p>
-        </div>
-        <div class="text-center">
+          <div class="flex-1">
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Realiza tu pago
+            </h3>
+            <p class="text-gray-700 leading-relaxed">
+              Recibirás tu ficha de pago personalizada. Una vez realizado el
+              depósito, recuerda guardar tu comprobante (digital o físico), ya
+              que es indispensable para continuar.
+            </p>
+          </div>
+        </article>
+
+        <!-- Step 3: Entrega tu documentación -->
+        <article class="flex flex-col md:flex-row gap-6 items-start">
           <div
-            class="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold"
+            class="shrink-0 w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg"
+            aria-hidden="true"
           >
             3
           </div>
-          <h3 class="text-xl font-bold mb-2">
-            Agenda visita o contacta un asesor
-          </h3>
-          <p class="text-gray-600">
-            Conoce nuestras instalaciones, habla con asesores académicos y
-            resuelve tus dudas
-          </p>
-        </div>
-        <div class="text-center">
+          <div class="flex-1">
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Entrega tu documentación
+            </h3>
+            <p class="text-gray-700 leading-relaxed mb-4">
+              Tú eliges la opción más cómoda para ti. Al entregar tus
+              documentos, te asignaremos un código de seguimiento para que
+              conozcas el estatus de tu expediente en todo momento:
+            </p>
+            <ul class="space-y-3 ml-4">
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-red-600 mt-1 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div>
+                  <strong class="text-gray-900"
+                    >En tu plantel más cercano:</strong
+                  >
+                  <span class="text-gray-700">
+                    Acude a cualquiera de nuestras sedes; nosotros nos
+                    encargamos de enviarlo a la sede central de forma segura.</span
+                  >
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-red-600 mt-1 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div>
+                  <strong class="text-gray-900">En Sede Central:</strong>
+                  <span class="text-gray-700">
+                    Entrégalos directamente en nuestras oficinas en Av. Adolfo
+                    López Mateos Sur 4175, Zapopan, Jal.</span
+                  >
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-red-600 mt-1 shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div>
+                  <strong class="text-gray-900">Por Paquetería:</strong>
+                  <span class="text-gray-700">
+                    Envíanos tus documentos directamente a la Sede Central por
+                    el servicio de mensajería de tu preferencia.</span
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Step 4: Sesión de Inducción -->
+        <article class="flex flex-col md:flex-row gap-6 items-start">
           <div
-            class="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold"
+            class="shrink-0 w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg"
+            aria-hidden="true"
           >
             4
           </div>
-          <h3 class="text-xl font-bold mb-2">Entrega tus documentos</h3>
-          <p class="text-gray-600">
-            Presenta la documentación requerida para completar tu proceso de
-            admisión
-          </p>
-        </div>
+          <div class="flex-1">
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Sesión de Inducción
+            </h3>
+            <p class="text-gray-700 leading-relaxed">
+              Con tu expediente en proceso, recibirás un enlace para conectarte
+              a una sesión informativa en línea. Aquí resolveremos todas tus
+              dudas sobre el inicio de clases y procesos académicos.
+            </p>
+          </div>
+        </article>
+
+        <!-- Step 5: Acceso a Plataforma -->
+        <article class="flex flex-col md:flex-row gap-6 items-start">
+          <div
+            class="shrink-0 w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg"
+            aria-hidden="true"
+          >
+            5
+          </div>
+          <div class="flex-1">
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Acceso a Plataforma
+            </h3>
+            <p class="text-gray-700 leading-relaxed">
+              ¡Todo listo! Recibirás tu usuario y contraseña por correo. Ingresa
+              a la plataforma, revisa tus materias cargadas y apóyate en los
+              videos de capacitación para comenzar.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Support Message -->
+      <div
+        class="mt-12 text-center bg-blue-50 border-l-4 border-blue-900 p-6 rounded-lg max-w-3xl mx-auto"
+      >
+        <p class="text-lg text-gray-800">
+          <strong class="text-blue-900">¿Tienes dudas?</strong>
+          <span class="ml-2"
+            >Tu asesor y tutor te acompañarán durante todo el proceso.</span
+          >
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- Requisitos  -->
-  <section class="py-16 bg-white">
+  <!-- Requisitos Section -->
+  <section class="py-16 bg-white" aria-labelledby="requisitos-heading">
     <div class="px-4">
       <div class="max-w-7xl mx-auto">
-        <p class="text-sm text-gray-600 mb-2">REQUISITOS</p>
-        <h2 class="text-3xl font-bold mb-12">
-          CONOCE LOS DOCUMENTOS QUE NECESITAS
+        <p class="text-sm text-gray-600 mb-2 uppercase tracking-wide">
+          Requisitos
+        </p>
+        <h2
+          id="requisitos-heading"
+          class="text-3xl font-bold mb-12 text-gray-900 uppercase"
+        >
+          ¡Conoce los documentos necesarios para inscribirte!
         </h2>
 
         <!-- Tabs -->
-        <div class="flex flex-wrap gap-2 mb-8 justify-end">
-          <button
-            class="tab-button px-6 py-2 rounded-full font-medium transition-all duration-300 bg-gray-200 text-gray-700 hover:bg-gray-300"
-            data-tab="primaria"
-            aria-label="Primaria"
-            title="Primaria"
-          >
-            Primaria
-          </button>
+        <nav
+          class="flex flex-wrap gap-4 mb-8 md:justify-end"
+          role="tablist"
+          aria-label="Niveles educativos"
+        >
           <button
             class="tab-button px-6 py-2 rounded-full font-medium transition-all duration-300 bg-blue-900 text-white"
-            data-tab="secundaria"
-            aria-label="Secundaria"
-            title="Secundaria"
-          >
-            Secundaria
-          </button>
-          <button
-            class="tab-button px-6 py-2 rounded-full font-medium transition-all duration-300 bg-gray-200 text-gray-700 hover:bg-gray-300"
             data-tab="bachillerato"
-            aria-label="Bachillerato"
-            title="Bachillerato"
+            role="tab"
+            aria-selected="true"
+            aria-controls="requirements-content"
           >
             Bachillerato
           </button>
           <button
-            class="tab-button px-6 py-2 rounded-full font-medium transition-all duration-300 bg-gray-200 text-gray-700 hover:bg-gray-300"
+            class="tab-button px-6 py-2 rounded-full font-medium transition-all duration-300 bg-gray-200 text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-900"
             data-tab="licenciatura"
-            aria-label="Licenciatura"
-            title="Licenciatura"
+            role="tab"
+            aria-selected="false"
+            aria-controls="requirements-content"
           >
             Licenciatura
           </button>
           <button
-            class="tab-button px-6 py-2 rounded-full font-medium transition-all duration-300 bg-gray-200 text-gray-700 hover:bg-gray-300"
+            class="tab-button px-6 py-2 rounded-full font-medium transition-all duration-300 bg-gray-200 text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-900"
             data-tab="maestria"
-            aria-label="Maestría"
-            title="Maestría"
+            role="tab"
+            aria-selected="false"
+            aria-controls="requirements-content"
           >
             Maestría
           </button>
-        </div>
+        </nav>
 
         <!-- Content -->
         <div class="flex flex-col lg:flex-row gap-8">
           <!-- Vertical Text -->
           <div
-            class="lg:w-1/3 flex justify-center lg:items-center lg:justify-center"
+            class="lg:w-1/4 flex justify-center lg:items-center lg:justify-center"
+            aria-hidden="true"
           >
             <div class="relative">
               <div
                 id="vertical-text"
-                class="text-4xl lg:text-6xl font-bold text-blue-900 lg:transform lg:-rotate-90 lg:origin-center whitespace-nowrap"
+                class="text-4xl lg:text-5xl font-bold text-blue-900 lg:transform lg:-rotate-90 lg:origin-center whitespace-nowrap transition-all duration-500"
               >
-                SECUNDARIA
+                BACHILLERATO
               </div>
             </div>
           </div>
 
           <!-- Requirements Card -->
-          <div
-            class="lg:w-2/3 py-4 flex flex-col gap-4 items-center justify-center"
-          >
-            <div class="shadow-md rounded-lg w-full">
+          <div class="lg:w-3/4 py-4 flex flex-col gap-4">
+            <div
+              class="shadow-xl rounded-2xl bg-white border border-gray-100 overflow-hidden"
+            >
               <div
                 id="requirements-list"
-                class="space-y-4 px-6 pt-4 min-h-[220px] w-full relative overflow-hidden"
+                class="px-6 py-8 min-h-[400px] w-full relative"
               >
                 <!-- Logo UNE de fondo -->
                 <div
-                  class="absolute inset-0 flex items-center justify-center pointer-events-none z-0"
+                  class="absolute inset-0 flex items-center justify-center pointer-events-none z-0 opacity-[0.03]"
+                  aria-hidden="true"
                 >
-                  <img
-                    src={LogoUNE.src}
-                    alt="UNE Logo"
-                    class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-50 object-contain select-none"
+                  <Image
+                    src={LogoUNE}
+                    alt=""
+                    class="w-64 h-64 md:w-80 md:h-80 object-contain select-none"
+                    loading="lazy"
                   />
                 </div>
 
                 <!-- Requirements will be populated by JavaScript -->
-                <div id="requirements-content" class="relative z-20 space-y-4">
+                <div
+                  id="requirements-content"
+                  class="relative z-20 space-y-6"
+                  role="tabpanel"
+                  aria-live="polite"
+                >
                   <!-- Aquí van los requisitos dinámicos -->
                 </div>
               </div>
               <div
-                class="text-sm mt-6 py-6 bg-azul-une rounded-b-lg text-white text-center font-bold"
+                class="text-sm py-4 bg-azul-une text-white text-center font-bold tracking-wider uppercase"
               >
-                Todos los documentos originales y 3 copias
+                Prepara tu documentación original y 3 copias de cada uno.
               </div>
             </div>
 
             <!-- Botón alineado a la derecha -->
             <div class="w-full flex justify-end">
-              <!-- Botón de descarga -->
               <button
                 id="download-button"
-                class="border-2 border-green-600 text-green-600 px-8 py-3 rounded-lg hover:bg-green-50 transition-colors duration-300 flex items-center justify-center gap-2"
-                aria-label="Descargar requisitos"
-                title="Descargar requisitos"
+                class="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 focus:outline-none focus:ring-4 focus:ring-green-300 group"
+                aria-label="Descargar guía de requisitos en PDF"
               >
-                <FileDown class="w-5 h-5" />
+                <FileDown
+                  class="w-5 h-5 transition-transform group-hover:translate-y-1"
+                  aria-hidden="true"
+                />
                 Descargar requisitos
               </button>
             </div>
@@ -225,206 +386,245 @@ import CallAction from "@/components/sections/shared/CallAction.astro";
     </div>
   </section>
 
-  <CallAction />
+  <ContactSection />
 </Layout>
 
 <script>
+  interface ReqItem {
+    icon: string;
+    text: string;
+    note?: string;
+    tip?: string;
+    link?: { text: string; url: string };
+  }
+
+  interface ReqData {
+    title: string;
+    requirements: ReqItem[];
+  }
+
   // Datos de requisitos por nivel educativo
-  const requirementsData = {
-    primaria: {
-      title: "PRIMARIA",
-      requirements: [
-        { icon: "document", text: "Acta de nacimiento (Original)" },
-        { icon: "document", text: "Certificado total preescolar (Original)" },
-        {
-          icon: "document",
-          text: "Boletas oficiales de grados anteriores (si aplica)",
-        },
-        { icon: "card", text: "CURP (Formato Renapo)" },
-        { icon: "id", text: "INE del padre, madre o tutor (2 copias)" },
-        {
-          icon: "home",
-          text: "Comprobante de domicilio reciente (1 copia, no mayor a 3 meses)",
-        },
-        {
-          icon: "camera",
-          text: "8 fotografías blanco y negro, papel mate, de estudio",
-        },
-      ],
-    },
-    secundaria: {
-      title: "SECUNDARIA",
-      requirements: [
-        { icon: "document", text: "Acta de nacimiento (Original)" },
-        { icon: "document", text: "Certificado total primaria (Original)" },
-        {
-          icon: "document",
-          text: "Boletas oficiales de grados anteriores (si aplica a 2° o 3°)",
-        },
-        { icon: "card", text: "CURP (Formato Renapo)" },
-        { icon: "id", text: "INE del padre, madre o tutor (2 copias)" },
-        {
-          icon: "home",
-          text: "Comprobante de domicilio reciente (1 copia, no mayor a 3 meses)",
-        },
-        {
-          icon: "camera",
-          text: "8 fotografías blanco y negro, papel mate, de estudio",
-        },
-      ],
-    },
+  const requirementsData: Record<string, ReqData> = {
     bachillerato: {
-      title: "BACHILLERATO ",
+      title: "BACHILLERATO",
       requirements: [
-        { icon: "document", text: "Acta de nacimiento (Original)" },
-        { icon: "document", text: "Certificado total secundaria (Original)" },
         {
           icon: "document",
-          text: "Equivalencia o grado superior (Certificado parcial o Kardex)",
+          text: "1. Acta de Nacimiento original y 3 copias",
+          note: "Con fecha de expedición no mayor a un año y en excelente estado.",
+          tip: "Puedes descargarla por internet gratuitamente, imprimirla a color y en hoja opalina para presentarla como original.",
+          link: {
+            text: "Descargar aquí",
+            url: "https://actasenlinea.jalisco.gob.mx/actasescolares/Nacimiento.do",
+          },
         },
-        { icon: "card", text: "CURP (Formato Renapo)" },
+        {
+          icon: "document",
+          text: "2. Certificado de secundaria original y 3 copias",
+          note: "Si fue expedido fuera de Jalisco, debe estar legalizado. No se requiere si incluye la leyenda: 'ESTE DOCUMENTO ES VÁLIDO EN LOS ESTADOS UNIDOS MEXICANOS Y NO REQUIERE TRÁMITES ADICIONALES DE LEGALIZACIÓN'.",
+        },
+        {
+          icon: "document",
+          text: "3. Carta de validación de certificado de secundaria y 3 copias",
+          note: "Este documento es obligatorio. Debe estar dirigida a quien corresponda o al Ing. Marco Arturo Castro Aguilera, Director de Incorporación y Servicios Escolares SICyT.",
+          tip: "Debe ser en hoja membretada, contar con el folio de su certificado, nombre del alumno y fecha de expedición.",
+        },
+        {
+          icon: "card",
+          text: "4. CURP 3 copias",
+        },
         {
           icon: "id",
-          text: "Identificación oficial con fotografía (2 copias)",
+          text: "5. Identificación Oficial (vigente) con fotografía 3 copias",
         },
         {
           icon: "home",
-          text: "Comprobante de domicilio reciente (1 copia, no mayor a 3 meses)",
+          text: "6. Comprobante de Domicilio. 3 copias",
         },
         {
           icon: "camera",
-          text: "8 fotografías blanco y negro, papel mate, de estudio",
+          text: "7. 8 fotografías tamaño infantil blanco y negro",
+          note: "Vestimenta presentable.",
+          tip: "Sugerencia: Farmacia Guadalajara.",
+        },
+        {
+          icon: "camera",
+          text: "8. 2 fotografías Tamaño credencial a color",
+          note: "Vestimenta presentable.",
+          tip: "Sugerencia: Farmacia Guadalajara.",
         },
       ],
     },
     licenciatura: {
       title: "LICENCIATURA",
       requirements: [
-        { icon: "document", text: "Acta de nacimiento (Original)" },
-        { icon: "document", text: "Certificado total bachillerato (Original)" },
         {
           icon: "document",
-          text: "Oficio de validación de autenticidad (emitido por autoridad)",
+          text: "1. Acta de Nacimiento original y 3 copias",
+          note: "Con fecha de expedición no mayor a un año y en excelente estado.",
+          tip: "Puedes descargarla por internet gratuitamente, imprimirla a color y en hoja opalina para presentarla como original.",
+          link: {
+            text: "Descargar aquí",
+            url: "https://actasenlinea.jalisco.gob.mx/actasescolares/Nacimiento.do",
+          },
         },
         {
           icon: "document",
-          text: "Equivalencia o grado superior (certificado parcial y contenidos temáticos)",
+          text: "2. Certificado de Bachillerato original y 3 copias",
+          note: "Si fue expedido fuera de Jalisco, debe estar legalizado, excepto si incluye la leyenda de validez nacional que no requiere trámites adicionales.",
         },
-        { icon: "card", text: "CURP (Formato Renapo)" },
-        { icon: "id", text: "INE (2 copias)" },
+        {
+          icon: "document",
+          text: "3. Carta de validación de certificado de bachillerato y 3 copias",
+          note: "Documento obligatorio. Debe estar dirigida a la Mtra. Fanny Guadalupe Valdivia Márquez, Subsecretaria de Educación Superior.",
+          tip: "Debe ser en hoja membretada con folio del certificado, nombre del alumno y fecha de expedición.",
+        },
+        {
+          icon: "card",
+          text: "4. CURP 3 copias",
+        },
+        {
+          icon: "id",
+          text: "5. Identificación Oficial (vigente) con fotografía 3 copias",
+        },
         {
           icon: "home",
-          text: "Comprobante de domicilio reciente (1 copia, no mayor a 3 meses)",
+          text: "6. Comprobante de Domicilio. 3 copias",
         },
         {
           icon: "camera",
-          text: "8 fotografías blanco y negro, papel mate, de estudio",
+          text: "7. 8 fotografías tamaño infantil B/N",
+          note: "Vestimenta presentable.",
+          tip: "Sugerencia: Farmacia Guadalajara.",
         },
       ],
     },
     maestria: {
-      title: "Maestrías",
+      title: "MAESTRÍA",
       requirements: [
-        { icon: "document", text: "Acta de nacimiento (Original)" },
         {
           icon: "document",
-          text: "Título de nivel superior (PDF a color por ambos lados)",
+          text: "1. Acta de Nacimiento original y 3 copias",
+          note: "Con fecha de expedición no mayor a un año y en excelente estado.",
+          tip: "Puedes descargarla por internet gratuitamente, imprimirla a color y en hoja opalina para presentarla como original.",
+          link: {
+            text: "Descargar aquí",
+            url: "https://actasenlinea.jalisco.gob.mx/actasescolares/Nacimiento.do",
+          },
         },
         {
           icon: "document",
-          text: "Cédula Profesional (PDF a color por ambos lados)",
+          text: "2. Certificado de Licenciatura original y 3 copias",
+          note: "Legalizado si es de fuera de Jalisco, a menos que tenga la leyenda de validez nacional.",
         },
         {
           icon: "document",
-          text: "Certificado total de estudios de nivel superior (Original)",
+          text: "3. Carta de validación de Certificado de Licenciatura y 3 copias",
+          note: "Documento obligatorio. Dirigida a la Mtra. Fanny Guadalupe Valdivia Márquez, Subsecretaria de Educación Superior.",
+          tip: "Debe ser en hoja membretada con folio, nombre y fecha.",
         },
         {
           icon: "document",
-          text: "Oficio de validación de autenticidad del certificado (emitido por autoridad)",
+          text: "4. Título 3 copias",
         },
         {
-          icon: "document",
-          text: "Equivalencia o grado superior (certificado parcial y contenidos temáticos)",
+          icon: "id",
+          text: "5. Cédula 3 copias",
         },
-        { icon: "card", text: "CURP (Formato Renapo)" },
-        { icon: "id", text: "INE (2 copias)" },
+        {
+          icon: "id",
+          text: "6. Identificación Oficial (vigente) con fotografía 3 copias",
+        },
         {
           icon: "home",
-          text: "Comprobante de domicilio reciente (1 copia, no mayor a 3 meses)",
+          text: "7. Comprobante de Domicilio. 3 copias",
         },
         {
           icon: "camera",
-          text: "8 fotografías blanco y negro, papel mate, de estudio",
+          text: "8. 8 fotografías tamaño infantil B/N",
+          note: "Vestimenta presentable.",
+          tip: "Sugerencia: Farmacia Guadalajara.",
         },
       ],
     },
   };
 
   // Función para obtener el icono SVG
-  function getIcon(type) {
-    const icons = {
-      document: `<svg class="w-5 h-5 text-red-600 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-      </svg>`,
-      camera: `<svg class="w-5 h-5 text-red-600 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
-      </svg>`,
-      card: `<svg class="w-5 h-5 text-red-600 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
-      </svg>`,
+  function getIcon(type: string): string {
+    const icons: Record<string, string> = {
+      document: `<svg class="w-6 h-6 text-red-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>`,
+      camera: `<svg class="w-6 h-6 text-red-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>`,
+      card: `<svg class="w-6 h-6 text-red-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>`,
+      id: `<svg class="w-6 h-6 text-red-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"></path></svg>`,
+      home: `<svg class="w-6 h-6 text-red-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>`,
     };
     return icons[type] || icons.document;
   }
 
   // Función para renderizar requisitos
-  function renderRequirements(levelKey) {
+  function renderRequirements(levelKey: string): void {
     const data = requirementsData[levelKey];
     const container = document.getElementById("requirements-content");
     const verticalText = document.getElementById("vertical-text");
+
+    if (!container || !verticalText) return;
 
     // Actualizar texto vertical
     verticalText.textContent = data.title;
 
     container.innerHTML = "";
 
-    data.requirements.forEach((requirement, index) => {
+    data.requirements.forEach((req, index) => {
       const item = document.createElement("div");
       item.className =
-        "flex items-start space-x-3 opacity-0 transform translate-y-4 transition-all duration-300";
-      item.style.transitionDelay = `${index * 100}ms`;
+        "flex items-start gap-4 opacity-0 border-b border-gray-100 pb-4 last:border-0";
+      item.style.transition = "all 0.5s ease-out";
+      item.style.transitionDelay = `${index * 50}ms`;
+      item.style.transform = "translateY(20px)";
+
+      let extraHtml = "";
+      if (req.note) {
+        extraHtml += `<p class="text-sm text-gray-600 mt-1 italic">${req.note}</p>`;
+      }
+      if (req.tip) {
+        extraHtml += `<p class="text-sm text-blue-700 mt-1 font-medium"><span class="bg-blue-50 px-1.5 py-0.5 rounded mr-1">Tip:</span> ${req.tip}</p>`;
+      }
+      if (req.link) {
+        extraHtml += `<a href="${req.link.url}" target="_blank" rel="noopener noreferrer" class="text-xs text-red-600 underline font-bold mt-2 inline-block hover:text-red-700 transition-colors">${req.link.text}</a>`;
+      }
 
       item.innerHTML = `
-      <div class="flex items-center space-x-2">
-        ${getIcon(requirement.icon)}
-        <span class="text-gray-800 leading-relaxed">${requirement.text}</span>
-      </div>
-    `;
+        <div class="mt-1">${getIcon(req.icon)}</div>
+        <div class="flex-1">
+          <p class="text-gray-900 font-bold text-lg leading-tight uppercase">${req.text}</p>
+          ${extraHtml}
+        </div>
+      `;
 
       container.appendChild(item);
 
       // Trigger animation
       setTimeout(() => {
-        item.classList.remove("opacity-0", "translate-y-4");
+        item.style.opacity = "1";
+        item.style.transform = "translateY(0)";
       }, 50);
     });
   }
 
   // Función para cambiar tab activo
-  // Función para cambiar tab activo (CORREGIDA)
-  function setActiveTab(activeTab) {
+  function setActiveTab(activeTab: string): void {
     const buttons = document.querySelectorAll(".tab-button");
 
     buttons.forEach((button) => {
-      const tabName = button.getAttribute("data-tab");
+      const tabName = (button as HTMLElement).getAttribute("data-tab");
       if (tabName === activeTab) {
-        // Usar className en lugar de class
         button.className =
-          "tab-button px-6 py-2 rounded-full font-medium transition-all duration-300 bg-blue-900 text-white transform scale-105";
+          "tab-button px-6 py-2 rounded-full font-medium transition-all duration-300 bg-blue-900 text-white transform scale-110 shadow-lg";
+        button.setAttribute("aria-selected", "true");
       } else {
-        // Usar className en lugar de class
         button.className =
-          "tab-button px-6 py-2 rounded-full font-medium transition-all duration-300 bg-gray-200 text-gray-700 hover:bg-gray-300";
+          "tab-button px-6 py-2 rounded-full font-medium transition-all duration-300 bg-gray-200 text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-900";
+        button.setAttribute("aria-selected", "false");
       }
     });
   }
@@ -432,35 +632,31 @@ import CallAction from "@/components/sections/shared/CallAction.astro";
   // Inicialización cuando el DOM esté listo
   document.addEventListener("DOMContentLoaded", function () {
     // Render inicial
-    renderRequirements("secundaria");
-    setActiveTab("secundaria");
+    renderRequirements("bachillerato");
+    setActiveTab("bachillerato");
 
     // Escucha de tabs
     const tabButtons = document.querySelectorAll(".tab-button");
     tabButtons.forEach((button) => {
       button.addEventListener("click", function () {
-        const tabName = this.getAttribute("data-tab");
-        setActiveTab(tabName);
-        renderRequirements(tabName);
+        const tabName = (this as HTMLElement).getAttribute("data-tab");
+        if (tabName) {
+          setActiveTab(tabName);
+          renderRequirements(tabName);
+        }
       });
     });
 
     // Lógica de descarga PDF
     const downloadButton = document.getElementById("download-button");
-    downloadButton.addEventListener("click", function () {
-      const activeTab = document.querySelector(".tab-button.bg-blue-900");
-      if (!activeTab) return;
-
-      const tab = activeTab.getAttribute("data-tab");
+    downloadButton?.addEventListener("click", function () {
+      const activeBtn = document.querySelector(
+        ".tab-button[aria-selected='true']",
+      );
+      const tab = activeBtn?.getAttribute("data-tab");
       let fileName = "";
 
       switch (tab) {
-        case "primaria":
-          fileName = "primaria_req.pdf";
-          break;
-        case "secundaria":
-          fileName = "Secundaria-requsitos.pdf";
-          break;
         case "bachillerato":
           fileName = "Bachillerato-requsitos.pdf";
           break;
@@ -472,17 +668,18 @@ import CallAction from "@/components/sections/shared/CallAction.astro";
           break;
       }
 
-      // Descargar archivo
-      const a = document.createElement("a");
-      a.href = `/requisitos/${fileName}`;
-      a.download = fileName;
-      a.click();
+      if (fileName) {
+        // Descargar archivo
+        const a = document.createElement("a");
+        a.href = `/requisitos/${fileName}`;
+        a.download = fileName;
+        a.click();
+      }
     });
   });
 </script>
 
 <style>
-  /* Estilos adicionales para mejorar la experiencia */
   .tab-button {
     user-select: none;
   }
@@ -491,12 +688,6 @@ import CallAction from "@/components/sections/shared/CallAction.astro";
     transform: scale(0.98);
   }
 
-  /* Animación para el texto vertical */
-  #vertical-text {
-    transition: all 0.5s ease-in-out;
-  }
-
-  /* Responsive adjustments */
   @media (max-width: 1024px) {
     #vertical-text {
       transform: rotate(0deg) !important;
@@ -506,37 +697,8 @@ import CallAction from "@/components/sections/shared/CallAction.astro";
     }
   }
 
-  /* Hover effects */
   .tab-button:hover:not(.bg-blue-900) {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Loading animation */
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .fade-in-up {
-    animation: fadeInUp 0.6s ease-out;
-  }
-</style>
-
-<style>
-  .admisiones-bg {
-    background-image: url("/src/assets/Imagenes/Heros/Admision.webp");
-  }
-
-  @media (max-width: 767px) {
-    .admisiones-bg {
-      background-image: url("/src/assets/Imagenes/Heros/Admision_mobile.webp");
-    }
   }
 </style>

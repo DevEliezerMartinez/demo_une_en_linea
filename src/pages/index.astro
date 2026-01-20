@@ -7,27 +7,28 @@ import Hero from "@/components/sections/home/Hero.astro";
 import Oferta from "@/components/sections/home/Oferta.astro";
 import ElegirUne from "@/components/sections/home/ElegirUne.astro";
 import ModeloEducativo from "@/components/sections/home/ModeloEducativo.astro";
-import Reseñas from "@/components/sections/home/Reseñas.astro";
+import Resenas from "@/components/sections/home/Reseñas.astro";
 import MidCTA from "@/components/sections/home/MidCTA.astro";
 import Beneficios from "@/components/sections/home/Beneficios.astro";
 import FAQ from "@/components/sections/home/FAQ.astro";
-import ContactSection from "@/components/sections/home/GeneralCTA.astro";
+import ContactSection from "@/components/sections/shared/GeneralCTA.astro";
 import ContactSidebar from "@/components/sections/home/ContactSidebar.astro";
 
-const pageTitle = "UNE - 30 Años creyendo en ti";
-const pageDescription = "Universidad UNE - 30 años de excelencia educativa";
+const pageTitle = "UNE en línea - Más conectados, más cerca";
+const pageDescription =
+  "Universidad UNE en línea - 30 años de excelencia educativa";
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <SplashScreen alwaysShow={true} />
- <!--  <Cookies /> -->
+  <SplashScreen alwaysShow={false} />
+  <!--  <Cookies /> -->
 
   <main id="mainContent" class="main-content">
     <Hero />
     <Oferta />
     <ElegirUne />
     <ModeloEducativo />
-    <Reseñas />
+    <Resenas />
     <MidCTA />
     <Beneficios />
     <FAQ />
