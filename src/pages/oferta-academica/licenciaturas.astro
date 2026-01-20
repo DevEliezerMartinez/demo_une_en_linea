@@ -1,5 +1,137 @@
 ---
-import Layout from "@layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/assets/Imagenes/Heros/Licenciaturas_gral.webp";
+import Hero_mobile from "@/assets/Imagenes/Heros/Licenciaturas_gral_mobile.webp";
+import InformativeCard from "@components/sections/oferta/CardInformativa.astro";
+import LogoCard from "@/assets/Logos/Licenciatura.webp";
+import ImagenCard from "@/assets/Imagenes/CardsNiveles/Nivel3.jpg";
+import Estadisticas from "@components/sections/oferta/Estadisticas.astro";
+import Carreras from "@components/sections/oferta/licenciaturas/Carreras.astro";
+import Requisitos from "@components/sections/oferta/Requisitos.astro";
+import Faqs from "@components/sections/shared/Faq.astro";
+import { obtenerDatos } from "@/helpers/faq.js";
+const infoActual = obtenerDatos("licenciatura");
+
+import { UserPlus, Phone } from "@lucide/astro";
+
+// Datos extraídos de la imagen
+const listaRequisitos = [
+  "Acta de nacimiento actualizada, no mayor a un año.",
+  "Certificado de bachillerato.",
+  "Comprobante de domicilio.",
+  "CURP.",
+  "8 fotografías tamaño infantil b/n, término mate.",
+  "Carta de validación de estudios de bachillerato, firmada, sellada y en hoja membretada de la institución de procedencia.",
+];
+const linkPdf = "/archivos/requisitos-2024.pdf"; // Ruta a tu PDF
 ---
 
-<Layout> LICENCIATURAS </Layout>
+<Layout
+  title="Licenciaturas en Línea UNE | Estudia y Trabaja"
+  description="Estudia tu Licenciatura 100% en línea o en modalidad ejecutiva. 45 carreras con validez oficial SEP y UDG. Horarios flexibles para gente que trabaja."
+>
+  <main class="min-h-screen">
+    {/* Hero Section */}
+    <section
+      class="relative min-h-[85vh] md:min-h-[65vh] bg-cover bg-center bg-no-repeat"
+    >
+      {/* Desktop Background */}
+      <div
+        class="absolute inset-0 hidden md:block bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${Hero.src})` }}
+      >
+        <div class="absolute inset-0 bg-black/40"></div>
+        {/* Overlay oscuro para legibilidad */}
+      </div>
+
+      {/* Mobile Background */}
+      <div
+        class="absolute inset-0 block md:hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${Hero_mobile.src})` }}
+      >
+        <div class="absolute inset-0 bg-black/40"></div>
+      </div>
+
+      {/* Hero Content */}
+      <div
+        class="relative z-10 container mx-auto px-4 h-full min-h-[85vh] md:min-h-[65vh] flex flex-col justify-center"
+      >
+        <div class="text-center text-white max-w-5xl mx-auto space-y-6">
+          {/* Main Title - Copy aspiracional */}
+          <h1
+            class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight"
+          >
+            Tu título universitario, <br />
+            <span class="text-rojo-une">a tu propio ritmo</span>
+          </h1>
+
+          {/* Description - Atacando el dolor de "falta de tiempo" */}
+          <p
+            class="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto font-light text-gray-100"
+          >
+            Únete a los profesionales que están transformando su futuro con
+            nuestras licenciaturas virtuales. Una plataforma moderna, docentes
+            expertos y un modelo diseñado para tu estilo de vida.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* Floating Card - Barra de Acción */}
+    <div class="relative -top-16 z-20 px-4">
+      <div
+        class="bg-azul-une rounded-xl px-8 py-8 shadow-2xl max-w-4xl mx-auto"
+      >
+        <div class="flex flex-col items-center justify-center gap-6">
+          <h3 class="text-white text-xl font-semibold text-center md:hidden">
+            ¿Listo para empezar?
+          </h3>
+
+          <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+            {/* CTA Primario - Visualmente destacado */}
+            <a
+              href="/contacto/formulario-inscripcion"
+              class="bg-white text-azul-une hover:bg-cyan-50 font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center gap-2 whitespace-nowrap w-full sm:w-auto"
+            >
+              ¡Quiero inscribirme!
+              <UserPlus size={22} />
+            </a>
+
+            {/* CTA Secundario - Ghost button para menor jerarquía visual */}
+            <a
+              href="/contacto/solicitarinformacion"
+              class="border-2 border-white text-white hover:bg-white/10 font-semibold py-4 px-8 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 whitespace-nowrap w-full sm:w-auto"
+            >
+              Hablar con un asesor
+              <Phone size={22} />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Sección Informativa - Ajustada a Virtual/Ejecutivo */}
+    <InformativeCard
+      studentImageSrc={ImagenCard.src}
+      title="LICENCIATURAS PARA EL MUNDO REAL"
+      description="Ya tienes la experiencia, ahora obtén el título. Nuestras licenciaturas están diseñadas para potenciar lo que ya sabes y darte las herramientas teóricas para liderar. Con el respaldo de la Universidad de Guadalajara y la SEP, nuestros programas virtuales te permiten estudiar desde donde estés, con la misma validez que un programa presencial."
+      features={[
+        { icon: "Laptop", label: "Plataforma 24/7" },
+        { icon: "School", label: "Validez (SEP/UDG)" },
+        { icon: "Clock", label: "Tú gestionas tus horarios" },
+        { icon: "Users", label: "Docentes activos en la industria" },
+      ]}
+    />
+
+    <Estadisticas />
+
+    {
+      /* Aquí es vital que el componente Carreras deje claro cuáles son online */
+    }
+    <Carreras />
+
+    <Requisitos requirements={listaRequisitos} pdfUrl={linkPdf} />
+
+    <Faqs faqs={infoActual} />
+  </main>
+</Layout>
