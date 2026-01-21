@@ -2,6 +2,7 @@
   "name": "une-enlinea",
   "type": "module",
   "version": "0.0.1",
+  "packageManager": "pnpm@10.24.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -9,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.12",
     "@lucide/astro": "^0.555.0",
     "@splidejs/splide": "^4.1.4",
     "@splidejs/splide-extension-auto-scroll": "^0.5.3",
