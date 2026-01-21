@@ -1,43 +1,87 @@
-# Astro Starter Kit: Minimal
+# 🎓 Universidad UNE En Línea
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+Este repositorio contiene el código fuente del sitio web de **Universidad UNE En Línea**, una aplicación web moderna y de alto rendimiento construida con [Astro](https://astro.build/).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Tecnologías Principales
 
-## 🚀 Project Structure
+El proyecto utiliza un stack tecnológico moderno enfocado en el rendimiento y la experiencia de usuario:
 
-Inside of your Astro project, you'll see the following folders and files:
+- **[Astro 5](https://astro.build/)**: Framework web para sitios orientados a contenido, optimizado para velocidad.
+- **[Tailwind CSS v4](https://tailwindcss.com/)**: Framework de utilidades para un diseño rápido y responsivo.
+- **[Splide.js](https://splidejs.com/)**: Carruseles y sliders ligeros y accesibles.
+- **[Lucide Icons](https://lucide.dev/)**: Iconos vectoriales limpios y consistentes.
+- **[tsParticles](https://particles.js.org/)**: Animaciones de partículas ligeras para fondos interactivos.
+
+## 📂 Estructura del Proyecto
+
+El proyecto sigue una estructura modular y organizada:
 
 ```text
 /
-├── public/
+├── public/             # Archivos estáticos (imágenes, favicon, robots.txt)
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/     # Componentes reutilizables de la UI
+│   │   ├── layout/     # Componentes estructurales (Header, Footer)
+│   │   └── sections/   # Secciones de página (Hero, Features, etc.)
+│   ├── pages/          # Rutas de la aplicación (basado en archivos)
+│   │   ├── acerca/     # Páginas informativas
+│   │   ├── oferta-academica/ # Catálogo de programas educativos
+│   │   └── index.astro # Página de inicio
+│   └── assets/         # Recursos como imágenes, fuentes e iconos
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### 📍 Alias de Importación
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Para facilitar el desarrollo y mantener el código limpio, se han configurado los siguientes alias:
 
-Any static assets, like images, can be placed in the `public/` directory.
+- `@/`: `src/`
+- `@components`: `src/components`
+- `@layout`: `src/components/layout`
+- `@sections`: `src/components/sections`
+- `@assets`: `src/assets`
+- `@images`: `src/assets/images`
+- `@logos`: `src/assets/Logos`
 
-## 🧞 Commands
+## 🛠️ Comandos Disponibles
 
-All commands are run from the root of the project, from a terminal:
+Todos los comandos se ejecutan desde la raíz del proyecto. Se recomienda usar `npm` o `pnpm`.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+| Comando             | Acción                                                                                         |
+| :------------------ | :--------------------------------------------------------------------------------------------- |
+| `npm run dev`       | Inicia el servidor de desarrollo local en `localhost:4321`. Incluye recarga en caliente (HMR). |
+| `npm run build`     | Compila el sitio para producción en el directorio `./dist/`.                                   |
+| `npm run preview`   | Previsualiza la versión compilada localmente antes de desplegar.                               |
+| `npm run astro ...` | Ejecuta comandos CLI como `astro add`, `astro check`.                                          |
 
-## 👀 Want to learn more?
+## 🏁 Comenzando
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+1.  **Clonar el repositorio:**
+
+    ```bash
+    git clone <url-del-repo>
+    cd une-enlinea
+    ```
+
+2.  **Instalar dependencias:**
+
+    ```bash
+    npm install
+    # o
+    pnpm install
+    ```
+
+3.  **Iniciar servidor de desarrollo:**
+    ```bash
+    npm run dev
+    ```
+
+## Notas de Desarrollo
+
+- **Imágenes**: Usa el componente `<Image />` de Astro siempre que sea posible para la optimización automática.
+- **Estilos**: Preferir clases de Tailwind CSS sobre CSS personalizado.
+- **Componentes**: Mantener los componentes pequeños y enfocados en una sola responsabilidad.
+
+---
+
+Desarrollado con ❤️ para Universidad UNE.
