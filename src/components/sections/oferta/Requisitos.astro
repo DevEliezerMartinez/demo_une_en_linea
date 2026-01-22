@@ -1,6 +1,23 @@
 ---
+import { Image } from "astro:assets";
+import Logo from "@/assets/Logos/Une_azul.png";
+
+// Definimos la estructura del objeto de requisito de forma flexible
+export interface Requirement {
+  label: string; // Nombre del documento
+  copies?: number; // Número de copias
+  note?: string; // Nota extra
+  link?: string; // Enlace opcional
+  nombre?: string;
+  nota?: string;
+  enlace?: string;
+}
+
+// Permitimos strings directos para casos simples
+export type RequirementInput = Requirement | string;
+
 interface Props {
-  requirements: string[];
+  requirements: RequirementInput[];
   pdfUrl: string;
   title?: string;
 }
@@ -11,8 +28,19 @@ const {
   title = "Requisitos de inscripción",
 } = Astro.props;
 
-import { Image } from "astro:assets";
-import Logo from "@/assets/Logos/Une_azul.png";
+// Normalizamos los requisitos para el template
+const normalizedRequirements = requirements.map((req) => {
+  if (typeof req === "string") {
+    return { label: req };
+  }
+  // Unificamos las propiedades (prioridad a las de español si existen)
+  return {
+    label: req.label || req.nombre || "",
+    note: req.note || req.nota,
+    link: req.link || req.enlace,
+    copies: req.copies,
+  };
+});
 ---
 
 <section
@@ -20,7 +48,7 @@ import Logo from "@/assets/Logos/Une_azul.png";
   id="requisitos"
 >
   <div
-    class="absolute top-0 right-0 w-64 h-64 rounded-full -mr-32 -mt-32 blur-3xl"
+    class="absolute top-0 right-0 w-64 h-64 rounded-full -mr-32 -mt-32 blur-3xl bg-white/10"
   >
   </div>
 
@@ -33,7 +61,7 @@ import Logo from "@/assets/Logos/Une_azul.png";
           {title}
         </h2>
         <p class="text-blue-100/80 mt-2 text-lg">
-          Asegúrate de contar con la siguiente documentación original.
+          Asegúrate de contar con la siguiente documentación completa.
         </p>
       </div>
     </div>
@@ -52,11 +80,11 @@ import Logo from "@/assets/Logos/Une_azul.png";
       </div>
 
       <div class="relative z-10 p-8 md:p-12">
-        <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 mb-12">
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 mb-12">
           {
-            requirements.map((req) => (
-              <li class="group flex items-start gap-4 p-3 rounded-xl transition-colors hover:bg-gray-50">
-                <div class="flex-shrink-0 mt-1">
+            normalizedRequirements.map((req) => (
+              <li class="group flex items-start gap-4 p-4 rounded-xl transition-all hover:bg-gray-50 border border-transparent hover:border-gray-100">
+                <div class="shrink-0 mt-1">
                   <div class="bg-green-100 text-green-600 rounded-full p-1 group-hover:bg-green-500 group-hover:text-white transition-colors">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -72,9 +100,38 @@ import Logo from "@/assets/Logos/Une_azul.png";
                     </svg>
                   </div>
                 </div>
-                <span class="text-gray-700 text-lg font-medium leading-tight">
-                  {req}
-                </span>
+
+                <div class="flex flex-col gap-1 w-full">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-gray-800 text-lg font-semibold leading-tight">
+                      {req.link ? (
+                        <a
+                          href={req.link}
+                          target="_blank"
+                          class="hover:text-azul-une underline decoration-dotted underline-offset-4"
+                        >
+                          {req.label}
+                        </a>
+                      ) : (
+                        req.label
+                      )}
+                    </span>
+
+                    {/* Badge Copias - Moved to the right */}
+                    {req.copies && req.copies > 0 && (
+                      <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-azul-une text-white border border-gray-200 shadow-sm whitespace-nowrap">
+                        {req.copies} Copias
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Notas adicionales */}
+                  {req.note && (
+                    <p class="text-sm text-gray-500 italic leading-snug">
+                      {req.note}
+                    </p>
+                  )}
+                </div>
               </li>
             ))
           }
@@ -84,12 +141,14 @@ import Logo from "@/assets/Logos/Une_azul.png";
           class="pt-8 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left"
         >
           <div class="max-w-sm">
-            <p class="text-gray-500 text-sm">
+            <p class="text-gray-500">
               ¿Tienes dudas sobre algún documento? <br />
-              <span
-                class="font-semibold text-azul-une cursor-pointer hover:underline"
-                >Contacta a un asesor escolar.</span
+              <a
+                href="/contacto/solicitarinformacion"
+                class="text-azul-une cursor-pointer hover:underline"
               >
+                Contacta a un asesor escolar.
+              </a>
             </p>
           </div>
 

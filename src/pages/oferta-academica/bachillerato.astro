@@ -1,8 +1,8 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { Image } from "astro:assets"; // Importante para optimizar imágenes en Astro
-import HeroImg from "@/assets/Imagenes/Heros/BACHILLERATO.jpg"; // Usando tu variable
-import BachilleratoImg from "@/assets/Imagenes/CardOferta/Bachillerato.webp"; // Usando tu variable
+import HeroImg from "@/assets/Imagenes/CardsNiveles/bachillerato_en_linea.webp"; // Usando tu variable
+import BachilleratoImg from "@/assets/Imagenes/CardsNiveles/bachillerato_en_linea-2.webp"; // Usando tu variable
 import Proposito_competencias from "@/components/sections/oferta/Propósito-competencias.astro";
 import Detalles_Formacion from "@/components/sections/oferta/Detalles-Formación.astro";
 import Requisitos from "@/components/sections/oferta/Requisitos.astro";
@@ -14,17 +14,68 @@ const infoActual = obtenerDatos("bachillerato");
 import GeneralCTA from "@/components/sections/shared/GeneralCTA.astro";
 import { ArrowRight } from "@lucide/astro";
 
-// Datos extraídos de la imagen
+// Lista estructurada de requisitos para inscripción
 const listaRequisitos = [
-  "Acta de nacimiento actualizada, no mayor a un año.",
-  "Certificado de bachillerato.",
-  "Comprobante de domicilio.",
-  "CURP.",
-  "8 fotografías tamaño infantil b/n, término mate.",
-  "Carta de validación de estudios de bachillerato, firmada, sellada y en hoja membretada de la institución de procedencia.",
+  {
+    id: 1,
+    label: "Acta de nacimiento",
+    copies: 3,
+    original: true,
+    note: "Fecha de expedición no mayor a un año. En excelente estado. Puede descargarse en línea, imprimirse a color y en hoja opalina.",
+    link: "https://actasenlinea.jalisco.gob.mx/actasescolares/Nacimiento.do",
+  },
+  {
+    id: 2,
+    label: "Certificado de secundaria",
+    copies: 3,
+    original: true,
+    note: "Si fue expedido en otro estado distinto a Jalisco, debe estar legalizado, salvo que incluya la leyenda de validez nacional.",
+  },
+  {
+    id: 3,
+    label: "Carta de validación del certificado de secundaria",
+    copies: 3,
+    original: true,
+    note: "Documento obligatorio. Sin esta carta, el certificado no es válido y no se acepta para la inscripción ante secretaría. Debe estar dirigida a quien corresponda o a la Mtra. Fanny Guadalupe Valdivia Márquez, Directora de Incorporación y Servicios Escolares SICyT. Debe presentarse en hoja membretada e incluir folio del certificado, nombre del alumno y fecha de expedición.",
+  },
+  {
+    id: 4,
+    label: "CURP",
+    copies: 3,
+    original: false,
+    note: "Copia legible.",
+  },
+  {
+    id: 5,
+    label: "Identificación oficial vigente con fotografía",
+    copies: 3,
+    original: false,
+    note: "Debe estar vigente.",
+  },
+  {
+    id: 6,
+    label: "Comprobante de domicilio",
+    copies: 3,
+    original: false,
+    note: "Comprobante reciente.",
+  },
+  {
+    id: 7,
+    label: "Fotografías tamaño infantil blanco y negro",
+    quantity: 8,
+    original: true,
+    note: "Vestimenta presentable. Pueden ser de Farmacia Guadalajara.",
+  },
+  {
+    id: 8,
+    label: "Fotografías tamaño credencial a color",
+    quantity: 2,
+    original: true,
+    note: "Vestimenta presentable. Pueden ser de Farmacia Guadalajara.",
+  },
 ];
 
-const linkPdf = "/archivos/requisitos-2024.pdf"; // Ruta a tu PDF
+const linkPdf = "/requisitos/bachillerato.pdf"; // Ruta a tu PDF
 ---
 
 <Layout
@@ -51,7 +102,7 @@ const linkPdf = "/archivos/requisitos-2024.pdf"; // Ruta a tu PDF
             </p>
           </div>
 
-          <div class="flex flex-wrap gap-4 text-sm font-bold text-gray-700">
+          <div class="flex flex-wrap gap-4 text-sm text-gray-700">
             <div
               class="flex items-center gap-1 bg-gray-100 px-3 py-1 rounded-lg"
             >

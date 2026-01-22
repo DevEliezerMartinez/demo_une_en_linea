@@ -1,58 +1,40 @@
 ---
 import { Image } from "astro:assets";
-import flagImg from "@/assets/Imagenes/Decorativos/Flag.png";
-import cardImg from "@/assets/Imagenes/Decorativos/Reseña2.png";
-import sepLogo from "@/assets/Logos/SEP.png";
-import rvoeLogo from "@/assets/Logos/RVOE.png";
+import economicaAdministrativa from "@/assets/Imagenes/cards_area_estudios/económico-administrativa.webp";
+import cienciasSociales from "@/assets/Imagenes/cards_area_estudios/ciencias-sociales.webp";
+import educacion from "@/assets/Imagenes/cards_area_estudios/educación.webp";
+import disenoArtes from "@/assets/Imagenes/cards_area_estudios/diseño-artes.webp";
+import ingenieria from "@/assets/Imagenes/cards_area_estudios/ingenieria.webp";
 
 // Datos actualizados
 const areasAcademicas = [
   {
     nombre: "Área Económico-Administrativa y Negocios",
     descripcion: "Lidera con visión estratégica global.",
-    imagen: cardImg,
+    imagen: economicaAdministrativa,
   },
   {
     nombre: "Área de Ciencias Sociales y Humanidades",
     descripcion: "Analiza y transforma el entorno social.",
-    imagen: cardImg,
+    imagen: cienciasSociales,
   },
   {
     nombre: "Área de Educación",
     descripcion: "Innova en la enseñanza y el aprendizaje.",
-    imagen: cardImg,
+    imagen: educacion,
   },
   {
     nombre: "Área de Diseño y Artes Visuales",
     descripcion: "Crea y comunica visualmente.",
-    imagen: cardImg,
+    imagen: disenoArtes,
   },
   {
     nombre: "Área de Ingeniería y Tecnología",
     descripcion: "Optimiza sistemas y productividad.",
-    imagen: cardImg,
+    imagen: ingenieria,
   },
 ];
 ---
-
-<section class="py-6 lg:py-0">
-  <div id="oferta" class="flex flex-col lg:flex-row items-center">
-    <Image
-      src={flagImg}
-      alt="UNE En Línea"
-      class="w-full lg:w-1/2 object-contain"
-    />
-    <section class="flex flex-col px-6 mt-12 md:mt-0 w-full md:px-20">
-      <h3 class="text-3xl uppercase">Oferta Académica</h3>
-      <p class="text-lg font-light">Encuentra el programa perfecto para ti</p>
-      <strong class="text-xl font-bold mt-8">Avalado por:</strong>
-      <div class="flex items-center gap-4">
-        <Image src={sepLogo} alt="SEP" class="object-contain" />
-        <Image src={rvoeLogo} alt="RVOE" class="object-contain" />
-      </div>
-    </section>
-  </div>
-</section>
 
 <section id="custom-carousel" class="py-12 bg-white relative group/carousel">
   <div class="flex flex-col md:flex-row justify-between items-center mb-8 px-6">

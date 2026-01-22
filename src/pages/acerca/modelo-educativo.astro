@@ -1,12 +1,13 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import CallAction from "@/components/sections/shared/CallAction.astro";
-import Hero from "@/assets/Imagenes/Heros/OfertaEducativa.png";
-import HeroMobile from "@/assets/Imagenes/Heros/OfertaEducativa.png";
+import CallAction from "@/components/sections/shared/GeneralCTA.astro";
+import Hero from "@/assets/Imagenes/heros/modelo_educativo_desktop.webp";
+import HeroMobile from "@/assets/Imagenes/heros/modelo_educativo_mobile.webp";
 import { Image } from "astro:assets";
-import BeneficiosModelosImg from "@/assets/Imagenes/Decorativos/BeneficiosModelos.png";
+import BeneficiosModelosImg from "@/assets/Imagenes/BeneficiosModelos.png";
+import estudiantes_de_linea from "@/assets/Imagenes/estudiantes_de_linea.webp";
 import { Search } from "@lucide/astro";
-import ComoAprenderImg from '@/assets/Imagenes/Decorativos/ComoAprender.png';
+import plataforma from '@/assets/Imagenes/Heros/plataforma_educativa_mobile.webp';
 const metodologias = [
   {
     numero: "01",
@@ -166,7 +167,7 @@ const metodologias = [
           <!-- Imagen -->
           <div class="rounded-2xl overflow-hidden shadow-xl max-w-md lg:max-w-none">
             <Image 
-              src={ComoAprenderImg}
+              src={plataforma}
               alt="Estudiante aprendiendo en línea"
               class="w-full h-auto object-cover aspect-video lg:aspect-[4/3]"
               loading="lazy"
@@ -209,7 +210,7 @@ const metodologias = [
           <div class="w-full lg:w-1/2">
             <div class="relative">
               <Image
-                src={ComoAprenderImg}
+                src={estudiantes_de_linea}
                 alt="Modelo educativo en línea UNE"
                 class="w-full h-auto rounded-2xl"
                 loading="lazy"

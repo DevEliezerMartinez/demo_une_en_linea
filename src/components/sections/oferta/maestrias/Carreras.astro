@@ -1,5 +1,5 @@
 ---
-import { ofertaEducativa, buscarOfertas } from "@/helpers/oferta_educativa";
+import { buscarOfertas } from "@/helpers/oferta_educativa";
 import { getImageUrl } from "@/helpers/imageManager.js";
 
 // Filtramos solo maestrías
@@ -103,8 +103,8 @@ const maestrias = buscarOfertas({ nivel: "maestria" }).map((oferta) => {
     <p class="text-gray-500 text-sm">
       ¿Buscas otro nivel educativo?
       <a
-        href="/oferta/licenciaturas"
-        class="text-blue-600 font-bold hover:underline ml-1"
+        href="/oferta-academica/licenciaturas"
+        class="text-blue-600 font-medium hover:underline ml-1"
         >Ver licenciaturas</a
       >
     </p>

@@ -2,8 +2,8 @@
 import { Image } from "astro:assets";
 import LogoUNE from "@/assets/Logos/une-enlinea.png";
 import Layout from "@/layouts/Layout.astro";
-import AdmisionHero from "@/assets/Imagenes/Heros/Admision.webp";
-import AdmisionHeroMobile from "@/assets/Imagenes/Heros/Admision_mobile.webp";
+import AdmisionHero from "@/assets/Imagenes/Heros/admisiones_desktop.webp";
+import AdmisionHeroMobile from "@/assets/Imagenes/Heros/admisiones_mobile.webp";
 import { FileDown } from "@lucide/astro";
 import ContactSection from "@/components/sections/shared/GeneralCTA.astro";
 ---
@@ -658,13 +658,13 @@ import ContactSection from "@/components/sections/shared/GeneralCTA.astro";
 
       switch (tab) {
         case "bachillerato":
-          fileName = "Bachillerato-requsitos.pdf";
+          fileName = "bachillerato.pdf";
           break;
         case "licenciatura":
-          fileName = "Licenciatura-requsitos.pdf";
+          fileName = "licenciatura.pdf";
           break;
         case "maestria":
-          fileName = "Posgrados.pdf";
+          fileName = "maestrias.pdf";
           break;
       }
 

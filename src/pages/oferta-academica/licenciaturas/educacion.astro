@@ -1,30 +1,80 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { Image } from "astro:assets"; // Importante para optimizar imágenes en Astro
-import HeroImg from "@/assets/Imagenes/Heros/BACHILLERATO.jpg"; // Usando tu variable
-import BachilleratoImg from "@/assets/Imagenes/CardOferta/Bachillerato.webp"; // Usando tu variable
+import { Image } from "astro:assets";
+import HeroImg from "@/assets/Imagenes/cards_licenciaturas/administracion-13.webp";
+import BachilleratoImg from "@/assets/Imagenes/cards_licenciaturas/administracion-14.webp";
 import Proposito_competencias from "@/components/sections/oferta/Propósito-competencias.astro";
 import Detalles_Formacion from "@/components/sections/oferta/Detalles-Formación.astro";
 import Requisitos from "@/components/sections/oferta/Requisitos.astro";
 import Plan_estudios from "@/components/sections/oferta/Plan-estudios.astro";
-import { plan_bachillerato } from "@/helpers/planes_estudio.js";
+import { obtenerPlanEstudios } from "@/helpers/planes_estudio.js";
+const plan = obtenerPlanEstudios("administracion");
 import Faq from "@/components/sections/shared/Faq.astro";
 import { obtenerDatos } from "@/helpers/faq.js";
-const infoActual = obtenerDatos("bachillerato");
+const infoActual = obtenerDatos("administracion");
 import GeneralCTA from "@/components/sections/shared/GeneralCTA.astro";
 import { ArrowRight } from "@lucide/astro";
 
-// Datos extraídos de la imagen
 const listaRequisitos = [
-  "Acta de nacimiento actualizada, no mayor a un año.",
-  "Certificado de bachillerato.",
-  "Comprobante de domicilio.",
-  "CURP.",
-  "8 fotografías tamaño infantil b/n, término mate.",
-  "Carta de validación de estudios de bachillerato, firmada, sellada y en hoja membretada de la institución de procedencia.",
+  {
+    id: 1,
+    label: "Acta de Nacimiento",
+    copies: 3,
+    original: true,
+    note: "Con fecha de expedición no mayor a un año y en excelente estado. Puede descargarse gratuitamente por internet, imprimirse a color y en hoja opalina para presentarse como original.",
+    link: "https://actasenlinea.jalisco.gob.mx/actasescolares/Nacimiento.do",
+  },
+  {
+    id: 2,
+    label: "Certificado de Bachillerato",
+    copies: 3,
+    original: true,
+    note: "En caso de que el certificado haya sido expedido en un estado distinto a Jalisco, deberá estar legalizado por la autoridad correspondiente. No se requiere legalización si el documento contiene la leyenda: “ESTE DOCUMENTO ES VÁLIDO EN LOS ESTADOS UNIDOS MEXICANOS Y NO REQUIERE TRÁMITES ADICIONALES DE LEGALIZACIÓN”.",
+    link: undefined,
+  },
+  {
+    id: 3,
+    label: "Carta de validación de Certificado de Bachillerato",
+    copies: 3,
+    original: true,
+    note: "Documento obligatorio. Sin esta carta, el certificado no es válido y no se acepta para la inscripción ante secretaría. Debe estar dirigida a quien corresponda o a la Mtra. Fanny Guadalupe Valdivia Márquez, Directora de Incorporación y Servicios Escolares SICyT. Debe presentarse en hoja membretada e incluir folio del certificado, nombre del alumno y fecha de expedición.",
+    link: undefined,
+  },
+  {
+    id: 4,
+    label: "CURP",
+    copies: 3,
+    original: false,
+    note: "Presentar tres copias legibles.",
+    link: undefined,
+  },
+  {
+    id: 5,
+    label: "Identificación Oficial vigente con fotografía",
+    copies: 3,
+    original: false,
+    note: "Debe encontrarse vigente y ser claramente legible.",
+    link: undefined,
+  },
+  {
+    id: 6,
+    label: "Comprobante de Domicilio",
+    copies: 3,
+    original: false,
+    note: "Comprobante reciente.",
+    link: undefined,
+  },
+  {
+    id: 7,
+    label: "Fotografías tamaño infantil",
+    copies: 0,
+    original: false,
+    note: "8 fotografías tamaño infantil en blanco y negro, con vestimenta presentable. Pueden ser de Farmacias Guadalajara.",
+    link: undefined,
+  },
 ];
 
-const linkPdf = "/archivos/requisitos-2024.pdf"; // Ruta a tu PDF
+const linkPdf = "/requisitos/licenciatura.pdf";
 ---
 
 <Layout
@@ -51,7 +101,7 @@ const linkPdf = "/archivos/requisitos-2024.pdf"; // Ruta a tu PDF
             </p>
           </div>
 
-          <div class="flex flex-wrap gap-4 text-sm font-bold text-gray-700">
+          <div class="flex flex-wrap gap-4 text-sm font-medium text-gray-700">
             <div
               class="flex items-center gap-1 bg-gray-100 px-3 py-1 rounded-lg"
             >
@@ -105,7 +155,6 @@ const linkPdf = "/archivos/requisitos-2024.pdf"; // Ruta a tu PDF
       </div>
     </section>
 
-    {/* Aquí corregimos el error de "Administrador" y el texto denso */}
     <Proposito_competencias
       titulo="Prepárate para el mundo real"
       descripcion="Olvídate de la memorización vacía. Nuestro enfoque te da herramientas prácticas para desenvolverte con seguridad en la vida laboral, social y digital actual. No solo obtienes un papel, desarrollas tu criterio propio."
@@ -137,7 +186,7 @@ const linkPdf = "/archivos/requisitos-2024.pdf"; // Ruta a tu PDF
 
     <Requisitos requirements={listaRequisitos} pdfUrl={linkPdf} />
 
-    <Plan_estudios blocks={plan_bachillerato} />
+    <Plan_estudios blocks={plan} />
 
     <Faq faqs={infoActual} />
 

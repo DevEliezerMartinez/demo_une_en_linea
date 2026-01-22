@@ -5,11 +5,12 @@ import { ArrowRight } from "lucide-astro";
 
 // Importar imágenes para optimización
 import heroDesktop from "@/assets/Imagenes/Heros/Home_desktop.jpg";
-import ofertaImg from "@/assets/Imagenes/Heros/Admision.webp";
-import historiaDesktop from "@/assets/Imagenes/Heros/historia.webp";
-import historiaMobile from "@/assets/Imagenes/Heros/Admision_mobile.webp";
-import becasDesktop from "@/assets/Imagenes/Heros/Becas.webp";
-import becasMobile from "@/assets/Imagenes/Heros/becas_mob.webp";
+import ofertaDesktop from "@/assets/Imagenes/Heros/oferta_academica_desktop.webp";
+import ofertaMobile from "@/assets/Imagenes/Heros/oferta_academica_mobile.webp";
+import plataformaDesktop from "@/assets/Imagenes/Heros/plataforma_educativa_desktop.webp";
+import plataformaMobile from "@/assets/Imagenes/Heros/plataforma_educativa_mobile.webp";
+import becasDesktop from "@/assets/Imagenes/Heros/becas_desktop.webp";
+import becasMobile from "@/assets/Imagenes/Heros/becas_mobile.webp";
 
 const slides = [
   {
@@ -23,8 +24,8 @@ const slides = [
   {
     id: 1,
     title: "OFERTA ACADÉMICA",
-    image: ofertaImg,
-    imageMobile: ofertaImg,
+    image: ofertaDesktop,
+    imageMobile: ofertaMobile,
     subtitle:
       "Descubre nuestros programas educativos diseñados para tu éxito profesional",
     cta: { text: "Explorar oferta", href: "/oferta-academica" },
@@ -34,8 +35,8 @@ const slides = [
   {
     id: 2,
     title: "NUESTRA PLATAFORMA",
-    image: historiaDesktop,
-    imageMobile: historiaMobile,
+    image: plataformaDesktop,
+    imageMobile: plataformaMobile,
     subtitle:
       "Descubre nuestra plataforma educativa diseñada para tu éxito profesional",
     cta: { text: "Conocer más de UNE", href: "/acerca/historia" },

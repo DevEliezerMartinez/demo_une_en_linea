@@ -2,7 +2,7 @@
 // ContactSection.astro
 import { ChevronDown } from "@lucide/astro";
 import { Image } from "astro:assets";
-import Instalaciones from "@/assets/Imagenes/Middles/Sillas.webp";
+import Instalaciones from "@/assets/Imagenes/Sillas.webp";
 export interface Props {
   title?: string;
   subtitle?: string;
@@ -463,16 +463,30 @@ const niveles = [
       }
     };
 
-    // Show programa field when plantel is selected
+    // Show/Hide programa field based on selection
     plantelSelect.addEventListener("change", () => {
-      if (plantelSelect.value) {
+      const selectedValue = plantelSelect.value;
+      const programaInput = form.querySelector(
+        '[name="programa_interes"]'
+      ) as HTMLInputElement;
+
+      if (selectedValue && selectedValue !== "Bachillerato") {
         programaWrapper.classList.remove("hidden");
         setTimeout(() => {
+          programaWrapper.classList.remove("opacity-0", "translate-y-2");
           programaWrapper.classList.add("opacity-100", "translate-y-0");
         }, 10);
-        (
-          form.querySelector('[name="programa_interes"]') as HTMLInputElement
-        ).required = true;
+        programaInput.required = true;
+      } else {
+        programaWrapper.classList.add("opacity-0", "translate-y-2");
+        programaWrapper.classList.remove("opacity-100", "translate-y-0");
+        setTimeout(() => {
+          if (plantelSelect.value === "Bachillerato" || !plantelSelect.value) {
+            programaWrapper.classList.add("hidden");
+          }
+        }, 300);
+        programaInput.required = false;
+        programaInput.value = "";
       }
     });
 

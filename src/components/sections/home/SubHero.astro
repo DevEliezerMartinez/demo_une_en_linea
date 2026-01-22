@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+import flagImg from "@/assets/Imagenes/Flag.png";
+import sepLogo from "@/assets/Logos/SEP.png";
+import rvoeLogo from "@/assets/Logos/RVOE.png";
+---
+
+<section class="py-6 lg:py-0">
+  <div id="oferta" class="flex flex-col lg:flex-row items-center">
+    <div class="w-full lg:w-1/2 relative group">
+      <Image
+        src={flagImg}
+        alt="UNE En Línea - Oferta Académica"
+        class="w-full object-contain transition-transform duration-500 hover:scale-105"
+      />
+    </div>
+
+    <section class="flex flex-col px-6 mt-12 md:mt-0 w-full md:px-20 space-y-6">
+      <div class="space-y-2">
+        <h2
+          class="text-4xl md:text-5xl uppercase font-bold bg-gradient-to-r from-blue-600 to-azul-une bg-clip-text text-transparent"
+        >
+          Oferta Académica
+        </h2>
+        <p class="text-lg md:text-xl font-light text-gray-600">
+          Encuentra el programa perfecto para ti
+        </p>
+        <div class="w-20 h-1 bg-rojo-une rounded-full mt-3"></div>
+      </div>
+
+      <div class="mt-8 space-y-4">
+        <strong class="text-xl font-bold text-gray-800 flex items-center gap-2">
+          <svg
+            class="w-5 h-5 text-green-500"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clip-rule="evenodd"></path>
+          </svg>
+          Avalado por:
+        </strong>
+        <div class="flex items-center gap-6">
+          <Image
+            src={sepLogo}
+            alt="Secretaría de Educación Pública"
+            class="object-contain transition-transform duration-300 hover:scale-110"
+          />
+          <Image
+            src={rvoeLogo}
+            alt="Reconocimiento de Validez Oficial de Estudios"
+            class="object-contain transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+      </div>
+    </section>
+  </div>
+</section>

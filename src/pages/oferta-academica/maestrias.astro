@@ -1,28 +1,95 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Hero from "@/assets/Imagenes/Heros/Licenciaturas_gral.webp";
-import Hero_mobile from "@/assets/Imagenes/Heros/Licenciaturas_gral_mobile.webp";
+import Hero from "@/assets/Imagenes/Heros/maestrias_desktop.webp";
+import Hero_mobile from "@/assets/Imagenes/Heros/maestrias_mobile.webp";
 import InformativeCard from "@components/sections/oferta/CardInformativa.astro";
-import ImagenCard from "@/assets/Imagenes/CardsNiveles/Nivel3.jpg";
+import ImagenCard from "@/assets/Imagenes/CardsNiveles/maestrias_en_linea.webp";
 import Estadisticas from "@components/sections/oferta/Estadisticas.astro";
 import Carreras from "@components/sections/oferta/maestrias/Carreras.astro";
 import Requisitos from "@components/sections/oferta/Requisitos.astro";
 import Faqs from "@components/sections/shared/Faq.astro";
 import { obtenerDatos } from "@/helpers/faq.js";
-const infoActual = obtenerDatos("licenciatura");
+const infoActual = obtenerDatos("maestria");
 
 import { UserPlus, Phone } from "@lucide/astro";
 
 // Datos extraídos de la imagen
 const listaRequisitos = [
-  "Acta de nacimiento actualizada, no mayor a un año.",
-  "Certificado de bachillerato.",
-  "Comprobante de domicilio.",
-  "CURP.",
-  "8 fotografías tamaño infantil b/n, término mate.",
-  "Carta de validación de estudios de bachillerato, firmada, sellada y en hoja membretada de la institución de procedencia.",
+  {
+    id: 1,
+    label: "Acta de Nacimiento",
+    copies: 3,
+    original: true,
+    note: "Con fecha de expedición no mayor a un año y en excelente estado. Puede descargarse gratuitamente por internet, imprimirse a color y en hoja opalina para presentarse como original.",
+    link: "https://actasenlinea.jalisco.gob.mx/actasescolares/Nacimiento.do",
+  },
+  {
+    id: 2,
+    label: "Certificado de Licenciatura",
+    copies: 3,
+    original: true,
+    note: "En caso de que el certificado haya sido expedido en un estado distinto a Jalisco, deberá estar legalizado por la autoridad correspondiente. No se requiere legalización si el documento contiene la leyenda: “ESTE DOCUMENTO ES VÁLIDO EN LOS ESTADOS UNIDOS MEXICANOS Y NO REQUIERE TRÁMITES ADICIONALES DE LEGALIZACIÓN”.",
+    link: null,
+  },
+  {
+    id: 3,
+    label: "Carta de validación de Certificado de Licenciatura",
+    copies: 3,
+    original: true,
+    note: "Documento obligatorio. Sin esta carta, el certificado no es válido y no se acepta para la inscripción ante secretaría. Debe estar dirigida a quien corresponda o a la Mtra. Fanny Guadalupe Valdivia Márquez, Directora de Incorporación y Servicios Escolares SICyT. Debe presentarse en hoja membretada e incluir folio del certificado, nombre del alumno y fecha de expedición.",
+    link: null,
+  },
+  {
+    id: 4,
+    label: "Título Profesional",
+    copies: 3,
+    original: false,
+    note: "Presentar tres copias del título.",
+    link: null,
+  },
+  {
+    id: 5,
+    label: "Cédula Profesional",
+    copies: 3,
+    original: false,
+    note: "Presentar tres copias legibles.",
+    link: null,
+  },
+  {
+    id: 6,
+    label: "Identificación Oficial vigente con fotografía",
+    copies: 3,
+    original: false,
+    note: "Debe encontrarse vigente y ser claramente legible.",
+    link: null,
+  },
+  {
+    id: 7,
+    label: "Identificación Oficial vigente con fotografía",
+    copies: 3,
+    original: false,
+    note: "Debe encontrarse vigente y ser claramente legible.",
+    link: null,
+  },
+  {
+    id: 8,
+    label: "Comprobante de Domicilio",
+    copies: 3,
+    original: false,
+    note: "Comprobante reciente.",
+    link: null,
+  },
+  {
+    id: 9,
+    label: "Fotografías tamaño infantil",
+    copies: 0,
+    original: false,
+    note: "8 fotografías tamaño infantil en blanco y negro, con vestimenta presentable. Pueden ser de Farmacias Guadalajara.",
+    link: null,
+  },
 ];
-const linkPdf = "/archivos/requisitos-2024.pdf"; // Ruta a tu PDF
+
+const linkPdf = "/requisitos/maestrias.pdf"; // Ruta a tu PDF
 ---
 
 <Layout
