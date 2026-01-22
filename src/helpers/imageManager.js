@@ -7,20 +7,12 @@
 
 const imageGlobs = {
   licenciaturas: import.meta.glob(
-    "/src/assets/Imagenes/CardsLicenciaturas/*.webp",
-    { eager: true },
+    "/src/assets/Imagenes/cards_licenciaturas/*.webp",
+    {
+      eager: true,
+    },
   ),
-  maestrias: import.meta.glob("/src/assets/Imagenes/CardsMaestrias/*.webp", {
-    eager: true,
-  }),
-  cursos: import.meta.glob("/src/assets/Imagenes/CardsCursos/*.webp", {
-    eager: true,
-  }),
-  especialidades: import.meta.glob(
-    "/src/assets/Imagenes/CardsEspecialidades/*.webp",
-    { eager: true },
-  ),
-  diplomados: import.meta.glob("/src/assets/Imagenes/CardsDiplomados/*.webp", {
+  maestrias: import.meta.glob("/src/assets/Imagenes/cards_maestrias/*.webp", {
     eager: true,
   }),
 };

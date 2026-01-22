@@ -13,7 +13,7 @@ const ofertaEducativa = {
       nivel: "licenciatura",
       area: "negocios_administrativas",
       url: "/oferta-academica/licenciaturas/administracion",
-      imagen: "Administracion2",
+      imagen: "administracion-13",
       descripcion:
         "Desarrolla habilidades de liderazgo y gestión estratégica para dirigir organizaciones hacia el éxito en un entorno competitivo.",
     },
@@ -23,7 +23,7 @@ const ofertaEducativa = {
       nivel: "licenciatura",
       area: "negocios_administrativas",
       url: "/oferta-academica/licenciaturas/contaduria",
-      imagen: "Contaduria",
+      imagen: "contaduria-18",
       descripcion:
         "Domina el lenguaje financiero de los negocios, gestionando información fiscal y contable para la correcta toma de decisiones.",
     },
@@ -33,7 +33,7 @@ const ofertaEducativa = {
       nivel: "licenciatura",
       area: "negocios_administrativas",
       url: "/oferta-academica/licenciaturas/mercadotecnia",
-      imagen: "Mercadotecnia",
+      imagen: "mercadotecnia-20",
       descripcion:
         "Crea estrategias de mercado innovadoras, analizando el comportamiento del consumidor y gestionando marcas de alto impacto.",
     },
@@ -43,7 +43,7 @@ const ofertaEducativa = {
       nivel: "licenciatura",
       area: "negocios_administrativas",
       url: "/oferta-academica/licenciaturas/comercio_y_negocios_globales",
-      imagen: "ComercioNegocios",
+      imagen: "comercio_y_negocios_globales",
       descripcion:
         "Conviértete en un experto en operaciones internacionales, logística y estrategias de expansión en mercados globales.",
     },
@@ -55,7 +55,7 @@ const ofertaEducativa = {
       nivel: "licenciatura",
       area: "tecnologia_ingenieria",
       url: "/oferta-academica/licenciaturas/administracion_sistemas_informacion",
-      imagen: "SistemasInformacion",
+      imagen: "administracion_de_sistemas_de_informacion-15",
       descripcion:
         "Integra la tecnología y los negocios optimizando flujos de información y gestionando infraestructura tecnológica empresarial.",
     },
@@ -65,7 +65,7 @@ const ofertaEducativa = {
       nivel: "licenciatura",
       area: "tecnologia_ingenieria",
       url: "/oferta-academica/licenciaturas/ingenieria_industrial",
-      imagen: "IngenieriaIndustrial",
+      imagen: "ingenieria_industrial-24",
       descripcion:
         "Optimiza procesos productivos y de servicios, mejorando la calidad y eficiencia en organizaciones complejas.",
     },
@@ -77,7 +77,7 @@ const ofertaEducativa = {
       nivel: "licenciatura",
       area: "ciencias_sociales_humanidades",
       url: "/oferta-academica/licenciaturas/comunicacion",
-      imagen: "Comunicacion",
+      imagen: "comunicacion-26",
       descripcion:
         "Domina los medios digitales y tradicionales para crear mensajes efectivos en entornos corporativos, periodísticos y sociales.",
     },
@@ -87,7 +87,7 @@ const ofertaEducativa = {
       nivel: "licenciatura",
       area: "ciencias_sociales_humanidades",
       url: "/oferta-academica/licenciaturas/derecho",
-      imagen: "Derecho",
+      imagen: "derecho-28",
       descripcion:
         "Fórmate con una sólida base jurídica para la defensa de la justicia, la asesoría legal y la resolución de conflictos.",
     },
@@ -97,7 +97,7 @@ const ofertaEducativa = {
       nivel: "licenciatura",
       area: "ciencias_sociales_humanidades",
       url: "/oferta-academica/licenciaturas/educacion",
-      imagen: "Educacion",
+      imagen: "educacion-30",
       descripcion:
         "Transforma vidas a través de la enseñanza, diseñando modelos pedagógicos innovadores y gestionando instituciones educativas.",
     },
@@ -107,7 +107,7 @@ const ofertaEducativa = {
       nivel: "licenciatura",
       area: "ciencias_sociales_humanidades",
       url: "/oferta-academica/licenciaturas/psicologia",
-      imagen: "Psicologia",
+      imagen: "psicologia-32",
       descripcion:
         "Comprende el comportamiento humano y promueve la salud mental con un enfoque clínico, social y organizacional.",
     },
@@ -119,7 +119,7 @@ const ofertaEducativa = {
       nivel: "licenciatura",
       area: "arquitectura_diseno",
       url: "/oferta-academica/licenciaturas/diseno_grafico",
-      imagen: "DisenoGrafico",
+      imagen: "diseno_grafico-34",
       descripcion:
         "Comunica ideas visualmente mediante el dominio del diseño digital, editorial, publicitario y de identidad corporativa.",
     },
@@ -131,7 +131,7 @@ const ofertaEducativa = {
       nivel: "maestria",
       area: "ciencias_sociales_humanidades",
       url: "/oferta-academica/maestrias/maestria_educacion",
-      imagen: "MaestriaEducacion",
+      imagen: "maestria_en_maestria_en_educacion",
       descripcion:
         "Especialízate en docencia y gestión educativa de alto nivel para liderar la innovación en el aprendizaje.",
     },
@@ -141,7 +141,7 @@ const ofertaEducativa = {
       nivel: "maestria",
       area: "negocios_administrativas",
       url: "/oferta-academica/maestrias/maestria_administracion_negocios",
-      imagen: "MBA",
+      imagen: "maestria_en_maestria_en_administracion_de_negocios",
       descripcion:
         "Potencia tu perfil directivo con herramientas avanzadas de gestión, finanzas y estrategia empresarial global.",
     },
