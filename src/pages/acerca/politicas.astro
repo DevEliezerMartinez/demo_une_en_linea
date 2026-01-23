@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import FAQImage from "@/assets/imagenes/heros/FAQ.webp";
+import FAQMobileImage from "@/assets/imagenes/heros/FAQ_mobile.webp";
 import Layout from "@/layouts/Layout.astro";
 import {
   FileText,
@@ -17,9 +20,19 @@ import {
   description="Términos y condiciones de uso del sitio web de Universidad UNE. Políticas de privacidad, derechos de autor y condiciones legales."
 >
   <main class="min-h-screen">
-    <section
-      class="politicas-bg relative min-h-[65vh] overflow-hidden bg-cover bg-center bg-no-repeat"
-    >
+    <section class="relative min-h-[65vh] overflow-hidden">
+      <Image
+        src={FAQImage}
+        alt="Términos y Condiciones Universidad UNE"
+        class="absolute inset-0 w-full h-full object-cover hidden md:block"
+        loading="eager"
+      />
+      <Image
+        src={FAQMobileImage}
+        alt="Términos y Condiciones Universidad UNE"
+        class="absolute inset-0 w-full h-full object-cover md:hidden"
+        loading="eager"
+      />
       <div
         class="relative z-10 container mx-auto px-4 h-full min-h-[65vh] flex flex-col md:flex-row items-center justify-center md:justify-end"
       >
@@ -700,16 +713,6 @@ import {
 </Layout>
 
 <style>
-  .politicas-bg {
-    background-image: url("/src/assets/Imagenes/heros/FAQ.webp");
-  }
-
-  @media (max-width: 767px) {
-    .politicas-bg {
-      background-image: url("/src/assets/Imagenes/heros/FAQ_mobile.webp");
-    }
-  }
-
   .prose {
     color: #374151;
   }

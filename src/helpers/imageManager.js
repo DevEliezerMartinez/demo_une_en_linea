@@ -7,12 +7,12 @@
 
 const imageGlobs = {
   licenciaturas: import.meta.glob(
-    "/src/assets/Imagenes/cards_licenciaturas/*.webp",
+    "/src/assets/imagenes/cards_licenciaturas/*.webp",
     {
       eager: true,
     },
   ),
-  maestrias: import.meta.glob("/src/assets/Imagenes/cards_maestrias/*.webp", {
+  maestrias: import.meta.glob("/src/assets/imagenes/cards_maestrias/*.webp", {
     eager: true,
   }),
 };
