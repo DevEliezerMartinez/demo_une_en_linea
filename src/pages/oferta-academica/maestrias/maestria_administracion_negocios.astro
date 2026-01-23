@@ -1,35 +1,41 @@
 ---
+/**
+ * MAESTRÍA EN ADMINISTRACIÓN DE NEGOCIOS
+ * Página de oferta académica (Posgrado)
+ */
+
+// 1. Layouts e Imágenes
 import Layout from "@/layouts/Layout.astro";
-import { Image } from "astro:assets"; // Importante para optimizar imágenes en Astro
-import HeroImg from "@/assets/Imagenes/Heros/BACHILLERATO.jpg"; // Usando tu variable
-import BachilleratoImg from "@/assets/Imagenes/CardOferta/Bachillerato.webp"; // Usando tu variable
+import { Image } from "astro:assets";
+import HeroImg from "@/assets/Imagenes/cards_licenciaturas/administracion-13.webp";
+import BachilleratoImg from "@/assets/Imagenes/cards_licenciaturas/administracion-14.webp";
+
+// 2. Componentes de la Sección (Oferta)
 import Proposito_competencias from "@/components/sections/oferta/Propósito-competencias.astro";
 import Detalles_Formacion from "@/components/sections/oferta/Detalles-Formación.astro";
 import Requisitos from "@/components/sections/oferta/Requisitos.astro";
 import Plan_estudios from "@/components/sections/oferta/Plan-estudios.astro";
-import { plan_bachillerato } from "@/helpers/planes_estudio.js";
+
+// 3. Componentes Compartidos (UI / Globales)
 import Faq from "@/components/sections/shared/Faq.astro";
-import { obtenerDatos } from "@/helpers/faq.js";
-const infoActual = obtenerDatos("bachillerato");
 import GeneralCTA from "@/components/sections/shared/GeneralCTA.astro";
 import { ArrowRight } from "@lucide/astro";
 
-// Datos extraídos de la imagen
-const listaRequisitos = [
-  "Acta de nacimiento actualizada, no mayor a un año.",
-  "Certificado de bachillerato.",
-  "Comprobante de domicilio.",
-  "CURP.",
-  "8 fotografías tamaño infantil b/n, término mate.",
-  "Carta de validación de estudios de bachillerato, firmada, sellada y en hoja membretada de la institución de procedencia.",
-];
+// 4. Lógica de Datos y Helpers
+import { obtenerPlanEstudios } from "@/helpers/planes_estudio.js";
+import { obtenerDatos } from "@/helpers/faq.js";
+import { obtenerRequisitos } from "@/helpers/listaRequisitos";
 
-const linkPdf = "/archivos/requisitos-2024.pdf"; // Ruta a tu PDF
+// 5. Inicialización de Variables y Constantes
+const plan = obtenerPlanEstudios("maestriaEnAdministracionDeNegocios");
+const infoActual = obtenerDatos("maestria_administracion_negocios");
+const listaRequisitos = obtenerRequisitos("maestria");
+const linkPdf = "/requisitos/posgrado.pdf";
 ---
 
 <Layout
-  title="Licenciatura en Administración | UNE - Estudia en línea"
-  description="Estudia tu Bachillerato 100% en línea con validez oficial SEP. Horarios flexibles y plataforma 24/7. ¡Inscríbete hoy!"
+  title="Maestría en Administración de Negocios (MBA) | UNE - Alta Dirección"
+  description="Lleva tu carrera al nivel ejecutivo con el MBA de UNE. Especialízate en finanzas corporativas, liderazgo estratégico y gestión de negocios globales."
 >
   <main class="min-h-screen mx-auto py-12 lg:py-20">
     {/* Hero section */}
@@ -40,56 +46,53 @@ const linkPdf = "/archivos/requisitos-2024.pdf"; // Ruta a tu PDF
             <h1
               class="text-4xl md:text-5xl lg:text-6xl text-gray-800 font-bold leading-tight"
             >
-              Tu Licenciatura en Administración <span
-                class="text-azul-une block md:inline italic">UNE</span
-              > con Validez Oficial
+              Maestría en Admón. de Negocios <span
+                class="text-azul-une block md:inline italic">MBA</span
+              >
             </h1>
             <p class="text-gray-600 text-lg leading-relaxed max-w-lg">
-              Termina tu prepa 100% en línea sin descuidar tu trabajo o familia.
-              Un modelo flexible diseñado para que logres tu certificado y des
-              el salto a la universidad.
+              Desarrolla la visión global y las competencias directivas
+              necesarias para liderar organizaciones en entornos complejos. El
+              posgrado diseñado para los tomadores de decisiones del mañana.
             </p>
           </div>
 
-          <div class="flex flex-wrap gap-4 text-sm font-bold text-gray-700">
+          <div class="flex flex-wrap gap-4 text-sm font-medium text-gray-700">
             <div
               class="flex items-center gap-1 bg-gray-100 px-3 py-1 rounded-lg"
             >
-              <span>📚 Termina en 3 años</span>
+              <span>📈 Finanzas Avanzadas</span>
             </div>
             <div
               class="flex items-center gap-1 bg-gray-100 px-3 py-1 rounded-lg"
             >
-              <span>💻 Plataforma 24/7</span>
+              <span>👑 Liderazgo Directivo</span>
             </div>
             <div
               class="flex items-center gap-1 bg-green-50 px-3 py-1 rounded-lg text-green-700"
             >
-              <span>✓ RVOE SEP Oficial</span>
+              <span>✓ RVOE Federal Oficial</span>
             </div>
           </div>
 
           <div class="pt-2">
             <a
-              href="#"
+              href="/contacto/solicitarinformacion"
               class="group inline-flex items-center bg-[#DC2626] text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-red-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
-              QUIERO INSCRIBIRME
+              ELEVA TU LIDERAZGO
               <ArrowRight
                 class="h-6 w-6 ml-2 group-hover:translate-x-1 transition-transform"
               />
             </a>
-            {
-              /* Nota UX: Cambié el CTA a algo más activo/decidido, o podrías usar "VER PLAN DE ESTUDIOS" si es un paso previo */
-            }
           </div>
 
           <nav
             class="pt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#4A55A2] font-medium"
           >
-            <a href="#objetivo" class="hover:underline">¿Por qué UNE?</a>
-            <a href="#requisitos" class="hover:underline">Requisitos</a>
-            <a href="#plan-estudios" class="hover:underline">Materias</a>
+            <a href="#objetivo" class="hover:underline">Perfil Ejecutivo</a>
+            <a href="#requisitos" class="hover:underline">Admisión Posgrado</a>
+            <a href="#plan-estudios" class="hover:underline">Mapa Curricular</a>
           </nav>
         </div>
 
@@ -97,7 +100,7 @@ const linkPdf = "/archivos/requisitos-2024.pdf"; // Ruta a tu PDF
           <div class="relative overflow-hidden rounded-xl shadow-2xl">
             <Image
               src={HeroImg}
-              alt="Estudiante joven usando laptop felizmente"
+              alt="Directivo analizando métricas de crecimiento empresarial"
               class="w-full h-auto object-cover aspect-[4/3]"
             />
           </div>
@@ -105,45 +108,44 @@ const linkPdf = "/archivos/requisitos-2024.pdf"; // Ruta a tu PDF
       </div>
     </section>
 
-    {/* Aquí corregimos el error de "Administrador" y el texto denso */}
     <Proposito_competencias
-      titulo="Prepárate para el mundo real"
-      descripcion="Olvídate de la memorización vacía. Nuestro enfoque te da herramientas prácticas para desenvolverte con seguridad en la vida laboral, social y digital actual. No solo obtienes un papel, desarrollas tu criterio propio."
-      tituloSeccion="¿Qué vas a lograr?"
-      aprendizaje="Convertirte en un estudiante autónomo capaz de: Aprender a aprender (gestionar tu propio conocimiento), comunicarse efectivamente en entornos digitales, trabajar en equipo a distancia y desarrollar un pensamiento crítico para la solución de problemas reales."
+      titulo="Pensamiento Estratégico de Clase Mundial"
+      descripcion="Este MBA trasciende la gestión operativa para enfocarse en la creación de valor. En UNE te preparamos para analizar mercados globales, optimizar estructuras financieras y liderar la innovación en modelos de negocio."
+      tituloSeccion="¿Qué habilidades potenciarás?"
+      aprendizaje="Estarás capacitado para: Diseñar estrategias competitivas de largo plazo, gestionar finanzas corporativas complejas, liderar procesos de negociación internacional y dirigir equipos de alto rendimiento bajo presión."
       imagenSrc={BachilleratoImg}
-      imagenAlt="Estudiantes de bachillerato colaborando"
+      imagenAlt="Reunión de consejo directivo y planeación estratégica"
     />
 
     <Detalles_Formacion
       durationLabel="Duración"
-      duration="3 años (6 semestres)"
+      duration="1 año 8 meses (5 Cuatrimestres)"
       modeLabel="Modalidad"
-      mode="100% en línea (Asincrónico)"
-      benefitsLabel="¿Por qué elegirnos?"
+      mode="En línea / Formato de Alta Flexibilidad"
+      benefitsLabel="¿Por qué cursar el MBA en UNE?"
       benefits={[
-        "Tú decides tus horarios: plataforma abierta 24/7.",
-        "Acompañamiento real: tutores que resuelven tus dudas.",
-        "Sin gastos de traslado: estudia desde tu casa.",
-        "Certificado SEP válido en cualquier universidad.",
+        "Networking con profesionales de diversos sectores industriales.",
+        "Casos de estudio enfocados en la realidad empresarial actual.",
+        "Catedráticos con puestos directivos en empresas globales.",
+        "Estructura curricular alineada a la economía digital.",
       ]}
       outcomes={[
-        "Construye una base sólida para tu carrera universitaria.",
-        "Mejora tu perfil laboral y aspira a ascensos.",
-        "Desarrolla disciplina digital y autogestión.",
-        "Fomenta valores éticos y responsabilidad social.",
+        "Accede a cargos de Dirección General (CEO) o Finanzas (CFO).",
+        "Escala tus proyectos de emprendimiento a nivel corporativo.",
+        "Desempeñate como consultor senior de negocios.",
+        "Lidera la expansión internacional de organizaciones.",
       ]}
     />
 
     <Requisitos requirements={listaRequisitos} pdfUrl={linkPdf} />
 
-    <Plan_estudios blocks={plan_bachillerato} />
+    <Plan_estudios blocks={plan} />
 
     <Faq faqs={infoActual} />
 
     <GeneralCTA
-      title="Tu certificado de prepa está a un clic de distancia"
-      subtitle="Deja de postergar tu futuro. Inscríbete hoy y da el paso que cambiará tu vida profesional."
+      title="El siguiente nivel de tu carrera te espera"
+      subtitle="Obtén el grado que te posicionará en la cima de la jerarquía corporativa."
       backgroundImage={true}
     />
   </main>

@@ -7,7 +7,8 @@ import Proposito_competencias from "@/components/sections/oferta/Propósito-comp
 import Detalles_Formacion from "@/components/sections/oferta/Detalles-Formación.astro";
 import Requisitos from "@/components/sections/oferta/Requisitos.astro";
 import Plan_estudios from "@/components/sections/oferta/Plan-estudios.astro";
-import { plan_bachillerato } from "@/helpers/planes_estudio.js";
+import { obtenerPlanEstudios } from "@/helpers/planes_estudio.js";
+const plan_bachillerato = obtenerPlanEstudios("bachillerato");
 import Faq from "@/components/sections/shared/Faq.astro";
 import { obtenerDatos } from "@/helpers/faq.js";
 const infoActual = obtenerDatos("bachillerato");
@@ -122,7 +123,7 @@ const linkPdf = "/requisitos/bachillerato.pdf"; // Ruta a tu PDF
 
           <div class="pt-2">
             <a
-              href="#"
+              href="/contacto/solicitarinformacion"
               class="group inline-flex items-center bg-[#DC2626] text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-red-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               QUIERO INSCRIBIRME
