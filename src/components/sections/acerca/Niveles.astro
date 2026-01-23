@@ -1,8 +1,8 @@
 ---
-// Imports de todas las imágenes necesarias
-import EstudiantesBachillerato from "@/assets/imagenes/CardOferta/Bachillerato.webp";
-import EstudiantesLicenciaturas from "@/assets/imagenes/CardOferta/Licenciaturas.webp";
-import EstudiantesMaestrias from "@/assets/imagenes/CardOferta/Maestrias.webp";
+import { Image } from "astro:assets";
+import EstudiantesBachillerato from "@/assets/imagenes/CardsNiveles/bachillerato_en_linea.webp";
+import EstudiantesLicenciaturas from "@/assets/imagenes/CardsNiveles/licenciaturas.webp";
+import EstudiantesMaestrias from "@/assets/imagenes/CardsNiveles/maestrias_en_linea.webp";
 ---
 
 <section class="bg-white py-8 md:py-16 px-4 sm:px-6 lg:px-8">
@@ -14,21 +14,21 @@ import EstudiantesMaestrias from "@/assets/imagenes/CardOferta/Maestrias.webp";
       <button
         class="tab-button px-4 py-2 rounded-full bg-blue-600 text-white font-medium"
         data-tab="bachillerato"
-        aria-label="Bachillerato"
+        aria-label="Ver información de Bachillerato en línea"
       >
         Bachillerato
       </button>
       <button
         class="tab-button px-4 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
         data-tab="licenciatura"
-        aria-label="Licenciatura"
+        aria-label="Ver información de Licenciaturas en línea"
       >
         Licenciatura
       </button>
       <button
         class="tab-button px-4 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
         data-tab="maestria"
-        aria-label="Maestría"
+        aria-label="Ver información de Maestrías en línea"
       >
         Maestría
       </button>
@@ -43,17 +43,37 @@ import EstudiantesMaestrias from "@/assets/imagenes/CardOferta/Maestrias.webp";
           id="mobile-title"
           class="text-3xl font-bold text-gray-900 mb-6 lg:hidden text-center"
         >
-          Bachillerato
+          Bachillerato en línea
         </h2>
 
-        <!-- Imagen -->
+        <!-- Contenedor de imagen con todas las imágenes precargadas -->
         <div class="relative overflow-hidden rounded-2xl shadow-lg">
-          <img
-            id="content-image"
-            src={EstudiantesBachillerato.src}
-            alt="Estudiantes de bachillerato UNE"
-            class="w-full h-auto object-cover"
+          <Image
+            id="image-bachillerato"
+            src={EstudiantesBachillerato}
+            alt="Estudiantes de bachillerato en línea UNE - Educación virtual de calidad"
+            class="w-full h-auto object-cover transition-opacity duration-300"
+            loading="eager"
+            widths={[400, 600, 800]}
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+          <Image
+            id="image-licenciatura"
+            src={EstudiantesLicenciaturas}
+            alt="Estudiantes de licenciatura en línea UNE - Programas profesionales virtuales"
+            class="w-full h-auto object-cover transition-opacity duration-300 hidden"
             loading="lazy"
+            widths={[400, 600, 800]}
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+          <Image
+            id="image-maestria"
+            src={EstudiantesMaestrias}
+            alt="Estudiantes de maestría en línea UNE - Posgrados virtuales de excelencia"
+            class="w-full h-auto object-cover transition-opacity duration-300 hidden"
+            loading="lazy"
+            widths={[400, 600, 800]}
+            sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </div>
       </div>
@@ -65,12 +85,12 @@ import EstudiantesMaestrias from "@/assets/imagenes/CardOferta/Maestrias.webp";
           id="desktop-title"
           class="text-4xl font-bold text-gray-900 mb-4 hidden lg:block"
         >
-          Bachillerato
+          Bachillerato en línea
         </h2>
 
         <!-- Subtítulo modalidad virtual -->
         <p class="text-blue-600 font-medium mb-6 text-center lg:text-left">
-          Modalidad Virtual
+          100% en línea
         </p>
 
         <!-- Descripción -->
@@ -78,8 +98,8 @@ import EstudiantesMaestrias from "@/assets/imagenes/CardOferta/Maestrias.webp";
           id="description"
           class="text-gray-600 mb-8 text-center lg:text-left leading-relaxed"
         >
-          Formación integral de nivel medio superior con enfoque humanista y
-          orientación universitaria
+          Bachillerato completamente virtual con tecnología educativa digital y
+          certificación oficial UDG
         </p>
 
         <!-- Lista de beneficios -->
@@ -92,7 +112,7 @@ import EstudiantesMaestrias from "@/assets/imagenes/CardOferta/Maestrias.webp";
           <button
             id="desktop-cta-button"
             class="bg-red-500 hover:bg-red-600 text-white font-medium px-6 py-3 rounded-lg transition-colors"
-            aria-label="Conoce todos los detalles"
+            aria-label="Conoce todos los detalles del programa"
           >
             Conoce todos los detalles
           </button>
@@ -105,7 +125,7 @@ import EstudiantesMaestrias from "@/assets/imagenes/CardOferta/Maestrias.webp";
       <button
         id="mobile-cta-button"
         class="bg-red-500 hover:bg-red-600 text-white font-medium px-8 py-3 rounded-lg transition-colors w-full max-w-xs"
-        aria-label="Conoce todos los detalles"
+        aria-label="Conoce todos los detalles del programa"
       >
         Conoce todos los detalles
       </button>
@@ -114,12 +134,11 @@ import EstudiantesMaestrias from "@/assets/imagenes/CardOferta/Maestrias.webp";
 </section>
 
 <script>
-  // Datos de contenido para cada sección (modalidad virtual)
+  // Datos de contenido para cada sección (100% en línea)
   const contentData = {
     bachillerato: {
-      title: "Bachillerato",
-      image: "/src/assets/imagenes/CardOferta/Bachillerato.webp",
-      route: "/oferta/colegio-une/bachillerato-sej",
+      title: "Bachillerato en línea",
+      route: "/oferta-academica/bachillerato",
       description:
         "Bachillerato completamente virtual con tecnología educativa digital y certificación oficial UDG",
       benefits: [
@@ -132,33 +151,31 @@ import EstudiantesMaestrias from "@/assets/imagenes/CardOferta/Maestrias.webp";
       ],
     },
     licenciatura: {
-      title: "Licenciatura",
-      image: "/src/assets/imagenes/CardOferta/Licenciaturas.webp",
-      route: "/oferta/licenciaturas",
+      title: "Licenciatura en línea",
+      route: "/oferta-academica/licenciaturas",
       description:
-        "Licenciatura completamente virtual con la misma calidad académica y flexibilidad total",
+        "Licenciaturas 100% en línea con validez oficial y la flexibilidad que necesitas para estudiar a tu ritmo",
       benefits: [
         "Título profesional con validez oficial",
         "Campus virtual con herramientas digitales",
-        "Flexibilidad geográfica y temporal",
+        "Estudia desde cualquier lugar",
         "Acompañamiento académico personalizado",
-        "Simuladores profesionales",
+        "Simuladores profesionales en línea",
         "Biblioteca digital especializada",
       ],
     },
     maestria: {
-      title: "Maestría",
-      image: "/src/assets/imagenes/CardOferta/Maestrias.webp",
-      route: "/oferta/maestria",
+      title: "Maestría en línea",
+      route: "/oferta-academica/maestrias",
       description:
-        "Maestría completamente virtual con estándares internacionales y flexibilidad completa",
+        "Maestrías 100% virtuales con estándares internacionales y máxima flexibilidad para profesionistas",
       benefits: [
         "Grado de maestría con validez oficial",
         "Plataforma de posgrado avanzada",
         "Seminarios virtuales especializados",
-        "Asesoría de tesis personalizada",
+        "Asesoría de tesis en línea",
         "Acceso a bases de datos científicas",
-        "Movilidad académica virtual",
+        "Networking académico virtual",
       ],
     },
   };
@@ -177,41 +194,63 @@ import EstudiantesMaestrias from "@/assets/imagenes/CardOferta/Maestrias.webp";
     `;
   }
 
+  // Función para cambiar la imagen visible
+  function updateImage(newTab: string) {
+    const images = {
+      bachillerato: document.getElementById("image-bachillerato"),
+      licenciatura: document.getElementById("image-licenciatura"),
+      maestria: document.getElementById("image-maestria"),
+    };
+
+    // Ocultar todas las imágenes
+    Object.values(images).forEach((img) => {
+      if (img) img.classList.add("hidden");
+    });
+
+    // Mostrar la imagen correspondiente
+    const activeImage = images[newTab as keyof typeof images];
+    if (activeImage) activeImage.classList.remove("hidden");
+  }
+
   // Función para actualizar el contenido
   function updateContent() {
-    const currentData = contentData[activeTab];
+    const currentData = contentData[activeTab as keyof typeof contentData];
 
     // Actualizar títulos
-    document.getElementById("mobile-title").textContent = currentData.title;
-    document.getElementById("desktop-title").textContent = currentData.title;
+    const mobileTitle = document.getElementById("mobile-title");
+    const desktopTitle = document.getElementById("desktop-title");
+    if (mobileTitle) mobileTitle.textContent = currentData.title;
+    if (desktopTitle) desktopTitle.textContent = currentData.title;
 
     // Actualizar imagen
-    const img = document.getElementById("content-image");
-    img.src = currentData.image;
-    img.alt = `Estudiantes de ${activeTab} UNE`;
+    updateImage(activeTab);
 
     // Actualizar descripción
-    document.getElementById("description").textContent =
-      currentData.description;
+    const description = document.getElementById("description");
+    if (description) description.textContent = currentData.description;
 
     // Actualizar beneficios
     const benefitsList = document.getElementById("benefits-list");
-    benefitsList.innerHTML = "";
-    currentData.benefits.forEach((benefit) => {
-      const div = document.createElement("div");
-      div.className = "flex items-center gap-3";
-      div.innerHTML = `
-        ${createCheckIcon()}
-        <span class="text-gray-700">${benefit}</span>
-      `;
-      benefitsList.appendChild(div);
-    });
+    if (benefitsList) {
+      benefitsList.innerHTML = "";
+      currentData.benefits.forEach((benefit: string) => {
+        const div = document.createElement("div");
+        div.className = "flex items-center gap-3";
+        div.innerHTML = `
+          ${createCheckIcon()}
+          <span class="text-gray-700">${benefit}</span>
+        `;
+        benefitsList.appendChild(div);
+      });
+    }
 
     // Actualizar botones CTA con la ruta correcta
-    const updateButton = (button) => {
-      button.onclick = () => {
-        window.location.href = currentData.route;
-      };
+    const updateButton = (button: HTMLElement | null) => {
+      if (button) {
+        button.onclick = () => {
+          window.location.href = currentData.route;
+        };
+      }
     };
 
     updateButton(document.getElementById("desktop-cta-button"));
@@ -219,16 +258,17 @@ import EstudiantesMaestrias from "@/assets/imagenes/CardOferta/Maestrias.webp";
   }
 
   // Función para cambiar tab
-  function changeTab(newTab) {
+  function changeTab(newTab: string) {
     activeTab = newTab;
 
     // Actualizar estilos de botones
     document.querySelectorAll(".tab-button").forEach((btn) => {
-      if (btn.dataset.tab === newTab) {
-        btn.className =
+      const button = btn as HTMLButtonElement;
+      if (button.dataset.tab === newTab) {
+        button.className =
           "tab-button px-4 py-2 rounded-full bg-blue-600 text-white font-medium";
       } else {
-        btn.className =
+        button.className =
           "tab-button px-4 py-2 rounded-full border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors";
       }
     });
@@ -241,33 +281,15 @@ import EstudiantesMaestrias from "@/assets/imagenes/CardOferta/Maestrias.webp";
     // Event listeners para tabs
     document.querySelectorAll(".tab-button").forEach((button) => {
       button.addEventListener("click", () => {
-        changeTab(button.dataset.tab);
+        const btn = button as HTMLButtonElement;
+        if (btn.dataset.tab) {
+          changeTab(btn.dataset.tab);
+        }
       });
     });
 
     // Inicializar contenido
     updateContent();
-  });
-</script>
-
-<script
-  define:vars={{
-    imageRoutes: {
-      bachillerato: EstudiantesBachillerato.src,
-      licenciatura: EstudiantesLicenciaturas.src,
-      maestria: EstudiantesMaestrias.src,
-    },
-  }}
->
-  window.astroImageRoutes = imageRoutes;
-
-  // Actualizar las rutas de las imágenes después de que el DOM esté listo
-  document.addEventListener("DOMContentLoaded", function () {
-    const contentData = {
-      bachillerato: { image: imageRoutes.bachillerato },
-      licenciatura: { image: imageRoutes.licenciatura },
-      maestria: { image: imageRoutes.maestria },
-    };
   });
 </script>
 
@@ -278,5 +300,10 @@ import EstudiantesMaestrias from "@/assets/imagenes/CardOferta/Maestrias.webp";
 
   .tab-button:hover {
     transform: translateY(-1px);
+  }
+
+  /* Asegurar transiciones suaves entre imágenes */
+  [id^="image-"] {
+    position: relative;
   }
 </style>

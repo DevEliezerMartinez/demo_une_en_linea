@@ -1,0 +1,119 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Image } from "astro:assets";
+import Instalaciones from "@/assets/imagenes/CardsNiveles/licenciaturas.webp";
+import HeroDesktop from "@/assets/Imagenes/heros/oferta_academica_desktop.webp";
+import HeroMobile from "@/assets/Imagenes/heros/oferta_academica_mobile.webp";
+import Niveles from "@/components/sections/acerca/Niveles.astro";
+---
+
+<Layout
+  title="Oferta Académica UNE - Licenciaturas y Maestrías 100% en Línea"
+  description="Estudia en línea en UNE: bachillerato, licenciaturas y maestrías con validez oficial. Programas flexibles con RVOE de UDG, SEP y SICYT."
+>
+  <main class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="relative min-h-[85vh] md:min-h-[65vh] overflow-hidden">
+      <!-- Background Image con picture para responsive -->
+      <picture class="absolute inset-0">
+        <source media="(min-width: 768px)" srcset={HeroDesktop.src} />
+        <Image
+          src={HeroMobile}
+          alt="Campus UNE - Oferta Académica"
+          class="w-full h-full object-cover"
+          loading="eager"
+          widths={[375, 768, 1024, 1280, 1536]}
+          sizes="100vw"
+        />
+      </picture>
+
+      <!-- Overlay gradient -->
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-black/20">
+      </div>
+
+      <!-- Content -->
+      <div
+        class="relative z-10 px-4 h-full min-h-[85vh] md:min-h-[65vh] flex flex-col justify-center items-center md:items-end"
+      >
+        <div class="text-center md:text-right text-white max-w-4xl md:pr-8">
+          <h1 class="text-4xl md:text-7xl font-bold tracking-wider mb-4">
+            Oferta académica
+          </h1>
+          <h2 class="text-2xl md:text-5xl font-bold tracking-wider mb-8">
+            Estudia 100% en línea
+          </h2>
+
+          <p
+            class="text-lg md:text-xl leading-relaxed mb-16 max-w-3xl mx-auto md:ml-auto font-light"
+          >
+            Programas educativos completamente en línea con validez oficial y
+            flexibilidad para estudiar a tu ritmo
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Conoce UNE -->
+    <section class="bg-white py-16 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Contenido de texto -->
+          <div class="space-y-6">
+            <h2
+              class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight"
+            >
+              Educación en línea de calidad
+              <br />
+              <span class="text-azul-une">Con respaldo oficial</span>
+            </h2>
+
+            <p class="text-lg text-gray-600 leading-relaxed">
+              En UNE estudias 100% en línea con la flexibilidad que necesitas.
+              Nuestros programas te permiten aprender desde cualquier lugar y a
+              tu propio ritmo, sin sacrificar la calidad educativa. Todos
+              nuestros planes de estudio cuentan con validez oficial (RVOE)
+              respaldados por instituciones como la Universidad de Guadalajara
+              (UDG), la SEP y la Secretaría de Innovación, Ciencia y Tecnología
+              (SICYT).
+            </p>
+          </div>
+
+          <!-- Imagen optimizada -->
+          <div class="relative">
+            <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+              <Image
+                src={Instalaciones}
+                alt="Instalaciones UNE - Laboratorio moderno con equipos especializados"
+                class="w-full h-auto object-cover"
+                loading="lazy"
+                widths={[400, 600, 800]}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+
+              <!-- Overlay decorativo -->
+              <div
+                class="absolute inset-0 bg-gradient-to-tr from-blue-600/10 to-red-600/10 pointer-events-none"
+                aria-hidden="true"
+              >
+              </div>
+            </div>
+
+            <!-- Elementos decorativos -->
+            <div
+              class="absolute -top-4 -right-4 w-24 h-24 bg-blue-100 rounded-full opacity-60"
+              aria-hidden="true"
+            >
+            </div>
+            <div
+              class="absolute -bottom-6 -left-6 w-32 h-32 bg-red-100 rounded-full opacity-40"
+              aria-hidden="true"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Niveles />
+  </main>
+</Layout>
