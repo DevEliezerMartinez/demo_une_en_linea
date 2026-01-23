@@ -6,21 +6,41 @@ interface Block {
   subjects: string[];
 }
 
+interface PlanStructure {
+  nombre: string;
+  semestres: Block[];
+}
+
 interface Props {
   mainTitle?: string;
   subtitle?: string;
-  blocks: Block[];
+  blocks: Block[] | PlanStructure;
   ctaText?: string;
   ctaLink?: string;
 }
 
 const {
-  mainTitle = "Plan de estudios",
-  subtitle = "Historias reales de personas que transformaron su futuro",
+  mainTitle,
+  subtitle = "Descubre el plan de estudios de tu siguiente etapa académica",
   blocks,
   ctaText = "Descargar este brochure",
   ctaLink = "#",
 } = Astro.props;
+
+// Normalizamos la estructura: planes_estudio.js ahora devuelve un objeto {nombre, semestres}
+// Si 'blocks' es ese objeto, extraemos lo que necesitamos.
+// Si 'blocks' ya es un array (estructura anterior), lo usamos directamente.
+const isPlanObject = blocks && !Array.isArray(blocks) && "semestres" in blocks;
+const blocksArray = (
+  isPlanObject
+    ? (blocks as PlanStructure).semestres
+    : Array.isArray(blocks)
+      ? blocks
+      : []
+) as Block[];
+const displayTitle =
+  mainTitle ||
+  (isPlanObject ? (blocks as PlanStructure).nombre : "Plan de estudios");
 ---
 
 <section
@@ -31,9 +51,9 @@ const {
     <h2
       class="text-3xl md:text-4xl font-normal underline decoration-azul-une underline-offset-8 mb-4 text-azul-une"
     >
-      {mainTitle}
+      {displayTitle}
     </h2>
-    <p class="text-lg font-bold text-slate-900">
+    <p class="text-lg font-semibold text-slate-900">
       {subtitle}
     </p>
   </div>
@@ -51,7 +71,7 @@ const {
 
     <div class="grid grid-cols-1 md:grid-cols-4 gap-y-12 gap-x-8">
       {
-        blocks.map((block) => (
+        blocksArray.map((block: Block) => (
           <div class="relative flex md:block group">
             <div
               class="absolute 
@@ -97,7 +117,7 @@ const {
               </h3>
 
               <ul class="space-y-2">
-                {block.subjects.map((subject) => (
+                {block.subjects.map((subject: string) => (
                   <li class="flex items-start text-sm md:text-base text-slate-700 leading-tight">
                     <span class="mr-2 mt-1.5 w-1 h-1 bg-slate-800 rounded-full shrink-0 block" />
                     {subject}
@@ -114,7 +134,7 @@ const {
   <div class="mt-16 text-right">
     <a
       href={ctaLink}
-      class="inline-flex items-center justify-center px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded shadow-lg transition-transform hover:-translate-y-1"
+      class="inline-flex items-center justify-center px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded shadow-lg transition-transform hover:-translate-y-1"
     >
       {ctaText}
       <svg
