@@ -16,7 +16,6 @@ const carreras = buscarOfertas({ nivel: "licenciatura" }).map((oferta) => {
     imagenNombre,
     imagenUrl: getImageUrl(imagenNombre, "licenciaturas"),
     incorporacion: incorporacion.nombre,
-    // Refinamiento: Badge UDG con borde para mejor contraste
     colorBadge:
       incorporacion.id === "udg"
         ? "bg-red-600 ring-2 ring-white"
@@ -80,7 +79,7 @@ const areas = ["Todas", ...new Set(carreras.map((c) => c.area))];
     {
       areas.map((area, index) => (
         <button
-          class={`tab-button px-5 py-2.5 rounded-full text-sm  whitespace-nowrap transition-all duration-200 ${
+          class={`tab-button px-5 py-2.5 rounded-full text-sm whitespace-nowrap transition-all duration-200 ${
             index === 0
               ? "bg-blue-600 text-white shadow-md"
               : "bg-gray-100 text-gray-600 hover:bg-gray-200"
@@ -169,7 +168,7 @@ const areas = ["Todas", ...new Set(carreras.map((c) => c.area))];
   </section>
 </div>
 
-<script define:vars={{ carreras }}>
+<script define:vars={{ carreras, areas }}>
   document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("search-input");
     const autocompleteDropdown = document.getElementById(
@@ -183,6 +182,49 @@ const areas = ["Todas", ...new Set(carreras.map((c) => c.area))];
     let currentArea = "Todas";
     let selectedName = "";
     let visibleCards = 3;
+
+    // Función para obtener parámetros de URL
+    function getUrlParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Función para activar tab por área
+    function activateTabByArea(areaName) {
+      if (!areaName) return false;
+
+      // Buscar el área que coincida (case insensitive)
+      const matchedArea = areas.find(
+        (area) => area.toLowerCase() === areaName.toLowerCase(),
+      );
+
+      if (matchedArea) {
+        // Desactivar todos los tabs
+        tabButtons.forEach((btn) => {
+          btn.classList.replace("bg-blue-600", "bg-gray-100");
+          btn.classList.replace("text-white", "text-gray-600");
+          btn.classList.remove("shadow-md");
+          btn.setAttribute("aria-selected", "false");
+        });
+
+        // Activar el tab correcto
+        const targetButton = Array.from(tabButtons).find(
+          (btn) => btn.getAttribute("data-area") === matchedArea,
+        );
+
+        if (targetButton) {
+          targetButton.classList.replace("bg-gray-100", "bg-blue-600");
+          targetButton.classList.replace("text-gray-600", "text-white");
+          targetButton.classList.add("shadow-md");
+          targetButton.setAttribute("aria-selected", "true");
+
+          currentArea = matchedArea;
+          return true;
+        }
+      }
+
+      return false;
+    }
 
     function showCards() {
       const isMobile = window.innerWidth < 768;
@@ -290,6 +332,21 @@ const areas = ["Todas", ...new Set(carreras.map((c) => c.area))];
       if (!searchInput.contains(e.target))
         autocompleteDropdown.classList.add("hidden");
     });
+
+    // INICIALIZACIÓN: Verificar si hay parámetro 'area' en la URL
+    const areaParam = getUrlParam("area");
+    if (areaParam) {
+      const activated = activateTabByArea(areaParam);
+      if (activated) {
+        // Scroll suave a la sección de cards si se activó un filtro
+        setTimeout(() => {
+          document.getElementById("cards-container")?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }, 100);
+      }
+    }
 
     showCards();
   });

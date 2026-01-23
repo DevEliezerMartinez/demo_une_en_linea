@@ -1,0 +1,266 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import CallAction from "@/components/sections/shared/GeneralCTA.astro";
+import { Image } from "astro:assets";
+import { Monitor, BookOpen, MessageCircle, BarChart } from "lucide-astro"; // Iconos sugeridos
+
+// IMPORTANTE: Asegúrate de tener estas imágenes o cambiar las rutas por las que tengas disponibles
+import Hero from "@/assets/imagenes/heros/plataforma_educativa_desktop.webp"; // Necesitarás esta imagen
+import HeroMobile from "@/assets/imagenes/heros/plataforma_educativa_mobile.webp"; // Necesitarás esta imagen
+import PlataformaUI from "@/assets/imagenes/estudiantes_de_linea.webp"; // Una captura de pantalla de la plataforma
+import AppMovil from "@/assets/imagenes/CardsNiveles/maestrias_en_linea.webp"; // Alguien usando el celular
+import DashboardImg from "@/assets/imagenes/CardsNiveles/licenciaturas2.webp"; // Otra vista de la plataforma
+
+const herramientas = [
+  {
+    icono: BookOpen,
+    titulo: "Recursos Centralizados",
+    descripcion:
+      "Encuentra lecturas, videos, guías y bibliografía digital organizados por semana y asignatura en un solo lugar.",
+  },
+  {
+    icono: MessageCircle,
+    titulo: "Comunicación Efectiva",
+    descripcion:
+      "Utiliza foros de debate y mensajería directa para resolver dudas con tus docentes y colaborar con compañeros.",
+  },
+  {
+    icono: BarChart,
+    titulo: "Seguimiento de Progreso",
+    descripcion:
+      "Visualiza tus calificaciones, retroalimentación de tareas y porcentaje de avance del curso en tiempo real.",
+  },
+  {
+    icono: Monitor,
+    titulo: "Interfaz Intuitiva",
+    descripcion:
+      "Navega fácilmente gracias a un diseño amigable basado en Moodle, el estándar mundial en educación virtual.",
+  },
+];
+---
+
+<Layout
+  title="Plataforma Virtual UNE - Tu Campus Digital"
+  description="Conoce la plataforma educativa de UNE en Línea. Tecnología Moodle, accesible 24/7, intuitiva y diseñada para tu éxito académico."
+>
+  <main class="min-h-screen">
+    <section
+      class="relative min-h-[70vh] md:min-h-[75vh] overflow-hidden bg-cover bg-center bg-no-repeat"
+    >
+      <div
+        class="absolute inset-0 hidden md:block bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${Hero.src})` }}
+      >
+        <div class="absolute inset-0 bg-black/30"></div>
+      </div>
+
+      <div
+        class="absolute inset-0 block md:hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${HeroMobile.src})` }}
+      >
+        <div class="absolute inset-0 bg-black/30"></div>
+      </div>
+
+      <div
+        class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 h-full min-h-[70vh] md:min-h-[75vh] flex items-center"
+      >
+        <div class="w-full max-w-7xl mx-auto">
+          <div
+            class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12"
+          >
+            <div
+              class="flex items-center gap-4 md:gap-6 text-white order-1 md:order-1"
+            >
+              <div
+                class="w-16 h-16 md:w-20 md:h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
+              >
+                <Monitor class="w-8 h-8 md:w-10 md:h-10 text-white" />
+              </div>
+              <h1
+                class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-wide drop-shadow-lg"
+              >
+                TU CAMPUS <br /> DIGITAL
+              </h1>
+            </div>
+
+            <div
+              class="bg-white rounded-2xl p-6 md:p-8 w-full max-w-md shadow-2xl order-2 md:order-2 backdrop-blur-sm"
+            >
+              <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">
+                Plataforma Educativa
+              </h2>
+              <p class="text-gray-600 text-sm md:text-base leading-relaxed">
+                Tu salón de clases disponible las 24 horas. Una experiencia de
+                aprendizaje robusta, segura y fácil de usar impulsada por
+                Moodle.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-azul-une mb-4">
+            Tecnología que se adapta<br />
+            a tu ritmo de vida.
+          </h2>
+          <p class="max-w-2xl mx-auto text-gray-600">
+            Hemos optimizado el entorno virtual para que estudiar sea sencillo.
+            Olvídate de configuraciones complejas y enfócate en lo que importa:
+            aprender.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12 md:py-20 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+          <div class="w-full lg:w-1/2">
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+              <Image
+                src={PlataformaUI}
+                alt="Interfaz de la plataforma UNE Moodle"
+                class="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <div class="w-full lg:w-1/2">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8">
+              <span class="text-rojo-une">NAVEGACIÓN</span>
+              <span class="text-black"> INTUITIVA Y ÁGIL</span>
+            </h2>
+            <p class="text-base md:text-lg text-gray-700 leading-relaxed mb-4">
+              Nuestra plataforma está basada en <strong>Moodle</strong>, el
+              sistema de gestión de aprendizaje más utilizado en el mundo por
+              las mejores universidades.
+            </p>
+            <p class="text-base md:text-lg text-gray-700 leading-relaxed">
+              Diseñamos cada curso para que sea visualmente claro. Encontrarás
+              tus tareas, exámenes y lecturas organizados lógicamente,
+              permitiéndote acceder al contenido en segundos, sin perder tiempo
+              buscando archivos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12 md:py-20 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="bg-azul-une rounded-3xl overflow-hidden shadow-2xl">
+          <div class="grid grid-cols-1 lg:grid-cols-2">
+            <div class="p-8 md:p-12 flex flex-col justify-center relative">
+              <h2
+                class="text-white text-2xl md:text-3xl lg:text-4xl font-bold mb-8 lg:mb-12 z-10 relative"
+              >
+                HERRAMIENTAS PARA<br />TU DESARROLLO
+              </h2>
+
+              <div
+                class="rounded-2xl overflow-hidden shadow-xl max-w-md lg:max-w-none z-10 relative"
+              >
+                <Image
+                  src={DashboardImg}
+                  alt="Estudiante revisando su progreso"
+                  class="w-full h-auto object-cover aspect-video lg:aspect-[4/3]"
+                  loading="lazy"
+                />
+              </div>
+              <div
+                class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/5 to-transparent pointer-events-none"
+              >
+              </div>
+            </div>
+
+            <div
+              class="flex flex-col justify-center bg-azul-une/50 backdrop-contrast-125"
+            >
+              {
+                herramientas.map((item, index) => (
+                  <div
+                    class={`p-6 md:p-8 ${index !== herramientas.length - 1 ? "border-b border-white/10" : ""} hover:bg-white/5 transition-colors duration-300`}
+                    key={index}
+                  >
+                    <div class="flex items-start gap-4">
+                      <div class="mt-1 p-2 bg-white/10 rounded-lg">
+                        <item.icono class="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 class="text-white text-lg md:text-xl font-bold mb-2">
+                          {item.titulo}
+                        </h3>
+                        <p class="text-white/80 text-sm md:text-base leading-relaxed">
+                          {item.descripcion}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12 md:py-20 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div
+          class="flex flex-col lg:flex-row-reverse items-center gap-8 lg:gap-16"
+        >
+          <div class="w-full lg:w-1/2">
+            <div class="relative">
+              <div
+                class="absolute inset-0 bg-rojo-une/5 rounded-full transform rotate-3 scale-95 z-0"
+              >
+              </div>
+              <Image
+                src={AppMovil}
+                alt="Estudiante usando celular"
+                class="relative z-10 w-full h-auto rounded-2xl shadow-lg"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <div class="w-full lg:w-1/2">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8">
+              LLEVA TU UNIVERSIDAD <br />
+              <span class="text-azul-une">EN EL BOLSILLO</span>
+            </h2>
+            <p class="text-base md:text-lg text-gray-700 leading-relaxed mb-6">
+              Sabemos que tu tiempo es valioso. Gracias a la compatibilidad
+              móvil de nuestra plataforma y la aplicación oficial, puedes
+              descargar contenidos para verlos offline, recibir notificaciones
+              de calificaciones al instante y enviar tareas desde tu smartphone
+              o tablet.
+            </p>
+
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-rojo-une"></div>
+                <span>Compatible con iOS y Android.</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-rojo-une"></div>
+                <span>Acceso sin conexión a internet (descarga previa).</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-rojo-une"></div>
+                <span>Notificaciones push de entregas.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CallAction />
+  </main>
+</Layout>

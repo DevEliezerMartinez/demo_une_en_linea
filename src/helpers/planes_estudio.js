@@ -5,7 +5,7 @@ const planesEstudio = {
     semestres: [
       {
         id: 1,
-        title: "1° Semestre",
+        title: "1° Cuatrimestre",
         subjects: [
           "Informática I",
           "Taller de Lectura y Redacción I",
@@ -19,7 +19,7 @@ const planesEstudio = {
       },
       {
         id: 2,
-        title: "2° Semestre",
+        title: "2° Cuatrimestre",
         subjects: [
           "Informática II",
           "Taller de Lectura y Redacción II",
@@ -33,7 +33,7 @@ const planesEstudio = {
       },
       {
         id: 3,
-        title: "3° Semestre",
+        title: "3° Cuatrimestre",
         subjects: [
           "Biología I",
           "Literatura I",
@@ -45,7 +45,7 @@ const planesEstudio = {
       },
       {
         id: 4,
-        title: "4° Semestre",
+        title: "4° Cuatrimestre",
         subjects: [
           "Biología II",
           "Literatura II",
@@ -57,7 +57,7 @@ const planesEstudio = {
       },
       {
         id: 5,
-        title: "5° Semestre",
+        title: "5° Cuatrimestre",
         subjects: [
           "Geografía",
           "Estructura Socioeconómica de México",
@@ -69,7 +69,7 @@ const planesEstudio = {
       },
       {
         id: 6,
-        title: "6° Semestre",
+        title: "6° Cuatrimestre",
         subjects: [
           "Filosofía",
           "Ecología y medio ambiente",
@@ -88,79 +88,92 @@ const planesEstudio = {
     semestres: [
       {
         id: 1,
-        title: "1° Semestre",
+        title: "1er bloque",
         subjects: [
-          "Informática I",
-          "Taller de Lectura y Redacción I",
-          "Metodología de la Investigación",
-          "Matemáticas I",
-          "Química I",
-          "Inglés I",
-          "Ética I",
-          "Aprendizaje Autogestivo",
+          "Estrategias de aprendizaje a distancia",
+          "Fundamentos de contabilidad",
+          "Fundamentos de mercadotecnia",
         ],
       },
       {
         id: 2,
-        title: "2° Semestre",
+        title: "2do bloque",
         subjects: [
-          "Informática II",
-          "Taller de Lectura y Redacción II",
-          "Introducción a las Ciencias Sociales",
-          "Matemáticas II",
-          "Química II",
-          "Inglés II",
-          "Ética II",
-          "Desarrollo Humano",
+          "Redacción profesional",
+          "Fundamentos de administración",
+          "Sistemas de información en los negocios",
         ],
       },
       {
         id: 3,
-        title: "3° Semestre",
+        title: "3er bloque",
         subjects: [
-          "Biología I",
-          "Literatura I",
-          "Física I",
-          "Matemáticas III",
-          "Historia de México I",
-          "Inglés III",
+          "Comunicación en las organizaciones",
+          "Matemáticas financieras",
+          "Administración de recursos humanos",
         ],
       },
       {
         id: 4,
-        title: "4° Semestre",
+        title: "4to bloque",
         subjects: [
-          "Biología II",
-          "Literatura II",
-          "Física II",
-          "Matemáticas IV",
-          "Historia de México II",
-          "Inglés IV",
+          "Estadística para los negocios",
+          "Derecho empresarial",
+          "Fundamentos de economía",
         ],
       },
       {
         id: 5,
-        title: "5° Semestre",
+        title: "5to bloque",
         subjects: [
-          "Geografía",
-          "Estructura Socioeconómica de México",
-          "Cálculo diferencial",
-          "Administración I (Formación Empresarial I)",
-          "Sociología I",
-          "Contabilidad I",
+          "Negociación",
+          "Finanzas para los negocios",
+          "Administración estratégica",
         ],
       },
       {
         id: 6,
-        title: "6° Semestre",
+        title: "6to bloque",
         subjects: [
-          "Filosofía",
-          "Ecología y medio ambiente",
-          "Historia universal contemporánea",
-          "Cálculo Integral",
-          "Administración II (Formación Empresarial II)",
-          "Sociología II",
-          "Contabilidad II",
+          "Contabilidad administrativa y de costos",
+          "Operaciones en la empresa",
+          "Desarrollo organizacional",
+        ],
+      },
+      {
+        id: 7,
+        title: "7mo bloque",
+        subjects: [
+          "Plan de negocios",
+          "Administración de pequeñas empresas",
+          "Cadena de suministros",
+        ],
+      },
+      {
+        id: 8,
+        title: "8vo bloque",
+        subjects: [
+          "Competitividad empresarial",
+          "Simulación de negocios",
+          "Gestión de la innovación",
+        ],
+      },
+      {
+        id: 9,
+        title: "9no bloque",
+        subjects: [
+          "Ética y valores en la empresa",
+          "Administración de proyectos",
+          "Teoría de la comunicación",
+        ],
+      },
+      {
+        id: 10,
+        title: "10mo bloque",
+        subjects: [
+          "Gestión del capital humano",
+          "Formulación y evaluación de proyectos de inversión",
+          "Administración de riesgos en proyectos",
         ],
       },
     ],

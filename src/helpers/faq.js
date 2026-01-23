@@ -8,7 +8,7 @@ const BachilleratoData = [
   {
     question: "¿Cómo está conformado el plan de estudios?",
     answer:
-      "El plan de estudios está organizado por semestres e incluye materias del tronco común de educación media superior, como matemáticas, ciencias, humanidades e inglés.",
+      "El plan de estudios está organizado por cuatrimestres e incluye materias del tronco común de educación media superior, como matemáticas, ciencias, humanidades e inglés.",
   },
   {
     question: "¿La modalidad es 100% en línea?",
