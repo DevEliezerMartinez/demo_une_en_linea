@@ -20,6 +20,9 @@
     "lucide-astro": "^0.555.0",
     "splide": "0.0.1-security",
     "tailwindcss": "^4.1.17"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.0",
+    "@types/node": "^25.0.10"
   }
-
 }
