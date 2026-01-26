@@ -23,13 +23,11 @@ const {
   mainTitle,
   subtitle = "Descubre el plan de estudios de tu siguiente etapa académica",
   blocks,
-  ctaText = "Descargar este brochure",
+  ctaText = "Descargar plan de estudios",
   ctaLink = "#",
 } = Astro.props;
 
-// Normalizamos la estructura: planes_estudio.js ahora devuelve un objeto {nombre, semestres}
-// Si 'blocks' es ese objeto, extraemos lo que necesitamos.
-// Si 'blocks' ya es un array (estructura anterior), lo usamos directamente.
+// Normalizamos la estructura
 const isPlanObject = blocks && !Array.isArray(blocks) && "semestres" in blocks;
 const blocksArray = (
   isPlanObject
@@ -41,6 +39,9 @@ const blocksArray = (
 const displayTitle =
   mainTitle ||
   (isPlanObject ? (blocks as PlanStructure).nombre : "Plan de estudios");
+
+// Generamos un ID único para este componente
+const componentId = `plan-estudios-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
 <section
@@ -75,9 +76,7 @@ const displayTitle =
           <div class="relative flex md:block group">
             <div
               class="absolute 
-                      /* Posición Mobile */
                       left-0 top-0 
-                      /* Posición Desktop */
                       md:static md:mb-6 md:-ml-3
                       z-10 bg-white"
             >
@@ -132,12 +131,13 @@ const displayTitle =
   </div>
 
   <div class="mt-16 text-right">
-    <a
-      href={ctaLink}
-      class="inline-flex items-center justify-center px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded shadow-lg transition-transform hover:-translate-y-1"
+    <button
+      id={`download-btn-${componentId}`}
+      class="inline-flex items-center justify-center px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded shadow-lg transition-transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
     >
-      {ctaText}
+      <span id={`btn-text-${componentId}`}>{ctaText}</span>
       <svg
+        id={`btn-icon-${componentId}`}
         class="ml-2 w-5 h-5"
         fill="none"
         stroke="currentColor"
@@ -150,6 +150,216 @@ const displayTitle =
           d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
         ></path>
       </svg>
-    </a>
+    </button>
   </div>
 </section>
+
+<script define:vars={{ displayTitle, subtitle, blocksArray, componentId }}>
+  // 1. Modificamos esta función para cargar TAMBIÉN fontkit
+  async function loadPdfLib() {
+    // Si ya existen las librerías en window, las devolvemos
+    if (window.PDFLib && window.fontkit) {
+      return { PDFLib: window.PDFLib, fontkit: window.fontkit };
+    }
+
+    const loadScript = (src) => {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = src;
+        script.onload = () => resolve();
+        script.onerror = () =>
+          reject(new Error(`Error cargando script: ${src}`));
+        document.head.appendChild(script);
+      });
+    };
+
+    // Cargamos pdf-lib y fontkit en paralelo
+    await Promise.all([
+      loadScript(
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js",
+      ),
+      loadScript(
+        "https://unpkg.com/@pdf-lib/fontkit@1.1.1/dist/fontkit.umd.js",
+      ),
+    ]);
+
+    return { PDFLib: window.PDFLib, fontkit: window.fontkit };
+  }
+
+  function wrapText(text, maxWidth, font, fontSize) {
+    const words = text.split(" ");
+    const lines = [];
+    let currentLine = "";
+    words.forEach((word) => {
+      const testLine = currentLine + (currentLine ? " " : "") + word;
+      const width = font.widthOfTextAtSize(testLine, fontSize);
+      if (width > maxWidth && currentLine) {
+        lines.push(currentLine);
+        currentLine = word;
+      } else {
+        currentLine = testLine;
+      }
+    });
+    if (currentLine) lines.push(currentLine);
+    return lines;
+  }
+
+  async function generatePDF() {
+    try {
+      // 1. Obtenemos PDFLib y fontkit
+      const { PDFLib, fontkit } = await loadPdfLib();
+      const { PDFDocument, rgb } = PDFLib;
+
+      // 2. Cargar el PDF base
+      const existingPdfUrl = "/plan_de_estudios.pdf";
+      const existingPdfBytes = await fetch(existingPdfUrl).then((res) =>
+        res.arrayBuffer(),
+      );
+      const pdfDoc = await PDFDocument.load(existingPdfBytes);
+
+      // --- PASO CRUCIAL: REGISTRAR FONTKIT ---
+      // Esto habilita el motor para leer tus fuentes .TTF y .OTF
+      pdfDoc.registerFontkit(fontkit);
+
+      // 3. Cargar fuentes
+      const fontBoldBytes = await fetch("/fonts/Gotham/Gotham-BLACK.TTF").then(
+        (res) => res.arrayBuffer(),
+      );
+      const fontRegularBytes = await fetch(
+        "/fonts/Gotham/Gotham-Book.otf",
+      ).then((res) => res.arrayBuffer());
+
+      // 4. Embeber fuentes (ahora funcionará gracias a fontkit)
+      const fontBold = await pdfDoc.embedFont(fontBoldBytes);
+      const fontRegular = await pdfDoc.embedFont(fontRegularBytes);
+
+      const pages = pdfDoc.getPages();
+      let currentPage = pages[0];
+      const { width, height } = currentPage.getSize();
+
+      // --- ENCABEZADOS ESTÁTICOS ---
+      currentPage.drawText(": " + displayTitle, {
+        x: 605,
+        y: 560,
+        size: 18,
+        font: fontBold,
+        color: rgb(0, 26 / 255, 113 / 255),
+      });
+
+      const subtitleLines = wrapText(subtitle, width - 100, fontRegular, 12);
+      subtitleLines.forEach((line, i) => {
+        currentPage.drawText(line, {
+          x: 25,
+          y: 515 - i * 15,
+          size: 12,
+          font: fontRegular,
+          color: rgb(0.3, 0.3, 0.3),
+        });
+      });
+
+      // --- CONFIGURACIÓN DE CUADRÍCULA ---
+      const startX = 35;
+      const startY = 460;
+      const columnWidth = 250;
+      const rowHeight = 75;
+
+      blocksArray.forEach((block, index) => {
+        const col = index % 3;
+        const row = Math.floor(index / 3);
+
+        const currentX = startX + col * columnWidth;
+        const currentY = startY - row * rowHeight;
+
+        // Título del bloque (Semestre)
+        currentPage.drawText(block.title, {
+          x: currentX,
+          y: currentY,
+          size: 11,
+          font: fontBold,
+          color: rgb(0.8, 0.1, 0.1),
+        });
+
+        // Materias
+        let subjectY = currentY - 20;
+
+        block.subjects.forEach((subject) => {
+          currentPage.drawText("•", {
+            x: currentX,
+            y: subjectY,
+            size: 7,
+            font: fontRegular,
+          });
+
+          const subjectLines = wrapText(
+            subject,
+            columnWidth - 25,
+            fontRegular,
+            7,
+          );
+          subjectLines.forEach((line, lineIdx) => {
+            currentPage.drawText(line, {
+              x: currentX + 8,
+              y: subjectY - lineIdx * 9,
+              size: 7,
+              font: fontRegular,
+              color: rgb(0.2, 0.2, 0.2),
+            });
+          });
+
+          subjectY -= subjectLines.length * 9 + 2;
+
+          // Calculamos el final del bloque basándonos en la altura de la fila
+          const lineY = currentY - rowHeight + 18;
+
+          currentPage.drawLine({
+            start: { x: currentX, y: lineY },
+            end: { x: currentX + columnWidth - 30, y: lineY },
+            thickness: 1,
+            color: rgb(0, 26 / 255, 113 / 255),
+            opacity: 0.5,
+          });
+        });
+      });
+
+      // Generar y descargar
+      const pdfBytes = await pdfDoc.save();
+      const blob = new Blob([pdfBytes], { type: "application/pdf" });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `plan_de_estudios_${displayTitle.replace(/\s+/g, "_")}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error("Error generando PDF:", error);
+      throw error;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const downloadBtn = document.getElementById(`download-btn-${componentId}`);
+    const btnText = document.getElementById(`btn-text-${componentId}`);
+
+    if (downloadBtn && btnText) {
+      downloadBtn.addEventListener("click", async () => {
+        const originalText = btnText.textContent;
+        try {
+          downloadBtn.disabled = true;
+          btnText.textContent = "Generando...";
+          await generatePDF();
+          btnText.textContent = "¡Listo!";
+          setTimeout(() => {
+            btnText.textContent = originalText;
+          }, 2000);
+        } catch (error) {
+          alert("Error al generar PDF. Revisa la consola.");
+          btnText.textContent = originalText;
+        } finally {
+          downloadBtn.disabled = false;
+        }
+      });
+    }
+  });
+</script>
