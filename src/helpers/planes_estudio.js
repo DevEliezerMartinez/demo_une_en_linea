@@ -88,7 +88,7 @@ const planesEstudio = {
     semestres: [
       {
         id: 1,
-        title: "1er bloque",
+        title: "Bloque - 1",
         subjects: [
           "Estrategias de aprendizaje a distancia",
           "Fundamentos de contabilidad",
@@ -97,7 +97,7 @@ const planesEstudio = {
       },
       {
         id: 2,
-        title: "2do bloque",
+        title: "Bloque - 2",
         subjects: [
           "Redacción profesional",
           "Fundamentos de administración",
@@ -106,7 +106,7 @@ const planesEstudio = {
       },
       {
         id: 3,
-        title: "3er bloque",
+        title: "Bloque - 3",
         subjects: [
           "Comunicación en las organizaciones",
           "Matemáticas financieras",
@@ -115,7 +115,7 @@ const planesEstudio = {
       },
       {
         id: 4,
-        title: "4to bloque",
+        title: "Bloque - 4",
         subjects: [
           "Estadística para los negocios",
           "Derecho empresarial",
@@ -124,7 +124,7 @@ const planesEstudio = {
       },
       {
         id: 5,
-        title: "5to bloque",
+        title: "Bloque - 5",
         subjects: [
           "Negociación",
           "Finanzas para los negocios",
@@ -133,7 +133,7 @@ const planesEstudio = {
       },
       {
         id: 6,
-        title: "6to bloque",
+        title: "Bloque - 6",
         subjects: [
           "Contabilidad administrativa y de costos",
           "Operaciones en la empresa",
@@ -142,7 +142,7 @@ const planesEstudio = {
       },
       {
         id: 7,
-        title: "7mo bloque",
+        title: "Bloque - 7",
         subjects: [
           "Plan de negocios",
           "Administración de pequeñas empresas",
@@ -151,7 +151,7 @@ const planesEstudio = {
       },
       {
         id: 8,
-        title: "8vo bloque",
+        title: "Bloque - 8",
         subjects: [
           "Competitividad empresarial",
           "Simulación de negocios",
@@ -160,7 +160,7 @@ const planesEstudio = {
       },
       {
         id: 9,
-        title: "9no bloque",
+        title: "Bloque - 9",
         subjects: [
           "Ética y valores en la empresa",
           "Administración de proyectos",
@@ -169,7 +169,7 @@ const planesEstudio = {
       },
       {
         id: 10,
-        title: "10mo bloque",
+        title: "Bloque - 10",
         subjects: [
           "Gestión del capital humano",
           "Formulación y evaluación de proyectos de inversión",
@@ -184,7 +184,7 @@ const planesEstudio = {
     semestres: [
       {
         id: 1,
-        title: "1er bloque",
+        title: "Bloque - 1",
         subjects: [
           "Estrategias de aprendizaje a distancia",
           "Fundamentos de contabilidad",
@@ -193,7 +193,7 @@ const planesEstudio = {
       },
       {
         id: 2,
-        title: "2do bloque",
+        title: "Bloque - 2",
         subjects: [
           "Redacción profesional",
           "Fundamentos de administración",
@@ -202,7 +202,7 @@ const planesEstudio = {
       },
       {
         id: 3,
-        title: "3er bloque",
+        title: "Bloque - 3",
         subjects: [
           "Comunicación en las organizaciones",
           "Matemáticas financieras",
@@ -211,7 +211,7 @@ const planesEstudio = {
       },
       {
         id: 4,
-        title: "4to bloque",
+        title: "Bloque - 4",
         subjects: [
           "Estadística para los negocios",
           "Derecho empresarial",
@@ -220,7 +220,7 @@ const planesEstudio = {
       },
       {
         id: 5,
-        title: "5to bloque",
+        title: "Bloque - 5",
         subjects: [
           "Negociación",
           "Finanzas para los negocios",
@@ -229,7 +229,7 @@ const planesEstudio = {
       },
       {
         id: 6,
-        title: "6to bloque",
+        title: "Bloque - 6",
         subjects: [
           "Contabilidad administrativa y de costos",
           "Operaciones en la empresa",
@@ -238,7 +238,7 @@ const planesEstudio = {
       },
       {
         id: 7,
-        title: "7mo bloque",
+        title: "Bloque - 7",
         subjects: [
           "Plan de negocios",
           "Administración de pequeñas empresas",
@@ -247,7 +247,7 @@ const planesEstudio = {
       },
       {
         id: 8,
-        title: "8vo bloque",
+        title: "Bloque - 8",
         subjects: [
           "Competitividad empresarial",
           "Simulación de negocios",
@@ -256,7 +256,7 @@ const planesEstudio = {
       },
       {
         id: 9,
-        title: "9no bloque",
+        title: "Bloque - 9",
         subjects: [
           "Ética y valores en la empresa",
           "Administración de proyectos",
@@ -265,7 +265,7 @@ const planesEstudio = {
       },
       {
         id: 10,
-        title: "10mo bloque",
+        title: "Bloque - 10",
         subjects: [
           "Gestión del capital humano",
           "Formulación y evaluación de proyectos de inversión",
@@ -280,7 +280,7 @@ const planesEstudio = {
     semestres: [
       {
         id: 1,
-        title: "1er bloque",
+        title: "Bloque - 1",
         subjects: [
           "Estrategia de aprendizaje a distancia",
           "Fundamentos de contabilidad",
@@ -289,7 +289,7 @@ const planesEstudio = {
       },
       {
         id: 2,
-        title: "2do bloque",
+        title: "Bloque - 2",
         subjects: [
           "Redacción profesional",
           "Fundamentos de administración",
@@ -298,7 +298,7 @@ const planesEstudio = {
       },
       {
         id: 3,
-        title: "3er bloque",
+        title: "Bloque - 3",
         subjects: [
           "Comunicación en las organizaciones",
           "Matemáticas financieras",
@@ -307,7 +307,7 @@ const planesEstudio = {
       },
       {
         id: 4,
-        title: "4to bloque",
+        title: "Bloque - 4",
         subjects: [
           "Estadísticas para los negocios",
           "Derecho empresarial",
@@ -316,7 +316,7 @@ const planesEstudio = {
       },
       {
         id: 5,
-        title: "5to bloque",
+        title: "Bloque - 5",
         subjects: [
           "Negociación",
           "Bases de programación",
@@ -325,7 +325,7 @@ const planesEstudio = {
       },
       {
         id: 6,
-        title: "6to bloque",
+        title: "Bloque - 6",
         subjects: [
           "Programación estructurada",
           "Telecomunicaciones",
@@ -334,7 +334,7 @@ const planesEstudio = {
       },
       {
         id: 7,
-        title: "7mo bloque",
+        title: "Bloque - 7",
         subjects: [
           "Administración de bases de datos",
           "Redes de computadoras",
@@ -343,7 +343,7 @@ const planesEstudio = {
       },
       {
         id: 8,
-        title: "8vo bloque",
+        title: "Bloque - 8",
         subjects: [
           "Lenguaje orientado a objetos",
           "Seguridad y auditoría en informática",
@@ -352,7 +352,7 @@ const planesEstudio = {
       },
       {
         id: 9,
-        title: "9no bloque",
+        title: "Bloque - 9",
         subjects: [
           "Ética y valores en la empresa",
           "Administración de proyectos",
@@ -361,7 +361,7 @@ const planesEstudio = {
       },
       {
         id: 10,
-        title: "10mo bloque",
+        title: "Bloque - 10",
         subjects: [
           "Formulación y evaluación de proyectos en inversión",
           "Administración de riesgos en proyectos",
@@ -376,7 +376,7 @@ const planesEstudio = {
     semestres: [
       {
         id: 1,
-        title: "1er bloque",
+        title: "Bloque - 1",
         subjects: [
           "Estrategias de aprendizaje a distancia",
           "Fundamentos de contabilidad",
@@ -385,7 +385,7 @@ const planesEstudio = {
       },
       {
         id: 2,
-        title: "2do bloque",
+        title: "Bloque - 2",
         subjects: [
           "Redacción profesional",
           "Fundamentos de administración",
@@ -394,7 +394,7 @@ const planesEstudio = {
       },
       {
         id: 3,
-        title: "3er bloque",
+        title: "Bloque - 3",
         subjects: [
           "Comunicación en las organizaciones",
           "Matemáticas financieras",
@@ -403,7 +403,7 @@ const planesEstudio = {
       },
       {
         id: 4,
-        title: "4to bloque",
+        title: "Bloque - 4",
         subjects: [
           "Estadísticas para negocios",
           "Derecho empresarial",
@@ -412,7 +412,7 @@ const planesEstudio = {
       },
       {
         id: 5,
-        title: "5to bloque",
+        title: "Bloque - 5",
         subjects: [
           "Negociación",
           "Finanzas para los negocios",
@@ -421,7 +421,7 @@ const planesEstudio = {
       },
       {
         id: 6,
-        title: "6to bloque",
+        title: "Bloque - 6",
         subjects: [
           "Contabilidad intermedia de resultados",
           "Contabilidad administrativa",
@@ -430,7 +430,7 @@ const planesEstudio = {
       },
       {
         id: 7,
-        title: "7mo bloque",
+        title: "Bloque - 7",
         subjects: [
           "Plan de negocios",
           "Contabilidad de costos",
@@ -439,7 +439,7 @@ const planesEstudio = {
       },
       {
         id: 8,
-        title: "8vo bloque",
+        title: "Bloque - 8",
         subjects: [
           "Impuestos para personas físicas",
           "Contabilidad avanzada",
@@ -448,7 +448,7 @@ const planesEstudio = {
       },
       {
         id: 9,
-        title: "9no bloque",
+        title: "Bloque - 9",
         subjects: [
           "Ética y valores en la empresa",
           "Impuestos para personas morales",
@@ -457,7 +457,7 @@ const planesEstudio = {
       },
       {
         id: 10,
-        title: "10mo bloque",
+        title: "Bloque - 10",
         subjects: [
           "Formulación y evaluación de proyectos de inversión",
           "Mercado de valores y dinero",
@@ -472,7 +472,7 @@ const planesEstudio = {
     semestres: [
       {
         id: 1,
-        title: "1er bloque",
+        title: "Bloque - 1",
         subjects: [
           "Estrategias de aprendizaje a distancia",
           "Fundamentos de contabilidad",
@@ -481,7 +481,7 @@ const planesEstudio = {
       },
       {
         id: 2,
-        title: "2do bloque",
+        title: "Bloque - 2",
         subjects: [
           "Redacción profesional",
           "Fundamentos de administración",
@@ -490,7 +490,7 @@ const planesEstudio = {
       },
       {
         id: 3,
-        title: "3er bloque",
+        title: "Bloque - 3",
         subjects: [
           "Comunicación en las organizaciones",
           "Matemáticas financieras",
@@ -499,7 +499,7 @@ const planesEstudio = {
       },
       {
         id: 4,
-        title: "4to bloque",
+        title: "Bloque - 4",
         subjects: [
           "Estadísticas para los negocios",
           "Derecho empresarial",
@@ -508,7 +508,7 @@ const planesEstudio = {
       },
       {
         id: 5,
-        title: "5to bloque",
+        title: "Bloque - 5",
         subjects: [
           "Negociación",
           "Mezcla de mercadotecnia",
@@ -517,7 +517,7 @@ const planesEstudio = {
       },
       {
         id: 6,
-        title: "6to bloque",
+        title: "Bloque - 6",
         subjects: [
           "Contabilidad administrativa y de costos",
           "Herramientas y estrategias de venta",
@@ -526,7 +526,7 @@ const planesEstudio = {
       },
       {
         id: 7,
-        title: "7mo bloque",
+        title: "Bloque - 7",
         subjects: [
           "Plan de negocios",
           "Psicología del consumidor",
@@ -535,7 +535,7 @@ const planesEstudio = {
       },
       {
         id: 8,
-        title: "8vo bloque",
+        title: "Bloque - 8",
         subjects: [
           "Neuro-mercadotecnia",
           "Estrategia de mercadotecnia",
@@ -544,7 +544,7 @@ const planesEstudio = {
       },
       {
         id: 9,
-        title: "9no bloque",
+        title: "Bloque - 9",
         subjects: [
           "Ética y valores en la empresa",
           "Teoría de la comunicación",
@@ -553,7 +553,7 @@ const planesEstudio = {
       },
       {
         id: 10,
-        title: "10mo bloque",
+        title: "Bloque - 10",
         subjects: [
           "Promoción, publicidad e identidad de marca",
           "Negocios por internet",
@@ -568,7 +568,7 @@ const planesEstudio = {
     semestres: [
       {
         id: 1,
-        title: "1er bloque",
+        title: "Bloque - 1",
         subjects: [
           "Estrategias de aprendizaje a distancia",
           "Fundamentos de la comunicación",
@@ -577,7 +577,7 @@ const planesEstudio = {
       },
       {
         id: 2,
-        title: "2do bloque",
+        title: "Bloque - 2",
         subjects: [
           "Estadística II",
           "Habilidades socioemocionales",
@@ -586,7 +586,7 @@ const planesEstudio = {
       },
       {
         id: 3,
-        title: "3er bloque",
+        title: "Bloque - 3",
         subjects: [
           "Informática",
           "Habilidades profesionales",
@@ -595,7 +595,7 @@ const planesEstudio = {
       },
       {
         id: 4,
-        title: "4to bloque",
+        title: "Bloque - 4",
         subjects: [
           "Sociología de la comunicación",
           "Expresión creativa en la comunicación",
@@ -604,7 +604,7 @@ const planesEstudio = {
       },
       {
         id: 5,
-        title: "5to bloque",
+        title: "Bloque - 5",
         subjects: [
           "Liderazgo y trabajo colaborativo",
           "Métodos y herramientas de investigación",
@@ -613,7 +613,7 @@ const planesEstudio = {
       },
       {
         id: 6,
-        title: "6to bloque",
+        title: "Bloque - 6",
         subjects: [
           "Estrategias de negociación para la resolución de problemas",
           "Principios de la comunicación masiva",
@@ -622,7 +622,7 @@ const planesEstudio = {
       },
       {
         id: 7,
-        title: "7mo bloque",
+        title: "Bloque - 7",
         subjects: [
           "Fotografía",
           "Introducción al diseño digital",
@@ -631,7 +631,7 @@ const planesEstudio = {
       },
       {
         id: 8,
-        title: "8vo bloque",
+        title: "Bloque - 8",
         subjects: [
           "Legislación de los medios",
           "Comunicación y desarrollo organizacional",
@@ -640,7 +640,7 @@ const planesEstudio = {
       },
       {
         id: 9,
-        title: "9no bloque",
+        title: "Bloque - 9",
         subjects: [
           "Edición y aplicación del diseño digital",
           "Comunicación intercultural",
@@ -649,7 +649,7 @@ const planesEstudio = {
       },
       {
         id: 10,
-        title: "10mo bloque",
+        title: "Bloque - 10",
         subjects: [
           "Producción y desarrollo de contenidos multimedia",
           "Periodismo y opinión pública",
@@ -664,7 +664,7 @@ const planesEstudio = {
     semestres: [
       {
         id: 1,
-        title: "1er bloque",
+        title: "Bloque - 1",
         subjects: [
           "Estrategias de aprendizaje a distancia",
           "Filosofía y epistemología de la educación",
@@ -673,7 +673,7 @@ const planesEstudio = {
       },
       {
         id: 2,
-        title: "2do bloque",
+        title: "Bloque - 2",
         subjects: [
           "Psicología de la educación",
           "Teorías de aprendizaje",
@@ -682,7 +682,7 @@ const planesEstudio = {
       },
       {
         id: 3,
-        title: "3er bloque",
+        title: "Bloque - 3",
         subjects: [
           "Educación contemporánea",
           "Política educativa",
@@ -691,7 +691,7 @@ const planesEstudio = {
       },
       {
         id: 4,
-        title: "4to bloque",
+        title: "Bloque - 4",
         subjects: [
           "Estadística de educación",
           "Psicología del desarrollo: adulto y adulto mayor",
@@ -700,7 +700,7 @@ const planesEstudio = {
       },
       {
         id: 5,
-        title: "5to bloque",
+        title: "Bloque - 5",
         subjects: [
           "Pedagogía",
           "Sociología",
@@ -709,7 +709,7 @@ const planesEstudio = {
       },
       {
         id: 6,
-        title: "6to bloque",
+        title: "Bloque - 6",
         subjects: [
           "Evaluación del aprendizaje",
           "Diseño curricular",
@@ -718,7 +718,7 @@ const planesEstudio = {
       },
       {
         id: 7,
-        title: "7mo bloque",
+        title: "Bloque - 7",
         subjects: [
           "Investigación educativa",
           "Formación y evaluación docente",
@@ -727,7 +727,7 @@ const planesEstudio = {
       },
       {
         id: 8,
-        title: "8vo bloque",
+        title: "Bloque - 8",
         subjects: [
           "Orientación educativa",
           "Andragogía",
@@ -736,7 +736,7 @@ const planesEstudio = {
       },
       {
         id: 9,
-        title: "9no bloque",
+        title: "Bloque - 9",
         subjects: [
           "Modelos del diseño instruccional",
           "Diseño de entornos virtuales de aprendizaje a distancia",
@@ -745,7 +745,7 @@ const planesEstudio = {
       },
       {
         id: 10,
-        title: "10mo bloque",
+        title: "Bloque - 10",
         subjects: [
           "Administración en la educación",
           "Evaluación de programas educativos",
@@ -760,7 +760,7 @@ const planesEstudio = {
     semestres: [
       {
         id: 1,
-        title: "1er bloque",
+        title: "Bloque - 1",
         subjects: [
           "Estrategias de aprendizaje a distancia",
           "Metodología de la investigación",
@@ -769,7 +769,7 @@ const planesEstudio = {
       },
       {
         id: 2,
-        title: "2do bloque",
+        title: "Bloque - 2",
         subjects: [
           "Procesos psicológicos",
           "Estadística",
@@ -778,7 +778,7 @@ const planesEstudio = {
       },
       {
         id: 3,
-        title: "3er bloque",
+        title: "Bloque - 3",
         subjects: [
           "Bases psicobiológicas del comportamiento",
           "Metodología cuantitativa y cualitativa",
@@ -787,7 +787,7 @@ const planesEstudio = {
       },
       {
         id: 4,
-        title: "4to bloque",
+        title: "Bloque - 4",
         subjects: [
           "Comunicación humana",
           "Teorías de la personalidad",
@@ -796,7 +796,7 @@ const planesEstudio = {
       },
       {
         id: 5,
-        title: "5to bloque",
+        title: "Bloque - 5",
         subjects: [
           "Teorías y dinámicas de grupos",
           "Sexualidad humana",
@@ -805,7 +805,7 @@ const planesEstudio = {
       },
       {
         id: 6,
-        title: "6to bloque",
+        title: "Bloque - 6",
         subjects: [
           "Psicopatología del adulto",
           "Psicometría de la infancia",
@@ -814,7 +814,7 @@ const planesEstudio = {
       },
       {
         id: 7,
-        title: "7mo bloque",
+        title: "Bloque - 7",
         subjects: [
           "Psicodiagnóstico infantil",
           "Psicodiagnóstico del adulto",
@@ -823,7 +823,7 @@ const planesEstudio = {
       },
       {
         id: 8,
-        title: "8vo bloque",
+        title: "Bloque - 8",
         subjects: [
           "Principios teóricos de la psicología educativa",
           "Psicología de las organizaciones",
@@ -832,7 +832,7 @@ const planesEstudio = {
       },
       {
         id: 9,
-        title: "9no bloque",
+        title: "Bloque - 9",
         subjects: [
           "Evaluación e intervención en educación especial",
           "Evaluación y diagnóstico de las organizaciones",
@@ -841,10 +841,10 @@ const planesEstudio = {
       },
       {
         id: 10,
-        title: "10mo bloque",
+        title: "Bloque - 10",
         subjects: [
           "Psicología forense",
-          "Orientación asesoría y tutoría",
+          "Orientación, asesoría y tutoría",
           "Evaluación e intervención psicoeducativa",
         ],
       },
@@ -856,7 +856,7 @@ const planesEstudio = {
     semestres: [
       {
         id: 1,
-        title: "1er bloque",
+        title: "Bloque - 1",
         subjects: [
           "Estrategias de aprendizaje a distancia",
           "Mercado y competencia internacional",
@@ -865,7 +865,7 @@ const planesEstudio = {
       },
       {
         id: 2,
-        title: "2do bloque",
+        title: "Bloque - 2",
         subjects: [
           "Matemáticas financieras",
           "Cotizaciones y mercado de divisas",
@@ -874,7 +874,7 @@ const planesEstudio = {
       },
       {
         id: 3,
-        title: "3er bloque",
+        title: "Bloque - 3",
         subjects: [
           "Estadísticas para los negocios",
           "Bases contables",
@@ -883,7 +883,7 @@ const planesEstudio = {
       },
       {
         id: 4,
-        title: "4to bloque",
+        title: "Bloque - 4",
         subjects: [
           "Investigación de mercados",
           "Contabilidad de costos",
@@ -892,7 +892,7 @@ const planesEstudio = {
       },
       {
         id: 5,
-        title: "5to bloque",
+        title: "Bloque - 5",
         subjects: [
           "Comercialización internacional",
           "Contabilidad de finanzas",
@@ -901,7 +901,7 @@ const planesEstudio = {
       },
       {
         id: 6,
-        title: "6to bloque",
+        title: "Bloque - 6",
         subjects: [
           "Geografía económica y política",
           "Transportación y canales de distribución internacional",
@@ -910,7 +910,7 @@ const planesEstudio = {
       },
       {
         id: 7,
-        title: "7mo bloque",
+        title: "Bloque - 7",
         subjects: [
           "Política comercial internacional",
           "Finanzas empresariales",
@@ -919,7 +919,7 @@ const planesEstudio = {
       },
       {
         id: 8,
-        title: "8vo bloque",
+        title: "Bloque - 8",
         subjects: [
           "Administración de la cadena",
           "Tratados comerciales internacionales",
@@ -928,7 +928,7 @@ const planesEstudio = {
       },
       {
         id: 9,
-        title: "9no bloque",
+        title: "Bloque - 9",
         subjects: [
           "Mercadotecnia global",
           "Estrategias de comercialización en redes sociales",
@@ -937,7 +937,7 @@ const planesEstudio = {
       },
       {
         id: 10,
-        title: "10mo bloque",
+        title: "Bloque - 10",
         subjects: [
           "Seminario de comercio y negocios",
           "Dirección de plan de exportación",
@@ -952,7 +952,7 @@ const planesEstudio = {
     semestres: [
       {
         id: 1,
-        title: "1er bloque",
+        title: "Bloque - 1",
         subjects: [
           "Estadística de aprendizaje a distancia",
           "Teorías del Diseño Gráfico",
@@ -961,7 +961,7 @@ const planesEstudio = {
       },
       {
         id: 2,
-        title: "2do bloque",
+        title: "Bloque - 2",
         subjects: [
           "Diseño vectorial I",
           "Historia del arte",
@@ -970,7 +970,7 @@ const planesEstudio = {
       },
       {
         id: 3,
-        title: "3er bloque",
+        title: "Bloque - 3",
         subjects: [
           "Diseño vectorial II",
           "Teoría y psicología del color",
@@ -979,7 +979,7 @@ const planesEstudio = {
       },
       {
         id: 4,
-        title: "4to bloque",
+        title: "Bloque - 4",
         subjects: [
           "Fotografía básica",
           "Diseño digital I",
@@ -988,7 +988,7 @@ const planesEstudio = {
       },
       {
         id: 5,
-        title: "5to bloque",
+        title: "Bloque - 5",
         subjects: [
           "Fotografía creativa y publicitaria",
           "Diseño digital II",
@@ -997,12 +997,12 @@ const planesEstudio = {
       },
       {
         id: 6,
-        title: "6to bloque",
+        title: "Bloque - 6",
         subjects: ["Diseño publicitario", "Diseño digital III", "Preprensa"],
       },
       {
         id: 7,
-        title: "7mo bloque",
+        title: "Bloque - 7",
         subjects: [
           "Mercadotecnia digital",
           "Diseño editorial",
@@ -1011,12 +1011,12 @@ const planesEstudio = {
       },
       {
         id: 8,
-        title: "8vo bloque",
+        title: "Bloque - 8",
         subjects: ["Audiovisual II", "Imagen corporativa", "Diseño web"],
       },
       {
         id: 9,
-        title: "9no bloque",
+        title: "Bloque - 9",
         subjects: [
           "Diseño de plataformas digitales",
           "Animación 2D",
@@ -1025,7 +1025,7 @@ const planesEstudio = {
       },
       {
         id: 10,
-        title: "10mo bloque",
+        title: "Bloque - 10",
         subjects: [
           "Metodología de la investigación",
           "Producción y arte digital",
@@ -1040,7 +1040,7 @@ const planesEstudio = {
     semestres: [
       {
         id: 1,
-        title: "1er bloque",
+        title: "Bloque - 1",
         subjects: [
           "Estrategias de aprendizaje",
           "Derecho romano",
@@ -1049,7 +1049,7 @@ const planesEstudio = {
       },
       {
         id: 2,
-        title: "2do bloque",
+        title: "Bloque - 2",
         subjects: [
           "Acto jurídico y personas",
           "Derecho constitucional",
@@ -1058,7 +1058,7 @@ const planesEstudio = {
       },
       {
         id: 3,
-        title: "3er bloque",
+        title: "Bloque - 3",
         subjects: [
           "Contratos civiles",
           "Argumentación jurídica",
@@ -1067,7 +1067,7 @@ const planesEstudio = {
       },
       {
         id: 4,
-        title: "4to bloque",
+        title: "Bloque - 4",
         subjects: [
           "Derechos humanos y garantías",
           "Derecho procesal civil",
@@ -1076,7 +1076,7 @@ const planesEstudio = {
       },
       {
         id: 5,
-        title: "5to bloque",
+        title: "Bloque - 5",
         subjects: [
           "Teoría general del derecho penal y los delitos en México",
           "Títulos y operaciones de crédito",
@@ -1085,7 +1085,7 @@ const planesEstudio = {
       },
       {
         id: 6,
-        title: "6to bloque",
+        title: "Bloque - 6",
         subjects: [
           "Juicios orales en materia penal",
           "Contratos mercantiles",
@@ -1094,7 +1094,7 @@ const planesEstudio = {
       },
       {
         id: 7,
-        title: "7mo bloque",
+        title: "Bloque - 7",
         subjects: [
           "Derecho procesal mercantil",
           "Bienes y sucesiones",
@@ -1103,7 +1103,7 @@ const planesEstudio = {
       },
       {
         id: 8,
-        title: "8vo bloque",
+        title: "Bloque - 8",
         subjects: [
           "Derecho colectivo del trabajo",
           "Amparo I",
@@ -1112,7 +1112,7 @@ const planesEstudio = {
       },
       {
         id: 9,
-        title: "9no bloque",
+        title: "Bloque - 9",
         subjects: [
           "Amparo II",
           "Derecho internacional público",
@@ -1121,7 +1121,7 @@ const planesEstudio = {
       },
       {
         id: 10,
-        title: "10mo bloque",
+        title: "Bloque - 10",
         subjects: [
           "Filosofía del derecho",
           "Investigación y análisis jurídico",
@@ -1136,7 +1136,7 @@ const planesEstudio = {
     semestres: [
       {
         id: 1,
-        title: "1er bloque",
+        title: "Bloque - 1",
         subjects: [
           "Estrategias de aprendizaje a distancia",
           "Matemáticas en Ingeniería",
@@ -1145,7 +1145,7 @@ const planesEstudio = {
       },
       {
         id: 2,
-        title: "2do bloque",
+        title: "Bloque - 2",
         subjects: [
           "Administración I",
           "Administración II",
@@ -1154,12 +1154,12 @@ const planesEstudio = {
       },
       {
         id: 3,
-        title: "3er bloque",
+        title: "Bloque - 3",
         subjects: ["Estudio del Trabajo I", "Contabilidad", "Estática"],
       },
       {
         id: 4,
-        title: "4to bloque",
+        title: "Bloque - 4",
         subjects: [
           "Teoría General de Sistemas",
           "Cálculo Integral",
@@ -1168,7 +1168,7 @@ const planesEstudio = {
       },
       {
         id: 5,
-        title: "5to bloque",
+        title: "Bloque - 5",
         subjects: [
           "Estudio del Trabajo II",
           "Administración Estratégica",
@@ -1177,7 +1177,7 @@ const planesEstudio = {
       },
       {
         id: 6,
-        title: "6to bloque",
+        title: "Bloque - 6",
         subjects: [
           "Probabilidad y Estadística I",
           "Procesos de Manufactura",
@@ -1186,7 +1186,7 @@ const planesEstudio = {
       },
       {
         id: 7,
-        title: "7mo bloque",
+        title: "Bloque - 7",
         subjects: [
           "Probabilidad y Estadística II",
           "Investigación de Operaciones I",
@@ -1195,7 +1195,7 @@ const planesEstudio = {
       },
       {
         id: 8,
-        title: "8vo bloque",
+        title: "Bloque - 8",
         subjects: [
           "Control de Calidad",
           "Automatización",
@@ -1204,7 +1204,7 @@ const planesEstudio = {
       },
       {
         id: 9,
-        title: "9no bloque",
+        title: "Bloque - 9",
         subjects: [
           "Planeación y Control de la Producción I",
           "Ergonomía y Seguridad Industrial",
@@ -1213,7 +1213,7 @@ const planesEstudio = {
       },
       {
         id: 10,
-        title: "10mo bloque",
+        title: "Bloque - 10",
         subjects: [
           "Planeación y Control de la Producción II",
           "Ingeniería de Proyectos",
@@ -1228,7 +1228,7 @@ const planesEstudio = {
     semestres: [
       {
         id: 1,
-        title: "1er bloque",
+        title: "Bloque - 1",
         subjects: [
           "Administración",
           "Contabilidad Administrativa",
@@ -1237,7 +1237,7 @@ const planesEstudio = {
       },
       {
         id: 2,
-        title: "2do bloque",
+        title: "Bloque - 2",
         subjects: [
           "Administración del Capital Humano",
           "Métodos Cuantitativos",
@@ -1246,7 +1246,7 @@ const planesEstudio = {
       },
       {
         id: 3,
-        title: "3er bloque",
+        title: "Bloque - 3",
         subjects: [
           "Habilidades Directivas y Gerenciales",
           "Finanzas Corporativas",
@@ -1255,7 +1255,7 @@ const planesEstudio = {
       },
       {
         id: 4,
-        title: "4to bloque",
+        title: "Bloque - 4",
         subjects: [
           "Mercadotecnia Estratégica",
           "Calidad y Productividad",
@@ -1264,7 +1264,7 @@ const planesEstudio = {
       },
       {
         id: 5,
-        title: "5to bloque",
+        title: "Bloque - 5",
         subjects: [
           "Desarrollo Organizacional",
           "Fundamentos de la Administración de Proyectos",
@@ -1279,7 +1279,7 @@ const planesEstudio = {
     semestres: [
       {
         id: 1,
-        title: "1er bloque",
+        title: "Bloque - 1",
         subjects: [
           "Filosofía de la Educación",
           "Metodología de la Investigación I",
@@ -1288,7 +1288,7 @@ const planesEstudio = {
       },
       {
         id: 2,
-        title: "2do bloque",
+        title: "Bloque - 2",
         subjects: [
           "Historia de la Educación en México",
           "Metodología de la Investigación II",
@@ -1297,7 +1297,7 @@ const planesEstudio = {
       },
       {
         id: 3,
-        title: "3er bloque",
+        title: "Bloque - 3",
         subjects: [
           "Legislación Educativa",
           "Tecnología Educativa",
@@ -1306,7 +1306,7 @@ const planesEstudio = {
       },
       {
         id: 4,
-        title: "4to bloque",
+        title: "Bloque - 4",
         subjects: [
           "Evaluación Educativa",
           "Planeación y Gestión de Instituciones Educativas",
@@ -1315,7 +1315,7 @@ const planesEstudio = {
       },
       {
         id: 5,
-        title: "5to bloque",
+        title: "Bloque - 5",
         subjects: [
           "Educación por Competencias",
           "Educación Comparada",
