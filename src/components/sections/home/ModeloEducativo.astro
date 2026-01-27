@@ -1,4 +1,6 @@
 ---
+import { CircleArrowOutUpRight } from "lucide-astro";
+
 interface Props {
   className?: string;
 }
@@ -27,7 +29,7 @@ const steps = [
 ];
 ---
 
-<section class={`py-16 md:py-24 ${className}`}>
+<section class={`py-14 md:pt-18 ${className}`}>
   <div class="container mx-auto px-4">
     <div class="mb-12 md:mb-16 text-center">
       <p class="text-sm font-bold text-gray-500 uppercase tracking-widest mb-2">
@@ -38,7 +40,7 @@ const steps = [
       </h2>
     </div>
 
-    <div class="stack-container">
+    <div class="stack-container mb-12 md:mb-16">
       {
         steps.map((step, index) => (
           <div class="card-item" style={`--index: ${index + 1};`}>
@@ -65,6 +67,12 @@ const steps = [
         ))
       }
     </div>
+    <a
+      href="/acerca/modelo-educativo"
+      class="text-xl font-semibold my-18 border-b border-azul-une text-center text-azul-une flex items-center gap-1 w-auto max-w-96"
+    >
+      Ver detalles del modelo educativo <CircleArrowOutUpRight />
+    </a>
   </div>
 </section>
 
@@ -72,7 +80,6 @@ const steps = [
   .stack-container {
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
   }
 
   .card-item {

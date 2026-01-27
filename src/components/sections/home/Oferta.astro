@@ -5,7 +5,6 @@ import cienciasSociales from "@/assets/imagenes/cards_area_estudios/ciencias-soc
 import disenoArtes from "@/assets/imagenes/cards_area_estudios/diseño-artes.webp";
 import ingenieria from "@/assets/imagenes/cards_area_estudios/ingenieria.webp";
 
-// Datos actualizados con tus categorías reales
 const areasAcademicas = [
   {
     nombre: "Negocios y Administrativas",
@@ -13,7 +12,7 @@ const areasAcademicas = [
       "Lidera con visión estratégica y gestión eficiente en el mundo empresarial.",
     imagen: economicaAdministrativa,
     areaParam: "Negocios y Administrativas",
-    badges: ["Emprendimiento", "Gestión"],
+    badges: ["Emprendimiento", "3 años"],
   },
   {
     nombre: "Tecnología e Ingeniería",
@@ -21,7 +20,7 @@ const areasAcademicas = [
       "Diseña soluciones innovadoras y optimiza procesos tecnológicos.",
     imagen: ingenieria,
     areaParam: "Tecnología e Ingeniería",
-    badges: ["Innovación", "Desarrollo"],
+    badges: ["Innovación", "3 años"],
   },
   {
     nombre: "Ciencias Sociales y Humanidades",
@@ -29,7 +28,7 @@ const areasAcademicas = [
       "Comprende el comportamiento humano y transforma el entorno social.",
     imagen: cienciasSociales,
     areaParam: "Ciencias Sociales y Humanidades",
-    badges: ["Investigación", "Sociedad"],
+    badges: ["Investigación", "3 años"],
   },
   {
     nombre: "Arquitectura y Diseño",
@@ -37,7 +36,7 @@ const areasAcademicas = [
       "Expresa tu creatividad a través de espacios y comunicación visual.",
     imagen: disenoArtes,
     areaParam: "Arquitectura y Diseño",
-    badges: ["Creatividad", "Espacios"],
+    badges: ["Creatividad", "3 años"],
   },
 ];
 ---
@@ -47,6 +46,11 @@ const areasAcademicas = [
     <h3 class="text-3xl uppercase font-semibold text-center md:text-left">
       Explora nuestras áreas de estudio
     </h3>
+    <p class="text-gray-600 mt-2 text-center md:text-left">
+      Planes de estudio optimizados para terminar <strong
+        >hasta en 3 años</strong
+      >.
+    </p>
   </div>
 
   <div class="overflow-hidden w-full relative">
@@ -192,7 +196,6 @@ const areasAcademicas = [
     </button>
   </div>
 </section>
-
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const track = document.getElementById("carousel-track") as HTMLElement;
