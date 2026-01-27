@@ -13,6 +13,7 @@ const areasAcademicas = [
       "Lidera con visión estratégica y gestión eficiente en el mundo empresarial.",
     imagen: economicaAdministrativa,
     areaParam: "Negocios y Administrativas",
+    badges: ["Emprendimiento", "Gestión"],
   },
   {
     nombre: "Tecnología e Ingeniería",
@@ -20,6 +21,7 @@ const areasAcademicas = [
       "Diseña soluciones innovadoras y optimiza procesos tecnológicos.",
     imagen: ingenieria,
     areaParam: "Tecnología e Ingeniería",
+    badges: ["Innovación", "Desarrollo"],
   },
   {
     nombre: "Ciencias Sociales y Humanidades",
@@ -27,6 +29,7 @@ const areasAcademicas = [
       "Comprende el comportamiento humano y transforma el entorno social.",
     imagen: cienciasSociales,
     areaParam: "Ciencias Sociales y Humanidades",
+    badges: ["Investigación", "Sociedad"],
   },
   {
     nombre: "Arquitectura y Diseño",
@@ -34,93 +37,16 @@ const areasAcademicas = [
       "Expresa tu creatividad a través de espacios y comunicación visual.",
     imagen: disenoArtes,
     areaParam: "Arquitectura y Diseño",
+    badges: ["Creatividad", "Espacios"],
   },
 ];
 ---
 
 <section id="custom-carousel" class="py-12 bg-white relative group/carousel">
-  <div class="flex flex-col md:flex-row justify-between items-center mb-8 px-6">
+  <div class="mb-8 px-6">
     <h3 class="text-3xl uppercase font-semibold text-center md:text-left">
       Explora nuestras áreas de estudio
     </h3>
-
-    <div class="flex items-center gap-3 mt-4 md:mt-0">
-      <button
-        id="btn-prev"
-        class="p-2 rounded-full border border-gray-300 hover:bg-primary hover:text-white transition-colors bg-white text-gray-700"
-        aria-label="Anterior"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-6 h-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M15.75 19.5L8.25 12l7.5-7.5"></path>
-        </svg>
-      </button>
-
-      <button
-        id="btn-pause"
-        class="p-2 rounded-full border border-gray-300 hover:bg-primary hover:text-white transition-colors bg-white text-gray-700"
-        aria-label="Pausar"
-      >
-        <svg
-          id="icon-play"
-          class="w-6 h-6 hidden"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"
-          ></path>
-        </svg>
-        <svg
-          id="icon-pause"
-          class="w-6 h-6"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M15.75 5.25v13.5m-7.5-13.5v13.5"></path>
-        </svg>
-      </button>
-
-      <button
-        id="btn-next"
-        class="p-2 rounded-full border border-gray-300 hover:bg-primary hover:text-white transition-colors bg-white text-gray-700"
-        aria-label="Siguiente"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-6 h-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
-        </svg>
-      </button>
-    </div>
   </div>
 
   <div class="overflow-hidden w-full relative">
@@ -139,9 +65,22 @@ const areasAcademicas = [
               />
 
               <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-6">
-                <h4 class="text-white text-xl font-bold leading-tight mb-2">
-                  {area.nombre}
-                </h4>
+                <div class="flex gap-2 mb-3">
+                  {area.badges.map((badge) => (
+                    <span class="px-3 py-1 text-xs font-medium text-white bg-white/20 backdrop-blur-md rounded-full border border-white/30 shadow-lg">
+                      {badge}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  href={`/oferta-academica/licenciaturas?area=${encodeURIComponent(area.areaParam)}`}
+                  class="group/title"
+                >
+                  <h4 class="text-white text-xl font-bold leading-tight mb-2 group-hover/title:text-primary transition-colors">
+                    {area.nombre}
+                  </h4>
+                </a>
 
                 <p class="text-gray-200 text-sm font-light mb-4 opacity-90">
                   {area.descripcion}
@@ -173,6 +112,84 @@ const areasAcademicas = [
         ))
       }
     </div>
+  </div>
+
+  <div class="flex justify-start pl-8 items-center gap-4 mt-8">
+    <button
+      id="btn-prev"
+      class="p-3 rounded-full border border-gray-300 hover:bg-primary hover:text-white transition-colors bg-white text-gray-700 shadow-sm"
+      aria-label="Anterior"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 19.5L8.25 12l7.5-7.5"></path>
+      </svg>
+    </button>
+
+    <button
+      id="btn-pause"
+      class="p-3 rounded-full border border-gray-300 hover:bg-primary hover:text-white transition-colors bg-white text-gray-700 shadow-sm"
+      aria-label="Pausar"
+    >
+      <svg
+        id="icon-play"
+        class="w-6 h-6 hidden"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"
+        ></path>
+      </svg>
+      <svg
+        id="icon-pause"
+        class="w-6 h-6"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 5.25v13.5m-7.5-13.5v13.5"></path>
+      </svg>
+    </button>
+
+    <button
+      id="btn-next"
+      class="p-3 rounded-full border border-gray-300 hover:bg-primary hover:text-white transition-colors bg-white text-gray-700 shadow-sm"
+      aria-label="Siguiente"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+      </svg>
+    </button>
   </div>
 </section>
 
