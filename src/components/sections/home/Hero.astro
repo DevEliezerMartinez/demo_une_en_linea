@@ -2,9 +2,10 @@
 // src/components/MainSlider.astro
 import { Image } from "astro:assets";
 import { ArrowRight } from "lucide-astro";
+import Logo from "@/assets/Logos/une-enlinea.png";
 
 // Importar imágenes para optimización
-import heroDesktop from "@/assets/imagenes/heros/Home_desktop.jpg";
+import heroDesktop from "@/assets/imagenes/heros/Home_desktop2.jpg";
 import ofertaDesktop from "@/assets/imagenes/heros/oferta_academica_desktop.webp";
 import ofertaMobile from "@/assets/imagenes/heros/oferta_academica_mobile.webp";
 import plataformaDesktop from "@/assets/imagenes/heros/plataforma_educativa_desktop.webp";
@@ -15,10 +16,14 @@ import becasMobile from "@/assets/imagenes/heros/becas_mobile.webp";
 const slides = [
   {
     id: 0,
-    title: "MÁS CONECTADOS, MÁS CERCA DE TI",
+    title: "MÁS CONECTADOS,",
+    highlight: "MÁS CERCA DE TI",
     image: heroDesktop,
     imageMobile: heroDesktop,
-    showText: false,
+    subtitle:
+      "Nuestra tecnología con sentido humano rompe fronteras para llevar la excelencia académica hasta tu pantalla.",
+    showText: true,
+    isWhiteLayout: true, // Flag para diseño tipo "Revolución Digital"
     duration: 10000,
   },
   {
@@ -58,163 +63,144 @@ const slides = [
 ---
 
 <div class="relative w-full">
-  <!-- Slider Container -->
-  <div id="hero-slider" class="relative h-[700px] overflow-hidden">
-    <!-- Slides -->
+  <div id="hero-slider" class="relative h-[700px] overflow-hidden bg-white">
     <div class="slides-container relative h-full">
       {
         slides.map((slide, index) => (
           <div
-            class={`slide absolute inset-0 transition-opacity duration-600 ${index === 0 ? "opacity-100 z-10" : "opacity-0 z-0"}`}
+            class={`slide absolute inset-0 transition-opacity duration-700 ${index === 0 ? "opacity-100 z-10" : "opacity-0 z-0"}`}
             data-slide-index={index}
           >
-            {/* Primera imagen: eager y high priority */}
-            {index === 0 ? (
-              <>
-                <Image
-                  src={slide.image}
-                  alt={slide.title}
-                  width={1920}
-                  height={700}
-                  format="webp"
-                  quality={85}
-                  loading="eager"
-                  fetchpriority="high"
-                  class="hidden md:block w-full h-full object-cover object-center"
-                />
-                <Image
-                  src={slide.imageMobile}
-                  alt={slide.title}
-                  width={768}
-                  height={700}
-                  format="webp"
-                  quality={85}
-                  loading="eager"
-                  fetchpriority="high"
-                  class="md:hidden w-full h-full object-cover object-center"
-                />
-              </>
+            {/* Fondo de Imagen */}
+            <Image
+              src={slide.image}
+              alt={slide.title}
+              width={1920}
+              height={700}
+              format="webp"
+              quality={85}
+              loading={index === 0 ? "eager" : "lazy"}
+              class="w-full h-full object-cover object-center"
+            />
+
+            {slide.isWhiteLayout ? (
+              /* --- DISEÑO SLIDE 1 (EDITORIAL / BLANCO) --- */
+              <div class="absolute inset-0">
+                <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent" />
+                <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 h-full flex items-center">
+                  <div class="max-w-xl space-y-8 text-left">
+                    <img src={Logo.src} alt="Logo UNE" class="w-32 h-auto" />
+                    <div class="space-y-6">
+                      <h1 class="text-3xl md:text-5xl lg:text-5xl font-bold text-gray-900 leading-tight">
+                        {slide.title} <br />
+                        <span class="text-azul-une">{slide.highlight}</span>
+                      </h1>
+                      <p class="text-gray-700 text-md md:text-xl leading-relaxed">
+                        {slide.subtitle}
+                      </p>
+                    </div>
+                    <a
+                      href="/acerca/oferta-academica"
+                      class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl text-base transition-all transform hover:scale-105 shadow-xl shadow-red-500/30"
+                    >
+                      Descubre lo que tenemos para ti
+                    </a>
+                  </div>
+                </div>
+              </div>
             ) : (
-              /* Resto: lazy loading */
-              <>
-                <Image
-                  src={slide.image}
-                  alt={slide.title}
-                  width={1920}
-                  height={700}
-                  format="webp"
-                  quality={80}
-                  loading="lazy"
-                  class="hidden md:block w-full h-full object-cover object-center"
-                />
-                <Image
-                  src={slide.imageMobile || slide.image}
-                  alt={slide.title}
-                  width={768}
-                  height={700}
-                  format="webp"
-                  quality={80}
-                  loading="lazy"
-                  class="md:hidden w-full h-full object-cover object-center"
-                />
-              </>
-            )}
-
-            {/* Gradient Overlay */}
-            <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
-
-            {/* Content Overlay */}
-            {slide.showText && (
-              <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-                <h2 class="text-white text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
-                  {slide.title}
-                </h2>
-                {slide.subtitle && (
-                  <p class="text-white/90 text-lg sm:text-xl max-w-2xl mx-auto">
-                    {slide.subtitle}
-                  </p>
-                )}
-                {slide.cta && (
-                  <a
-                    class="bg-rojo-une py-4 px-8 rounded-md mt-12 text-white hover:bg-rojo-une/90 transition-colors"
-                    href={slide.cta.href}
-                    aria-label={`Ir a ${slide.cta.text}`}
-                  >
-                    {slide.cta.text}
-                  </a>
-                )}
+              /* --- DISEÑO SLIDES NORMALES (IMAGEN FULL) --- */
+              <div class="absolute inset-0 bg-black/30">
+                <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+                  <h2 class="text-white text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 drop-shadow-md">
+                    {slide.title}
+                  </h2>
+                  {slide.subtitle && (
+                    <p class="text-white/90 text-lg sm:text-xl max-w-2xl mx-auto drop-shadow-sm">
+                      {slide.subtitle}
+                    </p>
+                  )}
+                  {slide.cta && (
+                    <a
+                      class="bg-rojo-une py-4 px-8 rounded-md mt-12 text-white hover:bg-rojo-une/90 transition-colors shadow-lg"
+                      href={slide.cta.href}
+                    >
+                      {slide.cta.text}
+                    </a>
+                  )}
+                </div>
               </div>
             )}
           </div>
         ))
       }
     </div>
-  </div>
 
-  <!-- Controls: Play/Pause -->
-  <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8 z-20">
+    {
+      /* OVERLAY DE PROTECCIÓN PARA BARRAS (Sombra inferior para que no se pierdan en el blanco) */
+    }
     <div
-      class="flex flex-col sm:flex-row items-end justify-between gap-4 sm:gap-6 w-full"
+      class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/60 to-transparent z-20 pointer-events-none"
     >
-      <div class="flex items-end gap-2 w-full sm:w-auto">
-        <button
-          id="playPauseBtn"
-          class="bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-300 backdrop-blur-sm shrink-0"
-          aria-label="Pausar slider"
-        >
-          <svg
-            id="pauseIcon"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="6" y="4" width="4" height="16"></rect>
-            <rect x="14" y="4" width="4" height="16"></rect>
-          </svg>
-          <svg
-            id="playIcon"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="hidden"
-          >
-            <polygon points="5,3 19,12 5,21"></polygon>
-          </svg>
-        </button>
-      </div>
+    </div>
 
-      <!-- Progress Lines -->
-      <div class="flex items-end w-full gap-2 sm:gap-4 lg:gap-6">
-        {
-          slides.map((slide, index) => (
-            <button
-              class="progress-line flex-shrink-0 flex-grow w-[16%] transition-all duration-300"
-              data-slide-index={index}
-              data-duration={slide.duration}
-              aria-label={`Ir a ${slide.title}`}
+    <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8 z-30">
+      <div
+        class="flex flex-col sm:flex-row items-end justify-between gap-4 sm:gap-6 w-full"
+      >
+        <div class="flex items-end gap-2 w-full sm:w-auto">
+          <button
+            id="playPauseBtn"
+            class="bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-300 backdrop-blur-sm shrink-0"
+            aria-label="Pausar slider"
+          >
+            <svg
+              id="pauseIcon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              ><rect x="6" y="4" width="4" height="16"></rect><rect
+                x="14"
+                y="4"
+                width="4"
+                height="16"></rect></svg
             >
-              <h3 class="text-white text-base-custom md:text-lg-custom font-semibold tracking-wide text-center sm:text-left hidden lg:block whitespace-nowrap">
-                {slide.title}
-              </h3>
-            </button>
-          ))
-        }
+            <svg
+              id="playIcon"
+              class="hidden"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"><polygon points="5,3 19,12 5,21"></polygon></svg
+            >
+          </button>
+        </div>
+
+        <div class="flex items-end w-full gap-2 sm:gap-4 lg:gap-6">
+          {
+            slides.map((slide, index) => (
+              <button
+                class="progress-line flex-shrink-0 flex-grow w-[16%] transition-all duration-300"
+                data-slide-index={index}
+                data-duration={slide.duration}
+              >
+                <h3 class="text-white text-xs md:text-sm font-semibold tracking-wider text-left mb-2 hidden lg:block uppercase opacity-90">
+                  {slide.isWhiteLayout ? "Inicio" : slide.title}
+                </h3>
+              </button>
+            ))
+          }
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- CTA Section -->
 <div
   class="full-width flex flex-col md:flex-row justify-between px-4 md:px-16 py-8 items-center md:items-start mb-16"
 >
@@ -225,89 +211,77 @@ const slides = [
   </h2>
 
   <a
-    class="cta-button flex font-normal md:font-bold text-xl md:text-2xl uppercase h-14 bg-azul-une text-white w-auto px-8 md:px-12 py-2.5 gap-8 md:gap-12 rounded-2xl group transition-all duration-300 ease-in-out justify-center md:justify-between relative overflow-hidden"
+    class="cta-button flex font-normal md:font-bold text-xl md:text-2xl uppercase h-14 bg-azul-une text-white w-auto px-8 md:px-12 py-2.5 gap-8 md:gap-12 rounded-2xl group transition-all duration-300 ease-in-out justify-center md:justify-between relative overflow-hidden shadow-xl"
     href="/contacto/solicitarinformacion"
-    aria-label="Ir a contáctanos"
   >
-    <!-- Efecto de brillo animado -->
     <span
       class="shine-effect absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent"
     ></span>
-
     <span class="relative z-10">contáctanos</span>
-
     <span
-      class="arrow-container border-2 border-white rounded-full p-1 group-hover:border-blue-400 group-hover:rotate-[-4deg] group-hover:scale-110 transition-all duration-300 ease-out flex items-center justify-center relative z-10"
+      class="arrow-container border-2 border-white rounded-full p-1 group-hover:border-blue-400 group-hover:rotate-[-4deg] group-hover:scale-110 transition-all duration-300 flex items-center justify-center relative z-10"
     >
       <ArrowRight
-        class="arrow-icon h-6 w-6 group-hover:translate-x-1 transition-transform duration-300 ease-out"
+        class="h-6 w-6 group-hover:translate-x-1 transition-transform"
       />
     </span>
   </a>
 </div>
 
 <style>
-  /* Slides container */
-  .slides-container {
-    position: relative;
-  }
-
   .slide {
     will-change: opacity;
   }
 
-  /* Progress line styles */
+  /* Progress line base (Gris traslúcido) */
   .progress-line {
     position: relative;
-    overflow: visible;
     cursor: pointer;
     padding-bottom: 8px;
-    transition: opacity 0.3s ease;
     background: none;
     border: none;
   }
 
-  /* Gray background line */
   .progress-line::before {
     content: "";
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 2px;
+    height: 3px;
     background: rgba(255, 255, 255, 0.3);
-    z-index: 1;
     border-radius: 1px;
+    z-index: 1;
   }
 
-  /* Active fill line - usando transform para mejor performance */
+  /* Active fill line (Blanco Puro) */
   .progress-line::after {
     content: "";
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 2px;
-    background: rgba(255, 255, 255, 1);
+    height: 3px;
+    background: #ffffff;
     z-index: 2;
     transform: scaleX(0);
-    transform-origin: left center;
+    transform-origin: left;
     transition: transform 0.3s ease-out;
     border-radius: 1px;
   }
 
-  /* Active state */
   .progress-line.is-active::after {
     animation: progressFill var(--slide-duration) linear forwards;
   }
 
-  /* Completed state */
   .progress-line.is-completed::after {
     transform: scaleX(1);
     animation: none;
   }
+  .progress-line.is-paused::after {
+    animation-play-state: paused;
+  }
 
-  /* Progress animation usando transform */
   @keyframes progressFill {
     from {
       transform: scaleX(0);
@@ -317,104 +291,31 @@ const slides = [
     }
   }
 
-  /* Visual states */
-  .progress-line:not(.is-active):not(.is-completed) {
-    opacity: 0.6;
-  }
-
-  .progress-line.is-active {
-    opacity: 1;
-  }
-
-  .progress-line.is-completed {
-    opacity: 0.8;
-  }
-
-  .progress-line.is-paused::after {
-    animation-play-state: paused;
-  }
-
-  .progress-line:hover {
-    opacity: 1;
-  }
-
-  /* Responsive font sizes */
-  .text-base-custom {
-    font-size: 0.875rem;
-  }
-
-  .text-lg-custom {
-    font-size: 1rem;
-  }
-
-  @media (min-width: 768px) {
-    .text-base-custom {
-      font-size: 1rem;
-    }
-    .text-lg-custom {
-      font-size: 1.125rem;
-    }
-  }
-
-  /* CTA Button Animations */
   .cta-button {
-    box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
-    transition: all 0.3s ease-in-out;
+    animation: subtle-pulse 3s ease-in-out infinite;
   }
-
   .cta-button:hover {
-    box-shadow: 0 6px 20px rgba(0, 118, 255, 0.5);
+    animation: none;
     transform: translateY(-2px);
   }
 
-  .cta-button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 10px rgba(0, 118, 255, 0.3);
-  }
-
-  /* Efecto de brillo que cruza el botón */
-  .shine-effect {
-    pointer-events: none;
-  }
-
-  /* Animación sutil de pulso para llamar la atención */
   @keyframes subtle-pulse {
     0%,
     100% {
       box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
     }
     50% {
-      box-shadow: 0 6px 20px rgba(0, 118, 255, 0.5);
+      box-shadow: 0 6px 25px rgba(0, 118, 255, 0.6);
     }
-  }
-
-  .cta-button {
-    animation: subtle-pulse 3s ease-in-out infinite;
-  }
-
-  .cta-button:hover {
-    animation: none;
-  }
-
-  /* Animación suave del contenedor de la flecha */
-  .arrow-container {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* Transición suave de la flecha */
-  .arrow-icon {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 </style>
 
 <script>
-  // Simple slider sin dependencias externas
   class HeroSlider {
     constructor() {
       this.currentIndex = 0;
       this.isPaused = false;
       this.autoplayTimer = null;
-
       this.slider = document.getElementById("hero-slider");
       this.slides = document.querySelectorAll(".slide");
       this.progressLines = document.querySelectorAll(".progress-line");
@@ -423,68 +324,45 @@ const slides = [
       this.pauseIcon = document.getElementById("pauseIcon");
 
       if (!this.slider) return;
-
       this.init();
     }
 
     init() {
-      // Hacer visible el slider inmediatamente
-      this.slider.style.opacity = "1";
-
-      // Setup inicial
       this.updateProgressBars(0);
-
-      // Event listeners
       this.playPauseBtn?.addEventListener("click", () =>
         this.togglePlayPause(),
       );
-
       this.progressLines.forEach((line) => {
-        line.addEventListener("click", (e) => {
-          const index = parseInt(line.dataset.slideIndex, 10);
-          if (!isNaN(index)) {
-            this.goToSlide(index);
-          }
+        line.addEventListener("click", () => {
+          const index = parseInt(line.dataset.slideIndex);
+          this.goToSlide(index);
         });
       });
-
-      // Iniciar autoplay después de un pequeño delay
-      setTimeout(() => this.startAutoplay(), 100);
+      this.startAutoplay();
     }
 
     goToSlide(index) {
       if (index === this.currentIndex) return;
-
-      // Fade out current
-      this.slides[this.currentIndex]?.classList.remove("opacity-100", "z-10");
-      this.slides[this.currentIndex]?.classList.add("opacity-0", "z-0");
-
-      // Fade in new
-      this.slides[index]?.classList.remove("opacity-0", "z-0");
-      this.slides[index]?.classList.add("opacity-100", "z-10");
-
+      this.slides[this.currentIndex]?.classList.replace(
+        "opacity-100",
+        "opacity-0",
+      );
+      this.slides[this.currentIndex]?.classList.replace("z-10", "z-0");
+      this.slides[index]?.classList.replace("opacity-0", "opacity-100");
+      this.slides[index]?.classList.replace("z-0", "z-10");
       this.currentIndex = index;
       this.updateProgressBars(index);
-
-      if (!this.isPaused) {
-        this.startAutoplay();
-      }
+      if (!this.isPaused) this.startAutoplay();
     }
 
     updateProgressBars(activeIndex) {
       this.progressLines.forEach((line, index) => {
         line.classList.remove("is-active", "is-completed", "is-paused");
-
-        if (index < activeIndex) {
-          line.classList.add("is-completed");
-        } else if (index === activeIndex) {
+        if (index < activeIndex) line.classList.add("is-completed");
+        else if (index === activeIndex) {
           line.classList.add("is-active");
-
-          if (this.isPaused) {
-            line.classList.add("is-paused");
-          }
-
-          const duration = parseInt(line.dataset.duration, 10) || 10000;
+          if (this.isPaused) line.classList.add("is-paused");
+          const duration = parseInt(line.dataset.duration) || 10000;
           line.style.setProperty("--slide-duration", `${duration / 1000}s`);
         }
       });
@@ -492,59 +370,31 @@ const slides = [
 
     startAutoplay() {
       this.clearAutoplay();
-
       if (this.isPaused) return;
-
-      const currentLine = this.progressLines[this.currentIndex];
-      const duration = parseInt(currentLine?.dataset.duration, 10) || 10000;
-
+      const duration =
+        parseInt(this.progressLines[this.currentIndex]?.dataset.duration) ||
+        10000;
       this.autoplayTimer = setTimeout(() => {
-        const nextIndex = (this.currentIndex + 1) % this.slides.length;
-        this.goToSlide(nextIndex);
+        this.goToSlide((this.currentIndex + 1) % this.slides.length);
       }, duration);
     }
 
     clearAutoplay() {
-      if (this.autoplayTimer) {
-        clearTimeout(this.autoplayTimer);
-        this.autoplayTimer = null;
-      }
+      clearTimeout(this.autoplayTimer);
     }
 
     togglePlayPause() {
       this.isPaused = !this.isPaused;
-
+      this.playIcon?.classList.toggle("hidden");
+      this.pauseIcon?.classList.toggle("hidden");
       if (this.isPaused) {
         this.clearAutoplay();
-        this.progressLines.forEach((line) => {
-          if (line.classList.contains("is-active")) {
-            line.classList.add("is-paused");
-          }
-        });
-        this.updatePlayPauseButton(false);
+        this.progressLines[this.currentIndex]?.classList.add("is-paused");
       } else {
-        this.progressLines.forEach((line) => {
-          line.classList.remove("is-paused");
-        });
         this.startAutoplay();
-        this.updatePlayPauseButton(true);
-      }
-    }
-
-    updatePlayPauseButton(playing) {
-      if (playing) {
-        this.playIcon?.classList.add("hidden");
-        this.pauseIcon?.classList.remove("hidden");
-        this.playPauseBtn?.setAttribute("aria-label", "Pausar slider");
-      } else {
-        this.playIcon?.classList.remove("hidden");
-        this.pauseIcon?.classList.add("hidden");
-        this.playPauseBtn?.setAttribute("aria-label", "Reproducir slider");
+        this.progressLines[this.currentIndex]?.classList.remove("is-paused");
       }
     }
   }
-
-  // Inicializar apenas el script se ejecuta (sin esperar DOMContentLoaded)
-  // Astro coloca scripts al final del body, así que el DOM ya está listo
   new HeroSlider();
 </script>
