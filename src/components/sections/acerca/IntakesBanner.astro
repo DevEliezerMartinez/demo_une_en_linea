@@ -1,0 +1,202 @@
+---
+import {
+  Calendar,
+  Layers,
+  Clock,
+  ArrowRight,
+  AlertCircle,
+  CheckCircle2,
+} from "lucide-astro";
+
+import { Image } from "astro:assets";
+import StudentPlanning from "@/assets/imagenes/estudiantes_de_linea.webp";
+
+// --- CONFIGURACIÓN DE URGENCIA ---
+const proximoInicio = "12 de Febrero";
+const estadoConvocatoria = "Inscripciones Abiertas";
+
+const features = [
+  {
+    icon: Calendar,
+    number: "8",
+    label: "Inicios al año",
+    desc: "Olvídate de esperar 6 meses. Abrimos convocatoria casi cada mes para que inicies cuando estés listo.",
+    color: "text-red-600",
+    bg: "bg-red-50",
+    isPrimary: true, // IMPORTANTE: Define que esta card es la grande
+  },
+  {
+    icon: Layers,
+    number: "1",
+    label: "Materia a la vez",
+    desc: "Enfoque total. Cursas una asignatura por módulo mensual.",
+    color: "text-blue-600",
+    bg: "bg-blue-50",
+    isPrimary: false,
+  },
+  {
+    icon: Clock,
+    number: "3",
+    label: "Materias por Cuatri",
+    desc: "Avanza con ritmo constante completando 3 módulos.",
+    color: "text-indigo-600",
+    bg: "bg-indigo-50",
+    isPrimary: false,
+  },
+];
+---
+
+<section
+  class="py-12 bg-white relative overflow-hidden border-b border-gray-100"
+>
+  <div class="container mx-auto px-4">
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+        Tu educación no tiene por qué esperar
+      </h2>
+      <p class="text-gray-600">
+        Nuestro modelo modular te permite inscribirte en **8 momentos diferentes
+        del año**. El tiempo va a pasar de todos modos, mejor pásalo estudiando.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10 mb-12">
+      <div
+        class="lg:col-span-5 relative group overflow-hidden rounded-2xl shadow-lg min-h-[300px] lg:min-h-full"
+      >
+        <Image
+          src={StudentPlanning}
+          alt="Estudiante organizando su tiempo en UNE"
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"
+        >
+        </div>
+
+        <div class="absolute bottom-0 left-0 p-6 text-white">
+          <div class="flex items-center gap-2 mb-2">
+            <CheckCircle2 class="w-5 h-5 text-green-400" />
+            <span class="font-bold text-sm tracking-wider uppercase"
+              >Flexibilidad Total</span
+            >
+          </div>
+          <p class="text-lg font-medium leading-tight">
+            "Elegí UNE porque se adapta a mi trabajo, no al revés."
+          </p>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {
+          features.map((item) => (
+            <div
+              class={`
+              relative bg-white border border-gray-200 rounded-xl p-6 
+              hover:shadow-xl hover:border-gray-300 transition-all duration-300 group
+              ${item.isPrimary ? "sm:col-span-2 bg-gradient-to-br from-white to-gray-50" : "sm:col-span-1"}
+            `}
+            >
+              <div class="flex items-start justify-between mb-4">
+                <div class={`p-3 rounded-lg ${item.bg}`}>
+                  <item.icon class={`w-6 h-6 ${item.color}`} />
+                </div>
+                <span
+                  class={`font-bold ${item.color} opacity-20 group-hover:opacity-100 transition-opacity duration-300 ${item.isPrimary ? "text-6xl" : "text-5xl"}`}
+                >
+                  {item.number}
+                </span>
+              </div>
+              <h3
+                class={`font-bold text-gray-900 mb-2 ${item.isPrimary ? "text-2xl" : "text-xl"}`}
+              >
+                {item.label}
+              </h3>
+              <p class="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+
+              {/* Flecha decorativa solo en el card principal */}
+              {item.isPrimary && (
+                <div class="hidden sm:block absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                  <ArrowRight class="w-6 h-6 text-red-600" />
+                </div>
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div
+      class="relative bg-gray-900 rounded-2xl p-1 overflow-hidden shadow-2xl mt-8"
+    >
+      <div
+        class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-red-600 rounded-full blur-2xl opacity-20"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-0 -mb-4 -ml-4 w-24 h-24 bg-blue-600 rounded-full blur-2xl opacity-20"
+      >
+      </div>
+
+      <div class="bg-white rounded-xl p-6 md:p-8 relative z-10">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+          <div class="flex items-start gap-4">
+            <div
+              class="hidden md:flex flex-col items-center justify-center bg-red-50 text-red-600 w-20 h-20 rounded-lg border-2 border-red-100 shrink-0"
+            >
+              <Calendar class="w-8 h-8 mb-1" />
+            </div>
+
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="relative flex h-3 w-3">
+                  <span
+                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
+                  ></span>
+                  <span
+                    class="relative inline-flex rounded-full h-3 w-3 bg-green-500"
+                  ></span>
+                </span>
+                <span
+                  class="text-sm font-bold text-green-600 uppercase tracking-wide"
+                >
+                  {estadoConvocatoria}
+                </span>
+              </div>
+
+              <h3
+                class="text-2xl md:text-3xl font-bold text-gray-900 leading-tight"
+              >
+                Próximo inicio: <span
+                  class="text-red-600 underline decoration-red-200 decoration-4 underline-offset-4"
+                  >{proximoInicio}</span
+                >
+              </h3>
+              <p class="text-gray-500 mt-2 flex items-center gap-2">
+                <AlertCircle class="w-4 h-4 text-orange-500" />
+                No esperes al siguiente ciclo. Asegura tu lugar hoy.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="w-full md:w-auto flex flex-col items-center md:items-end gap-3"
+          >
+            <a
+              href="/contacto/solicitarinformacion"
+              class="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold text-lg px-8 py-4 rounded-lg transition-all duration-300 shadow-lg hover:shadow-red-500/30 hover:-translate-y-1"
+            >
+              Comenzar mi proceso
+              <ArrowRight class="w-5 h-5" />
+            </a>
+            <span class="text-xs text-gray-400 font-medium">
+              *Cupo limitado por grupo
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

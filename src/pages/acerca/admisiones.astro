@@ -6,6 +6,7 @@ import AdmisionHero from "@/assets/imagenes/heros/admisiones_desktop.webp";
 import AdmisionHeroMobile from "@/assets/imagenes/heros/admisiones_mobile.webp";
 import { FileDown } from "@lucide/astro";
 import ContactSection from "@/components/sections/shared/GeneralCTA.astro";
+import IntakesBanner from "@/components/sections/acerca/IntakesBanner.astro";
 ---
 
 <Layout
@@ -63,6 +64,8 @@ import ContactSection from "@/components/sections/shared/GeneralCTA.astro";
       </div>
     </div>
   </section>
+
+  <IntakesBanner />
 
   <!-- New 5-Step Process Section -->
   <section class="py-16 bg-linear-to-b from-gray-50 to-white">
@@ -253,8 +256,14 @@ import ContactSection from "@/components/sections/shared/GeneralCTA.astro";
       >
         <p class="text-lg text-gray-800">
           <strong class="text-blue-900">¿Tienes dudas?</strong>
-          <span class="ml-2"
-            >Tu asesor y tutor te acompañarán durante todo el proceso.</span
+          <span class="ml-2 flex"
+            >Un asesor y tutor te acompañarán durante todo el proceso. <a
+              href="/contacto/solicitarinformacion"
+              class="hover:opacity-90 text-rojo-une font-medium transition-all duration-300 hover:scale-105 focus:outline-none ml-4 focus:ring-red-300 text-center"
+              aria-label="Solicitar más información sobre admisiones"
+            >
+              ¡Contáctanos!
+            </a></span
           >
         </p>
       </div>

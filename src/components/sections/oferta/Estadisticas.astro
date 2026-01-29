@@ -1,5 +1,34 @@
+---
+interface Props {
+  maestria?: boolean;
+}
+
+const { maestria = false } = Astro.props;
+
+// Configuración de textos según el nivel educativo
+const content = {
+  graduados: {
+    number: maestria ? "+500" : "+3,000", // Ajuste opcional de cifra para posgrado
+    label: maestria
+      ? "Graduados de maestría cada año"
+      : "Graduados cada año a nivel Licenciatura",
+  },
+  empleabilidad: {
+    number: maestria ? "95%" : "90%",
+    label: maestria
+      ? "logra un ascenso o mejora salarial al finalizar su maestría."
+      : "de nuestros egresados consigue empleo en menos de 6 meses.",
+  },
+  convenios: {
+    number: "+800",
+    label: maestria
+      ? "Alianzas corporativas para networking y vinculación de alto nivel."
+      : "Convenios con empresas para prácticas, empleabilidad y desarrollo profesional.",
+  },
+};
+---
+
 <div class="max-w-7xl mx-auto px-6 my-30">
-  <!-- Header -->
   <div
     class="text-center mb-12 opacity-0 animate-fade-in"
     data-animate="fade-up"
@@ -16,9 +45,7 @@
     </p>
   </div>
 
-  <!-- Stats Grid -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-    <!-- Stat 1 -->
     <div
       class="text-center opacity-0 animate-fade-in-delay-1"
       data-animate="fade-up"
@@ -26,18 +53,18 @@
       <div class="mb-4">
         <span
           class="text-5xl sm:text-6xl lg:text-7xl font-bold text-azul-une counter"
-          data-target="3000"
+          data-target={content.graduados.number.replace(/\D/g, "")}
           data-prefix="+"
+          data-reset-on-animate="true"
         >
-          +0
+          {content.graduados.number}
         </span>
       </div>
       <p class="text-lg text-gray-900 mb-2">
-        Graduados cada año a nivel Licenciatura
+        {content.graduados.label}
       </p>
     </div>
 
-    <!-- Stat 2 -->
     <div
       class="text-center opacity-0 animate-fade-in-delay-2"
       data-animate="fade-up"
@@ -45,18 +72,18 @@
       <div class="mb-4">
         <span
           class="text-5xl sm:text-6xl lg:text-7xl font-bold text-azul-une counter"
-          data-target="90"
+          data-target={content.empleabilidad.number.replace(/\D/g, "")}
           data-suffix="%"
+          data-reset-on-animate="true"
         >
-          0%
+          {content.empleabilidad.number}
         </span>
       </div>
       <p class="text-lg text-gray-900 mb-2">
-        de nuestros egresados consigue empleo en menos de 6 meses.
+        {content.empleabilidad.label}
       </p>
     </div>
 
-    <!-- Stat 3 -->
     <div
       class="text-center opacity-0 animate-fade-in-delay-3"
       data-animate="fade-up"
@@ -64,15 +91,15 @@
       <div class="mb-4">
         <span
           class="text-5xl sm:text-6xl lg:text-7xl font-bold text-azul-une counter"
-          data-target="800"
+          data-target={content.convenios.number.replace(/\D/g, "")}
           data-prefix="+"
+          data-reset-on-animate="true"
         >
-          +0
+          {content.convenios.number}
         </span>
       </div>
       <p class="text-lg text-gray-900 mb-2">
-        Convenios con empresas para prácticas, empleabilidad y desarrollo
-        profesional.
+        {content.convenios.label}
       </p>
     </div>
   </div>
@@ -146,6 +173,11 @@
     const prefix = element.dataset.prefix || "";
     const suffix = element.dataset.suffix || "";
     const startTime = performance.now();
+
+    // Solo resetear si tiene el atributo data-reset-on-animate
+    if (element.dataset.resetOnAnimate === "true") {
+      element.textContent = prefix + "0" + suffix;
+    }
 
     // Agregar clase de animación
     element.classList.add("counting");

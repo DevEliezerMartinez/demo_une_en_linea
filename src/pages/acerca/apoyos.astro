@@ -1,23 +1,50 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { Image } from "astro:assets";
-import { Check, ArrowRight } from "lucide-astro";
+import { Check, ArrowRight, Clock, GraduationCap } from "lucide-astro";
 
-import Hero from "@/assets/imagenes/heros/becas_desktop.webp";
-import HeroMobile from "@/assets/imagenes/heros/becas_mobile.webp";
+import Hero from "@/assets/imagenes/heros/licenciaturas_desktop.webp";
+import HeroMobile from "@/assets/imagenes/heros/licenciaturas_mobile.webp";
 import aprendiendo from "@assets/imagenes/aprendiendo.webp";
 import ContactSection from "@/components/sections/shared/GeneralCTA.astro";
+
+// --- CONFIGURACIÓN DE ESTADO ---
+const hayBecas = false; // 'true' = Abierta (Muestra %), 'false' = Cerrada/Espera (Texto genérico)
+const porcentajeActual = "10"; // Solo se usa si hayBecas es true.
+
+// Textos dinámicos
+const heroTitle = hayBecas
+  ? "Becas Modalidad En Línea"
+  : "La Convocatoria de Becas está por anunciarse";
+
+// Descripción: Si hay becas, da el dato exacto. Si no, habla de "ahorro" en general.
+const heroDescription = hayBecas
+  ? `Tu esfuerzo merece reconocimiento. Obtén ${porcentajeActual}% de descuento en cada mensualidad durante todo tu plan de estudios y avanza a tu ritmo.`
+  : "Los lugares para la beca actual se han agotado, pero pronto abriremos nuevos espacios. El porcentaje de apoyo puede variar en cada ciclo. Déjanos tus datos para ser el primero en conocer la nueva oferta.";
+
+const heroCtaText = hayBecas
+  ? "Solicitar Información"
+  : "Avísame de la próxima convocatoria";
+
+const benefitsSubtitle = hayBecas
+  ? `Conoce el apoyo del ${porcentajeActual}% disponible`
+  : "Conoce los apoyos económicos que otorgamos";
+
+// Meta descripción para Google
+const metaDescription = hayBecas
+  ? `Programa de becas del ${porcentajeActual}% en mensualidades para estudiantes de Preparatoria, Licenciatura y Maestría en modalidad En Línea.`
+  : "Regístrate en la lista de espera para las becas de la Universidad UNE. Sé el primero en conocer los porcentajes de descuento y beneficios de la próxima convocatoria.";
 ---
 
 <Layout
-  title="Becas Modalidad En Línea - Universidad UNE"
-  description="Programa de becas del 10% en mensualidades para estudiantes de Preparatoria, Licenciatura y Maestría en modalidad En Línea. Estudia con flexibilidad y ahorra."
+  title={hayBecas
+    ? `Becas Modalidad En Línea - Universidad UNE`
+    : "Lista de Espera Becas - Universidad UNE"}
+  description={metaDescription}
 >
-  <!-- Hero Section -->
   <section
     class="relative min-h-[65vh] md:min-h-[85vh] flex items-center justify-center overflow-hidden"
   >
-    <!-- Background Image Desktop -->
     <div class="hidden md:block absolute inset-0">
       <Image
         src={Hero}
@@ -27,7 +54,6 @@ import ContactSection from "@/components/sections/shared/GeneralCTA.astro";
       />
     </div>
 
-    <!-- Background Image Mobile -->
     <div class="block md:hidden absolute inset-0">
       <Image
         src={HeroMobile}
@@ -37,34 +63,37 @@ import ContactSection from "@/components/sections/shared/GeneralCTA.astro";
       />
     </div>
 
-    <!-- Overlay -->
-    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="absolute inset-0 bg-black/50"></div>
 
-    <!-- Content -->
     <div class="relative z-10 container mx-auto px-4 py-12 md:py-0">
-      <div class="text-white max-w-2xl">
+      <div class="text-white max-w-3xl">
+        {
+          !hayBecas && (
+            <div class="inline-flex items-center gap-2 bg-yellow-500/90 text-black px-4 py-1 rounded-full text-sm font-medium mb-6 backdrop-blur-sm">
+              <Clock class="w-4 h-4" />
+              <span>Próxima apertura</span>
+            </div>
+          )
+        }
+
         <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">
-          Becas Modalidad En Línea
+          {heroTitle}
         </h1>
         <p class="text-lg md:text-xl mb-8 leading-relaxed font-light">
-          Tu esfuerzo merece reconocimiento. Obtén 10% de descuento en cada
-          mensualidad durante todo tu plan de estudios y avanza a tu ritmo sin
-          sacrificar tu economía.
+          {heroDescription}
         </p>
 
-        <!-- CTA Button -->
         <a
           href="#contacto"
-          class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"
+          class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-medium px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105"
         >
-          Solicitar Información
+          {heroCtaText}
           <ArrowRight class="w-5 h-5" />
         </a>
       </div>
     </div>
   </section>
 
-  <!-- No solo es una beca Section -->
   <section class="py-16 bg-gray-50">
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -73,16 +102,17 @@ import ContactSection from "@/components/sections/shared/GeneralCTA.astro";
             Más que una beca, es tu oportunidad
           </h2>
           <p class="text-gray-600 text-lg leading-relaxed mb-4">
-            Sabemos que elegir estudiar en línea requiere disciplina, compromiso
-            y un balance único entre tus responsabilidades personales, laborales
-            y académicas. Por eso, queremos acompañarte en este camino.
+            Sabemos que elegir estudiar en línea requiere disciplina y un
+            balance único entre tus responsabilidades personales y académicas.
           </p>
           <p class="text-gray-600 text-lg leading-relaxed">
-            Nuestro programa de becas no es solo un apoyo económico: es el
-            reconocimiento a tu dedicación y esfuerzo constante. Porque creemos
-            que la educación de calidad debe ser accesible para quienes
-            demuestran compromiso con su crecimiento profesional, sin importar
-            dónde estés o cuál sea tu ritmo de vida.
+            Nuestro programa de apoyos no es solo un descuento: es el
+            reconocimiento a tu dedicación.
+            {
+              !hayBecas
+                ? "Aunque el porcentaje de beneficio cambia según la convocatoria y el rendimiento académico, nuestro compromiso con la educación accesible se mantiene."
+                : "Aprovecha la oportunidad actual y congela tu beca durante toda la carrera."
+            }
           </p>
         </div>
         <div class="flex justify-center">
@@ -97,7 +127,6 @@ import ContactSection from "@/components/sections/shared/GeneralCTA.astro";
     </div>
   </section>
 
-  <!-- Apoyos Disponibles Section -->
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
@@ -106,37 +135,49 @@ import ContactSection from "@/components/sections/shared/GeneralCTA.astro";
             Beneficios por Nivel Educativo
           </h2>
           <p class="text-gray-600 text-lg">
-            El mismo apoyo del 10% en todos los niveles académicos
+            {benefitsSubtitle}
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Preparatoria -->
+          {/* CARD PREPARATORIA */}
           <div
             class="bg-white border-2 border-gray-200 rounded-xl p-8 hover:shadow-xl hover:border-red-500 transition-all duration-300"
           >
             <div class="text-red-600 text-lg mb-3">/ Preparatoria</div>
             <div class="mb-6">
-              <div class="text-5xl font-bold text-gray-800 mb-2">10%</div>
-              <div class="text-gray-600">de descuento mensual</div>
+              {
+                hayBecas ? (
+                  <>
+                    <div class="text-5xl font-bold text-gray-800 mb-2">
+                      {porcentajeActual}%
+                    </div>
+                    <div class="text-gray-600">de descuento mensual</div>
+                  </>
+                ) : (
+                  <>
+                    <div class="flex items-center gap-2 mb-2">
+                      <GraduationCap class="w-12 h-12 text-gray-800" />
+                      <span class="text-3xl font-bold text-gray-800">Beca</span>
+                    </div>
+                    <div class="text-gray-600">Académica Aplicable</div>
+                  </>
+                )
+              }
             </div>
             <ul class="space-y-3 text-gray-600">
               <li class="flex items-start gap-2">
                 <Check class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                <span>Aplica en cada mensualidad</span>
+                <span>Aplica en mensualidades</span>
               </li>
               <li class="flex items-start gap-2">
                 <Check class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                <span>Durante todo tu plan de estudios</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <Check class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                <span>Mantén promedio de 8.5</span>
+                <span>Válido todo el plan de estudios</span>
               </li>
             </ul>
           </div>
 
-          <!-- Licenciatura -->
+          {/* CARD LICENCIATURA */}
           <div
             class="bg-white border-2 border-red-500 rounded-xl p-8 shadow-xl relative overflow-hidden"
           >
@@ -147,149 +188,174 @@ import ContactSection from "@/components/sections/shared/GeneralCTA.astro";
             </div>
             <div class="text-red-600 text-lg mb-3">/ Licenciatura</div>
             <div class="mb-6">
-              <div class="text-5xl font-bold text-gray-800 mb-2">10%</div>
-              <div class="text-gray-600">de descuento mensual</div>
+              {
+                hayBecas ? (
+                  <>
+                    <div class="text-5xl font-bold text-gray-800 mb-2">
+                      {porcentajeActual}%
+                    </div>
+                    <div class="text-gray-600">de descuento mensual</div>
+                  </>
+                ) : (
+                  <>
+                    <div class="flex items-center gap-2 mb-2">
+                      <GraduationCap class="w-12 h-12 text-gray-800" />
+                      <span class="text-3xl font-bold text-gray-800">Beca</span>
+                    </div>
+                    <div class="text-gray-600">Académica Aplicable</div>
+                  </>
+                )
+              }
             </div>
             <ul class="space-y-3 text-gray-600">
               <li class="flex items-start gap-2">
                 <Check class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                <span>Aplica en cada mensualidad</span>
+                <span>Aplica en mensualidades</span>
               </li>
               <li class="flex items-start gap-2">
                 <Check class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                <span>Durante toda tu carrera</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <Check class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                <span>Mantén promedio de 8.5</span>
+                <span>Válido toda la carrera</span>
               </li>
             </ul>
           </div>
 
-          <!-- Maestría -->
+          {/* CARD MAESTRÍA */}
           <div
             class="bg-white border-2 border-gray-200 rounded-xl p-8 hover:shadow-xl hover:border-red-500 transition-all duration-300"
           >
             <div class="text-red-600 text-lg mb-3">/ Maestría</div>
             <div class="mb-6">
-              <div class="text-5xl font-bold text-gray-800 mb-2">10%</div>
-              <div class="text-gray-600">de descuento mensual</div>
+              {
+                hayBecas ? (
+                  <>
+                    <div class="text-5xl font-bold text-gray-800 mb-2">
+                      {porcentajeActual}%
+                    </div>
+                    <div class="text-gray-600">de descuento mensual</div>
+                  </>
+                ) : (
+                  <>
+                    <div class="flex items-center gap-2 mb-2">
+                      <GraduationCap class="w-12 h-12 text-gray-800" />
+                      <span class="text-3xl font-bold text-gray-800">Beca</span>
+                    </div>
+                    <div class="text-gray-600">Académica Aplicable</div>
+                  </>
+                )
+              }
             </div>
             <ul class="space-y-3 text-gray-600">
               <li class="flex items-start gap-2">
                 <Check class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                <span>Aplica en cada mensualidad</span>
+                <span>Aplica en mensualidades</span>
               </li>
               <li class="flex items-start gap-2">
                 <Check class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                <span>Durante todo tu posgrado</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <Check class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                <span>Mantén promedio de 8.5</span>
+                <span>Válido todo el posgrado</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <!-- Nota informativa -->
         <div class="mt-12 bg-red-50 border-l-4 border-red-600 p-6 rounded-r-lg">
           <p class="text-gray-700">
-            <span class="font-semibold text-red-600">Importante:</span> El descuento
-            del 10% se aplica automáticamente en cada una de tus mensualidades mientras
-            mantengas los requisitos académicos y de regularidad.
+            <span class="font-semibold text-red-600">Nota importante:</span>
+            {
+              hayBecas
+                ? `El descuento del ${porcentajeActual}% se aplica automáticamente en cada una de tus mensualidades cumpliendo los requisitos académicos.`
+                : "El porcentaje de beca se determina en cada convocatoria según la disponibilidad y el programa académico. Regístrate para recibir la información oficial en cuanto se libere."
+            }
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Cómo Solicitar tu Beca Section -->
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
       <div class="text-center mb-12">
         <h2 class="text-4xl font-bold text-gray-800 mb-4">
-          ¿Cómo obtener tu beca?
+          {
+            hayBecas
+              ? "¿Cómo obtener tu beca?"
+              : "Prepárate para la convocatoria"
+          }
         </h2>
         <p class="text-xl text-gray-600">
-          Un proceso simple y directo para comenzar a ahorrar desde el primer
-          día
+          {
+            hayBecas
+              ? "Un proceso simple y directo para comenzar a ahorrar"
+              : "Sigue estos pasos para asegurar tu lugar en la lista de espera"
+          }
         </p>
       </div>
 
       <div class="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-        <!-- Paso 1 -->
         <div class="text-center">
           <div
             class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg"
           >
             <span class="text-white font-bold text-xl">1</span>
           </div>
-          <h3 class="text-xl font-bold text-gray-800 mb-2">Inscríbete</h3>
+          <h3 class="text-xl font-bold text-gray-800 mb-2">Datos</h3>
           <p class="text-gray-600">
-            Completa tu proceso de admisión a UNE modalidad en línea
+            {
+              hayBecas
+                ? "Completa tu proceso de admisión"
+                : "Déjanos tus datos de contacto"
+            }
           </p>
         </div>
 
-        <!-- Paso 2 -->
         <div class="text-center">
           <div
             class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg"
           >
             <span class="text-white font-bold text-xl">2</span>
           </div>
-          <h3 class="text-xl font-bold text-gray-800 mb-2">Solicita</h3>
+          <h3 class="text-xl font-bold text-gray-800 mb-2">Notificación</h3>
           <p class="text-gray-600">
-            Presenta tus documentos académicos para evaluación
+            {
+              hayBecas
+                ? "Presenta tus documentos"
+                : "Recibe el aviso de apertura"
+            }
           </p>
         </div>
 
-        <!-- Paso 3 -->
         <div class="text-center">
           <div
             class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg"
           >
             <span class="text-white font-bold text-xl">3</span>
           </div>
-          <h3 class="text-xl font-bold text-gray-800 mb-2">Recibe</h3>
+          <h3 class="text-xl font-bold text-gray-800 mb-2">Evaluación</h3>
           <p class="text-gray-600">
-            Obtén la confirmación de tu beca en 48 horas
+            {
+              hayBecas
+                ? "Obtén respuesta en 48 horas"
+                : "Conoce el % asignado a tu ciclo"
+            }
           </p>
         </div>
 
-        <!-- Paso 4 -->
         <div class="text-center">
           <div
             class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg"
           >
             <span class="text-white font-bold text-xl">4</span>
           </div>
-          <h3 class="text-xl font-bold text-gray-800 mb-2">Ahorra</h3>
-          <p class="text-gray-600">
-            Disfruta del 10% de descuento en cada pago mensual
-          </p>
+          <h3 class="text-xl font-bold text-gray-800 mb-2">Inscripción</h3>
+          <p class="text-gray-600">Congela tu beneficio inscribiéndote</p>
         </div>
-      </div>
-
-      <!-- Beneficio adicional -->
-      <div
-        class="mt-16 max-w-3xl mx-auto text-center bg-gradient-to-r from-red-50 to-red-100 p-8 rounded-xl"
-      >
-        <h3 class="text-2xl font-bold text-gray-800 mb-4">
-          ¿Cuánto puedes ahorrar?
-        </h3>
-        <p class="text-gray-700 text-lg">
-          El 10% de descuento mensual se suma a lo largo de tu carrera,
-          generando un ahorro significativo que hace tu educación más accesible.
-          Invierte en tu futuro sin comprometer tu estabilidad financiera.
-        </p>
       </div>
     </div>
   </section>
 
-  <!-- Sección de Notificaciones -->
   <ContactSection
-    title="¿Listo para comenzar tu camino con UNE?"
+    title={hayBecas
+      ? "¿Listo para comenzar tu camino con UNE?"
+      : "Sé el primero en enterarte de la próxima convocatoria"}
     backgroundImage={true}
   />
 </Layout>

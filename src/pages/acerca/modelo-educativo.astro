@@ -4,61 +4,57 @@ import CallAction from "@/components/sections/shared/GeneralCTA.astro";
 import Hero from "@/assets/imagenes/heros/modelo_educativo_desktop.webp";
 import HeroMobile from "@/assets/imagenes/heros/modelo_educativo_mobile.webp";
 import { Image } from "astro:assets";
-import BeneficiosModelosImg from "@/assets/imagenes/BeneficiosModelos.png";
+import BeneficiosModelosImg from "@/assets/imagenes/BeneficiosModelos2.png";
 import estudiantes_de_linea from "@/assets/imagenes/estudiantes_de_linea.webp";
-import { Search } from "@lucide/astro";
+import { BookOpen, CheckCircle, Clock, Users } from "lucide-astro"; // Sugerencia: Cambié Search por iconos más ad hoc si los tienes, si no, regresa a Search
 import plataforma from '@/assets/imagenes/heros/plataforma_educativa_mobile.webp';
+
+// --- MEJORA 1: Textos de las tarjetas más directos y sin repetir "Metodología" ---
 const metodologias = [
   {
     numero: "01",
-    titulo: "Metodología de estudio diseñada para tu éxito",
-    descripcion: "Cada materia está estructurada para que avances por módulos semanales, con actividades para consolidar tu aprendizaje."
+    titulo: "Estructura Modular Inteligente", // Antes: Metodología de estudio...
+    descripcion: "Avanza por objetivos claros. Tu plan de estudios se divide en módulos semanales diseñados para consolidar conocimientos paso a paso sin saturarte."
   },
   {
     numero: "02",
-    titulo: "Aprendizaje basado en asignaturas",
-    descripcion: "Desarrolla habilidades clave mediante contenidos actualizados, recursos digitales y acompañamiento docente durante todo el proceso."
+    titulo: "Contenido Práctico y Actual", // Antes: Aprendizaje basado en...
+    descripcion: "Olvídate de la teoría obsoleta. Accede a recursos digitales modernos y desarrolla las habilidades que el mercado laboral exige hoy."
   },
   {
     numero: "03",
-    titulo: "Disponibilidad los 365 días del año",
-    descripcion: "Accede en cualquier momento a tu plataforma, materiales, actividades y retroalimentación académica, sin interferir con tus actividades laborales o personales."
+    titulo: "Plataforma 24/7", // Antes: Disponibilidad los 365...
+    descripcion: "Tu aula está donde tú estés. Accede a materiales y evaluaciones en tus propios horarios, permitiéndote equilibrar trabajo, vida y estudio."
   },
   {
     numero: "04",
-    titulo: "Asesoría especializada",
-    descripcion: "Recibe orientación académica constante por parte de docentes y tutores que te acompañan en cada materia para asegurar tu avance y comprensión."
+    titulo: "Acompañamiento Humano", // Antes: Asesoría especializada
+    descripcion: "Estudiar en línea no significa estar solo. Cuentas con docentes y tutores que te guían, resuelven dudas y motivan tu progreso académico."
   }
 ];
-
 ---
 
 <Layout
-  title="Preguntas Frecuentes UNE - Dudas sobre Carreras y Admisión"
-  description="Respuestas a preguntas frecuentes sobre UNE: carreras, modalidades, costos, requisitos de admisión, becas y servicios estudiantiles."
+  title="Modelo Educativo UNE - Flexibilidad y Excelencia Académica"
+  description="Conoce el modelo educativo de UNE: una metodología flexible, modular y 100% en línea diseñada para que trabajes y estudies al mismo tiempo."
 >
   <main class="min-h-screen">
-    <!-- Hero Section -->
     <section
       class="relative min-h-[70vh] md:min-h-[75vh] overflow-hidden bg-cover bg-center bg-no-repeat"
     >
-      <!-- Desktop Background -->
       <div
         class="absolute inset-0 hidden md:block bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${Hero.src})` }}
       >
-        <div class="absolute inset-0 bg-black/20"></div>
-      </div>
+        <div class="absolute inset-0 bg-black/30"></div> </div>
 
-      <!-- Mobile Background -->
       <div
         class="absolute inset-0 block md:hidden bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${HeroMobile.src})` }}
       >
-        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="absolute inset-0 bg-black/30"></div>
       </div>
 
-      <!-- Hero Content -->
       <div
         class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 h-full min-h-[70vh] md:min-h-[75vh] flex items-center"
       >
@@ -66,14 +62,13 @@ const metodologias = [
           <div
             class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12"
           >
-            <!-- Left side - FAQ Title -->
             <div
               class="flex items-center gap-4 md:gap-6 text-white order-1 md:order-1"
             >
               <div
                 class="w-16 h-16 md:w-20 md:h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center flex-shrink-0 shadow-lg"
               >
-                <Search class="w-8 h-8 md:w-10 md:h-10 text-white" />
+                <BookOpen class="w-8 h-8 md:w-10 md:h-10 text-white" /> 
               </div>
               <h1
                 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-wide drop-shadow-lg"
@@ -82,16 +77,15 @@ const metodologias = [
               </h1>
             </div>
 
-            <!-- Right side - Welcome message -->
             <div
               class="bg-white rounded-2xl p-6 md:p-8 w-full max-w-md shadow-2xl order-2 md:order-2 backdrop-blur-sm"
             >
               <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">
-                Modelo educativo
+                Tu futuro, a tu ritmo
               </h2>
               <p class="text-gray-600 text-sm md:text-base leading-relaxed">
-                Nuestro modelo está centrado en el estudiante y pensado para
-                ofrecer una experiencia flexible, accesible y de calidad.
+                Diseñamos una experiencia de aprendizaje que se adapta a tu vida, no al revés. 
+                Tecnología y calidez humana para que logres tus metas sin pausas.
               </p>
             </div>
           </div>
@@ -99,14 +93,12 @@ const metodologias = [
       </div>
     </section>
 
-    <!-- Main Content -->
     <section class="py-16 bg-gray-50">
       <div class="container mx-auto px-4">
-        <!-- Section Title -->
         <div class="text-center mb-12">
           <h2 class="text-4xl font-bold text-azul-une mb-4">
-            Todo lo que necesitas saber, en<br />
-            un solo lugar.
+            Innovación educativa pensada<br />
+            para el mundo real.
           </h2>
         </div>
       </div>
@@ -114,42 +106,37 @@ const metodologias = [
 
     <section class="py-12 md:py-20 px-4">
       <div class="max-w-7xl mx-auto">
-        <!-- Contenedor principal -->
         <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
-          <!-- Imagen -->
           <div class="w-full lg:w-1/2">
             <div class="relative">
               <Image
                 src={BeneficiosModelosImg}
-                alt="Modelo educativo en línea UNE"
-                class="w-full h-auto"
+                alt="Estudiante aprovechando el modelo educativo UNE"
+                class="w-full h-auto " 
                 loading="lazy"
               />
             </div>
           </div>
 
-          <!-- Contenido de texto -->
           <div class="w-full lg:w-1/2">
-            <!-- Título -->
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8">
-              <span class="text-rojo-une">DESCUBRE</span>
-              <span class="text-black"> LOS BENEFICIOS DE NUESTRO MODELO</span>
+              <span class="text-azul-une">DESCUBRE</span>
+              <span class="text-black"> NUESTRAS VENTAJAS</span>
             </h2>
 
-            <!-- Descripción -->
-            <p class="text-base md:text-lg text-gray-700 leading-relaxed">
-              Como expertos de la educación en línea, nos encargamos de
-              establecer una metodología estratégica que nos permita brindarle a
-              nuestros estudiantes una experiencia de aprendizaje única y
-              comprometida a su crecimiento y desarrollo continuo. Empleando la
-              tecnología y las herramientas digitales como un fuerte aliado que
-              nos permite romper la barrera de la distancia que hace UNE en
-              línea la mejor opción para cursar una carrera universitaria.
-            </p>
+            <div class="text-base md:text-lg text-gray-700 leading-relaxed space-y-4">
+              <p>
+                Transformamos la educación a distancia en cercanía profesional. En UNE, no solo te damos acceso a una plataforma; te integramos a un ecosistema digital estratégico donde la tecnología elimina las barreras geográficas y de tiempo.
+              </p>
+              <p>
+                Nuestra prioridad es tu evolución. Por eso, combinamos herramientas digitales intuitivas con un seguimiento docente real, creando el equilibrio perfecto para que obtengas tu título universitario sin sacrificar tu trabajo ni tu vida personal. Somos la opción inteligente para quien busca calidad, validez y flexibilidad.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
+    
 
     
 <section class="py-12 md:py-20 px-4">

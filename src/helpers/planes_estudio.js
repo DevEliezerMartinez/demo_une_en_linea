@@ -1,11 +1,11 @@
 // Planes de estudio organizados por programa
 const planesEstudio = {
   bachillerato: {
-    nombre: "Bachillerato General",
+    nombre: "Bachillerato en línea",
     semestres: [
       {
         id: 1,
-        title: "1° Cuatrimestre",
+        title: "Bloque - 1",
         subjects: [
           "Informática I",
           "Taller de Lectura y Redacción I",
@@ -19,7 +19,7 @@ const planesEstudio = {
       },
       {
         id: 2,
-        title: "2° Cuatrimestre",
+        title: "Bloque - 2",
         subjects: [
           "Informática II",
           "Taller de Lectura y Redacción II",
@@ -33,7 +33,7 @@ const planesEstudio = {
       },
       {
         id: 3,
-        title: "3° Cuatrimestre",
+        title: "Bloque - 3",
         subjects: [
           "Biología I",
           "Literatura I",
@@ -45,7 +45,7 @@ const planesEstudio = {
       },
       {
         id: 4,
-        title: "4° Cuatrimestre",
+        title: "Bloque - 4",
         subjects: [
           "Biología II",
           "Literatura II",
@@ -57,7 +57,7 @@ const planesEstudio = {
       },
       {
         id: 5,
-        title: "5° Cuatrimestre",
+        title: "Bloque - 5",
         subjects: [
           "Geografía",
           "Estructura Socioeconómica de México",
@@ -69,7 +69,7 @@ const planesEstudio = {
       },
       {
         id: 6,
-        title: "6° Cuatrimestre",
+        title: "Bloque - 6",
         subjects: [
           "Filosofía",
           "Ecología y medio ambiente",

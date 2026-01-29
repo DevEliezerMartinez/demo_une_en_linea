@@ -3,12 +3,12 @@ const BachilleratoData = [
   {
     question: "¿Cuánto dura el bachillerato en línea?",
     answer:
-      "El bachillerato tiene una duración aproximada de 2 años, dependiendo del ritmo de avance del estudiante.",
+      "El bachillerato tiene una duración aproximada de 2 años 8 meses, dependiendo del ritmo de avance del estudiante.",
   },
   {
     question: "¿Cómo está conformado el plan de estudios?",
     answer:
-      "El plan de estudios está organizado por cuatrimestres e incluye materias del tronco común de educación media superior, como matemáticas, ciencias, humanidades e inglés.",
+      "El plan de estudios está organizado por bloques e incluye materias del tronco común de educación media superior, como matemáticas, ciencias, humanidades e inglés.",
   },
   {
     question: "¿La modalidad es 100% en línea?",
@@ -91,14 +91,9 @@ const MaestriaData = [
   },
   {
     question: "¿Cuál es la duración de la maestría?",
-    answer:
-      "La maestría tiene una duración aproximada de 1 año o 8 meses, dependiendo del plan elegido.",
+    answer: "La maestría tiene una duración aproximada de 5 cuatrimestres.",
   },
-  {
-    question: "¿Cómo está conformado el plan de estudios?",
-    answer:
-      "El plan de estudios está conformado por 15 materias y se cursa una materia cada 5 semanas.",
-  },
+
   {
     question: "¿Necesito título para inscribirme?",
     answer:

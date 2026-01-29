@@ -11,9 +11,8 @@ import Faqs from "@components/sections/shared/Faq.astro";
 import { obtenerDatos } from "@/helpers/faq.js";
 const infoActual = obtenerDatos("licenciatura");
 
-import { UserPlus, Phone, MessageCircle } from "@lucide/astro";
+import { UserPlus } from "@lucide/astro";
 
-// Datos extraídos de la imagen
 const listaRequisitos = [
   {
     id: 1,
@@ -78,7 +77,7 @@ const linkPdf = "/requisitos/licenciatura.pdf"; // Ruta a tu PDF
 
 <Layout
   title="Licenciaturas en Línea UNE | Estudia y Trabaja"
-  description="Estudia tu Licenciatura 100% en línea . 45 carreras con validez oficial SEP y UDG. Horarios flexibles para gente que trabaja."
+  description="Estudia tu Licenciatura 100% en línea . 45 carreras con validez oficial SICYT. Horarios flexibles para gente que trabaja."
 >
   <main class="min-h-screen">
     {/* Hero Section */}
@@ -112,7 +111,7 @@ const linkPdf = "/requisitos/licenciatura.pdf"; // Ruta a tu PDF
             class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight"
           >
             Tu título universitario, <br />
-            <span class="text-rojo-une">a tu propio ritmo</span>
+            a tu propio ritmo
           </h1>
 
           {/* Description - Atacando el dolor de "falta de tiempo" */}
@@ -181,10 +180,10 @@ const linkPdf = "/requisitos/licenciatura.pdf"; // Ruta a tu PDF
     <InformativeCard
       studentImageSrc={ImagenCard.src}
       title="LICENCIATURAS PARA EL MUNDO REAL"
-      description="Ya tienes la experiencia, ahora obtén el título. Nuestras licenciaturas están diseñadas para potenciar lo que ya sabes y darte las herramientas teóricas para liderar. Con el respaldo de la Universidad de Guadalajara y la SEP, nuestros programas virtuales te permiten estudiar desde donde estés, con la misma validez que un programa presencial."
+      description="Ya tienes la experiencia, ahora obtén el título. Nuestras licenciaturas están diseñadas para potenciar lo que ya sabes y darte las herramientas teóricas para liderar. Con el Reconocimiento de Validez Oficial de Estudios (RVOE) de la SICyT, nuestros programas virtuales te permiten estudiar desde donde estés, con total certeza legal y curricular."
       features={[
         { icon: "Laptop", label: "Plataforma 24/7" },
-        { icon: "School", label: "Validez (SEP/UDG)" },
+        { icon: "School", label: "Validez Oficial (SICyT)" },
         { icon: "Clock", label: "Tú gestionas tus horarios" },
         { icon: "Users", label: "Docentes activos en la industria" },
       ]}
@@ -192,9 +191,6 @@ const linkPdf = "/requisitos/licenciatura.pdf"; // Ruta a tu PDF
 
     <Estadisticas />
 
-    {
-      /* Aquí es vital que el componente Carreras deje claro cuáles son online */
-    }
     <Carreras />
 
     <Requisitos requirements={listaRequisitos} pdfUrl={linkPdf} />

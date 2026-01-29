@@ -94,7 +94,7 @@ const linkPdf = "/requisitos/maestrias.pdf"; // Ruta a tu PDF
 
 <Layout
   title="Maestrías en Línea UNE | Estudia y Trabaja"
-  description="Estudia tu Maestría 100% en línea. 45 carreras con validez oficial SEP y UDG. Horarios flexibles para gente que trabaja."
+  description="Estudia tu Maestría 100% en línea. 45 carreras con validez oficial SICYT. Horarios flexibles para gente que trabaja."
 >
   <main class="min-h-screen">
     {/* Hero Section */}
@@ -128,7 +128,7 @@ const linkPdf = "/requisitos/maestrias.pdf"; // Ruta a tu PDF
             class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight"
           >
             Maestrías en línea, <br />
-            <span class="text-rojo-une">a tu propio ritmo</span>
+            a tu propio ritmo
           </h1>
 
           {/* Description - Atacando el dolor de "falta de tiempo" */}
@@ -197,20 +197,17 @@ const linkPdf = "/requisitos/maestrias.pdf"; // Ruta a tu PDF
     <InformativeCard
       studentImageSrc={ImagenCard.src}
       title="MAESTRÍAS PARA EL MUNDO REAL"
-      description="Ya tienes la experiencia, ahora obtén el título. Nuestras maestrías están diseñadas para potenciar lo que ya sabes y darte las herramientas teóricas para liderar. Con el respaldo de la Universidad de Guadalajara y la SEP, nuestros programas virtuales te permiten estudiar desde donde estés, con la misma validez que un programa presencial."
+      description="Potencia tu trayectoria y lidera el cambio en tu industria. Nuestras maestrías te brindan herramientas de alta dirección y especialización práctica inmediata. Con validez oficial ante la SICyT, nuestro modelo virtual se adapta totalmente a tu agenda ejecutiva para que sigas creciendo profesionalmente sin pausas."
       features={[
         { icon: "Laptop", label: "Plataforma 24/7" },
-        { icon: "School", label: "Validez (SEP/UDG)" },
-        { icon: "Clock", label: "Tú gestionas tus horarios" },
-        { icon: "Users", label: "Docentes activos en la industria" },
+        { icon: "School", label: "Validez Oficial (SICyT)" },
+        { icon: "Clock", label: "Balance vida-trabajo-estudio" },
+        { icon: "Users", label: "Docentes expertos en su área" },
       ]}
     />
 
-    <Estadisticas />
+    <Estadisticas maestria={true} />
 
-    {
-      /* Aquí es vital que el componente Carreras deje claro cuáles son online */
-    }
     <Carreras />
 
     <Requisitos requirements={listaRequisitos} pdfUrl={linkPdf} />

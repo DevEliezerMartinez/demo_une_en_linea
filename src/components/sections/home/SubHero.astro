@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import flagImg from "@/assets/imagenes/Flag.png";
-import sepLogo from "@/assets/Logos/SEP.png";
+import sejLogo from "@/assets/Logos/sej.jpg";
 import rvoeLogo from "@/assets/Logos/RVOE.png";
 ---
 
@@ -43,11 +43,16 @@ import rvoeLogo from "@/assets/Logos/RVOE.png";
           Avalado por:
         </strong>
         <div class="flex items-center gap-6">
-          <Image
-            src={sepLogo}
-            alt="Secretaría de Educación Pública"
-            class="object-contain transition-transform duration-300 hover:scale-110"
-          />
+          <div class="flex flex-col items-center gap-2">
+            <Image
+              src={sejLogo}
+              alt="Secretaría de Educación Pública"
+              class="object-contain transition-transform duration-300 hover:scale-110 w-24 h-24 rounded-3xl"
+            />
+            <span class="text-gray-400 text-xs italic"
+              >Secretaría de Educación Jalisco</span
+            >
+          </div>
           <Image
             src={rvoeLogo}
             alt="Reconocimiento de Validez Oficial de Estudios"
