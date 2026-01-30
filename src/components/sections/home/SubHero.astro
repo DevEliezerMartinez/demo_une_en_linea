@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import flagImg from "@/assets/imagenes/Flag.png";
 import sejLogo from "@/assets/Logos/sej.jpg";
 import rvoeLogo from "@/assets/Logos/RVOE.png";
+import sycitLogo from "@/assets/Logos/SICyT.png";
 ---
 
 <section class="py-6 lg:py-0 mb-10">
@@ -58,6 +59,20 @@ import rvoeLogo from "@/assets/Logos/RVOE.png";
             alt="Reconocimiento de Validez Oficial de Estudios"
             class="object-contain transition-transform duration-300 hover:scale-110"
           />
+          <div>
+            <div>
+              <Image
+                src={sycitLogo}
+                width={220}
+                height={220}
+                alt="Reconocimiento de Validez Oficial de Estudios"
+                class="object-contain transition-transform duration-300 hover:scale-110"
+              />
+              <span class="text-gray-400 text-xs italic"
+                >Secretaría de Innovación, Ciencia y Tecnología</span
+              >
+            </div>
+          </div>
         </div>
       </div>
     </section>
