@@ -3,15 +3,14 @@
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
 import "../styles/global.css";
-/* import Clarity from "../components/layout/Clarity.astro";
- */
+import Clarity from "../components/layout/Clarity.astro";
 // Configuración por defecto
 const defaultConfig = {
-  projectId: "spfe9hsbw6", // Clarity ID
+  projectId: "vdrk4ino0x", // Clarity ID
   gtmId: "GTM-TVXC38FK", // ID de GTM
-  title: "UNE - Universidad de Especialidades",
+  title: "UNE en línea - Universidad de Especialidades en línea",
   description:
-    "Universidad UNE - 30 años creyendo en ti. Licenciaturas, posgrados y educación continua en línea y presencial.",
+    "Universidad UNE en línea -  Licenciaturas y maestrías en línea.",
   lang: "es",
   charset: "UTF-8",
   ogImage: "/og-image.jpg",
@@ -40,8 +39,6 @@ const fullOgImage = `${Astro.url.origin}${ogImage}`;
 
 <html lang={lang}>
   <head>
-   
-
     <meta charset={charset} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{fullTitle}</title>
@@ -79,7 +76,6 @@ const fullOgImage = `${Astro.url.origin}${ogImage}`;
 
     {/* Favicons esenciales */}
 
-
     {/* Theme color para móviles */}
     <meta name="theme-color" content="#ffffff" />
     <meta name="apple-mobile-web-app-title" content="UNE" />
@@ -92,7 +88,7 @@ const fullOgImage = `${Astro.url.origin}${ogImage}`;
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
     {/* Preconnect para GTM y Clarity */}
-  <!--   <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <!--   <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="preconnect" href="https://www.clarity.ms" />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <link rel="dns-prefetch" href="https://www.clarity.ms" /> -->
@@ -110,7 +106,7 @@ const fullOgImage = `${Astro.url.origin}${ogImage}`;
         image: fullOgImage || "",
         description: (description || defaultConfig.description || "").replace(
           /"/g,
-          "'"
+          "'",
         ),
         address: {
           "@type": "PostalAddress",
@@ -152,10 +148,9 @@ const fullOgImage = `${Astro.url.origin}${ogImage}`;
 
   <body class={bodyClass}>
     <!--  Google Tag Manager (noscript) -->
-   
 
     <!--  Clarity Analytics -->
-   <!--  <Clarity projectId={projectId} /> -->
+    <Clarity projectId={projectId} />
 
     <Header />
 
