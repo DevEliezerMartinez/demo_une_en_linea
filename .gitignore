@@ -5,6 +5,14 @@ dist/
 #aux
 temp/
 
+.assets_history/
+assets_history/
+.dist/
+persistent_astro_cache/
+.persistent_astro_cache/
+releases/
+.releases/
+
 # dependencies
 node_modules/
 
