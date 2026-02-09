@@ -188,6 +188,7 @@ const slides = [
                 class="progress-line flex-shrink-0 flex-grow w-[16%] transition-all duration-300"
                 data-slide-index={index}
                 data-duration={slide.duration}
+                aria-label={`Ver slide ${index + 1}: ${slide.isWhiteLayout ? "Inicio" : slide.title}`}
               >
                 <h3 class="text-white text-xs md:text-sm font-semibold tracking-wider text-left mb-2 hidden lg:block uppercase opacity-90">
                   {slide.isWhiteLayout ? "Inicio" : slide.title}
@@ -312,6 +313,16 @@ const slides = [
 
 <script>
   class HeroSlider {
+    currentIndex: number;
+    isPaused: boolean;
+    autoplayTimer: any;
+    slider: HTMLElement | null;
+    slides: NodeListOf<Element>;
+    progressLines: NodeListOf<Element>;
+    playPauseBtn: HTMLElement | null;
+    playIcon: HTMLElement | null;
+    pauseIcon: HTMLElement | null;
+
     constructor() {
       this.currentIndex = 0;
       this.isPaused = false;
@@ -358,9 +369,11 @@ const slides = [
     updateProgressBars(activeIndex) {
       this.progressLines.forEach((line, index) => {
         line.classList.remove("is-active", "is-completed", "is-paused");
+        line.removeAttribute("aria-current");
         if (index < activeIndex) line.classList.add("is-completed");
         else if (index === activeIndex) {
           line.classList.add("is-active");
+          line.setAttribute("aria-current", "true");
           if (this.isPaused) line.classList.add("is-paused");
           const duration = parseInt(line.dataset.duration) || 10000;
           line.style.setProperty("--slide-duration", `${duration / 1000}s`);
@@ -390,9 +403,11 @@ const slides = [
       if (this.isPaused) {
         this.clearAutoplay();
         this.progressLines[this.currentIndex]?.classList.add("is-paused");
+        this.playPauseBtn?.setAttribute("aria-label", "Reproducir slider");
       } else {
         this.startAutoplay();
         this.progressLines[this.currentIndex]?.classList.remove("is-paused");
+        this.playPauseBtn?.setAttribute("aria-label", "Pausar slider");
       }
     }
   }

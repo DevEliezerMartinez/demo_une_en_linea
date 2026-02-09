@@ -91,6 +91,7 @@ const niveles = [
             type="text"
             name="nombre"
             placeholder="Nombre(s)"
+            aria-label="Nombre(s)"
             required
             minlength="2"
             maxlength="100"
@@ -102,6 +103,7 @@ const niveles = [
             type="text"
             name="apellido"
             placeholder="Apellidos"
+            aria-label="Apellidos"
             required
             minlength="2"
             maxlength="100"
@@ -113,6 +115,7 @@ const niveles = [
             type="email"
             name="correo"
             placeholder="Correo electrónico"
+            aria-label="Correo electrónico"
             required
             maxlength="100"
             autocomplete="email"
@@ -123,6 +126,7 @@ const niveles = [
             type="tel"
             name="telefono"
             placeholder="Teléfono (10 dígitos)"
+            aria-label="Teléfono (10 dígitos)"
             required
             pattern="[0-9]{10}"
             minlength="10"
@@ -137,6 +141,7 @@ const niveles = [
             <select
               id="plantel_select"
               name="plantel_interes"
+              aria-label="Selecciona un nivel educativo"
               required
               class="w-full bg-transparent border-b-2 border-white/60 text-white py-2 sm:py-3 focus:outline-none focus:border-white transition-colors text-base sm:text-lg appearance-none cursor-pointer [&>option]:text-gray-900 [&>option]:bg-white"
             >
@@ -160,6 +165,7 @@ const niveles = [
               type="text"
               name="programa_interes"
               placeholder="¿Qué carrera te interesa?"
+              aria-label="Carrera de interés"
               maxlength="200"
               autocomplete="off"
               class="w-full bg-transparent border-b-2 border-white/60 text-white placeholder-white/80 py-2 sm:py-3 focus:outline-none focus:border-white transition-colors text-base sm:text-lg"
