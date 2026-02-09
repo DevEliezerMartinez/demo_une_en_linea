@@ -1,7 +1,7 @@
 {
   "name": "une-enlinea",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.0",
     "@lucide/astro": "^0.555.0",
     "@splidejs/splide": "^4.1.4",
     "@splidejs/splide-extension-auto-scroll": "^0.5.3",
@@ -16,7 +17,7 @@
     "@tailwindcss/vite": "^4.1.17",
     "@tsparticles/engine": "^3.9.1",
     "@tsparticles/slim": "^3.9.1",
-    "astro": "^5.16.3",
+    "astro": "^5.17.1",
     "lucide-astro": "^0.555.0",
     "splide": "0.0.1-security",
     "tailwindcss": "^4.1.17"
