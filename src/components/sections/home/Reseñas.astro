@@ -88,13 +88,17 @@ const testimonios = [
         </div>
 
         <!-- Pagination Dots -->
-        <div class="flex justify-center gap-2 mt-6" id="testimonios-pagination">
+        <div class="flex justify-center gap-1 mt-4" id="testimonios-pagination">
           {testimonios.map((_, index) => (
             <button
-              class={`w-3 h-3 rounded-full transition-all duration-300 ${index === 0 ? 'bg-azul-une w-6' : 'bg-gray-300'}`}
+              class="w-11 h-11 flex items-center justify-center transition-all duration-300 focus:outline-none"
               data-index={index}
               aria-label={`Ir al testimonio ${index + 1}`}
-            ></button>
+            >
+              <div
+                class={`h-2.5 rounded-full transition-all duration-300 ${index === 0 ? 'bg-azul-une w-6' : 'bg-gray-300 w-2.5'}`}
+              ></div>
+            </button>
           ))}
         </div>
       </div>
@@ -165,12 +169,13 @@ const testimonios = [
 
       // Update dots
       this.dots.forEach((dot, i) => {
+        const indicator = dot.querySelector('div');
         if (i === this.currentIndex) {
-          dot.classList.add('bg-azul-une', 'w-6');
-          dot.classList.remove('bg-gray-300');
+          indicator?.classList.add('bg-azul-une', 'w-6');
+          indicator?.classList.remove('bg-gray-300', 'w-2.5');
         } else {
-          dot.classList.remove('bg-azul-une', 'w-6');
-          dot.classList.add('bg-gray-300');
+          indicator?.classList.remove('bg-azul-une', 'w-6');
+          indicator?.classList.add('bg-gray-300', 'w-2.5');
         }
       });
     }
