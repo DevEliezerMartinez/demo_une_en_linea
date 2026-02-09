@@ -2,7 +2,6 @@
 // src/components/MainSlider.astro
 import { Image } from "astro:assets";
 import { ArrowRight } from "lucide-astro";
-import Logo from "@/assets/Logos/une-enlinea.png";
 
 // Importar imágenes para optimización
 import heroDesktop from "@/assets/imagenes/heros/portada3.jpg";
@@ -23,7 +22,7 @@ const slides = [
     subtitle:
       "Nuestra tecnología con sentido humano rompe fronteras para llevar la excelencia académica hasta tu pantalla.",
     showText: true,
-    isWhiteLayout: true, // Flag para diseño tipo "Revolución Digital"
+    isWhiteLayout: true,
     duration: 10000,
   },
   {
@@ -71,25 +70,41 @@ const slides = [
             class={`slide absolute inset-0 transition-opacity duration-700 ${index === 0 ? "opacity-100 z-10" : "opacity-0 z-0"}`}
             data-slide-index={index}
           >
-            {/* Fondo de Imagen */}
+            {/* Imagen Desktop */}
             <Image
               src={slide.image}
               alt={slide.title}
               width={1920}
               height={700}
               format="webp"
-              quality={85}
+              quality={65}
               loading={index === 0 ? "eager" : "lazy"}
-              class="w-full h-full object-cover object-center"
+              fetchpriority={index === 0 ? "high" : "low"}
+              decoding={index === 0 ? "sync" : "async"}
+              class="hidden md:block w-full h-full object-cover object-center"
             />
 
+            {/* Imagen Mobile - solo si es diferente */}
+            {slide.imageMobile !== slide.image && (
+              <Image
+                src={slide.imageMobile}
+                alt={slide.title}
+                width={768}
+                height={700}
+                format="webp"
+                quality={60}
+                loading={index === 0 ? "eager" : "lazy"}
+                fetchpriority={index === 0 ? "high" : "low"}
+                decoding={index === 0 ? "sync" : "async"}
+                class="md:hidden w-full h-full object-cover object-center"
+              />
+            )}
+
             {slide.isWhiteLayout ? (
-              /* --- DISEÑO SLIDE 1 (EDITORIAL / BLANCO) --- */
               <div class="absolute inset-0">
-                <div class="absolute inset-0 bg-linear-to-r from-white/95 via-white/80 to-transparent" />
+                <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent" />
                 <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 h-full flex items-center">
                   <div class="max-w-xl space-y-8 text-left">
-                    <img src={Logo.src} alt="Logo UNE" class="w-32 h-auto" />
                     <div class="space-y-6">
                       <h1 class="text-3xl md:text-5xl lg:text-5xl font-bold text-gray-900 leading-tight">
                         {slide.title} <br />
@@ -109,7 +124,6 @@ const slides = [
                 </div>
               </div>
             ) : (
-              /* --- DISEÑO SLIDES NORMALES (IMAGEN FULL) --- */
               <div class="absolute inset-0 bg-black/30">
                 <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
                   <h2 class="text-white text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 drop-shadow-md">
@@ -136,11 +150,8 @@ const slides = [
       }
     </div>
 
-    {
-      /* OVERLAY DE PROTECCIÓN PARA BARRAS (Sombra inferior para que no se pierdan en el blanco) */
-    }
     <div
-      class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/60 to-transparent z-20 pointer-events-none"
+      class="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-black/60 to-transparent z-20 pointer-events-none"
     >
     </div>
 
@@ -162,12 +173,10 @@ const slides = [
               fill="none"
               stroke="currentColor"
               stroke-width="2"
-              ><rect x="6" y="4" width="4" height="16"></rect><rect
-                x="14"
-                y="4"
-                width="4"
-                height="16"></rect></svg
             >
+              <rect x="6" y="4" width="4" height="16"></rect>
+              <rect x="14" y="4" width="4" height="16"></rect>
+            </svg>
             <svg
               id="playIcon"
               class="hidden"
@@ -176,8 +185,10 @@ const slides = [
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"><polygon points="5,3 19,12 5,21"></polygon></svg
+              stroke-width="2"
             >
+              <polygon points="5,3 19,12 5,21"></polygon>
+            </svg>
           </button>
         </div>
 
@@ -210,7 +221,6 @@ const slides = [
   >
     <span class="text-rojo-une">VIVE</span> LA MEJOR EXPERIENCIA EDUCATIVA
   </h2>
-
   <a
     class="cta-button flex font-normal md:font-bold text-xl md:text-2xl uppercase h-14 bg-azul-une text-white w-auto px-8 md:px-12 py-2.5 gap-8 md:gap-12 rounded-2xl group transition-all duration-300 ease-in-out justify-center md:justify-between relative overflow-hidden shadow-xl"
     href="/contacto/solicitarinformacion"

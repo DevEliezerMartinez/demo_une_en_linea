@@ -1,80 +1,120 @@
 @import "tailwindcss";
 
-
-
+/* --- Gotham --- */
 @font-face {
-  font-family: 'Gotham';
-  src: url('/fonts/Gotham/Gotham-Book.otf') format('opentype');
+  font-family: "Gotham";
+  src:
+    url("/fonts/Gotham/Gotham-Book.woff2") format("woff2"),
+    url("/fonts/Gotham/Gotham-Book.woff") format("woff");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'Gotham';
-  src: url('/fonts/Gotham/Gotham-Light.otf') format('opentype');
+  font-family: "Gotham";
+  src:
+    url("/fonts/Gotham/Gotham-Light.woff2") format("woff2"),
+    url("/fonts/Gotham/Gotham-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'Gotham';
-  src: url('/fonts/Gotham/Gotham-Thin.otf') format('opentype');
+  font-family: "Gotham";
+  src:
+    url("/fonts/Gotham/Gotham-Thin.woff2") format("woff2"),
+    url("/fonts/Gotham/Gotham-Thin.woff") format("woff");
   font-weight: 100;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'Gotham';
-  src: url('/fonts/Gotham/GOTHAM-MEDIUM.TTF') format('truetype');
+  font-family: "Gotham";
+  src:
+    url("/fonts/Gotham/Gotham-Medium.woff2") format("woff2"),
+    url("/fonts/Gotham/Gotham-Medium.woff") format("woff");
   font-weight: 600;
   font-style: normal;
-}
-@font-face {
-  font-family: 'Gotham';
-  src: url('/fonts/Gotham/Gotham-BOLD.TTF') format('truetype');
-  font-weight: 700;
-  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'Gotham';
-  src: url('/fonts/Gotham/Gotham-BLACK.TTF') format('truetype');
+  font-family: "Gotham";
+  src:
+    url("/fonts/Gotham/Gotham-Bold.woff2") format("woff2"),
+    url("/fonts/Gotham/Gotham-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src:
+    url("/fonts/Gotham/Gotham-BLACK.woff2") format("woff2"),
+    url("/fonts/Gotham/Gotham-BLACK.woff") format("woff");
   font-weight: 800;
   font-style: normal;
-}
-@font-face {
-  font-family: 'Gotham';
-  src: url('/fonts/Gotham/GOTHAM-ULTRA.TTF') format('truetype');
-  font-weight: 900;
-  font-style: normal;
+  font-display: swap;
 }
 
-
+/* --- Averta --- */
 @font-face {
-  font-family: 'Averta';
-  src: url('/fonts/Averta/Averta_Black.otf') format('truetype');
+  font-family: "Averta";
+  src:
+    url("/fonts/Averta/Averta_Black.woff2") format("woff2"),
+    url("/fonts/Averta/Averta_Black.woff") format("woff");
   font-weight: 900;
   font-style: normal;
+  font-display: swap;
 }
+
 @font-face {
-  font-family: 'Averta';
-  src: url('/fonts/Averta/Averta_Bold.otf') format('truetype');
+  font-family: "Averta";
+  src:
+    url("/fonts/Averta/Averta_Bold.woff2") format("woff2"),
+    url("/fonts/Averta/Averta_Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
+
 @font-face {
-  font-family: 'Averta';
-  src: url('/fonts/Averta/Averta.otf') format('truetype');
+  font-family: "Averta";
+  src:
+    url("/fonts/Averta/Averta.woff2") format("woff2"),
+    url("/fonts/Averta/Averta.woff") format("woff");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
+
+/* --- Vanilla --- */
+@font-face {
+  font-family: "Vanilla";
+  src:
+    url("/fonts/Vanila/Macchiato.woff2") format("woff2"),
+    url("/fonts/Vanila/Macchiato.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Configuración de Tailwind CSS v4 --- */
+
 /* --- Configuración de Tailwind CSS v4 --- */
 @theme {
   /* Define tu pila de fuentes 'sans' para que use Gotham */
-  --font-sans: "Gotham", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-
+  --font-sans:
+    "Gotham", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-vanilla: "vanilla", cursive;
 
   /* --- Tus nuevos colores UNE --- */
-  --color-rojo-une: #E22319;
-  --color-azul-une: #001A71;
+  --color-rojo-une: #e22319;
+  --color-azul-une: #001a71;
 }

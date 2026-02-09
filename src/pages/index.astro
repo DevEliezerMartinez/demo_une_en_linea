@@ -5,8 +5,7 @@ import Cookies from "@/components/layout/Cookies.astro";
 import SplashScreen from "@/components/sections/home/SplashScreen.astro";
 import Hero from "@/components/sections/home/Hero.astro";
 import SubHero from "@/components/sections/home/SubHero.astro";
-import InformativeCard from "@components/sections/oferta/CardInformativa.astro";
-import ImagenCard from "@/assets/imagenes/CardsNiveles/licenciaturas2.webp";
+import InformativeCard from "@components/sections/oferta/CardInformativa_main.astro";
 import Oferta from "@/components/sections/home/Oferta.astro";
 import ElegirUne from "@/components/sections/home/ElegirUne.astro";
 import ModeloEducativo from "@/components/sections/home/ModeloEducativo.astro";
@@ -28,7 +27,6 @@ const pageDescription =
   <main id="mainContent" class="main-content">
     <Hero />
     <InformativeCard
-      studentImageSrc={ImagenCard.src}
       title="IMPULSA TU CARRERA SIN PAUSAS"
       description="El programa ideal para quienes ya están en el mundo laboral. Mientras otros solo enseñan, nosotros acreditamos lo que ya sabes hacer para acelerar tu titulación oficial. La flexibilidad que necesitas para crecer en tu próxima etapa profesional a tu propio ritmo."
     />

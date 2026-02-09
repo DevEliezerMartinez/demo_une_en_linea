@@ -1,0 +1,118 @@
+---
+import { Image } from "astro:assets";
+import ImagenCard from "@/assets/imagenes/CardsNiveles/licenciaturas2.webp";
+import {
+  ShieldCheck,
+  BookOpen,
+  Users,
+  Trophy,
+  Star,
+  Heart,
+  Target,
+  Zap,
+  Globe,
+  Award,
+  School,
+  UserRoundCheck,
+} from "@lucide/astro";
+
+interface Feature {
+  icon: string;
+  label: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  categoryLabel?: string;
+  features?: Feature[];
+}
+
+const {
+  title,
+  description,
+  categoryLabel = "Descubre",
+  features,
+} = Astro.props;
+
+// Mapeo de nombres de iconos a componentes
+const iconMap: Record<string, any> = {
+  ShieldCheck,
+  BookOpen,
+  Users,
+  Trophy,
+  Star,
+  Heart,
+  Target,
+  Zap,
+  Globe,
+  Award,
+  School,
+  UserRoundCheck,
+};
+
+const getIconComponent = (iconName: string) => {
+  return iconMap[iconName] || ShieldCheck;
+};
+---
+
+<section class="w-full max-w-7xl mx-auto px-4 py-8 font-sans mb-4">
+  <div class="relative flex flex-col md:flex-row items-center mb-16">
+    <div class="w-full md:w-3/4 md:ml-auto">
+      <Image
+        src={ImagenCard}
+        alt={title}
+        width={1200}
+        height={550}
+        quality={85}
+        format="webp"
+        loading="eager"
+        class="w-full h-[350px] md:h-[550px] object-cover shadow-sm rounded-xl"
+        sizes="(max-width: 768px) 100vw, 75vw"
+      />
+    </div>
+
+    <div
+      class="z-10 w-full md:w-3/5 rounded-xl bg-gradient-to-br from-[#2f4caf] to-[#1e293b] p-8 md:p-16 md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 shadow-xl mt-[-40px] md:mt-0"
+    >
+      <span
+        class="text-[10px] tracking-[0.3em] font-bold text-white uppercase block mb-4"
+      >
+        {categoryLabel}
+      </span>
+
+      <h2 class="text-3xl md:text-5xl font-bold text-white leading-tight mb-6">
+        {title}
+      </h2>
+
+      <p class="text-white text-sm md:text-base leading-relaxed max-w-md">
+        {description}
+      </p>
+    </div>
+  </div>
+
+  {
+    features && features.length > 0 && (
+      <div class="mt-16 max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
+          {features.map((feature) => {
+            const IconComponent = getIconComponent(feature.icon);
+            return (
+              <div class="group relative flex flex-col items-center justify-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden cursor-default">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                <div class="relative z-10 w-16 h-16 mb-4 rounded-xl bg-gradient-to-br from-[#2f4caf] to-[#1e293b] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <IconComponent class="text-white w-8 h-8" />
+                </div>
+
+                <span class="relative z-10 text-xs md:text-sm font-bold text-gray-600 text-center uppercase tracking-wider group-hover:text-[#2f4caf] transition-colors duration-300 leading-tight">
+                  {feature.label}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    )
+  }
+</section>
