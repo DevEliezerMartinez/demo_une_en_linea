@@ -121,19 +121,29 @@ const linkPdf = "/requisitos/bachillerato.pdf"; // Ruta a tu PDF
             </div>
           </div>
 
-          <div class="pt-2">
+          <div class="pt-2 flex flex-col sm:flex-row gap-4 items-center">
             <a
               href="/contacto/solicitarinformacion"
               class="group inline-flex items-center bg-azul-une text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-red-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
-              QUIERO INSCRIBIRME
+              Contacta a UNE
               <ArrowRight
                 class="h-6 w-6 ml-2 group-hover:translate-x-1 transition-transform"
               />
             </a>
-            {
-              /* Nota UX: Cambié el CTA a algo más activo/decidido, o podrías usar "VER PLAN DE ESTUDIOS" si es un paso previo */
-            }
+
+            {/* Botón A/B Test - Inscríbete */}
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLScyrURKYXtsBliCbWEgFt0FJU0j2wYuOrqc6QooqnWQ4AVG8A/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group inline-flex items-center bg-rojo-une text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-red-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            >
+              INSCRÍBETE
+              <ArrowRight
+                class="h-6 w-6 ml-2 group-hover:translate-x-1 transition-transform"
+              />
+            </a>
           </div>
 
           <nav

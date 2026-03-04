@@ -76,7 +76,7 @@ const linkPdf = "/requisitos/licenciatura.pdf";
             </div>
           </div>
 
-          <div class="pt-2">
+          <div class="pt-2 flex flex-col gap-4 items-center md:items-start">
             <a
               href="/contacto/solicitarinformacion"
               class="group inline-flex items-center bg-azul-une text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-red-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
@@ -86,8 +86,20 @@ const linkPdf = "/requisitos/licenciatura.pdf";
                 class="h-6 w-6 ml-2 group-hover:translate-x-1 transition-transform"
               />
             </a>
-          </div>
 
+            {/* Botón A/B Test - Inscríbete */}
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLScyrURKYXtsBliCbWEgFt0FJU0j2wYuOrqc6QooqnWQ4AVG8A/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full md:w-auto inline-flex items-center bg-rojo-une text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-azul-une transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            >
+              INSCRÍBETE
+              <ArrowRight
+                class="h-6 w-6 ml-2 group-hover:translate-x-1 transition-transform"
+              />
+            </a>
+          </div>
           <nav
             class="pt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#4A55A2] font-medium"
           >
