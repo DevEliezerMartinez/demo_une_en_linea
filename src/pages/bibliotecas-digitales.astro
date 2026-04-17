@@ -1,8 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
 import { Search } from "@lucide/astro";
 import AccesosBibliotecas from "@/components/sections/acerca/Accesos_bibliotecas.astro";
 import bibbliotecas from "@/assets/imagenes/Estadio.webp";
+import biblioHero from "@/assets/imagenes/heros/biblio.jpg";
 ---
 
 <Layout
@@ -11,7 +13,14 @@ import bibbliotecas from "@/assets/imagenes/Estadio.webp";
 >
   <main class="min-h-screen">
     <!-- Hero Section -->
-    <section class="bibliotecas-bg relative bg-cover bg-center min-h-[70vh]">
+    <section class="relative min-h-[70vh]">
+      <Image
+        src={biblioHero}
+        alt="Fondo de bibliotecas UNE"
+        class="absolute inset-0 w-full h-full object-cover z-0"
+        loading="eager"
+        fetchpriority="high"
+      />
       <!-- Hero Content -->
       <div
         class="relative z-10 container mx-auto px-4 h-full min-h-[65vh] flex flex-col md:flex-row items-center justify-center md:justify-end"
@@ -184,14 +193,3 @@ import bibbliotecas from "@/assets/imagenes/Estadio.webp";
   </main>
 </Layout>
 
-<style>
-  .bibliotecas-bg {
-    background-image: url("/src/assets/imagenes/heros/Bibliotecas.webp");
-  }
-
-  @media (max-width: 767px) {
-    .bibliotecas-bg {
-      background-image: url("/src/assets/imagenes/heros/Bibliotecas_mobile.webp");
-    }
-  }
-</style>
