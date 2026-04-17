@@ -110,6 +110,27 @@ const navItems = [
       },
     ],
   },
+  {
+    label: "Vida estudiantil",
+    dropdownClass: "estudiantil-dropdown",
+    links: [
+      {
+        href: "/bibliotecas-digitales",
+        title: "Bibliotecas digitales",
+        desc: "Descubre todo sobre el proceso",
+      },
+      {
+        href: "https://docs.google.com/forms/d/e/1FAIpQLScyrURKYXtsBliCbWEgFt0FJU0j2wYuOrqc6QooqnWQ4AVG8A/viewform",
+        title: "Acceso a plataforma ",
+        desc: "Inicia tu proceso de admisión",
+      },
+      {
+        href: "/acerca/preguntasfrecuentes",
+        title: "UNE",
+        desc: "Une presencial",
+      },
+    ],
+  },
 ];
 
 const ofertaAcademica = {
@@ -138,6 +159,8 @@ function getGridCols(dropdownClass) {
   switch (dropdownClass) {
     case "admisiones-dropdown":
       return "grid-cols-4";
+    case "estudiantil-dropdown":
+      return "grid-cols-3";
     case "nosotros-dropdown":
       return "grid-cols-5";
     default:
@@ -166,8 +189,8 @@ function getGridCols(dropdownClass) {
       ) : (
         <a href={link.href} target="_blank" rel="noopener noreferrer">
           <Image
-            src={link.img}
-            alt={link.alt}
+            src={link.img as any}
+            alt={link.alt as string}
             class="h-15 w-auto"
             width={link.width}
             height={link.height}
@@ -467,6 +490,7 @@ function getGridCols(dropdownClass) {
     "admisiones-dropdown",
     "oferta-dropdown",
     "nosotros-dropdown",
+    "estudiantil-dropdown",
   ];
 
   let pinnedDropdown = null;
