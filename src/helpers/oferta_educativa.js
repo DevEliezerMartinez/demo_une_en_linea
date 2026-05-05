@@ -127,7 +127,7 @@ const ofertaEducativa = {
     // --- Maestrías ---
     maestria_educacion: {
       id: "maestria_educacion",
-      nombre: "Maestría en Educación",
+      nombre: "Educación",
       nivel: "maestria",
       area: "ciencias_sociales_humanidades",
       url: "/oferta-academica/maestrias/maestria_educacion",
@@ -137,7 +137,7 @@ const ofertaEducativa = {
     },
     maestria_administracion_negocios: {
       id: "maestria_administracion_negocios",
-      nombre: "Maestría en Administración de Negocios",
+      nombre: "Administración de Negocios",
       nivel: "maestria",
       area: "negocios_administrativas",
       url: "/oferta-academica/maestrias/maestria_administracion_negocios",
