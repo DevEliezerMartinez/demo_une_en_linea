@@ -6,6 +6,7 @@ import BachilleratoImg from "@/assets/imagenes/CardsNiveles/bachillerato_en_line
 import Proposito_competencias from "@/components/sections/oferta/Propósito-competencias.astro";
 import Detalles_Formacion from "@/components/sections/oferta/Detalles-Formación.astro";
 import Requisitos from "@/components/sections/oferta/Requisitos.astro";
+import IntakesBanner from "@/components/sections/acerca/IntakesBanner_bachilerato.astro";
 import Plan_estudios from "@/components/sections/oferta/Plan-estudios.astro";
 import { obtenerPlanEstudios } from "@/helpers/planes_estudio.js";
 const plan_bachillerato = obtenerPlanEstudios("bachillerato");
@@ -197,6 +198,8 @@ const linkPdf = "/requisitos/bachillerato.pdf"; // Ruta a tu PDF
         "Fomentar valores éticos y responsabilidad social.",
       ]}
     />
+
+    <IntakesBanner proximoInicio="8 de Octubre" />
 
     <Requisitos requirements={listaRequisitos} pdfUrl={linkPdf} />
 

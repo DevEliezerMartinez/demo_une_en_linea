@@ -7,6 +7,7 @@ import ImagenCard from "@/assets/imagenes/CardsNiveles/licenciaturas2.webp";
 import Estadisticas from "@components/sections/oferta/Estadisticas.astro";
 import Carreras from "@components/sections/oferta/licenciaturas/Carreras.astro";
 import Requisitos from "@components/sections/oferta/Requisitos.astro";
+import IntakesBanner from "@/components/sections/acerca/IntakesBanner.astro";
 import Faqs from "@components/sections/shared/Faq.astro";
 import { obtenerDatos } from "@/helpers/faq.js";
 const infoActual = obtenerDatos("licenciatura");
@@ -190,8 +191,11 @@ const linkPdf = "/requisitos/licenciatura.pdf"; // Ruta a tu PDF
     />
 
     <Estadisticas />
+        <IntakesBanner />
+
 
     <Carreras />
+
 
     <Requisitos requirements={listaRequisitos} pdfUrl={linkPdf} />
 

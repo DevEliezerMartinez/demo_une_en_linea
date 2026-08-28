@@ -7,6 +7,7 @@ import ImagenCard from "@/assets/imagenes/CardsNiveles/maestrias_en_linea.webp";
 import Estadisticas from "@components/sections/oferta/Estadisticas.astro";
 import Carreras from "@components/sections/oferta/maestrias/Carreras.astro";
 import Requisitos from "@components/sections/oferta/Requisitos.astro";
+import IntakesBanner from "@/components/sections/acerca/IntakesBanner.astro";
 import Faqs from "@components/sections/shared/Faq.astro";
 import { obtenerDatos } from "@/helpers/faq.js";
 const infoActual = obtenerDatos("maestria");
@@ -209,6 +210,8 @@ const linkPdf = "/requisitos/maestrias.pdf"; // Ruta a tu PDF
     <Estadisticas maestria={true} />
 
     <Carreras />
+
+    <IntakesBanner />
 
     <Requisitos requirements={listaRequisitos} pdfUrl={linkPdf} />
 
