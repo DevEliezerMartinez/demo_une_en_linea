@@ -51,29 +51,16 @@ const whatsappMessage = encodeURIComponent(
       <span class="btn-text">Teléfono</span>
     </a>
 
-    {/* Email */}
-    <a
-      href="mailto:admisiones@une-enlinea.com"
-      class="contact-btn email-btn"
-      title="Enviar correo electrónico"
-      aria-label="Enviar correo electrónico"
-    >
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path
-          d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
-        ></path>
-      </svg>
-      <span class="btn-text">Email</span>
-    </a>
   </div>
 </aside>
 
 <style>
   .contact-sidebar {
     position: fixed;
-    top: 50%;
+    bottom: -100;
+    margin-bottom: 8rem;
     right: 0;
-    transform: translateY(-50%);
+    transform: translateY(-20%);
     z-index: 1000;
     pointer-events: none;
   }

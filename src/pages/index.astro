@@ -15,7 +15,9 @@ import Beneficios from "@/components/sections/home/Beneficios.astro";
 import FAQ from "@/components/sections/home/FAQ.astro";
 import ContactSection from "@/components/sections/shared/GeneralCTA.astro";
 import ContactSidebar from "@/components/sections/home/ContactSidebar.astro";
+import AlertaBanner from "@/components/sections/shared/AlertaBanner.astro";
 const pageTitle = "UNE en línea - Más conectados, más cerca";
+
 const pageDescription =
   "Universidad UNE en línea - 30 años de excelencia educativa";
 ---
@@ -23,6 +25,7 @@ const pageDescription =
 <Layout title={pageTitle} description={pageDescription}>
   <SplashScreen alwaysShow={false} />
   <Cookies />
+  <AlertaBanner />
 
   <main id="mainContent" class="main-content">
     <Hero />

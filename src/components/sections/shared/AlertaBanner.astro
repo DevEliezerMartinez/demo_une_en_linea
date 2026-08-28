@@ -1,0 +1,160 @@
+---
+import { TriangleAlert } from "@lucide/astro";
+
+interface Props {
+  titulo?: string;
+  descripcion?: string;
+  fecha?: string;
+  href?: string;
+  ctaText?: string;
+  /** Clave única en localStorage — cambia si quieres que reaparezca */
+  storageKey?: string;
+  /** Segundos de espera antes de aparecer */
+  delay?: number;
+}
+
+const {
+  titulo = "7 de septiembre proximo inicio ",
+  descripcion = "Aparta tu lugar y empieza tu camino en UNE en línea",
+  href = "/contacto/solicitarinformacion",
+  ctaText = "Inscribirme",
+  storageKey = "une-oh-2026-v1",
+  delay = 3,
+} = Astro.props;
+---
+
+<!-- Wrapper: maneja posición fija + centrado en desktop -->
+<div
+  id="alerta-wrapper"
+  class="fixed bottom-6 right-6 z-50 w-72 md:right-auto md:left-1/2 md:-translate-x-1/2 md:w-1/2"
+>
+  <!-- Inner: maneja animación de entrada/salida (transform independiente) -->
+  <div
+    id="alerta-banner"
+    role="complementary"
+    aria-label="Anuncio Open House"
+    class="rounded-2xl shadow-2xl overflow-hidden"
+    style="opacity:0; transform:translateY(24px) scale(0.97); transition:opacity .4s ease, transform .4s ease;"
+  >
+    <!-- Fondo degradado UNE -->
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-[#001a3a] via-[#003478] to-[#001a3a]"
+    >
+    </div>
+    <div
+      class="absolute inset-0 opacity-15"
+      style="background-image:radial-gradient(circle at 80% 20%,#c89600 0%,transparent 55%)"
+    >
+    </div>
+
+    <!-- Contenido -->
+    <div class="relative p-4 md:p-3">
+      <!-- MOBILE: layout vertical / DESKTOP: layout horizontal compacto -->
+
+      <!-- Chip + close (siempre visible arriba) -->
+      <div class="flex items-center justify-between gap-2 mb-2">
+        <span
+          class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase border border-yellow-500/40 bg-yellow-500/10 text-yellow-300"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-yellow-300 animate-pulse"
+          ></span>
+          ¡No te lo puedes perder!
+        </span>
+        <button
+          id="alerta-close"
+          aria-label="Cerrar anuncio"
+          class="flex-shrink-0 w-6 h-6 rounded-full bg-white/10 hover:bg-white/20 text-white/60 hover:text-white flex items-center justify-center text-xs transition-colors"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Fila principal: icono + info + CTA -->
+      <div class="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
+        <!-- Icono de alerta (desktop) -->
+        <div class="relative w-10 h-10 flex-shrink-0 hidden md:block">
+          <span
+            class="absolute -inset-1 rounded-full bg-yellow-400/25 animate-pulse"
+            aria-hidden="true"></span>
+          <span
+            class="relative flex items-center justify-center w-10 h-10 rounded-full bg-yellow-500/15 border-2 border-yellow-400/40"
+          >
+            <TriangleAlert class="w-5 h-5 text-yellow-300 animate-pulse" />
+          </span>
+        </div>
+
+        <!-- Texto: título + descripción + fecha -->
+        <div class="flex-1 min-w-0">
+          <!-- En mobile: icono + título en fila -->
+          <div class="flex items-center gap-2 mb-1 md:block">
+            <!-- Icono de alerta (mobile) -->
+            <div class="relative w-10 h-10 flex-shrink-0 md:hidden">
+              <span
+                class="absolute -inset-1 rounded-full bg-yellow-400/25 animate-pulse"
+                aria-hidden="true"></span>
+              <span
+                class="relative flex items-center justify-center w-10 h-10 rounded-full bg-yellow-500/15 border-2 border-yellow-400/40"
+              >
+                <TriangleAlert class="w-5 h-5 text-yellow-300 animate-pulse" />
+              </span>
+            </div>
+            <h3
+              class="text-white font-extrabold text-sm leading-snug md:text-base"
+            >
+              {titulo}
+            </h3>
+          </div>
+          <p
+            class="text-white/60 text-sm leading-relaxed md:text-xs md:line-clamp-1"
+          >
+            {descripcion}
+          </p>
+        
+        </div>
+
+        <!-- CTA -->
+        <a
+          href={href}
+          class="flex items-center justify-center gap-1.5 w-full md:w-auto md:flex-shrink-0 py-2 md:py-2 px-4 rounded-xl bg-red-500 text-white shadow-lg shadow-red-une-500/20 hover:-translate-y-0.5 hover:shadow-red-une-500/40 transition-all whitespace-nowrap"
+        >
+          {ctaText}
+          <svg
+            class="w-3.5 h-3.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ storageKey, delay }}>
+  const wrapper = document.getElementById("alerta-wrapper");
+  const banner = document.getElementById("alerta-banner");
+  const closeBtn = document.getElementById("alerta-close");
+
+  if (!wrapper || !banner) return;
+
+  if (sessionStorage.getItem(storageKey)) {
+    wrapper.remove();
+  } else {
+    setTimeout(() => {
+      banner.style.opacity = "1";
+      banner.style.transform = "translateY(0) scale(1)";
+    }, delay * 1000);
+  }
+
+  closeBtn?.addEventListener("click", () => {
+    banner.style.opacity = "0";
+    banner.style.transform = "translateY(16px) scale(0.95)";
+    setTimeout(() => {
+      wrapper.remove();
+      sessionStorage.setItem(storageKey, "1");
+    }, 400);
+  });
+</script>
