@@ -1,12 +1,11 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { Image } from "astro:assets"; // Importante para optimizar imágenes en Astro
-import HeroImg from "@/assets/imagenes/CardsNiveles/bachillerato_en_linea.webp"; // Usando tu variable
-import BachilleratoImg from "@/assets/imagenes/CardsNiveles/bachillerato_en_linea-2.webp"; // Usando tu variable
+import HeroImg from "@/assets/Imagenes/CardsNiveles/bachillerato_en_linea.webp"; // Usando tu variable
+import BachilleratoImg from "@/assets/Imagenes/CardsNiveles/bachillerato_en_linea-2.webp"; // Usando tu variable
 import Proposito_competencias from "@/components/sections/oferta/Propósito-competencias.astro";
 import Detalles_Formacion from "@/components/sections/oferta/Detalles-Formación.astro";
 import Requisitos from "@/components/sections/oferta/Requisitos.astro";
-import IntakesBanner from "@/components/sections/acerca/IntakesBanner_bachilerato.astro";
 import Plan_estudios from "@/components/sections/oferta/Plan-estudios.astro";
 import { obtenerPlanEstudios } from "@/helpers/planes_estudio.js";
 const plan_bachillerato = obtenerPlanEstudios("bachillerato");
@@ -23,8 +22,8 @@ const listaRequisitos = [
     label: "Acta de nacimiento",
     copies: 3,
     original: true,
-    note: "Fecha de expedición no mayor a un año. En excelente estado. Puede descargarse en línea, imprimirse a color y en hoja opalina.",
-    link: "https://actasenlinea.jalisco.gob.mx/actasescolares/Nacimiento.do",
+    note: "Fecha de expedición no mayor a un año. En excelente estado. Puede tramitarse en línea mediante la plataforma nacional del registro civil. Debe imprimirse a color y en hoja opalina.",
+    link: "https://www.miregistrocivil.gob.mx/public/actas/commons/RequisitosTramites.xhtml?idTramite=1",
   },
   {
     id: 2,
@@ -45,7 +44,11 @@ const listaRequisitos = [
     label: "CURP",
     copies: 3,
     original: false,
-    note: "Copia legible.",
+    note: "Actualizada y en buen estado.",
+    link: {
+      text: "Consultar CURP",
+      url: "https://www.gob.mx/curp/",
+    },
   },
   {
     id: 5,
@@ -82,7 +85,7 @@ const linkPdf = "/requisitos/bachillerato.pdf"; // Ruta a tu PDF
 
 <Layout
   title="Bachillerato en Línea | UNE - Termina tu Prepa"
-  description="Estudia tu Bachillerato 100% en línea con validez oficial SEJ. Horarios flexibles y plataforma 24/7. ¡Inscríbete hoy!"
+  description="Estudia tu Bachillerato 100% en línea con validez oficial SEP. Horarios flexibles y plataforma 24/7. ¡Inscríbete hoy!"
 >
   <main class="min-h-screen mx-auto py-12 lg:py-20">
     {/* Hero section */}
@@ -108,7 +111,7 @@ const linkPdf = "/requisitos/bachillerato.pdf"; // Ruta a tu PDF
             <div
               class="flex items-center gap-1 bg-gray-100 px-3 py-1 rounded-lg"
             >
-              <span>📚 Termina en 2 años 8 meses</span>
+              <span>📚 Termina en 3 años</span>
             </div>
             <div
               class="flex items-center gap-1 bg-gray-100 px-3 py-1 rounded-lg"
@@ -118,33 +121,23 @@ const linkPdf = "/requisitos/bachillerato.pdf"; // Ruta a tu PDF
             <div
               class="flex items-center gap-1 bg-green-50 px-3 py-1 rounded-lg text-green-700"
             >
-              <span>✓SEJ Oficial</span>
+              <span>✓ RVOE SEP Oficial</span>
             </div>
           </div>
 
-          <div class="pt-2 flex flex-col sm:flex-row gap-4 items-center">
+          <div class="pt-2">
             <a
               href="/contacto/solicitarinformacion"
-              class="group inline-flex items-center bg-azul-une text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-red-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              class="group inline-flex items-center bg-[#DC2626] text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-red-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
-              Contacta a UNE
+              QUIERO INSCRIBIRME
               <ArrowRight
                 class="h-6 w-6 ml-2 group-hover:translate-x-1 transition-transform"
               />
             </a>
-
-            {/* Botón A/B Test - Inscríbete */}
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLScyrURKYXtsBliCbWEgFt0FJU0j2wYuOrqc6QooqnWQ4AVG8A/viewform"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group inline-flex items-center bg-rojo-une text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-red-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-            >
-              INSCRÍBETE
-              <ArrowRight
-                class="h-6 w-6 ml-2 group-hover:translate-x-1 transition-transform"
-              />
-            </a>
+            {
+              /* Nota UX: Cambié el CTA a algo más activo/decidido, o podrías usar "VER PLAN DE ESTUDIOS" si es un paso previo */
+            }
           </div>
 
           <nav
@@ -180,26 +173,23 @@ const linkPdf = "/requisitos/bachillerato.pdf"; // Ruta a tu PDF
 
     <Detalles_Formacion
       durationLabel="Duración"
-      duration="2 años 8 meses"
+      duration="3 años (6 semestres)"
       modeLabel="Modalidad"
-      mode="100% en línea"
+      mode="100% en línea (Asincrónico)"
       benefitsLabel="¿Por qué elegirnos?"
-      brochureUrl="https://contenido.une-enlinea.com/web/brochure/BV_Bachillerato_PLN_BRCH/index.html"
       benefits={[
         "Tú decides tus horarios: plataforma abierta 24/7.",
         "Acompañamiento real: tutores que resuelven tus dudas.",
         "Sin gastos de traslado: estudia desde tu casa.",
-        "Certificado SEJ válido en cualquier universidad.",
+        "Certificado SEP válido en cualquier universidad.",
       ]}
       outcomes={[
-        " Construir una base sólida para tu carrera universitaria.",
-        "Mejorar tu perfil laboral y aspirar a ascensos.",
-        "Desarrollar disciplina digital y autogestión.",
-        "Fomentar valores éticos y responsabilidad social.",
+        "Construye una base sólida para tu carrera universitaria.",
+        "Mejora tu perfil laboral y aspira a ascensos.",
+        "Desarrolla disciplina digital y autogestión.",
+        "Fomenta valores éticos y responsabilidad social.",
       ]}
     />
-
-    <IntakesBanner proximoInicio="8 de octubre" />
 
     <Requisitos requirements={listaRequisitos} pdfUrl={linkPdf} />
 

@@ -1,27 +1,27 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Hero from "@/assets/imagenes/heros/licenciaturas_desktop.webp";
-import Hero_mobile from "@/assets/imagenes/heros/licenciaturas_mobile.webp";
+import Hero from "@/assets/Imagenes/heros/licenciaturas_desktop.webp";
+import Hero_mobile from "@/assets/Imagenes/heros/licenciaturas_mobile.webp";
 import InformativeCard from "@components/sections/oferta/CardInformativa.astro";
-import ImagenCard from "@/assets/imagenes/CardsNiveles/licenciaturas2.webp";
+import ImagenCard from "@/assets/Imagenes/CardsNiveles/Licenciaturas.webp";
 import Estadisticas from "@components/sections/oferta/Estadisticas.astro";
 import Carreras from "@components/sections/oferta/licenciaturas/Carreras.astro";
 import Requisitos from "@components/sections/oferta/Requisitos.astro";
-import IntakesBanner from "@/components/sections/acerca/IntakesBanner.astro";
 import Faqs from "@components/sections/shared/Faq.astro";
 import { obtenerDatos } from "@/helpers/faq.js";
 const infoActual = obtenerDatos("licenciatura");
 
-import { UserPlus } from "@lucide/astro";
+import { UserPlus, Phone } from "@lucide/astro";
 
+// Datos extraídos de la imagen
 const listaRequisitos = [
   {
     id: 1,
     label: "Acta de Nacimiento",
     copies: 3,
     original: true,
-    note: "Con fecha de expedición no mayor a un año y en excelente estado. Puede descargarse gratuitamente por internet, imprimirse a color y en hoja opalina para presentarse como original.",
-    link: "https://actasenlinea.jalisco.gob.mx/actasescolares/Nacimiento.do",
+    note: "Con fecha de expedición no mayor a un año y en excelente estado. Puede tramitarse en línea mediante la plataforma nacional del registro civil. Debe imprimirse a color y en hoja opalina para presentarse como original.",
+    link: "https://www.miregistrocivil.gob.mx/public/actas/commons/RequisitosTramites.xhtml?idTramite=1",
   },
   {
     id: 2,
@@ -44,8 +44,12 @@ const listaRequisitos = [
     label: "CURP",
     copies: 3,
     original: false,
-    note: "Presentar tres copias legibles.",
-    link: null,
+    note: "Presentar tres copias legibles actualizadas y en buen estado.",
+    link: {
+      text: "Consultar CURP",
+      note: "Actualizada y en buen estado.",
+      url: "https://www.gob.mx/curp/",
+    },
   },
   {
     id: 5,
@@ -66,7 +70,7 @@ const listaRequisitos = [
   {
     id: 7,
     label: "Fotografías tamaño infantil",
-    copies: 8,
+    copies: 0,
     original: false,
     note: "8 fotografías tamaño infantil en blanco y negro, con vestimenta presentable. Pueden ser de Farmacias Guadalajara.",
     link: null,
@@ -78,7 +82,7 @@ const linkPdf = "/requisitos/licenciatura.pdf"; // Ruta a tu PDF
 
 <Layout
   title="Licenciaturas en Línea UNE | Estudia y Trabaja"
-  description="Estudia tu Licenciatura 100% en línea . 45 carreras con validez oficial SICYT. Horarios flexibles para gente que trabaja."
+  description="Estudia tu Licenciatura 100% en línea . 45 carreras con validez oficial SEP y UDG. Horarios flexibles para gente que trabaja."
 >
   <main class="min-h-screen">
     {/* Hero Section */}
@@ -112,7 +116,7 @@ const linkPdf = "/requisitos/licenciatura.pdf"; // Ruta a tu PDF
             class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight"
           >
             Tu título universitario, <br />
-            a tu propio ritmo
+            <span class="text-rojo-une">a tu propio ritmo</span>
           </h1>
 
           {/* Description - Atacando el dolor de "falta de tiempo" */}
@@ -140,7 +144,7 @@ const linkPdf = "/requisitos/licenciatura.pdf"; // Ruta a tu PDF
           <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
             {/* CTA Primario - Visualmente destacado */}
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLScyrURKYXtsBliCbWEgFt0FJU0j2wYuOrqc6QooqnWQ4AVG8A/viewform"
+              href="/contacto/solicitarinformacion"
               class="bg-white text-azul-une hover:bg-cyan-50 font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center gap-2 whitespace-nowrap w-full sm:w-auto"
             >
               ¡Quiero inscribirme!
@@ -149,28 +153,11 @@ const linkPdf = "/requisitos/licenciatura.pdf"; // Ruta a tu PDF
 
             {/* CTA Secundario - Ghost button para menor jerarquía visual */}
             <a
-              href="https://wa.me/523380000801?text=Hola,%20me%20gustaría%20recibir%20información%20sobre%20los%20programas%20académicos%20de%20UNE"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/contacto/solicitarinformacion"
               class="border-2 border-white text-white hover:bg-white/10 font-semibold py-4 px-8 rounded-lg text-lg transition-colors duration-300 flex items-center justify-center gap-2 whitespace-nowrap w-full sm:w-auto"
-              aria-label="Contactar por WhatsApp con un asesor UNE"
             >
               Hablar con un asesor
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path
-                  d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
-                ></path>
-              </svg>
+              <Phone size={22} />
             </a>
           </div>
         </div>
@@ -181,21 +168,21 @@ const linkPdf = "/requisitos/licenciatura.pdf"; // Ruta a tu PDF
     <InformativeCard
       studentImageSrc={ImagenCard.src}
       title="LICENCIATURAS PARA EL MUNDO REAL"
-      description="Ya tienes la experiencia, ahora obtén el título. Nuestras licenciaturas están diseñadas para potenciar lo que ya sabes y darte las herramientas teóricas para liderar. Con el Reconocimiento de Validez Oficial de Estudios (RVOE) de la SICyT, nuestros programas virtuales te permiten estudiar desde donde estés, con total certeza legal y curricular."
+      description="Ya tienes la experiencia, ahora obtén el título. Nuestras licenciaturas están diseñadas para potenciar lo que ya sabes y darte las herramientas teóricas para liderar. Con el respaldo de la Universidad de Guadalajara y la SEP, nuestros programas virtuales te permiten estudiar desde donde estés, con la misma validez que un programa presencial."
       features={[
         { icon: "Laptop", label: "Plataforma 24/7" },
-        { icon: "School", label: "Validez Oficial (SICyT)" },
+        { icon: "School", label: "Validez (SEP/UDG)" },
         { icon: "Clock", label: "Tú gestionas tus horarios" },
         { icon: "Users", label: "Docentes activos en la industria" },
       ]}
     />
 
     <Estadisticas />
-        <IntakesBanner />
 
-
+    {
+      /* Aquí es vital que el componente Carreras deje claro cuáles son online */
+    }
     <Carreras />
-
 
     <Requisitos requirements={listaRequisitos} pdfUrl={linkPdf} />
 

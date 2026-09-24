@@ -2,11 +2,10 @@
 import { Image } from "astro:assets";
 import LogoUNE from "@/assets/Logos/une-enlinea.png";
 import Layout from "@/layouts/Layout.astro";
-import AdmisionHero from "@/assets/imagenes/heros/admisiones_desktop.webp";
-import AdmisionHeroMobile from "@/assets/imagenes/heros/admisiones_mobile.webp";
+import AdmisionHero from "@/assets/Imagenes/Heros/admisiones_desktop.webp";
+import AdmisionHeroMobile from "@/assets/Imagenes/Heros/admisiones_mobile.webp";
 import { FileDown } from "@lucide/astro";
 import ContactSection from "@/components/sections/shared/GeneralCTA.astro";
-import IntakesBanner from "@/components/sections/acerca/IntakesBanner.astro";
 ---
 
 <Layout
@@ -64,8 +63,6 @@ import IntakesBanner from "@/components/sections/acerca/IntakesBanner.astro";
       </div>
     </div>
   </section>
-
-  <IntakesBanner />
 
   <!-- New 5-Step Process Section -->
   <section class="py-16 bg-linear-to-b from-gray-50 to-white">
@@ -256,14 +253,8 @@ import IntakesBanner from "@/components/sections/acerca/IntakesBanner.astro";
       >
         <p class="text-lg text-gray-800">
           <strong class="text-blue-900">¿Tienes dudas?</strong>
-          <span class="ml-2 flex"
-            >Un asesor y tutor te acompañarán durante todo el proceso. <a
-              href="/contacto/solicitarinformacion"
-              class="hover:opacity-90 text-rojo-une font-medium transition-all duration-300 hover:scale-105 focus:outline-none ml-4 focus:ring-red-300 text-center"
-              aria-label="Solicitar más información sobre admisiones"
-            >
-              ¡Contáctanos!
-            </a></span
+          <span class="ml-2"
+            >Tu asesor y tutor te acompañarán durante todo el proceso.</span
           >
         </p>
       </div>
@@ -419,46 +410,51 @@ import IntakesBanner from "@/components/sections/acerca/IntakesBanner.astro";
       requirements: [
         {
           icon: "document",
-          text: "I. Acta de Nacimiento original y 3 copias",
+          text: "1. Acta de Nacimiento original y 3 copias",
           note: "Con fecha de expedición no mayor a un año y en excelente estado.",
-          tip: "Puedes descargarla por internet gratuitamente, imprimirla a color y en hoja opalina para presentarla como original.",
+          tip: "Puedes tramitarla por internet mediante la plataforma nacional del registro civil. Imprímela a color y en hoja opalina para presentarla como original.",
           link: {
-            text: "Descargar aquí",
-            url: "https://actasenlinea.jalisco.gob.mx/actasescolares/Nacimiento.do",
+            text: "Tramitar aquí",
+            url: "https://www.miregistrocivil.gob.mx/public/actas/commons/RequisitosTramites.xhtml?idTramite=1",
           },
         },
         {
           icon: "document",
-          text: "II. Certificado de secundaria original y 3 copias",
+          text: "2. Certificado de secundaria original y 3 copias",
           note: "Si fue expedido fuera de Jalisco, debe estar legalizado. No se requiere si incluye la leyenda: 'ESTE DOCUMENTO ES VÁLIDO EN LOS ESTADOS UNIDOS MEXICANOS Y NO REQUIERE TRÁMITES ADICIONALES DE LEGALIZACIÓN'.",
         },
         {
           icon: "document",
-          text: "III. Carta de validación de certificado de secundaria y 3 copias",
+          text: "3. Carta de validación de certificado de secundaria y 3 copias",
           note: "Este documento es obligatorio. Debe estar dirigida a quien corresponda o al Ing. Marco Arturo Castro Aguilera, Director de Incorporación y Servicios Escolares SICyT.",
           tip: "Debe ser en hoja membretada, contar con el folio de su certificado, nombre del alumno y fecha de expedición.",
         },
         {
           icon: "card",
-          text: "IV. CURP 3 copias",
+          text: "4. CURP 3 copias",
+          note: "Actualizada y en buen estado.",
+          link: {
+            text: "Consultar CURP",
+            url: "https://www.gob.mx/curp/",
+          },
         },
         {
           icon: "id",
-          text: "V. Identificación Oficial (vigente) con fotografía 3 copias",
+          text: "5. Identificación Oficial (vigente) con fotografía 3 copias",
         },
         {
           icon: "home",
-          text: "VI. Comprobante de Domicilio. 3 copias",
+          text: "6. Comprobante de Domicilio. 3 copias",
         },
         {
           icon: "camera",
-          text: "VII. 8 fotografías tamaño infantil blanco y negro",
+          text: "7. 8 fotografías tamaño infantil blanco y negro",
           note: "Vestimenta presentable.",
           tip: "Sugerencia: Farmacia Guadalajara.",
         },
         {
           icon: "camera",
-          text: "VIII. 2 fotografías Tamaño credencial a color",
+          text: "8. 2 fotografías Tamaño credencial a color",
           note: "Vestimenta presentable.",
           tip: "Sugerencia: Farmacia Guadalajara.",
         },
@@ -469,40 +465,45 @@ import IntakesBanner from "@/components/sections/acerca/IntakesBanner.astro";
       requirements: [
         {
           icon: "document",
-          text: "I. Acta de Nacimiento original y 3 copias",
+          text: "1. Acta de Nacimiento original y 3 copias",
           note: "Con fecha de expedición no mayor a un año y en excelente estado.",
-          tip: "Puedes descargarla por internet gratuitamente, imprimirla a color y en hoja opalina para presentarla como original.",
+          tip: "Puedes tramitarla por internet mediante la plataforma nacional del registro civil. Imprímela a color y en hoja opalina para presentarla como original.",
           link: {
-            text: "Descargar aquí",
-            url: "https://actasenlinea.jalisco.gob.mx/actasescolares/Nacimiento.do",
+            text: "Tramitar aquí",
+            url: "https://www.miregistrocivil.gob.mx/public/actas/commons/RequisitosTramites.xhtml?idTramite=1",
           },
         },
         {
           icon: "document",
-          text: "II. Certificado de Bachillerato original y 3 copias",
+          text: "2. Certificado de Bachillerato original y 3 copias",
           note: "Si fue expedido fuera de Jalisco, debe estar legalizado, excepto si incluye la leyenda de validez nacional que no requiere trámites adicionales.",
         },
         {
           icon: "document",
-          text: "III. Carta de validación de certificado de bachillerato y 3 copias",
+          text: "3. Carta de validación de certificado de bachillerato y 3 copias",
           note: "Documento obligatorio. Debe estar dirigida a la Mtra. Fanny Guadalupe Valdivia Márquez, Subsecretaria de Educación Superior.",
           tip: "Debe ser en hoja membretada con folio del certificado, nombre del alumno y fecha de expedición.",
         },
         {
           icon: "card",
-          text: "IV. CURP 3 copias",
+          text: "4. CURP 3 copias",
+          note: "Actualizada y en buen estado.",
+          link: {
+            text: "Consultar CURP",
+            url: "https://www.gob.mx/curp/",
+          },
         },
         {
           icon: "id",
-          text: "V. Identificación Oficial (vigente) con fotografía 3 copias",
+          text: "5. Identificación Oficial (vigente) con fotografía 3 copias",
         },
         {
           icon: "home",
-          text: "VI. Comprobante de Domicilio. 3 copias",
+          text: "6. Comprobante de Domicilio. 3 copias",
         },
         {
           icon: "camera",
-          text: "VII. 8 fotografías tamaño infantil B/N",
+          text: "7. 8 fotografías tamaño infantil B/N",
           note: "Vestimenta presentable.",
           tip: "Sugerencia: Farmacia Guadalajara.",
         },
@@ -513,44 +514,44 @@ import IntakesBanner from "@/components/sections/acerca/IntakesBanner.astro";
       requirements: [
         {
           icon: "document",
-          text: "I. Acta de Nacimiento original y 3 copias",
+          text: "1. Acta de Nacimiento original y 3 copias",
           note: "Con fecha de expedición no mayor a un año y en excelente estado.",
-          tip: "Puedes descargarla por internet gratuitamente, imprimirla a color y en hoja opalina para presentarla como original.",
+          tip: "Puedes tramitarla por internet mediante la plataforma nacional del registro civil. Imprímela a color y en hoja opalina para presentarla como original.",
           link: {
-            text: "Descargar aquí",
-            url: "https://actasenlinea.jalisco.gob.mx/actasescolares/Nacimiento.do",
+            text: "Tramitar aquí",
+            url: "https://www.miregistrocivil.gob.mx/public/actas/commons/RequisitosTramites.xhtml?idTramite=1",
           },
         },
         {
           icon: "document",
-          text: "II. Certificado de Licenciatura original y 3 copias",
+          text: "2. Certificado de Licenciatura original y 3 copias",
           note: "Legalizado si es de fuera de Jalisco, a menos que tenga la leyenda de validez nacional.",
         },
         {
           icon: "document",
-          text: "III. Carta de validación de Certificado de Licenciatura y 3 copias",
+          text: "3. Carta de validación de Certificado de Licenciatura y 3 copias",
           note: "Documento obligatorio. Dirigida a la Mtra. Fanny Guadalupe Valdivia Márquez, Subsecretaria de Educación Superior.",
           tip: "Debe ser en hoja membretada con folio, nombre y fecha.",
         },
         {
           icon: "document",
-          text: "IV. Título 3 copias",
+          text: "4. Título 3 copias",
         },
         {
           icon: "id",
-          text: "V. Cédula 3 copias",
+          text: "5. Cédula 3 copias",
         },
         {
           icon: "id",
-          text: "VI. Identificación Oficial (vigente) con fotografía 3 copias",
+          text: "6. Identificación Oficial (vigente) con fotografía 3 copias",
         },
         {
           icon: "home",
-          text: "VII. Comprobante de Domicilio. 3 copias",
+          text: "7. Comprobante de Domicilio. 3 copias",
         },
         {
           icon: "camera",
-          text: "VIII. 8 fotografías tamaño infantil B/N",
+          text: "8. 8 fotografías tamaño infantil B/N",
           note: "Vestimenta presentable.",
           tip: "Sugerencia: Farmacia Guadalajara.",
         },
@@ -599,7 +600,7 @@ import IntakesBanner from "@/components/sections/acerca/IntakesBanner.astro";
         extraHtml += `<p class="text-sm text-blue-700 mt-1 font-medium"><span class="bg-blue-50 px-1.5 py-0.5 rounded mr-1">Tip:</span> ${req.tip}</p>`;
       }
       if (req.link) {
-        extraHtml += `<a href="${req.link.url}" target="_blank" rel="noopener noreferrer" class="text-xs text-red-600 underline font-medium mt-2 inline-block hover:text-red-700 transition-colors">${req.link.text}</a>`;
+        extraHtml += `<a href="${req.link.url}" target="_blank" rel="noopener noreferrer" class="text-xs text-red-600 underline font-bold mt-2 inline-block hover:text-red-700 transition-colors">${req.link.text}</a>`;
       }
 
       item.innerHTML = `
