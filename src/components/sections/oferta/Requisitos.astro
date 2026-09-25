@@ -6,10 +6,8 @@ export interface Requirement {
   label: string;
   copies?: number;
   note?: string;
-  link?: string;
   nombre?: string;
   nota?: string;
-  enlace?: string;
 }
 
 export type RequirementInput = Requirement | string;
@@ -33,7 +31,6 @@ const normalizedRequirements = requirements.map((req) => {
   return {
     label: req.label || req.nombre || "",
     note: req.note || req.nota,
-    link: req.link || req.enlace,
     copies: req.copies,
   };
 });
@@ -121,18 +118,7 @@ const normalizedRequirements = requirements.map((req) => {
 
                     <div class="flex-1 min-w-0">
                       <span class="text-gray-800 font-medium leading-tight block truncate">
-                        {req.link ? (
-                          <a
-                            href={req.link}
-                            target="_blank"
-                            class="hover:text-azul-une underline decoration-dotted underline-offset-4"
-                            onclick="event.stopPropagation();"
-                          >
-                            {req.label}
-                          </a>
-                        ) : (
-                          req.label
-                        )}
+                        {req.label}
                       </span>
                     </div>
 

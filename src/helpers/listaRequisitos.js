@@ -5,7 +5,6 @@ const requisitos_licenciaturas = [
     copies: 3,
     original: true,
     note: "Con fecha de expedición no mayor a un año y en excelente estado. Puede descargarse gratuitamente por internet, imprimirse a color y en hoja opalina para presentarse como original.",
-    link: "https://actasenlinea.jalisco.gob.mx/actasescolares/Nacimiento.do",
   },
   {
     id: 2,
@@ -64,7 +63,6 @@ const requisitos_maestrias = [
     copies: 3,
     original: true,
     note: "Fecha de expedición no mayor a un año y en excelente estado. Puede descargarse gratuitamente por internet, imprimirse a color y en hoja opalina para presentarse como original.",
-    link: "https://actasenlinea.jalisco.gob.mx/actasescolares/Nacimiento.do",
   },
   {
     id: 2,
